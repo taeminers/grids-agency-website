@@ -27,7 +27,7 @@ export default function Navbar({ className }: NavbarProps) {
   const pathname = usePathname();
 
   // Apple Liquid Glass Style:
-  const blockClass = "h-11 flex items-center bg-black/10 dark:bg-white/5 backdrop-blur-md backdrop-saturate-200 border border-black dark:border-white/10 shadow-lg rounded-md text-primary transition-all duration-300";
+  const blockClass = "h-11 flex items-center bg-black/10 dark:bg-white/5 backdrop-blur-md backdrop-saturate-200 border border-black dark:border-white/10 shadow-lg rounded-sm text-primary transition-all duration-300";
 
   const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -48,10 +48,10 @@ export default function Navbar({ className }: NavbarProps) {
   if (!mounted) return null;
 
   return (
-    <nav className={cn("fixed top-6 left-1/2 -translate-x-1/2 z-40 flex items-center gap-2", className)}>
+    <nav className={cn("fixed top-6 left-1/2 -translate-x-1/2 z-40 flex flex-wrap justify-center gap-1 w-max md:w-auto md:flex-nowrap md:items-center", className)}>
       
-      {/* Brand Block */}
-      <SpotlightBorder className="p-0">
+      {/* Brand Block - Mobile: Order 2 (Bottom Left) */}
+      <SpotlightBorder className="p-0 order-2 md:order-none">
         <div className={cn(blockClass, "border-0 px-5 font-medium text-sm cursor-pointer whitespace-nowrap")}>
             <Link href={`/${locale}`} className="flex items-center gap-2 animate-in fade-in fill-mode-forwards duration-1000 delay-500">
                 <div className="relative w-4 h-4">
@@ -72,26 +72,28 @@ export default function Navbar({ className }: NavbarProps) {
         </div>
       </SpotlightBorder>
 
-      {/* Links Block - Hidden on mobile, visible on desktop */}
-      <SpotlightBorder className="hidden md:block p-0">
-        <div className={cn(blockClass, "border-0 px-2 gap-1")}>
-            <Link href="#" className="px-4 py-1.5  rounded-sm text-sm font-medium transition-colors">
-            {t('work')}
-            </Link>
-            <Link href="#" className="px-4 py-1.5  rounded-sm text-sm font-medium transition-colors">
-            {t('about')}
-            </Link>
-            <Link href="#" className="px-4 py-1.5  rounded-sm text-sm font-medium transition-colors">
-            {t('services')}
-            </Link>
-            <Link href="#" className="px-4 py-1.5  rounded-sm text-sm font-medium transition-colors">
-            {t('contact')}
-            </Link>
-        </div>
-      </SpotlightBorder>
+      {/* Links Block - Mobile: Order 1 (Top Center), Wrapped to force new line visually without expanding border */}
+      <div className="order-1 w-full flex justify-center md:contents">
+        <SpotlightBorder className="p-0 md:block">
+            <div className={cn(blockClass, "border-0 px-2 gap-1")}>
+                <Link href="#" className="px-4 py-1.5  rounded- text-sm font-medium transition-colors">
+                {t('work')}
+                </Link>
+                <Link href="#" className="px-4 py-1.5  rounded-sm text-sm font-medium transition-colors">
+                {t('about')}
+                </Link>
+                <Link href="#" className="px-4 py-1.5  rounded-sm text-sm font-medium transition-colors">
+                {t('services')}
+                </Link>
+                <Link href="#" className="px-4 py-1.5  rounded-sm text-sm font-medium transition-colors">
+                {t('contact')}
+                </Link>
+            </div>
+        </SpotlightBorder>
+      </div>
 
-      {/* Settings Dropdown Block (Theme + Language) */}
-      <SpotlightBorder className="p-0">
+      {/* Settings Dropdown Block - Mobile: Order 3 (Bottom Right) */}
+      <SpotlightBorder className="p-0 order-3 md:order-none">
         <DropdownMenu onOpenChange={setIsOpen}>
             <DropdownMenuTrigger asChild>
                 <div className={cn(blockClass, "border-0 w-11 justify-center cursor-pointer relative overflow-hidden group")}>

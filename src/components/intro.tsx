@@ -94,9 +94,46 @@ export default function Intro({ onReveal }: IntroProps) {
         }
       }, "move+=0.5")
       
+
+
+      // Step 2: Animate OLD text OUT (Push Down)
+      .to([gridsRef.current, agencyRef.current], {
+        y: 100,
+        opacity: 0,
+        duration: 0.4,
+        ease: "back.in(2)",
+        stagger: 0.1
+      }, "move+=2.0")
+
+      // Step 3: Swap Text & Reset Position (Instant)
       .call(() => {
+        if (gridsRef.current) {
+            gridsRef.current.innerText = "THE AI";
+            // Reset position to TOP for incoming animation
+            gsap.set(gridsRef.current, { y: -100 });
+        }
+        if (agencyRef.current) {
+            agencyRef.current.innerText = "CREATIVE LAB";
+            // Reset position to TOP for incoming animation
+            gsap.set(agencyRef.current, { y: -100 });
+        }
+        // Reveal Navbar immediately as text prepares to enter
         if (onReveal) onReveal();
-      }, undefined, "move+=1.0");
+      })
+
+      // Step 4: Animate NEW text IN (Slide Down from Top)
+      .to([gridsRef.current, agencyRef.current], {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        ease: "back.out(1.5)",
+        stagger: 0.1
+      })
+      .to(textWrapperRef.current, {
+        scale: 0.8, // Ensure longer text fits (Mobile: 1->0.5, Desktop: 0.4->0.5)
+        duration: 0.6,
+        ease: "back.out(1.5)"
+      }, "<");
 
     }, containerRef); 
 
