@@ -22,24 +22,22 @@ export default function Intro() {
         const windowHeight = window.innerHeight;
         const textHeight = textRef.current.offsetHeight;
         // The element is centered, so `top` is 50%.
-        // Distance to move = Target Center Y - Current Center Y
-        // Target Center Y = WindowHeight - Padding(30) - (ScaledHeight / 2)
-        const scale = 2;
-        const yOffset = (windowHeight / 2) - ((textHeight * scale) / 2) - 30;
+        // Distance to move = (windowHeight / 2) - (textHeight / 2) - 30 (pixels from bottom);
+        const yOffset = (windowHeight / 2) - (textHeight / 2) - 30;
 
-        // Step 1: Fade in and Scale up "GRIDS AGENCY"
+        // Step 1: Fade in at 50% scale
         tl.fromTo(
           textRef.current,
-          { opacity: 0, scale: 0.8, y: 20 },
-          { opacity: 1, scale: 1, y: 0, duration: 1 }
+          { opacity: 0, scale: 0.5, y: 20 }, 
+          { opacity: 1, scale: 0.5, y: 0, duration: 1 }
         )
           // Step 2: Delay 1 second
           .to({}, { duration: 1 })
           
-          // Step 3: Animate Text to absolute bottom with 2x scale
+          // Step 3: Animate Text to absolute bottom and scale to 100%
           .to(textRef.current, {
             y: yOffset,
-            scale: scale, 
+            scale: 1, 
             duration: 1.0,
             ease: "power4.inOut"
           }, "move")
