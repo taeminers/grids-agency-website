@@ -22,8 +22,10 @@ export default function Intro() {
         const windowHeight = window.innerHeight;
         const textHeight = textRef.current.offsetHeight;
         // The element is centered, so `top` is 50%.
-        // Distance to move = (windowHeight / 2) - (textHeight / 2) - 30 (pixels from bottom);
-        const yOffset = (windowHeight / 2) - (textHeight / 2) - 30;
+        // Distance to move = Target Center Y - Current Center Y
+        // Target Center Y = WindowHeight - Padding(30) - (ScaledHeight / 2)
+        const scale = 2;
+        const yOffset = (windowHeight / 2) - ((textHeight * scale) / 2) - 30;
 
         // Step 1: Fade in and Scale up "GRIDS AGENCY"
         tl.fromTo(
@@ -34,10 +36,10 @@ export default function Intro() {
           // Step 2: Delay 1 second
           .to({}, { duration: 1 })
           
-          // Step 3: Animate Text to absolute bottom
+          // Step 3: Animate Text to absolute bottom with 2x scale
           .to(textRef.current, {
             y: yOffset,
-            scale: 1, // Keep scale consistent or slight reduction? User wanted "responsive on all devices". Fluid type handles sizing, let's keep scale 1.
+            scale: scale, 
             duration: 1.0,
             ease: "power4.inOut"
           }, "move")
