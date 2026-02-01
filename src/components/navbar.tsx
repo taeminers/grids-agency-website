@@ -30,7 +30,7 @@ export default function Navbar({ className }: NavbarProps) {
       
       {/* Brand Block */}
       <SpotlightBorder className="p-0">
-        <div className={cn(blockClass, "border-0 px-5 font-medium text-sm cursor-pointer")}>
+        <div className={cn(blockClass, "border-0 px-5 font-medium text-sm cursor-pointer whitespace-nowrap")}>
             <Link href="/">
                 GRIDS AGENCY
             </Link>
