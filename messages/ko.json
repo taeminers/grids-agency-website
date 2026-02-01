@@ -6,7 +6,13 @@
     "work": "작업",
     "about": "소개",
     "services": "서비스",
-    "contact": "문의"
+    "contact": "문의",
+    "Settings": {
+      "darkMode": "어두운 모드",
+      "lightMode": "밝은 모드",
+      "english": "영어",
+      "korean": "한국어"
+    }
   },
   "Hero": {
     "headline_prefix": "우리는 중요한 ",

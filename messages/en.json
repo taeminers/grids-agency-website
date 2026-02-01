@@ -6,7 +6,13 @@
     "work": "Work",
     "about": "About",
     "services": "Services",
-    "contact": "Contact"
+    "contact": "Contact",
+    "Settings": {
+      "darkMode": "Dark Mode",
+      "lightMode": "Light Mode",
+      "english": "English",
+      "korean": "Korean"
+    }
   },
   "Hero": {
     "headline_prefix": "We craft digital ",

@@ -120,7 +120,7 @@ export default function Navbar({ className }: NavbarProps) {
                 <div className="flex items-center justify-between p-2 rounded-sm hover:bg-accent hover:text-accent-foreground select-none">
                     <div className="flex items-center gap-2">
                         {resolvedTheme === "dark" ? <Moon size={16} /> : <Sun size={16} />}
-                        <span className="font-medium text-sm w-20">{resolvedTheme === "dark" ? "Dark Mode" : "Light Mode"}</span>
+                        <span className="font-medium text-sm w-20">{resolvedTheme === "dark" ? t('Settings.darkMode') : t('Settings.lightMode')}</span>
                     </div>
                     <Switch 
                         checked={resolvedTheme === "dark"}
@@ -132,7 +132,7 @@ export default function Navbar({ className }: NavbarProps) {
                 <div className="flex items-center justify-between p-2 rounded-sm hover:bg-accent hover:text-accent-foreground select-none">
                      <div className="flex items-center gap-2">
                         <Languages size={16} />
-                        <span className="font-medium text-sm w-20">{locale === 'ko' ? 'Korean' : 'English'}</span>
+                        <span className="font-medium text-sm w-20">{locale === 'ko' ? t('Settings.korean') : t('Settings.english')}</span>
                      </div>
                      <Switch 
                         checked={locale === 'ko'}
