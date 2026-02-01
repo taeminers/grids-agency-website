@@ -4,10 +4,17 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter, usePathname } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
-import { MoreHorizontal, Sun, Moon } from "lucide-react";
+import { Settings, Sun, Moon, Languages, Menu, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 import { SpotlightBorder } from "@/components/ui/spotlight-border";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Switch } from "@/components/ui/switch";
 
 interface NavbarProps {
   className?: string;
@@ -27,6 +34,7 @@ export default function Navbar({ className }: NavbarProps) {
 
   const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -72,35 +80,55 @@ export default function Navbar({ className }: NavbarProps) {
         </div>
       </SpotlightBorder>
 
-      {/* Theme Toggle Block */}
+      {/* Settings Dropdown Block (Theme + Language) */}
       <SpotlightBorder className="p-0">
-        <div 
-            onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-            className={cn(blockClass, "border-0 w-11 justify-center cursor-pointer relative overflow-hidden")}
-        >
-            <div className="relative w-5 h-5 flex items-center justify-center">
-                {/* Sun Icon (Light Mode) */}
-                <Sun 
-                    className="absolute transition-all duration-300 rotate-0 scale-100 dark:-rotate-90 dark:scale-0" 
-                    size={20} 
-                />
-                {/* Moon Icon (Dark Mode) */}
-                <Moon 
-                    className="absolute transition-all duration-300 rotate-90 scale-0 dark:rotate-0 dark:scale-100" 
-                    size={20} 
-                />
-            </div>
-        </div>
-      </SpotlightBorder>
-
-      {/* Language Toggle Block */}
-      <SpotlightBorder className="p-0">
-        <div 
-            onClick={switchLocale}
-            className={cn(blockClass, "border-0 w-11 justify-center cursor-pointer relative overflow-hidden font-medium text-xs")}
-        >
-            {locale === 'en' ? 'KO' : 'EN'}
-        </div>
+        <DropdownMenu onOpenChange={setIsOpen}>
+            <DropdownMenuTrigger asChild>
+                <div className={cn(blockClass, "border-0 w-11 justify-center cursor-pointer relative overflow-hidden group")}>
+                    <div className="relative w-5 h-5 flex items-center justify-center">
+                        <Menu 
+                            size={20} 
+                            className={cn(
+                                "absolute text-primary/80 transition-all duration-300",
+                                isOpen ? "rotate-90 opacity-0 scale-50" : "rotate-0 opacity-100 scale-100"
+                            )} 
+                        />
+                        <X 
+                            size={20} 
+                            className={cn(
+                                "absolute text-primary/80 transition-all duration-300",
+                                isOpen ? "rotate-0 opacity-100 scale-100" : "-rotate-90 opacity-0 scale-50"
+                            )} 
+                        />
+                    </div>
+                </div>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-56 bg-background/80 backdrop-blur-md border-border/50 p-2">
+                {/* Theme Toggle Item */}
+                <div className="flex items-center justify-between p-2 rounded-sm hover:bg-accent hover:text-accent-foreground select-none">
+                    <div className="flex items-center gap-2">
+                        {resolvedTheme === "dark" ? <Moon size={16} /> : <Sun size={16} />}
+                        <span className="font-medium text-sm w-20">{resolvedTheme === "dark" ? "Dark Mode" : "Light Mode"}</span>
+                    </div>
+                    <Switch 
+                        checked={resolvedTheme === "dark"}
+                        onCheckedChange={(checked) => setTheme(checked ? "dark" : "light")}
+                    />
+                </div>
+                
+                {/* Language Toggle Item */}
+                <div className="flex items-center justify-between p-2 rounded-sm hover:bg-accent hover:text-accent-foreground select-none">
+                     <div className="flex items-center gap-2">
+                        <Languages size={16} />
+                        <span className="font-medium text-sm w-20">{locale === 'ko' ? 'Korean' : 'English'}</span>
+                     </div>
+                     <Switch 
+                        checked={locale === 'ko'}
+                        onCheckedChange={() => switchLocale()}
+                     />
+                </div>
+            </DropdownMenuContent>
+        </DropdownMenu>
       </SpotlightBorder>
 
     </nav>
