@@ -1,0 +1,20 @@
+{
+  "Brand": {
+    "name": "GRIDS AGENCY"
+  },
+  "Navbar": {
+    "work": "Work",
+    "about": "About",
+    "services": "Services",
+    "contact": "Contact"
+  },
+  "Hero": {
+    "headline_prefix": "We craft digital ",
+    "headline_suffix": "experiences",
+    "headline_end": " that matter.",
+    "subtext": "A design-driven production studio focused on telling your story through motion, interaction, and clean typography."
+  },
+  "Intro": {
+    "text": "GRIDS AGENCY"
+  }
+}

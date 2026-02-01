@@ -4,6 +4,7 @@ import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { cn } from "@/lib/utils";
 
+
 interface IntroProps {
   onReveal?: () => void;
 }
@@ -19,7 +20,6 @@ export default function Intro({ onReveal }: IntroProps) {
       if (textRef.current && containerRef.current) {
         const windowHeight = window.innerHeight;
         const textHeight = textRef.current.offsetHeight;
-        const scale = 1; // Correct logic: we target scale 1 at the end (from 0.5)
         
         // Target Y position calculation
         const yOffset = (windowHeight / 2) - (textHeight / 2) - 30;
@@ -38,10 +38,12 @@ export default function Intro({ onReveal }: IntroProps) {
           .to({}, { duration: 1 })
           
           // Step 3: Animate Text to absolute bottom and scale to 100%
+          // Y position: (windowHeight / 2) - (textHeight / 2) - 30 is the calculated bottom offset
           .to(textRef.current, {
-            y: yOffset,
-            scale: 1, 
-            duration: 1.0,
+            y: yOffset, // Moves to bottom
+            x: 0,       // Center horizontally
+            scale: 1,   // Keep original size (or scale target)
+            duration: 1.2,
             ease: "power4.inOut"
           }, "move")
           

@@ -1,0 +1,20 @@
+{
+  "Brand": {
+    "name": "그리즈 에이전시"
+  },
+  "Navbar": {
+    "work": "작업",
+    "about": "소개",
+    "services": "서비스",
+    "contact": "문의"
+  },
+  "Hero": {
+    "headline_prefix": "우리는 중요한 ",
+    "headline_suffix": "디지털 경험",
+    "headline_end": "을 만듭니다.",
+    "subtext": "모션, 인터랙션, 그리고 깔끔한 타이포그래피를 통해 당신의 이야기를 전달하는 디자인 중심의 프로덕션 스튜디오입니다."
+  },
+  "Intro": {
+    "text": "그리즈 에이전시"
+  }
+}

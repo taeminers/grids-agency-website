@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter, usePathname } from 'next/navigation';
+import { useLocale, useTranslations } from 'next-intl';
 import { MoreHorizontal, Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
@@ -12,6 +14,11 @@ interface NavbarProps {
 }
 
 export default function Navbar({ className }: NavbarProps) {
+  const t = useTranslations('Navbar');
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+
   // Apple Liquid Glass Style:
   // bg-black/5 (darker tint for visibility on light bg), saturated blur
   // Border: visible black/10 for definition on light mode
@@ -25,13 +32,23 @@ export default function Navbar({ className }: NavbarProps) {
     setMounted(true);
   }, []);
 
+  const switchLocale = () => {
+    const nextLocale = locale === 'en' ? 'ko' : 'en';
+    // Simplified locale switch: replace current locale in path
+    // Note: pathname includes locale, e.g. /en/about
+    const newPath = pathname.replace(`/${locale}`, `/${nextLocale}`);
+    router.push(newPath);
+  };
+
+  if (!mounted) return null;
+
   return (
     <nav className={cn("fixed top-6 left-1/2 -translate-x-1/2 z-40 flex items-center gap-2", className)}>
       
       {/* Brand Block */}
       <SpotlightBorder className="p-0">
         <div className={cn(blockClass, "border-0 px-5 font-medium text-sm cursor-pointer whitespace-nowrap")}>
-            <Link href="/">
+            <Link href={`/${locale}`} className=" animate-in fade-in fill-mode-forwards duration-1000 delay-500">
                 GRIDS AGENCY
             </Link>
         </div>
@@ -41,16 +58,16 @@ export default function Navbar({ className }: NavbarProps) {
       <SpotlightBorder className="hidden md:block p-0">
         <div className={cn(blockClass, "border-0 px-2 gap-1")}>
             <Link href="#" className="px-4 py-1.5  rounded-sm text-sm font-medium transition-colors">
-            Work
+            {t('work')}
             </Link>
             <Link href="#" className="px-4 py-1.5  rounded-sm text-sm font-medium transition-colors">
-            About
+            {t('about')}
             </Link>
             <Link href="#" className="px-4 py-1.5  rounded-sm text-sm font-medium transition-colors">
-            Services
+            {t('services')}
             </Link>
             <Link href="#" className="px-4 py-1.5  rounded-sm text-sm font-medium transition-colors">
-            Contact
+            {t('contact')}
             </Link>
         </div>
       </SpotlightBorder>
@@ -73,6 +90,16 @@ export default function Navbar({ className }: NavbarProps) {
                     size={20} 
                 />
             </div>
+        </div>
+      </SpotlightBorder>
+
+      {/* Language Toggle Block */}
+      <SpotlightBorder className="p-0">
+        <div 
+            onClick={switchLocale}
+            className={cn(blockClass, "border-0 w-11 justify-center cursor-pointer relative overflow-hidden font-medium text-xs")}
+        >
+            {locale === 'en' ? 'KO' : 'EN'}
         </div>
       </SpotlightBorder>
 
