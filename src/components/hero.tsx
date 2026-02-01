@@ -9,10 +9,12 @@ export default function Hero({ revealed }: HeroProps) {
   const t = useTranslations('Hero');
 
   return (
-    <section className="flex-1 flex flex-col items-center justify-center p-10 pt-32 text-center space-y-8">
+    <section className="relative flex-1 flex flex-col items-center justify-center p-10 pt-32 text-center space-y-8 overflow-hidden">
+
+
        <div 
         className={cn(
-          "space-y-4 max-w-3xl transition-all duration-1000 ease-out delay-200",
+          "relative z-10 space-y-4 max-w-3xl transition-all duration-1000 ease-out delay-200",
           revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[20px]"
         )}
        >

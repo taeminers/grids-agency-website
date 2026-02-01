@@ -15,26 +15,41 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-background text-foreground relative selection:bg-primary selection:text-primary-foreground">
-      <Intro onReveal={handleReveal} />
-      
-      {/* Content wrapper */}
-      <div className="relative z-0 flex flex-col min-h-screen">
+      <div className="dark text-foreground">
+        {/* Background Video - Fixed Layer */}
+        <div className="fixed inset-0 z-0 bg-black">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover opacity-50"
+            >
+              <source src="/videos/hero.mp4" type="video/mp4" />
+            </video>
+        </div>
+
+        <Intro onReveal={handleReveal} />
         
-        {/* Navbar - Slides down */}
-        <Navbar 
-          className={cn(
-            "transition-all duration-1000 ease-out",
-            revealed ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-[100px]"
-          )} 
-        />
+        {/* Content wrapper */}
+        <div className="relative z-0 flex flex-col min-h-screen">
+          
+          {/* Navbar - Slides down */}
+          <Navbar 
+            className={cn(
+              "transition-all duration-1000 ease-out",
+              revealed ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-[100px]"
+            )} 
+          />
 
-        {/* Hero Section / Top Half - Fades in & slides up */}
-        <Hero revealed={revealed} />
+          {/* Hero Section / Top Half - Fades in & slides up */}
+          <Hero revealed={revealed} />
 
-        {/* Space for the "GRIDS AGENCY" to land in the lower half */}
-        <section className="h-[50vh] flex items-end justify-center pb-20">
-          {/* This area is visually reserved for the "GRIDS AGENCY" text to settle over */}
-        </section>
+          {/* Space for the "GRIDS AGENCY" to land in the lower half */}
+          <section className="h-[50vh] flex items-end justify-center pb-20">
+            {/* This area is visually reserved for the "GRIDS AGENCY" text to settle over */}
+          </section>
+        </div>
       </div>
     </main>
   );
