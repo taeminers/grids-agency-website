@@ -21,8 +21,8 @@ export default function Intro() {
         { opacity: 0, scale: 0.8, y: 20 },
         { opacity: 1, scale: 1, y: 0, duration: 1 }
       )
-        // Step 2: Delay 2 seconds
-        .to({}, { duration: 2 })
+        // Step 2: Delay 1 second
+        .to({}, { duration: 1 })
         // Step 3: Animate Text to lower half
         // We move it from center (50% top) to something like 75% top.
         // Since it's currently centered via grid/flex, we might need to rely on y translation
@@ -33,13 +33,13 @@ export default function Intro() {
         .to(textRef.current, {
           y: "35vh", // Move down significantly
           scale: 1.5, // Maybe make it bigger or smaller? Prompt didn't specify, but "placed on lower half" usually implies footer/signature. Let's keep scale 1 or slightly larger for impact.
-          duration: 1.5,
+          duration: 1.0,
           ease: "power4.inOut"
         }, "move")
         // Step 4: Fade out the solid background reveal the rest
         .to(backgroundRef.current, {
           opacity: 0,
-          duration: 1.5,
+          duration: 1.0,
           ease: "power2.inOut",
         }, "move+=0.5") // Start fading background slightly after text starts moving
         
