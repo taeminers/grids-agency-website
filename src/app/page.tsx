@@ -1,16 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import Intro from "@/components/intro";
 import Navbar from "@/components/navbar";
 import { cn } from "@/lib/utils";
 
 export default function Home() {
   const [revealed, setRevealed] = useState(false);
+  
+  const handleReveal = useCallback(() => {
+    setRevealed(true);
+  }, []);
 
   return (
     <main className="min-h-screen bg-background text-foreground relative selection:bg-primary selection:text-primary-foreground">
-      <Intro onReveal={() => setRevealed(true)} />
+      <Intro onReveal={handleReveal} />
       
       {/* Content wrapper */}
       <div className="relative z-0 flex flex-col min-h-screen">

@@ -50,6 +50,11 @@ export default function Intro({ onReveal }: IntroProps) {
             opacity: 0,
             duration: 1.0,
             ease: "power2.inOut",
+            onComplete: () => {
+              if (backgroundRef.current) {
+                backgroundRef.current.style.display = "none";
+              }
+            }
           }, "move+=0.5")
           
           // Trigger external reveal (Navbar/Content) via callback
