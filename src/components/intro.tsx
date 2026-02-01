@@ -15,51 +15,51 @@ export default function Intro() {
         defaults: { ease: "power3.out" },
       });
 
-      // Step 1: Fade in and Scale up "GRIDS AGENCY"
-      tl.fromTo(
-        textRef.current,
-        { opacity: 0, scale: 0.8, y: 20 },
-        { opacity: 1, scale: 1, y: 0, duration: 1 }
-      )
-        // Step 2: Delay 1 second
-        .to({}, { duration: 1 })
-        // Step 3: Animate Text to lower half
-        // We move it from center (50% top) to something like 75% top.
-        // Since it's currently centered via grid/flex, we might need to rely on y translation
-        // or change its positioning context.
-        // Simplest way for fixed element: standard translation if we compute it, 
-        // OR just large Y percentage if we want it "lower half".
-        // Let's assume window height. Moving down by 25vh roughly puts it lower.
-        .to(textRef.current, {
-          y: "35vh", // Move down significantly
-          scale: 1.5, // Maybe make it bigger or smaller? Prompt didn't specify, but "placed on lower half" usually implies footer/signature. Let's keep scale 1 or slightly larger for impact.
-          duration: 1.0,
-          ease: "power4.inOut"
-        }, "move")
-        // Step 4: Fade out the solid background reveal the rest
-        .to(backgroundRef.current, {
-          opacity: 0,
-          duration: 1.0,
-          ease: "power2.inOut",
-        }, "move+=0.5") // Start fading background slightly after text starts moving
-        
-        // Signal cleanup - we pointer-events none the container so users can click links behind it
-        .set(containerRef.current, { pointerEvents: "none" });
+      if (textRef.current && containerRef.current) {
+        // Calculate distance to move to bottom
+        // Center (0) to Bottom.
+        // Container height / 2  - Text height / 2 - Padding (e.g. 40px)
+        const windowHeight = window.innerHeight;
+        const textHeight = textRef.current.offsetHeight;
+        // The element is centered, so `top` is 50%.
+        // Distance to move = (windowHeight / 2) - (textHeight / 2) - 30 (pixels from bottom);
+        const yOffset = (windowHeight / 2) - (textHeight / 2) - 30;
 
-        // Step 5: Animate in the rest of the website (Navbar, top half)
-        // We can do this by targetting a class on the body or a specific element if we had access,
-        // but cleaner is to rely on separate component animations triggered by a state,
-        // OR simply rely on the fact that they are essentially revealed by the fade out.
-        // The prompt says "with the rest of the website... to appear (animated as well)".
-        // If they are static behind the white bg, they just "appear" via fade.
-        // To make them "animate in", we can target a global class `.reveal-content`.
-        
-      tl.to(".reveal-content", {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        stagger: 0.1,
-      }, "move+=1"); // Start appearing as text settles
+        // Step 1: Fade in and Scale up "GRIDS AGENCY"
+        tl.fromTo(
+          textRef.current,
+          { opacity: 0, scale: 0.8, y: 20 },
+          { opacity: 1, scale: 1, y: 0, duration: 1 }
+        )
+          // Step 2: Delay 1 second
+          .to({}, { duration: 1 })
+          
+          // Step 3: Animate Text to absolute bottom
+          .to(textRef.current, {
+            y: yOffset,
+            scale: 1, // Keep scale consistent or slight reduction? User wanted "responsive on all devices". Fluid type handles sizing, let's keep scale 1.
+            duration: 1.0,
+            ease: "power4.inOut"
+          }, "move")
+          
+          // Step 4: Fade out the solid background reveal the rest
+          .to(backgroundRef.current, {
+            opacity: 0,
+            duration: 1.0,
+            ease: "power2.inOut",
+          }, "move+=0.5") 
+          
+          // Signal cleanup
+          .set(containerRef.current, { pointerEvents: "none" });
+
+        // Step 5: Animate in content
+        tl.to(".reveal-content", {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.1,
+        }, "move+=1");
+      }
 
     }, containerRef);
 
@@ -68,16 +68,17 @@ export default function Intro() {
 
   return (
     <div ref={containerRef} className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none">
-      {/* Background Layer: Handles the solid color that fades out */}
+      {/* Background Layer */}
       <div 
         ref={backgroundRef} 
         className="absolute inset-0 bg-background pointer-events-auto"
       />
       
-      {/* Text Layer: Remains visible even after background fades */}
+      {/* Text Layer - Fluid Typography */}
       <h1 
         ref={textRef} 
-        className="relative z-10 text-4xl md:text-6xl font-black tracking-tighter text-foreground text-center"
+        className="relative z-10 font-black tracking-tighter text-foreground text-center px-4 leading-none"
+        style={{ fontSize: "12vw" }} // Fluid sizing based on viewport width
       >
         GRIDS AGENCY
       </h1>
