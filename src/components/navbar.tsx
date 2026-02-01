@@ -53,8 +53,21 @@ export default function Navbar({ className }: NavbarProps) {
       {/* Brand Block */}
       <SpotlightBorder className="p-0">
         <div className={cn(blockClass, "border-0 px-5 font-medium text-sm cursor-pointer whitespace-nowrap")}>
-            <Link href={`/${locale}`} className=" animate-in fade-in fill-mode-forwards duration-1000 delay-500">
-                GRIDS AGENCY
+            <Link href={`/${locale}`} className="flex items-center gap-2 animate-in fade-in fill-mode-forwards duration-1000 delay-500">
+                <div className="relative w-4 h-4">
+                  {/* Using standard img tag or Next Image? Next Image is better but needs import.
+                      Since I can't easily add import at top and edit body in one go with replace_file_content unless I do a big chunk,
+                      I will do multi_replace if I need to add import. 
+                      Actually, let's use a simple img if we don't want to mess with imports, BUT `next/image` is best practice.
+                      I'll try to match the import section in a separate chunk.
+                  */}
+                  <img 
+                    src={resolvedTheme === 'dark' ? '/logo/grids-white.png' : '/logo/grids-black.png'} 
+                    alt="Grids Logo" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <span>GRIDS AGENCY</span>
             </Link>
         </div>
       </SpotlightBorder>
