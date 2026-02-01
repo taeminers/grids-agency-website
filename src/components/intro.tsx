@@ -4,26 +4,29 @@ import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { cn } from "@/lib/utils";
 
-export default function Intro() {
+interface IntroProps {
+  onReveal?: () => void;
+}
+
+export default function Intro({ onReveal }: IntroProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLHeadingElement>(null);
   const backgroundRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
+    // Re-scoped to containerRef to avoid global pollution
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        defaults: { ease: "power3.out" },
-      });
-
       if (textRef.current && containerRef.current) {
-        // Calculate distance to move to bottom
-        // Center (0) to Bottom.
-        // Container height / 2  - Text height / 2 - Padding (e.g. 40px)
         const windowHeight = window.innerHeight;
         const textHeight = textRef.current.offsetHeight;
-        // The element is centered, so `top` is 50%.
-        // Distance to move = (windowHeight / 2) - (textHeight / 2) - 30 (pixels from bottom);
+        const scale = 1; // Correct logic: we target scale 1 at the end (from 0.5)
+        
+        // Target Y position calculation
         const yOffset = (windowHeight / 2) - (textHeight / 2) - 30;
+
+        const tl = gsap.timeline({
+          defaults: { ease: "power3.out" },
+        });
 
         // Step 1: Fade in at 50% scale
         tl.fromTo(
@@ -47,32 +50,20 @@ export default function Intro() {
             opacity: 0,
             duration: 1.0,
             ease: "power2.inOut",
-          }, "move+=0.5") 
+          }, "move+=0.5")
+          
+          // Trigger external reveal (Navbar/Content) via callback
+          .call(() => {
+            if (onReveal) onReveal();
+          }, undefined, "move+=0.8")
           
           // Signal cleanup
-          .set(containerRef.current, { pointerEvents: "none" })
-
-        // Step 5: Animate in content
-        .to(".reveal-content", {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          stagger: 0.1,
-        }, "move+=1")
-        
-        // Navbar reveal (Slide down)
-        .to(".reveal-navbar", {
-          y: 0,
-          opacity: 1,
-          duration: 1.2,
-          ease: "power3.out"
-        }, "move+=0.8");
+          .set(containerRef.current, { pointerEvents: "none" });
       }
-
-    }, containerRef);
+    }, containerRef); // Scoped to container
 
     return () => ctx.revert();
-  }, []);
+  }, [onReveal]);
 
   return (
     <div ref={containerRef} className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none">
@@ -86,7 +77,7 @@ export default function Intro() {
       <h1 
         ref={textRef} 
         className="relative z-10 font-black tracking-tighter text-foreground text-center px-4 leading-none"
-        style={{ fontSize: "12vw" }} // Fluid sizing based on viewport width
+        style={{ fontSize: "12vw" }}
       >
         GRIDS AGENCY
       </h1>

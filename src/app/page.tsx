@@ -1,23 +1,36 @@
 "use client";
 
+import { useState } from "react";
 import Intro from "@/components/intro";
 import Navbar from "@/components/navbar";
 import { cn } from "@/lib/utils";
 
 export default function Home() {
+  const [revealed, setRevealed] = useState(false);
+
   return (
     <main className="min-h-screen bg-background text-foreground relative selection:bg-primary selection:text-primary-foreground">
-      <Intro />
+      <Intro onReveal={() => setRevealed(true)} />
       
-      {/* Content wrapper - initially hidden for animation */}
+      {/* Content wrapper */}
       <div className="relative z-0 flex flex-col min-h-screen">
         
-        {/* Navbar */}
-        <Navbar className="reveal-content opacity-0 translate-y-[-20px]" />
+        {/* Navbar - Slides down */}
+        <Navbar 
+          className={cn(
+            "transition-all duration-1000 ease-out",
+            revealed ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-[100px]"
+          )} 
+        />
 
-        {/* Hero Section / Top Half */}
+        {/* Hero Section / Top Half - Fades in & slides up */}
         <section className="flex-1 flex flex-col items-center justify-center p-10 pt-32 text-center space-y-8">
-           <div className="reveal-content opacity-0 translate-y-[20px] space-y-4 max-w-3xl">
+           <div 
+            className={cn(
+              "space-y-4 max-w-3xl transition-all duration-1000 ease-out delay-200",
+              revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[20px]"
+            )}
+           >
               <h2 className="text-5xl md:text-7xl font-bold tracking-tight leading-none">
                 We craft digital <br/>
                 <span className="text-tertiary">experiences</span> that matter.
