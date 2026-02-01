@@ -109,12 +109,12 @@ export default function Intro({ onReveal }: IntroProps) {
       .call(() => {
         if (gridsRef.current) {
             gridsRef.current.innerText = "THE AI";
-            // Reset position to TOP for incoming animation
+            // Reset position to TOP for incoming animation (Maintain X offset)
             gsap.set(gridsRef.current, { y: -100 });
         }
         if (agencyRef.current) {
             agencyRef.current.innerText = "CREATIVE LAB";
-            // Reset position to TOP for incoming animation
+            // Reset position to TOP for incoming animation (Maintain X offset)
             gsap.set(agencyRef.current, { y: -100 });
         }
         // Reveal Navbar immediately as text prepares to enter
@@ -128,12 +128,34 @@ export default function Intro({ onReveal }: IntroProps) {
         duration: 0.6,
         ease: "back.out(1.5)",
         stagger: 0.1
-      })
-      .to(textWrapperRef.current, {
-        scale: 0.8, // Ensure longer text fits (Mobile: 1->0.5, Desktop: 0.4->0.5)
-        duration: 0.6,
-        ease: "back.out(1.5)"
-      }, "<");
+      }, "final");
+
+      // Step 5: Responsive Scale Adjustment for New Text
+      mm.add({
+        isDesktop: "(min-width: 768px)",
+        isMobile: "(max-width: 767px)",
+      }, (context) => {
+        // @ts-ignore
+        const { isDesktop, isMobile } = context.conditions;
+
+        if (isDesktop) {
+            // DESKTOP: Keep same size as before (0.4)
+            tl.to(textWrapperRef.current, {
+                scale: 0.4, 
+                duration: 0.6,
+                ease: "back.out(1.5)"
+            }, "final");
+        }
+        
+        if (isMobile) {
+            // MOBILE: Shrink to 0.6 to fit long text (User requested larger than 0.5)
+            tl.to(textWrapperRef.current, {
+                scale: 0.8,
+                duration: 0.6,
+                ease: "back.out(1.5)"
+            }, "final");
+        }
+      });
 
     }, containerRef); 
 
