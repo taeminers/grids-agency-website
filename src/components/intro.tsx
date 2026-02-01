@@ -50,15 +50,23 @@ export default function Intro() {
           }, "move+=0.5") 
           
           // Signal cleanup
-          .set(containerRef.current, { pointerEvents: "none" });
+          .set(containerRef.current, { pointerEvents: "none" })
 
         // Step 5: Animate in content
-        tl.to(".reveal-content", {
+        .to(".reveal-content", {
           y: 0,
           opacity: 1,
           duration: 1,
           stagger: 0.1,
-        }, "move+=1");
+        }, "move+=1")
+        
+        // Navbar reveal (Slide down)
+        .to(".reveal-navbar", {
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: "power3.out"
+        }, "move+=0.8");
       }
 
     }, containerRef);
