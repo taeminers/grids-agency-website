@@ -11,70 +11,101 @@ interface IntroProps {
 
 export default function Intro({ onReveal }: IntroProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLHeadingElement>(null);
+  const textWrapperRef = useRef<HTMLHeadingElement>(null);
+  const gridsRef = useRef<HTMLSpanElement>(null);
+  const agencyRef = useRef<HTMLSpanElement>(null);
   const backgroundRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    // Re-scoped to containerRef to avoid global pollution
     const ctx = gsap.context(() => {
-      if (textRef.current && containerRef.current) {
-        const windowHeight = window.innerHeight;
-        const textHeight = textRef.current.offsetHeight;
+      // Ensure elements exist
+      if (!textWrapperRef.current || !containerRef.current || !gridsRef.current || !agencyRef.current) return;
+
+      const mm = gsap.matchMedia();
+      
+      // Common Setup
+      const tl = gsap.timeline({
+        defaults: { ease: "power3.out" },
+        onComplete: () => {
+             // Ensure pointer events are off at the end
+             if (containerRef.current) containerRef.current.style.pointerEvents = "none";
+        }
+      });
+
+      // Step 1: Fade in at 50% scale (Common)
+      tl.fromTo(
+        textWrapperRef.current,
+        { opacity: 0, scale: 0.5, y: 20 }, 
+        { opacity: 1, scale: 0.5, y: 0, duration: 1 }
+      )
+      .to({}, { duration: 1 }); // Delay
+
+      // Responsive Animations
+      mm.add({
+        isDesktop: "(min-width: 768px)",
+        isMobile: "(max-width: 767px)",
+      }, (context) => {
+        // @ts-ignore - conditions exists on context
+        const { isDesktop, isMobile } = context.conditions;
+
+        if (isDesktop) {
+            // DESKTOP: Split Left/Right and Scale Down
+            tl.to(gridsRef.current, {
+                x: "-65vw", // Move further left (closer to edge)
+                duration: 1.5,
+                ease: "power4.inOut"
+            }, "move")
+            .to(agencyRef.current, {
+                x: "65vw",  // Move further right (closer to edge)
+                duration: 1.5,
+                ease: "power4.inOut"
+            }, "move")
+            .to(textWrapperRef.current, {
+                scale: 0.4, // Larger scale (was 0.25)
+                duration: 1.5,
+                ease: "power4.inOut"
+            }, "move");
+        } 
         
-        // Target Y position calculation
-        const yOffset = (windowHeight / 2) - (textHeight / 2) - 30;
+        if (isMobile) {
+            // MOBILE: Move to Bottom Center (Unified)
+            if (textWrapperRef.current) {
+                const windowHeight = window.innerHeight;
+                const textHeight = textWrapperRef.current.offsetHeight;
+                const yOffset = (windowHeight / 2) - (textHeight / 2) - 40; // Bottom offset padding
 
-        const tl = gsap.timeline({
-          defaults: { ease: "power3.out" },
-        });
-
-        // Step 1: Fade in at 50% scale
-        tl.fromTo(
-          textRef.current,
-          { opacity: 0, scale: 0.5, y: 20 }, 
-          { opacity: 1, scale: 0.5, y: 0, duration: 1 }
-        )
-          // Step 2: Delay 1 second
-          .to({}, { duration: 1 })
-          
-          // Step 3: Animate Text to absolute bottom and scale to 100%
-          // Y position: (windowHeight / 2) - (textHeight / 2) - 30 is the calculated bottom offset
-          .to(textRef.current, {
-            y: yOffset, // Moves to bottom
-            x: 0,       // Center horizontally
-            scale: 1,   // Keep original size (or scale target)
-            duration: 1.2,
-            ease: "power4.inOut"
-          }, "move")
-          
-          // Step 4: Fade out the solid background reveal the rest
-          .to(backgroundRef.current, {
-            opacity: 0,
-            duration: 1.0,
-            ease: "power2.inOut",
-            onComplete: () => {
-              if (backgroundRef.current) {
-                backgroundRef.current.style.display = "none";
-              }
+                tl.to(textWrapperRef.current, {
+                    y: yOffset,
+                    scale: 1, // Full width on mobile? Or keep small? User said "like before". Before was scale 1.
+                    duration: 1.5,
+                    ease: "power4.inOut"
+                }, "move");
             }
-          }, "move+=0.5")
-          
-          // Trigger external reveal (Navbar/Content) via callback
-          .call(() => {
-            if (onReveal) onReveal();
-          }, undefined, "move+=0.8")
-          
-          // Signal cleanup
-          .set(containerRef.current, { pointerEvents: "none" });
-      }
-    }, containerRef); // Scoped to container
+        }
+      });
+
+      // Common: Fade out background
+      tl.to(backgroundRef.current, {
+        opacity: 0,
+        duration: 1.0,
+        ease: "power2.inOut",
+        onComplete: () => {
+          if (backgroundRef.current) backgroundRef.current.style.display = "none";
+        }
+      }, "move+=0.5")
+      
+      .call(() => {
+        if (onReveal) onReveal();
+      }, undefined, "move+=1.0");
+
+    }, containerRef); 
 
     return () => ctx.revert();
   }, [onReveal]);
 
   return (
     <div ref={containerRef} className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none">
-      {/* Background Layer */}
+      {/* Background Layer (Solid color) */}
       <div 
         ref={backgroundRef} 
         className="absolute inset-0 bg-background pointer-events-auto"
@@ -82,11 +113,12 @@ export default function Intro({ onReveal }: IntroProps) {
       
       {/* Text Layer - Fluid Typography */}
       <h1 
-        ref={textRef} 
-        className="relative z-10 font-black tracking-tighter text-foreground text-center px-4 leading-none"
+        ref={textWrapperRef} 
+        className="relative z-10 font-black tracking-tighter text-tertiary text-center leading-none whitespace-nowrap"
         style={{ fontSize: "12vw" }}
       >
-        GRIDS AGENCY
+        <span ref={gridsRef} className="inline-block px-2">GRIDS</span>
+        <span ref={agencyRef} className="inline-block px-2">AGENCY</span>
       </h1>
     </div>
   );

@@ -27,10 +27,7 @@ export default function Navbar({ className }: NavbarProps) {
   const pathname = usePathname();
 
   // Apple Liquid Glass Style:
-  // bg-black/5 (darker tint for visibility on light bg), saturated blur
-  // Border: visible black/10 for definition on light mode
-  // Removed static hover:border-violet-500/20 in favor of SpotlightBorder
-  const blockClass = "h-11 flex items-center bg-black/5 dark:bg-white/5 backdrop-blur-md backdrop-saturate-200 border border-black/10 dark:border-white/10 shadow-lg rounded-md text-primary transition-all duration-300";
+  const blockClass = "h-11 flex items-center bg-black/10 dark:bg-white/5 backdrop-blur-md backdrop-saturate-200 border border-black dark:border-white/10 shadow-lg rounded-md text-primary transition-all duration-300";
 
   const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);

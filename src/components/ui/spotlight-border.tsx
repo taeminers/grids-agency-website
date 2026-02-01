@@ -46,6 +46,7 @@ export function SpotlightBorder({
         className="pointer-events-none absolute inset-0 z-20 transition-opacity duration-300 rounded-md border border-tertiary"
         style={{
           opacity,
+          borderColor: "var(--tertiary)",
           maskImage: `radial-gradient(100px circle at ${position.x}px ${position.y}px, black 0%, transparent 100%)`,
           WebkitMaskImage: `radial-gradient(100px circle at ${position.x}px ${position.y}px, black 0%, transparent 100%)`,
         }}
