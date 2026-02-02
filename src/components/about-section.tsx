@@ -117,7 +117,7 @@ export default function AboutSection({ className }: AboutSectionProps) {
     <section 
       ref={sectionRef} 
       className={cn(
-        "relative w-full min-h-screen z-10 bg-background flex items-center justify-center p-8 md:p-20 overflow-hidden", 
+        "relative w-full min-h-[70vh] md:min-h-screen z-10 bg-background flex items-center justify-center p-8 md:p-20 overflow-hidden", 
         className
       )}
     >

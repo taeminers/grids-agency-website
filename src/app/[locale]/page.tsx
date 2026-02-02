@@ -5,6 +5,7 @@ import Intro from "@/components/intro";
 import Navbar from "@/components/navbar";
 import AboutSection from "@/components/about-section";
 import VideoSection from "@/components/video-section";
+import FooterSection from "@/components/footer-section";
 
 import { cn } from "@/lib/utils";
 
@@ -54,6 +55,9 @@ export default function Home() {
           
           {/* Video Showcase */}
           <VideoSection />
+
+          {/* Footer */}
+          <FooterSection />
         </div>
       </div>
     </main>

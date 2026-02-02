@@ -25,6 +25,16 @@
     "headline_end": " that matter.",
     "subtext": "A design-driven production studio focused on telling your story through motion, interaction, and clean typography."
   },
+  "Footer": {
+    "quote": "It's like having a super team of devs, designers, and film makers for a fraction of a cost.",
+    "copyright": "© 2026 GRIDS AGENCY. All rights reserved.",
+    "locationLabel": "Location",
+    "location": "Gangnam-gu, Seoul, South Korea",
+    "contactLabel": "Contact",
+    "email": "hello@grids.agency",
+    "phone": "+82 2-1234-5678",
+    "cta": "Start a Project"
+  },
   "Intro": {
     "text": "GRIDS AGENCY"
   }

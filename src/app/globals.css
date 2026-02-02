@@ -197,3 +197,18 @@
     @apply bg-background text-foreground;
   }
 }
+
+  :root {
+    --grid-color: rgba(0, 0, 0, 0.05);
+  }
+  .dark {
+    --grid-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .bg-grid {
+    mask-image: linear-gradient(to bottom, transparent, 10%, black, 90%, transparent);
+    background-image: 
+      linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
