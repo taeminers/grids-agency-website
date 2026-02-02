@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
@@ -18,6 +18,30 @@ export default function AboutSection({ className }: AboutSectionProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLParagraphElement>(null);
   const underlineRef = useRef<SVGPathElement>(null);
+  const light1Ref = useRef<HTMLDivElement>(null);
+  const light2Ref = useRef<HTMLDivElement>(null);
+
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      const options: Intl.DateTimeFormatOptions = {
+        timeZone: 'Asia/Seoul',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+      };
+      // Format: HH:mm AM/PM
+      setTime(new Intl.DateTimeFormat('en-US', options).format(now));
+    };
+
+    updateTime();
+    // Sync to next minute for precision or just intervals. 
+    // Simple interval for "ticking every minute" is fine.
+    const interval = setInterval(updateTime, 1000 * 60);
+    return () => clearInterval(interval);
+  }, []);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -58,6 +82,32 @@ export default function AboutSection({ className }: AboutSectionProps) {
         });
       }
 
+      // Ambient Light Animation (Continuous, independent of scroll)
+      if (light1Ref.current) {
+        gsap.to(light1Ref.current, {
+            x: "20%",
+            y: "40%",
+            scale: 1.2,
+            rotation: 20,
+            duration: 15,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+      }
+      if (light2Ref.current) {
+        gsap.to(light2Ref.current, {
+            x: "-20%",
+            y: "-30%",
+            scale: 1.1,
+            rotation: -15,
+            duration: 20,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+      }
+
     }, sectionRef);
 
     return () => ctx.revert();
@@ -67,11 +117,26 @@ export default function AboutSection({ className }: AboutSectionProps) {
     <section 
       ref={sectionRef} 
       className={cn(
-        "relative w-full min-h-screen z-10 bg-background flex items-center justify-center p-8 md:p-20", 
+        "relative w-full min-h-screen z-10 bg-background flex items-center justify-center p-8 md:p-20 overflow-hidden", 
         className
       )}
     >
-      <div className="max-w-4xl w-full text-center">
+      {/* Ambient Background Lights */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div 
+            ref={light1Ref}
+            className="absolute top-[-10%] left-[-10%] w-[80vw] h-[80vw] md:w-[40vw] md:h-[50vw] rounded-full bg-tertiary/40 blur-[100px] md:blur-[160px] opacity-50 dark:mix-blend-screen"
+        />
+        <div 
+            ref={light2Ref}
+            className="absolute bottom-[-10%] right-[-10%] w-[90vw] h-[90vw] md:w-[40vw] md:h-[30vw] rounded-full bg-tertiary/30 blur-[100px] md:blur-[160px] opacity-40 dark:mix-blend-screen"
+        />
+      </div>
+
+      {/* Gradient Mask to fade lights to solid background at bottom */}
+      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-background to-transparent z-0 pointer-events-none" />
+
+      <div className="max-w-4xl w-full text-center relative z-10">
         <p 
           ref={textRef} 
           className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight text-foreground"
@@ -97,6 +162,10 @@ export default function AboutSection({ className }: AboutSectionProps) {
                 </span>
             )
           })}
+        </p>
+
+        <p className="mt-8 text-lg md:text-xl text-muted-foreground font-medium">
+          {t('location')} <span className="text-tertiary ml-2">{time}</span>
         </p>
       </div>
     </section>

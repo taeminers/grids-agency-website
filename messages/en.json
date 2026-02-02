@@ -3,10 +3,10 @@
     "name": "GRIDS AGENCY"
   },
   "Navbar": {
-    "work": "Work",
-    "about": "About",
+    "work": "Archive",
+    "about": "Vision",
     "services": "Services",
-    "contact": "Contact",
+    "contact": "Connect",
     "Settings": {
       "darkMode": "Dark Mode",
       "lightMode": "Light Mode",
@@ -16,7 +16,8 @@
   },
   "About": {
     "title" : "The premier <highlight>AI agency</highlight> for elite-tier production.",
-    "description": "Scale beyond your competitors, leveraging cutting-edge AI to deliver unmatched production quality and a decisive market advantage."
+    "description": "Scale beyond your competitors, leveraging cutting-edge AI to deliver unmatched production quality and a decisive market advantage.",
+    "location": "Based in Seoul"
   },
   "Hero": {
     "headline_prefix": "We craft digital ",

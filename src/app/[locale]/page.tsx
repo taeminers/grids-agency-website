@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import Intro from "@/components/intro";
 import Navbar from "@/components/navbar";
 import AboutSection from "@/components/about-section";
+import VideoSection from "@/components/video-section";
 
 import { cn } from "@/lib/utils";
 
@@ -48,7 +49,11 @@ export default function Home() {
           <div className="w-full min-h-screen"></div>
 
           {/* New About Section sliding up */}
+          {/* New About Section sliding up */}
           <AboutSection />
+          
+          {/* Video Showcase */}
+          <VideoSection />
         </div>
       </div>
     </main>
