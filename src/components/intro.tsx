@@ -54,12 +54,12 @@ export default function Intro({ onReveal }: IntroProps) {
         if (isDesktop) {
             // DESKTOP: Split Left/Right and Scale Down
             tl.to(gridsRef.current, {
-                x: "-65vw", // Move further left (closer to edge)
+                x: "-60vw", // Move further left (closer to edge)
                 duration: 1.5,
                 ease: "power4.inOut"
             }, "move")
             .to(agencyRef.current, {
-                x: "65vw",  // Move further right (closer to edge)
+                x: "60vw",  // Move further right (closer to edge)
                 duration: 1.5,
                 ease: "power4.inOut"
             }, "move")
