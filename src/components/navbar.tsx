@@ -94,7 +94,7 @@ export default function Navbar({ className }: NavbarProps) {
 
       {/* Settings Dropdown Block - Mobile: Order 3 (Bottom Right) */}
       <SpotlightBorder className="p-0 order-3 md:order-none">
-        <DropdownMenu onOpenChange={setIsOpen}>
+        <DropdownMenu onOpenChange={setIsOpen} modal={false}>
             <DropdownMenuTrigger asChild>
                 <div className={cn(blockClass, "border-0 w-11 justify-center cursor-pointer relative overflow-hidden group")}>
                     <div className="relative w-5 h-5 flex items-center justify-center">

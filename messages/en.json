@@ -14,6 +14,10 @@
       "korean": "Korean"
     }
   },
+  "About": {
+    "title" : "The premier <highlight>AI agency</highlight> for elite-tier production.",
+    "description": "Scale beyond your competitors, leveraging cutting-edge AI to deliver unmatched production quality and a decisive market advantage."
+  },
   "Hero": {
     "headline_prefix": "We craft digital ",
     "headline_suffix": "experiences",

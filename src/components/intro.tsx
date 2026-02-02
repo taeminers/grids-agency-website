@@ -2,7 +2,10 @@
 
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
+
+gsap.registerPlugin(ScrollTrigger);
 
 
 interface IntroProps {
@@ -157,6 +160,24 @@ export default function Intro({ onReveal }: IntroProps) {
         }
       });
 
+      // Step 6: Scroll-Linked Exit Animation
+      // This runs independently of the intro timeline, driven by user scroll
+      const scrollTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: document.body,
+            start: "top top",
+            end: "+=500", // Animate out over first 500px of scroll
+            scrub: true,
+        }
+      });
+      
+      scrollTl.to(textWrapperRef.current, {
+        opacity: 0,
+        y: -100,
+        scale: "-=0.1", // Slight shrink
+        ease: "power1.out"
+      });
+
     }, containerRef); 
 
     return () => ctx.revert();
@@ -173,7 +194,7 @@ export default function Intro({ onReveal }: IntroProps) {
       {/* Text Layer - Fluid Typography */}
       <h1 
         ref={textWrapperRef} 
-        className="relative z-10 font-black tracking-tighter text-tertiary text-center leading-none whitespace-nowrap"
+        className="relative z-10 font-black tracking-tighter text-tertiary text-center leading-none whitespace-nowrap drop-shadow-2xl"
         style={{ fontSize: "12vw" }}
       >
         <span ref={gridsRef} className="inline-block px-2">GRIDS</span>

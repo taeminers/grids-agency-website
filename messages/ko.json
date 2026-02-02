@@ -14,6 +14,10 @@
       "korean": "한국어"
     }
   },
+  "About": {
+    "title": "최상의 결과물을 위한 프리미엄 <highlight>AI 에이전시</highlight>",
+    "description": "최첨단 AI 기술을 활용하여 독보적인 제작 품질과 압도적인 시장 경쟁력을 제공하며, 귀사가 경쟁사보다 한발 앞서 나갈 수 있도록 지원합니다."
+  },
   "Hero": {
     "headline_prefix": "우리는 중요한 ",
     "headline_suffix": "디지털 경험",

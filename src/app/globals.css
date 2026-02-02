@@ -174,9 +174,19 @@
     from { height: var(--radix-accordion-content-height); }
     to { height: 0; }
   }
+  @keyframes shine {
+    from { background-position: 200% center; }
+    to { background-position: -200% center; }
+  }
+  --animate-shine: shine 8s linear infinite;
+
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px)
+}
+
+@utility text-stroke {
+  -webkit-text-stroke: 1px var(--color-foreground);
 }
 
 @layer base {

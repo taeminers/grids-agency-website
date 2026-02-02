@@ -3,6 +3,7 @@
 import { useState, useCallback } from "react";
 import Intro from "@/components/intro";
 import Navbar from "@/components/navbar";
+import AboutSection from "@/components/about-section";
 
 import { cn } from "@/lib/utils";
 
@@ -43,9 +44,11 @@ export default function Home() {
 
 
          
-          <section className="h-[50vh] flex items-end justify-center pb-20">
-            {/* This area is visually reserved for the "GRIDS AGENCY" text to settle over */}
-          </section>
+          {/* Spacer to reveal fixed hero */}
+          <div className="w-full min-h-screen"></div>
+
+          {/* New About Section sliding up */}
+          <AboutSection />
         </div>
       </div>
     </main>
