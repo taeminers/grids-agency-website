@@ -25,6 +25,25 @@
     "headline_end": " that matter.",
     "subtext": "A design-driven production studio focused on telling your story through motion, interaction, and clean typography."
   },
+  "Services": {
+    "title": "Providing solutions and services that uplift your business.",
+    "description": "At our creative studio, imagination meets strategy. We transform your vision into dynamic brand experiences.",
+    "Items": {
+      "item1": {
+        "title": "Web Design & Development",
+        "desc": "Custom websites optimized for performance and conversion."
+      },
+      "item2": {
+        "title": "AI Video Creation",
+        "desc": "High-quality video production using the latest AI technology. Music video, intro video, advertisement video, anything you can think of."
+        
+      },
+      "item3": {
+      "title": "Automation",
+      "desc": "Automating your business logic to save time and money."
+      }
+    }
+  },
   "Footer": {
     "quote": "It's like having a super team of devs, designers, and film makers for a fraction of a cost.",
     "copyright": "© 2026 GRIDS AGENCY. All rights reserved.",

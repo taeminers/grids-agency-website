@@ -35,8 +35,8 @@ export default function FooterSection({ className }: FooterSectionProps) {
       <div className="absolute inset-y-0 right-0 w-1/2 md:w-1/3 z-0 pointer-events-none bg-gradient-to-l from-tertiary/15 to-transparent opacity-80" />
       
       {/* Top Section: Logo (Left Only) */}
-      <div className="relative z-10 w-full flex justify-start">
-        <div className="relative w-32 h-8 md:w-36 md:h-10">
+      <div className="relative z-10 w-full flex justify-start items-center gap-4">
+        <div className="relative w-8 h-8 md:w-10 md:h-10">
            {mounted && (
              <Image
                src={theme === 'dark' ? "/logo/grids-white.png" : "/logo/grids-black.png"}
@@ -47,6 +47,9 @@ export default function FooterSection({ className }: FooterSectionProps) {
              />
            )}
         </div>
+        <span className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
+          GRIDS AGENCY
+        </span>
       </div>
 
       {/* Middle Section: Quote & CTA */}
