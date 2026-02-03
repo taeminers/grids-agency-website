@@ -66,7 +66,7 @@ export default function ServicesSection() {
                 {/* Text Content */}
               <div className="space-y-8">
                 <span className="text-sm font-mono text-tertiary tracking-wider uppercase">
-                  // Our Services
+              Our Services
                 </span>
                 <h2 className="text-4xl md:text-6xl font-medium tracking-tight leading-[1.1]">
                   {t('title')}
