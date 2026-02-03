@@ -41,6 +41,15 @@ export default function ProcessSection() {
   const [activeStep, setActiveStep] = useState(0);
   const containerRef = useRef<HTMLElement>(null);
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const counterRef = useRef<HTMLDivElement>(null);
+
+  // Animate Step Counter on change
+  useGSAP(() => {
+    gsap.fromTo(".step-number",
+      { y: 100, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }
+    );
+  }, { dependencies: [activeStep], scope: counterRef });
 
   useGSAP(() => {
     sectionRefs.current.forEach((el, index) => {
@@ -83,6 +92,18 @@ export default function ProcessSection() {
                     </p>
                 </div>
             </div>
+        </div>
+
+        {/* Animated Step Counter (Top Right) */}
+        <div ref={counterRef} className="absolute top-12 right-8 md:top-24 md:right-24 z-20 pointer-events-none mix-blend-difference text-white">
+             <div className="overflow-hidden h-24 md:h-32 flex flex-col justify-end items-end">
+                <span className="step-number text-3xl font-bold tracking-tighter block leading-none">
+                    {activeItem.step}
+                </span>
+             </div>
+             <div className="text-right text-sm md:text-base opacity-60 font-mono mt-2 mr-1">
+                / 0{items.length}
+             </div>
         </div>
       </div>
 
