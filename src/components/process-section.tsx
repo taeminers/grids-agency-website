@@ -1,8 +1,14 @@
 "use client";
 
+import { useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import ProcessScene from "./process-scene";
 import { cn } from "@/lib/utils";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const items = [
   {
@@ -32,8 +38,28 @@ const items = [
 ];
 
 export default function ProcessSection() {
+  const [activeStep, setActiveStep] = useState(0);
+  const containerRef = useRef<HTMLElement>(null);
+  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useGSAP(() => {
+    sectionRefs.current.forEach((el, index) => {
+      if (!el) return;
+      
+      ScrollTrigger.create({
+        trigger: el,
+        start: "top 10%", 
+        end: "bottom 10%", 
+        onEnter: () => setActiveStep(index),
+        onEnterBack: () => setActiveStep(index),
+      });
+    });
+  }, { scope: containerRef });
+
+  const activeItem = items[activeStep];
+
   return (
-    <section id="process-container" className="relative w-full bg-background" style={{ height: "500vh" }}>
+    <section ref={containerRef} id="process-container" className="relative w-full bg-background" style={{ height: "500vh" }}>
       
       {/* 3D Canvas Layer (Sticky Background) */}
       <div className="sticky top-0 w-full h-screen overflow-hidden z-0">
@@ -43,26 +69,31 @@ export default function ProcessSection() {
         
         {/* Optional: Overlay Gradient for better text readability if needed */}
         <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-background/80 via-transparent to-transparent z-10" />
-      </div>
 
-      {/* Scrolling Content Layer (Foreground) */}
-      <div className="absolute inset-0 z-20 pointer-events-none">
-          {items.map((item, index) => (
-              <div 
-                key={index} 
-                className="h-screen w-full flex items-center px-8 md:px-24"
-                style={{ top: `${index * 100}vh` }} // Position each section
-              > 
-                <div className="max-w-lg p-8 md:p-12 bg-background/40 backdrop-blur-md border border-border/50 rounded-3xl pointer-events-auto">
+        {/* Content Card Layer (Absolute within sticky container) */}
+        <div className="absolute inset-0 h-screen w-full flex items-center px-8 md:px-24 z-20 pointer-events-none">
+            <div className="max-w-lg p-8 md:p-12 bg-background/40 backdrop-blur-md border border-border/50 rounded-3xl pointer-events-auto transition-all duration-500 ease-in-out">
+                <div key={activeStep} className="animate-in fade-in slide-in-from-bottom-4 duration-500">
                     <span className="text-tertiary font-mono mb-4 block text-sm tracking-wider">
-                        // {item.step} - {item.title}
+                       {activeItem.title}
                     </span>
-                    <h3 className="text-4xl font-medium mb-4">{item.subtitle}</h3>
+                    <h3 className="text-4xl font-medium mb-4">{activeItem.subtitle}</h3>
                     <p className="text-muted-foreground text-lg leading-relaxed">
-                        {item.description}
+                        {activeItem.description}
                     </p>
                 </div>
-              </div>
+            </div>
+        </div>
+      </div>
+
+      {/* Invisible Scroll Triggers/Spacers */}
+      <div className="absolute inset-0 z-30 pointer-events-none flex flex-col">
+          {items.map((_, index) => (
+              <div 
+                key={index}
+                ref={(el) => { sectionRefs.current[index] = el }}
+                className="h-screen w-full border-l-2 border-transparent" // Invisible spacer
+              />
           ))}
       </div>
 
