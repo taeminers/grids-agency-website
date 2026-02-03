@@ -6,8 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
 import * as THREE from 'three';
 import { useThree } from "@react-three/fiber";
-import { Environment, Float, ContactShadows, RoundedBox } from "@react-three/drei";
-import { EffectComposer, Bloom } from "@react-three/postprocessing";
+import { Environment, ContactShadows, RoundedBox } from "@react-three/drei";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -202,9 +201,9 @@ export default function ProcessScene() {
             far={4} 
         />
 
-        <EffectComposer enableNormalPass={false}>
+        {/* <EffectComposer enableNormalPass={false}>
             <Bloom luminanceThreshold={1} mipmapBlur intensity={1.2} radius={0.5} />
-        </EffectComposer>
+        </EffectComposer> */}
     </>
   );
 }
