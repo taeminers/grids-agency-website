@@ -5,6 +5,7 @@ import Intro from "@/components/intro";
 import Navbar from "@/components/navbar";
 import AboutSection from "@/components/about-section";
 import ServicesSection from "@/components/services-section";
+import ProcessSection from "@/components/process-section";
 import VideoSection from "@/components/video-section";
 import FooterSection from "@/components/footer-section";
 
@@ -60,6 +61,8 @@ export default function Home() {
      
           {/* Services Section */}
           <ServicesSection />
+          {/* Process Section */}
+          <ProcessSection />
           {/* Footer */}
           <FooterSection />
         </div>
