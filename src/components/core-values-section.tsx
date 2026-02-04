@@ -11,36 +11,26 @@ import {
 } from "@/components/ui/carousel";
 import { ArrowRight } from "lucide-react";
 
+import { useTranslations } from "next-intl";
+
 const values = [
   {
     id: 1,
-    title: "Trust",
-    subtitle: "Unwavering Integrity",
-    description: "We build partnerships based on transparency and honest communication. Your trust is our most valuable asset.",
     color: "bg-[#1C1C1C]", // Dark charcoal
     textColor: "text-white"
   },
   {
     id: 2,
-    title: "Completeness",
-    subtitle: "God is in the Details",
-    description: "We don't settle for 'good enough'. Every pixel, every line of code, and every interaction is polished to perfection.",
     color: "bg-[#E8E6D9]", // Light beige
     textColor: "text-black"
   },
   {
     id: 3,
-    title: "Clarity",
-    subtitle: "Distilling Complexity",
-    description: "We turn complex challenges into simple, elegant solutions. We urge for clarity in design, code, and communication.",
     color: "bg-[#283E4A]", // Sophisticated blue-grey
     textColor: "text-white"
   },
   {
     id: 4,
-    title: "Precision",
-    subtitle: "Engineered for Impact",
-    description: "Data-driven decisions and rigorous execution. We measure twice and cut once to ensure optimal performance.",
     color: "bg-[#C4D9D3]", // Muted sage/mint
     textColor: "text-black"
   }
@@ -48,13 +38,14 @@ const values = [
 
 export default function CoreValuesSection() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(0); 
+  const t = useTranslations("CoreValues");
 
   return (
     <section className="w-full py-24 bg-background">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col mb-12">
-            <span className="text-sm font-mono text-tertiary mb-2 tracking-wider uppercase">Core Values</span>
-            <h2 className="text-4xl md:text-5xl font-medium tracking-tight">We succeed only when your business leads.</h2>
+            <span className="text-sm font-mono text-tertiary mb-2 tracking-wider uppercase">{t("label")}</span>
+            <h2 className="text-4xl md:text-5xl font-medium tracking-tight">{t("title")}</h2>
         </div>
 
         {/* Desktop View (md+) */}
@@ -85,10 +76,10 @@ export default function CoreValuesSection() {
                         isHovered ? "delay-200 translate-y-0 opacity-100" : "delay-0 -translate-y-4 opacity-0"
                    )}>
                        <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-medium mb-3">
-                            {value.subtitle}
+                            {t(`items.item${value.id}.subtitle`)}
                        </span>
                        <h3 className="text-3xl font-medium leading-tight">
-                            {value.title}
+                            {t(`items.item${value.id}.title`)}
                        </h3>
                    </div>
 
@@ -101,7 +92,7 @@ export default function CoreValuesSection() {
                             "text-lg leading-relaxed max-w-md",
                             value.textColor === "text-white" ? "text-white/80" : "text-black/80"
                         )}>
-                            {value.description}
+                            {t(`items.item${value.id}.description`)}
                         </p>
                    </div>
                 </div>
@@ -128,8 +119,8 @@ export default function CoreValuesSection() {
                                 value.textColor
                             )}>
                                 <div>
-                                    <span className="text-xs font-medium opacity-80 uppercase tracking-wider block mb-2">{value.subtitle}</span>
-                                    <h3 className="text-xl font-medium">{value.title}</h3>
+                                    <span className="text-xs font-medium opacity-80 uppercase tracking-wider block mb-2">{t(`items.item${value.id}.subtitle`)}</span>
+                                    <h3 className="text-xl font-medium">{t(`items.item${value.id}.title`)}</h3>
                                 </div>
                             </div>
                         </CarouselItem>

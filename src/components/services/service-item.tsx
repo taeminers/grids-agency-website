@@ -11,6 +11,8 @@ interface ServiceItemProps {
   isOpen: boolean;
   onClick: () => void;
   Icon: React.FC;
+  videoSrc?: string;
+  customContent?: React.ReactNode;
 }
 
 export default function ServiceItem({
@@ -20,6 +22,8 @@ export default function ServiceItem({
   isOpen,
   onClick,
   Icon,
+  videoSrc,
+  customContent,
 }: ServiceItemProps) {
   return (
     <div className="border-t border-border/40 last:border-b">
@@ -88,10 +92,27 @@ export default function ServiceItem({
             transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
             className="overflow-hidden"
           >
-            <div className="pb-12 pl-[4.5rem] md:pl-[6rem] lg:pl-[11rem] pr-6 md:pr-24">
+            <div className="pb-12 md:pl-[6rem] lg:pl-[11rem] md:pr-24">
               
-              {/* Placeholder Image Box */}
-              <div className="w-full aspect-video bg-gradient-to-br from-tertiary/20 to-muted rounded-xl mb-8 border border-border/50" />
+              {/* Media Box (Video or Gradient) */}
+              <div className="w-full aspect-square md:aspect-video rounded-xl mb-8 border border-border/50 overflow-hidden relative bg-muted/20">
+                 {videoSrc ? (
+                     <video 
+                        src={videoSrc}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="w-full h-full object-cover"
+                     />
+                 ) : customContent ? (
+                     <div className="w-full h-full">
+                        {customContent}
+                     </div>
+                 ) : (
+                     <div className="w-full h-full bg-gradient-to-br from-tertiary/20 to-muted" />
+                 )}
+              </div>
 
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
                 {desc}
@@ -106,7 +127,7 @@ export default function ServiceItem({
                       <span key={tag} className="text-xs font-mono uppercase border border-border px-3 py-1 rounded-sm text-tertiary bg-tertiary-foreground">{tag}</span>
                   ))}
                    {/* Fallback tags */}
-                    {!title.includes("Web") && !title.includes("Brand") && ["SEO", "Analytics", "Social", "Growth"].map(tag => (
+                    {!title.includes("Web") && !title.includes("Brand") && ["n8n", "Moltbot", "Agentic Workflow", "Growth"].map(tag => (
                       <span key={tag} className="text-xs font-mono uppercase border border-border px-3 py-1 rounded-sm text-tertiary bg-tertiary-foreground">{tag}</span>
                   ))}
               </div>
