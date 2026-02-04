@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import CoreValueAnimation from "./core-values/core-value-animation";
 import {
   Carousel,
   CarouselContent,
@@ -60,9 +61,17 @@ export default function CoreValuesSection() {
                 className={cn(
                   "relative h-full rounded-3xl overflow-hidden cursor-pointer transition-[flex] duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group",
                   isHovered ? "flex-[3]" : "flex-[1]",
-                  value.color
+                  value.color,
+                  value.textColor
                 )}
               >
+                  <div className={cn(
+                    "absolute inset-0 transition-opacity duration-500",
+                    isHovered ? "opacity-100" : "opacity-0"
+                  )}>
+                    <CoreValueAnimation id={value.id} />
+                  </div>
+                  
                 {/* Content Overlay */}
                 <div className={cn(
                     "absolute inset-0 p-8 flex flex-col justify-between transition-opacity duration-500",
@@ -73,12 +82,12 @@ export default function CoreValuesSection() {
                    {/* Top Content (Title) */}
                    <div className={cn(
                         "transition-all duration-500",
-                        isHovered ? "delay-200 translate-y-0 opacity-100" : "delay-0 -translate-y-4 opacity-0"
+                        isHovered ? "translate-y-0" : ""
                    )}>
                        <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-medium mb-3">
                             {t(`items.item${value.id}.subtitle`)}
                        </span>
-                       <h3 className="text-3xl font-medium leading-tight">
+                       <h3 className="text-3xl font-medium leading-tight text-balance">
                             {t(`items.item${value.id}.title`)}
                        </h3>
                    </div>
@@ -118,6 +127,7 @@ export default function CoreValuesSection() {
                                 value.color,
                                 value.textColor
                             )}>
+                                <CoreValueAnimation id={value.id} />
                                 <div>
                                     <span className="text-xs font-medium opacity-80 uppercase tracking-wider block mb-2">{t(`items.item${value.id}.subtitle`)}</span>
                                     <h3 className="text-xl font-medium">{t(`items.item${value.id}.title`)}</h3>

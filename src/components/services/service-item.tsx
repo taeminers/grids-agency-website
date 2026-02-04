@@ -35,8 +35,8 @@ export default function ServiceItem({
             
            {/* Icon Container */}
            <div className={cn(
-               "transition-colors duration-500 text-muted-foreground group-hover:text-foreground",
-               isOpen ? "text-tertiary" : ""
+               "text-muted-foreground group-hover:text-foreground",
+               isOpen ? "text-tertiary" : "transition-colors duration-300"
            )}>
                <Icon />
            </div>
@@ -127,7 +127,7 @@ export default function ServiceItem({
                       <span key={tag} className="text-xs font-mono uppercase border border-border px-3 py-1 rounded-sm text-tertiary bg-tertiary-foreground">{tag}</span>
                   ))}
                    {/* Fallback tags */}
-                    {!title.includes("Web") && !title.includes("Brand") && ["n8n", "Moltbot", "Agentic Workflow", "Growth"].map(tag => (
+                    {!title.includes("Web") && !title.includes("Brand") && ["n8n", "Moltbot", "Agentic Workflow", "MCP"].map(tag => (
                       <span key={tag} className="text-xs font-mono uppercase border border-border px-3 py-1 rounded-sm text-tertiary bg-tertiary-foreground">{tag}</span>
                   ))}
               </div>
