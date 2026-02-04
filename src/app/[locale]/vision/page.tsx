@@ -1,5 +1,6 @@
 import VisionCanvas from "@/components/vision-canvas";
 import VisionContent from "@/components/vision/vision-content";
+import VisionEvolution from "@/components/vision/vision-evolution";
 
 export default function VisionPage() {
     return (
@@ -11,6 +12,8 @@ export default function VisionPage() {
                 </div>
                 <VisionContent />
             </section>
+            
+            <VisionEvolution />
         </div>
     );
 }
