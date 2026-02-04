@@ -84,7 +84,7 @@ export default function VideoSection({ className }: VideoSectionProps) {
 
       <div 
         ref={videoWrapperRef}
-        className="w-full max-w-6xl aspect-video rounded-xl overflow-hidden shadow-2xl border border-white/5 bg-black"
+        className="w-full max-w-6xl aspect-video rounded-xl overflow-hidden shadow-2xl "
       >
         <video
           autoPlay
@@ -93,7 +93,7 @@ export default function VideoSection({ className }: VideoSectionProps) {
           playsInline
           className="w-full h-full object-cover"
         >
-          <source src="/videos/hero.mp4" type="video/mp4" />
+          <source src="/videos/cta-video.mp4" type="video/mp4" />
         </video>
       </div>
     </section>

@@ -69,14 +69,7 @@ export default function CoreValueAnimation({ id }: CoreValueAnimationProps) {
             yoyo: true,
             repeat: 1
         });
-        gsap.to(".crosshair-center", {
-            scale: 1.5,
-            opacity: 0.5,
-            duration: 1,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut"
-        });
+
         break;
     }
   }, { scope: container });
@@ -129,7 +122,7 @@ export default function CoreValueAnimation({ id }: CoreValueAnimationProps) {
                 <path className="crosshair-corner" d="M 20 70 L 20 80 L 30 80" fill="none" stroke="currentColor" strokeWidth="2" />
                 <path className="crosshair-corner" d="M 80 70 L 80 80 L 70 80" fill="none" stroke="currentColor" strokeWidth="2" />
                 
-                <circle className="crosshair-center" cx="50" cy="50" r="10" fill="none" stroke="currentColor" strokeWidth="1" />
+
                 <circle cx="50" cy="50" r="2" fill="currentColor" />
                 <line x1="50" y1="35" x2="50" y2="65" stroke="currentColor" strokeWidth="0.5" />
                 <line x1="35" y1="50" x2="65" y2="50" stroke="currentColor" strokeWidth="0.5" />

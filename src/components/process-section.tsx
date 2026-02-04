@@ -26,13 +26,13 @@ const items = [
   {
     title: "Build",
     subtitle: "Constructing the Core",
-    description: "Our developers bring the design to life with clean, scalable code. Walls go up, features are implemented, and the vision becomes reality.",
+    description: "Our team implements your project with precision and care, ensuring every detail aligns with your vision.",
     step: "03"
   },
   {
     title: "Feedback",
     subtitle: "Polishing the Details",
-    description: "Rigorous testing, refinement, and user feedback cycles. We ensure every detail is perfect before handing over the keys.",
+    description: "Rigorous testing, refinement, and feedback cycles. We ensure every detail is perfect before handing over the keys.",
     step: "04"
   }
 ];
@@ -79,11 +79,20 @@ export default function ProcessSection() {
         {/* Optional: Overlay Gradient for better text readability if needed */}
         <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-background/80 via-transparent to-transparent z-10" />
 
+        {/* Work Process Label */}
+        <div className="absolute top-12 left-8 md:top-24 md:left-24 z-20 pointer-events-none">
+             <div className="h-24 md:h-32 flex flex-col justify-end items-start">
+                 <span className="text-sm font-mono text-tertiary tracking-wider uppercase">
+                    Work Process
+                 </span>
+             </div>
+        </div>
+
         {/* Content Card Layer (Absolute within sticky container) */}
         <div className="absolute inset-0 h-screen w-full flex items-center px-8 md:px-24 z-20 pointer-events-none">
             <div className="max-w-lg p-8 md:p-12 bg-background/40 backdrop-blur-md border border-border/50 rounded-3xl pointer-events-auto transition-all duration-500 ease-in-out">
                 <div key={activeStep} className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-                    <span className="text-tertiary font-mono mb-4 block text-sm tracking-wider">
+                    <span className="text-chart-2 font-mono mb-4 block text-sm tracking-wider">
                        {activeItem.title}
                     </span>
                     <h3 className="text-4xl font-medium mb-4">{activeItem.subtitle}</h3>
@@ -95,7 +104,7 @@ export default function ProcessSection() {
         </div>
 
         {/* Animated Step Counter (Top Right) */}
-        <div ref={counterRef} className="absolute top-12 right-8 md:top-24 md:right-24 z-20 pointer-events-none mix-blend-difference text-white">
+        <div ref={counterRef} className="absolute top-12 right-8 md:top-24 md:right-24 z-20 pointer-events-none mix-blend-difference text-primary">
              <div className="overflow-hidden h-24 md:h-32 flex flex-col justify-end items-end">
                 <span className="step-number text-3xl font-bold tracking-tighter block leading-none">
                     {activeItem.step}
