@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import ScrollToTop from "@/components/scroll-to-top";
+import Navbar from "@/components/navbar";
+import FooterSection from "@/components/footer-section";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -55,7 +57,9 @@ export default async function LocaleLayout({
             enableSystem={false}
             disableTransitionOnChange
           >
+            <Navbar />
             {children}
+            <FooterSection />
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

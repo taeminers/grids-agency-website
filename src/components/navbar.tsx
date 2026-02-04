@@ -79,7 +79,7 @@ export default function Navbar({ className }: NavbarProps) {
                 <Link href="#" className="px-4 py-1.5  rounded- text-sm font-medium transition-colors">
                 {t('work')}
                 </Link>
-                <Link href="#" className="px-4 py-1.5  rounded-sm text-sm font-medium transition-colors">
+                <Link href={`/${locale}/vision`} className="px-4 py-1.5  rounded-sm text-sm font-medium transition-colors">
                 {t('about')}
                 </Link>
                 <Link href="#" className="px-4 py-1.5  rounded-sm text-sm font-medium transition-colors">
