@@ -76,15 +76,15 @@ export default function Navbar({ className }: NavbarProps) {
       <div className="order-1 w-full flex justify-center md:contents">
         <SpotlightBorder className="p-0 md:block">
             <div className={cn(blockClass, "border-0 px-2 gap-1")}>
-                <Link href="#" className="px-4 py-1.5  rounded- text-sm font-medium transition-colors">
+                <Link href={`/${locale}/archive`} className="px-4 py-1.5  rounded- text-sm font-medium transition-colors">
                 {t('work')}
                 </Link>
                 <Link href={`/${locale}/vision`} className="px-4 py-1.5  rounded-sm text-sm font-medium transition-colors">
                 {t('about')}
                 </Link>
-                <Link href="#" className="px-4 py-1.5  rounded-sm text-sm font-medium transition-colors">
-                {t('services')}
-                </Link>
+                {/* <Link href={`/${locale}/team`} className="px-4 py-1.5  rounded-sm text-sm font-medium transition-colors">
+                {t('team')}
+                </Link> */}
                 <Link href={`/${locale}/connect`} className="px-4 py-1.5  rounded-sm text-sm font-medium transition-colors">
                 {t('contact')}
                 </Link>

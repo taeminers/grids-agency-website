@@ -93,7 +93,7 @@ export default function ServicesSection() {
                 <p className="text-lg text-muted-foreground max-w-md">
                    {t('description')}
                 </p>
-                <div className="pt-2">
+                {/* <div className="pt-2">
                     <Button 
                         ref={container}
                         onMouseEnter={onEnter}
@@ -109,7 +109,7 @@ export default function ServicesSection() {
                             </span>
                         </div>
                     </Button>
-                </div>
+                </div> */}
               </div>
 
                {/* 3D Canvas Area */}

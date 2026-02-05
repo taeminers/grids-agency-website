@@ -1,5 +1,7 @@
 "use client";
 
+import { usePathname } from "next/navigation";
+
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
@@ -17,9 +19,13 @@ export default function FooterSection({ className }: FooterSectionProps) {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
+  const pathname = usePathname();
+
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  if (pathname?.includes('/connect')) return null;
 
   return (
     <footer 

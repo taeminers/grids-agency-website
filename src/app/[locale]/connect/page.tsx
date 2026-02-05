@@ -20,7 +20,7 @@ export default function ConnectPage() {
 
                     <div className="relative z-10 max-w-2xl pt-20 lg:pt-0">
                         <h1 className="text-5xl md:text-7xl font-semibold leading-tight tracking-tight text-foreground">
-                            We Would Love to Hear <br />
+                            We Would Love to Hear
                             <span className="inline-block text-tertiary px-2 -rotate-1 mx-1 rounded-lg relative">
                                 {/* Subtle backing for the highlight text to pop on dark */}
                                 <span className="absolute inset-0  rounded-lg -z-10"></span>
