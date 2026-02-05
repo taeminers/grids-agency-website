@@ -123,11 +123,11 @@ export default function ServiceItem({
                   {title.includes("Web") && ["UX/UI", "React", "Next.js", "WebGL"].map(tag => (
                       <span key={tag} className="text-xs font-mono uppercase border border-border px-3 py-1 rounded-sm text-tertiary bg-tertiary-foreground">{tag}</span>
                   ))}
-                  {title.includes("Brand") && ["Strategy", "Logo", "Guidelines", "Print"].map(tag => (
+                  {title.includes("Video") && ["Veo3", "Nano Banana", "Kling", "Capcut"].map(tag => (
                       <span key={tag} className="text-xs font-mono uppercase border border-border px-3 py-1 rounded-sm text-tertiary bg-tertiary-foreground">{tag}</span>
                   ))}
                    {/* Fallback tags */}
-                    {!title.includes("Web") && !title.includes("Brand") && ["n8n", "Moltbot", "Agentic Workflow", "MCP"].map(tag => (
+                    {!title.includes("Web") && !title.includes("Video") && ["n8n", "Moltbot", "Agentic Workflow", "MCP"].map(tag => (
                       <span key={tag} className="text-xs font-mono uppercase border border-border px-3 py-1 rounded-sm text-tertiary bg-tertiary-foreground">{tag}</span>
                   ))}
               </div>
