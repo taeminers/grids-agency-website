@@ -24,7 +24,12 @@ export function ContactForm() {
 
         // Replace with your EmailJS Service ID, Template ID, and Public Key
         // Sign up at https://www.emailjs.com/
-        emailjs.sendForm('service_k62vn7v', 'template_zvarahr', form.current, 'vibNm6YwfgMqbbecO')
+        emailjs.sendForm(
+            process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+            process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+            form.current,
+            process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+        )
           .then((result) => {
               console.log(result.text);
               setStatus('success');
