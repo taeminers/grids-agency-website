@@ -83,5 +83,116 @@
         "description": "Data-driven decisions and rigorous execution. We measure twice and cut once to ensure optimal performance."
       }
     }
+  },
+  "Process": {
+    "label": "Work Process",
+    "items": {
+      "item1": {
+        "title": "Meeting",
+        "subtitle": "Setting the Foundation",
+        "description": "We start by understanding your vision, requirements, and business goals. This is the blueprint phase where we align on scope and strategy."
+      },
+      "item2": {
+        "title": "Plan",
+        "subtitle": "Structuring the Frame",
+        "description": "Detailed wireframes, architecture design, and project roadmaps. We build the skeleton of your project before adding the weight."
+      },
+      "item3": {
+        "title": "Build",
+        "subtitle": "Constructing the Core",
+        "description": "Our team implements your project with precision and care, ensuring every detail aligns with your vision."
+      },
+      "item4": {
+        "title": "Feedback",
+        "subtitle": "Polishing the Details",
+        "description": "Rigorous testing, refinement, and feedback cycles. We ensure every detail is perfect before handing over the keys."
+      }
+    }
+  },
+  "Connect": {
+    "titlePrefix": "We Would Love to Hear",
+    "titleHighlight": "from You",
+    "description": "We appreciate you reaching out to connect. At Grids, every interaction is a coordinate for future growth. Please share your details below, and let’s start engineering.",
+    "Cards": {
+      "address": "Address",
+      "addressValue": "435 Olympic-ro, Songpa-gu, Seoul, Republic of Korea",
+      "email": "You Can Email Here",
+      "telegram": "Telegram",
+      "workingHours": "Working Hours",
+      "partnerships": "Partnerships and Collaborations"
+    }
+  },
+  "Vision": {
+    "title": "Our Vision",
+    "Quote": {
+      "role": "FOUNDER & CEO",
+      "textPart1": "Like an",
+      "highlight1": "infinite coordinate system",
+      "textPart2": ", we traverse the complexities of global business to",
+      "highlight2": "reach meaningful destinations",
+      "textPart3": ", engineering a path that",
+      "highlight3": "extends beyond traditional limits",
+      "textPart4": "."
+    },
+    "Phases": {
+      "phase1": {
+        "label": "[ PHASE 01 ]",
+        "title": "The Infinite Base",
+        "description": "We start with a solid foundation. The XZ plane represents stability and reach—covering the ground efficiently, establishing a network that supports infinite horizontal expansion."
+      },
+      "phase2": {
+        "label": "[ PHASE 02 ]",
+        "title": "Vertical Scaling",
+        "description": "Adding the XY plane introduces altitude. We don't just grow outwards; we build upwards. This dimension represents ambition, hierarchy, and the ability to rise above localized challenges."
+      },
+      "phase3": {
+        "label": "[ PHASE 03 ]",
+        "title": "Holistic Volume",
+        "description": "The YZ plane completes the space. We now inhabit a fully realized cubic environment. This is where complex strategies interact, forming a complete ecosystem of depth, breadth, and height."
+      }
+    }
+  },
+  "Archive": {
+    "swipeHint": "SWIPE TO EXPLORE",
+    "clientRequest": "Client Request / Case Study",
+    "viewLive": "View Live",
+    "Projects": {
+      "project1": {
+        "category": "SaaS Dashboard",
+        "description": "A comprehensive monitoring dashboard for non-technical business owners, providing real-time insights into website performance and uptime."
+      },
+      "project2": {
+        "category": "Media Platform",
+        "description": "Next-gen streaming interface with AI-driven content recommendations and immersive dark-mode UI."
+      },
+      "project3": {
+        "category": "Portfolio",
+        "description": "Minimalist architectural portfolio focusing on spatial depth and clean typography."
+      },
+      "project4": {
+        "category": "Mobile Application",
+        "description": "Sustainable lifestyle tracking app with gamified carbon footprint reduction features."
+      },
+      "project5": {
+        "category": "Fintech",
+        "description": "High-frequency trading visualization dashboard with real-time data websockets."
+      },
+      "project6": {
+        "category": "Photography",
+        "description": "Immersive photography gallery with 3D transitions and spatial audio ambiance."
+      },
+      "project7": {
+        "category": "Web Design",
+        "description": "Retro-futuristic web space."
+      },
+      "project8": {
+        "category": "AI Interface",
+        "description": "Visualizing neural pathways."
+      },
+      "project9": {
+        "category": "Urban Planning",
+        "description": "Green energy utopian concepts."
+      }
+    }
   }
 }

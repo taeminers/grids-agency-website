@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,6 +17,8 @@ export default function VisionEvolution() {
     const plane3Ref = useRef<HTMLDivElement>(null); // Red (Left)
 
     const [mounted, setMounted] = useState(false);
+    const t = useTranslations("Vision.Phases");
+
     useEffect(() => { setMounted(true); }, []);
 
     useGSAP(() => {
@@ -90,10 +93,10 @@ export default function VisionEvolution() {
                         {/* Section 1 */}
                         <div className="h-screen flex items-center justify-center p-8 md:p-16 border-r border-dashed border-foreground/10">
                             <div className="max-w-lg bg-background/80 backdrop-blur-md p-8 rounded-3xl border border-border/50 shadow-sm">
-                                <span className="text-xs font-mono text-muted-foreground mb-4 block tracking-widest">[ PHASE 01 ]</span>
-                                <h2 className="text-4xl md:text-5xl font-bold mb-6">The Infinite Base</h2>
+                                <span className="text-xs font-mono text-muted-foreground mb-4 block tracking-widest">{t("phase1.label")}</span>
+                                <h2 className="text-4xl md:text-5xl font-bold mb-6">{t("phase1.title")}</h2>
                                 <p className="text-lg text-muted-foreground leading-relaxed">
-                                    We start with a solid foundation. The XZ plane represents stability and reach—covering the ground efficiently, establishing a network that supports infinite horizontal expansion.
+                                    {t("phase1.description")}
                                 </p>
                             </div>
                         </div>
@@ -101,10 +104,10 @@ export default function VisionEvolution() {
                         {/* Section 2 */}
                         <div className="h-screen flex items-center justify-center p-8 md:p-16 border-r border-dashed border-foreground/10">
                             <div className="max-w-lg bg-background/80 backdrop-blur-md p-8 rounded-3xl border border-border/50 shadow-sm">
-                                <span className="text-xs font-mono text-muted-foreground mb-4 block tracking-widest">[ PHASE 02 ]</span>
-                                <h2 className="text-4xl md:text-5xl font-bold mb-6">Vertical Scaling</h2>
+                                <span className="text-xs font-mono text-muted-foreground mb-4 block tracking-widest">{t("phase2.label")}</span>
+                                <h2 className="text-4xl md:text-5xl font-bold mb-6">{t("phase2.title")}</h2>
                                 <p className="text-lg text-muted-foreground leading-relaxed">
-                                    Adding the XY plane introduces altitude. We don't just grow outwards; we build upwards. This dimension represents ambition, hierarchy, and the ability to rise above localized challenges.
+                                    {t("phase2.description")}
                                 </p>
                             </div>
                         </div>
@@ -112,10 +115,10 @@ export default function VisionEvolution() {
                         {/* Section 3 */}
                         <div className="h-screen flex items-center justify-center p-8 md:p-16 border-r border-dashed border-foreground/10">
                             <div className="max-w-lg bg-background/80 backdrop-blur-md p-8 rounded-3xl border border-border/50 shadow-sm">
-                                <span className="text-xs font-mono text-muted-foreground mb-4 block tracking-widest">[ PHASE 03 ]</span>
-                                <h2 className="text-4xl md:text-5xl font-bold mb-6">Holistic Volume</h2>
+                                <span className="text-xs font-mono text-muted-foreground mb-4 block tracking-widest">{t("phase3.label")}</span>
+                                <h2 className="text-4xl md:text-5xl font-bold mb-6">{t("phase3.title")}</h2>
                                 <p className="text-lg text-muted-foreground leading-relaxed">
-                                    The YZ plane completes the space. We now inhabit a fully realized cubic environment. This is where complex strategies interact, forming a complete ecosystem of depth, breadth, and height.
+                                    {t("phase3.description")}
                                 </p>
                             </div>
                         </div>

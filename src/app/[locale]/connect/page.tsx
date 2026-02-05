@@ -7,8 +7,11 @@ import ConnectCanvas from "@/components/connect/connect-canvas";
 import { ContactForm } from "@/components/connect/contact-form";
 
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export default function ConnectPage() {
+    const t = useTranslations("Connect");
+
     return (
         <div className="min-h-screen bg-background p-4 md:p-8 pt-32 pb-16 md:pt-32 md:pb-32 font-sans text-foreground">
             <div className="max-w-7xl mx-auto space-y-6">
@@ -20,28 +23,28 @@ export default function ConnectPage() {
 
                     <div className="relative z-10 max-w-2xl pt-20 lg:pt-0">
                         <h1 className="text-5xl md:text-7xl font-semibold leading-tight tracking-tight text-foreground">
-                            We Would Love to Hear
+                            {t("titlePrefix")}
                             <span className="inline-block text-tertiary px-2 -rotate-1 mx-1 rounded-lg relative">
                                 {/* Subtle backing for the highlight text to pop on dark */}
                                 <span className="absolute inset-0  rounded-lg -z-10"></span>
-                                from You
+                                {t("titleHighlight")}
                             </span>
                         </h1>
                     </div>
 
                     <div className="relative z-10 max-w-md flex flex-col justify-center space-y-8">
                         <p className="text-neutral-400 text-lg leading-relaxed">
-                        We appreciate you reaching out to connect. At Grids, every interaction is a coordinate for future growth. Please share your details below, and let’s start engineering.</p>
+                        {t("description")}</p>
                     </div>
                 </div>
 
                 {/* 2. Info Cards Row */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     {[
-                        { label: "Address", value: "435 Olympic-ro, Songpa-gu, Seoul, Republic of Korea", href: "https://www.google.com/maps/search/?api=1&query=435+Olympic-ro,+Songpa-gu,+Seoul,+Republic+of+Korea" },
-                        { label: "You Can Email Here", value: "hello@gridsagency.com", href: "mailto:hello@gridsagency.com" },    
-                        { label: "Telegram", value: "@kyle_lee10", href: "https://t.me/kyle_lee10" },
-                        { label: "Working Hours", value: "10:00 am - 6:00 pm(KST)", href: "https://www.google.com/search?q=10am+kst+to+local+time" },
+                        { label: t("Cards.address"), value: t("Cards.addressValue"), href: "https://www.google.com/maps/search/?api=1&query=435+Olympic-ro,+Songpa-gu,+Seoul,+Republic+of+Korea" },
+                        { label: t("Cards.email"), value: "hello@gridsagency.com", href: "mailto:hello@gridsagency.com" },    
+                        { label: t("Cards.telegram"), value: "@kyle_lee10", href: "https://t.me/kyle_lee10" },
+                        { label: t("Cards.workingHours"), value: "10:00 am - 6:00 pm(KST)", href: "https://www.google.com/search?q=10am+kst+to+local+time" },
                     ].map((item, i) => {
                         const CardContent = (
                             <>
@@ -94,7 +97,7 @@ export default function ConnectPage() {
                                 className="bg-card border border-border rounded-[1.5rem] p-6 flex items-center justify-between shadow-sm cursor-pointer hover:border-tertiary transition-colors group"
                             >
                                 <div>
-                                    <p className="text-xs text-muted-foreground mb-1">Partnerships and Collaborations</p>
+                                    <p className="text-xs text-muted-foreground mb-1">{t("Cards.partnerships")}</p>
                                     <p className="text-sm font-semibold text-foreground">@gridsagency</p>
                                 </div>
                                 <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center group-hover:bg-tertiary transition-colors">

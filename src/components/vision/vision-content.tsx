@@ -1,11 +1,14 @@
+import { useTranslations } from "next-intl";
 import React from "react";
 
 export default function VisionContent() {
+    const t = useTranslations("Vision");
+
     return (
         <>
             <div className="relative z-10 w-full h-[60vh] md:h-[70vh] flex items-center justify-center pointer-events-none">
                 <h1 className="text-5xl md:text-8xl font-bold tracking-tighter text-center bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/50 animate-in fade-in slide-in-from-bottom-4 duration-1000">
-                    Our Vision
+                    {t("title")}
                 </h1>
             </div>
 
@@ -19,7 +22,7 @@ export default function VisionContent() {
                                 <span>[ &quot; ]</span>
                                 <span>Kyle Lee</span>
                            
-                                <span>FOUNDER & CEO</span>
+                                <span>{t("Quote.role")}</span>
                             </div>
                                 
                         </div>
@@ -27,7 +30,7 @@ export default function VisionContent() {
                         {/* Quote Column */}
                         <div className="md:col-span-4">
                             <p className="text-3xl md:text-5xl font-medium leading-tight text-muted-foreground">
-                                &quot;Like an <span className="text-foreground">infinite coordinate system</span>, we traverse the complexities of global business to <span className="text-foreground">reach meaningful destinations</span>, engineering a path that <span className="text-foreground">extends beyond traditional limits</span>.&quot;
+                                &quot;{t("Quote.textPart1")} <span className="text-foreground">{t("Quote.highlight1")}</span>{t("Quote.textPart2")} <span className="text-foreground">{t("Quote.highlight2")}</span>{t("Quote.textPart3")} <span className="text-foreground">{t("Quote.highlight3")}</span>{t("Quote.textPart4")}&quot;
                             </p>
                             
                         </div>

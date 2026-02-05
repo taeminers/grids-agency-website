@@ -8,40 +8,21 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
-
-const items = [
-  {
-    title: "Meeting",
-    subtitle: "Setting the Foundation",
-    description: "We start by understanding your vision, requirements, and business goals. This is the blueprint phase where we align on scope and strategy.",
-    step: "01"
-  },
-  {
-    title: "Plan",
-    subtitle: "Structuring the Frame",
-    description: "Detailed wireframes, architecture design, and project roadmaps. We build the skeleton of your project before adding the weight.",
-    step: "02"
-  },
-  {
-    title: "Build",
-    subtitle: "Constructing the Core",
-    description: "Our team implements your project with precision and care, ensuring every detail aligns with your vision.",
-    step: "03"
-  },
-  {
-    title: "Feedback",
-    subtitle: "Polishing the Details",
-    description: "Rigorous testing, refinement, and feedback cycles. We ensure every detail is perfect before handing over the keys.",
-    step: "04"
-  }
-];
+import { useTranslations } from "next-intl";
 
 export default function ProcessSection() {
+  const t = useTranslations("Process");
   const [activeStep, setActiveStep] = useState(0);
   const containerRef = useRef<HTMLElement>(null);
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
   const counterRef = useRef<HTMLDivElement>(null);
+
+  const items = [1, 2, 3, 4].map((id) => ({
+    title: t(`items.item${id}.title`),
+    subtitle: t(`items.item${id}.subtitle`),
+    description: t(`items.item${id}.description`),
+    step: `0${id}`
+  }));
 
   // Animate Step Counter on change
   useGSAP(() => {
@@ -65,7 +46,7 @@ export default function ProcessSection() {
     });
   }, { scope: containerRef });
 
-  const activeItem = items[activeStep];
+  const activeItem = items[activeStep] || items[0];
 
   return (
     <section ref={containerRef} id="process-container" className="relative w-full bg-background" style={{ height: "500vh" }}>
@@ -83,7 +64,7 @@ export default function ProcessSection() {
         <div className="absolute top-12 left-8 md:top-24 md:left-24 z-20 pointer-events-none">
              <div className="h-24 md:h-32 flex flex-col justify-end items-start">
                  <span className="text-sm font-mono text-tertiary tracking-wider uppercase">
-                    Work Process
+                    {t("label")}
                  </span>
              </div>
         </div>

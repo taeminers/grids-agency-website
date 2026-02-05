@@ -5,31 +5,31 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { ScrollArea } from "@radix-ui/react-scroll-area";
-import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
-// Mock Data - Replace with actual data later
-const projects = [
-  { id: 1, title: "Lighthouse Monitor", category: "SaaS Dashboard", image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop", description: "A comprehensive monitoring dashboard for non-technical business owners, providing real-time insights into website performance and uptime.", year: "2024", link: "#" },
-  { id: 2, title: "Nebula Stream", category: "Media Platform", image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=2574&auto=format&fit=crop", description: "Next-gen streaming interface with AI-driven content recommendations and immersive dark-mode UI.", year: "2023", link: "#" },
-  { id: 3, title: "Vertex Architecture", category: "Portfolio", image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2531&auto=format&fit=crop", description: "Minimalist architectural portfolio focusing on spatial depth and clean typography.", year: "2024", link: "#" },
-  { id: 4, title: "EcoSync App", category: "Mobile Application", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop", description: "Sustainable lifestyle tracking app with gamified carbon footprint reduction features.", year: "2023", link: "#" },
-  { id: 5, title: "Quantum Finance", category: "Fintech", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop", description: "High-frequency trading visualization dashboard with real-time data websockets.", year: "2024", link: "#" }, 
-  { id: 6, title: "Aether Lens", category: "Photography", image: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?q=80&w=2574&auto=format&fit=crop", description: "Immersive photography gallery with 3D transitions and spatial audio ambiance.", year: "2023", link: "#" },
-  // Duplicates for grid density - Need 9 for 3x3 grid centered layout
-  { id: 7, title: "Cyber Canvas", category: "Web Design", image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2670&auto=format&fit=crop", description: "Retro-futuristic web space.", year: "2023", link: "#" },
-  { id: 8, title: "Neural Net", category: "AI Interface", image: "https://images.unsplash.com/photo-1558494949-ef526b0042a0?q=80&w=2668&auto=format&fit=crop", description: "Visualizing neural pathways.", year: "2024", link: "#" },
-  { id: 9, title: "Solar Punk City", category: "Urban Planning", image: "https://images.unsplash.com/photo-1518066000714-58c45f1a2c0a?q=80&w=2576&auto=format&fit=crop", description: "Green energy utopian concepts.", year: "2025", link: "#" },
-];
+import { useTranslations } from "next-intl";
 
 export function ArchiveGrid() {
+  const t = useTranslations("Archive");
+  
   const containerRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const [activeX, setActiveX] = useState(1); // Start at center (1, 1)
   const [activeY, setActiveY] = useState(1);
-  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+
+  // Mock Data - Moved inside for translations
+  const projects = [
+    { id: 1, title: "Fablo App", category: t("Projects.project1.category"), image: "/images/fablo-app.png", description: t("Projects.project1.description"), year: "2025", link: "#" },
+    { id: 2, title: "Personal Website", category: t("Projects.project2.category"),  image: "/images/website.png", description: t("Projects.project2.description"), year: "2023", link: "#" },
+    { id: 3, title: "Instagram Ads", category: t("Projects.project3.category"), image: "/images/ads/ad-2.png", description: t("Projects.project3.description"), year: "2024", link: "#" },
+    { id: 4, title: "Cinematics", category: t("Projects.project4.category"), video: "/videos/cinematics.mp4", description: t("Projects.project4.description"), year: "2023", link: "#" },
+    { id: 5, title: "The Clear Labs", category: t("Projects.project5.category"), video: "/videos/tcl.mp4", description: t("Projects.project5.description"), year: "2024", link: "#" }, 
+    { id: 6, title: "AI Videos", category: t("Projects.project6.category"), video: "/videos/hero.mp4", description: t("Projects.project6.description"), year: "2023", link: "#" },
+    // Duplicates for grid density - Need 9 for 3x3 grid centered layout
+    { id: 7, title: "Jeisys", category: t("Projects.project7.category"), video: "/videos/jeisys.mp4", description: t("Projects.project7.description"), year: "2023", link: "#" },
+    { id: 8, title: "Haneul Mask", category: t("Projects.project8.category"), video: "/videos/haneul.mp4", description: t("Projects.project8.description"), year: "2024", link: "#" },
+    { id: 9, title: "Automation", category: t("Projects.project9.category"), image: "/images/automation.jpeg", description: t("Projects.project9.description"), year: "2025", link: "#" },
+  ];
 
   // Animate grid position based on active coordinate
   useGSAP(() => {
@@ -84,7 +84,7 @@ export function ArchiveGrid() {
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (!!selectedProject) return; // Disable grid nav if modal open
+      // Removed modal check since modal is removed
 
       switch(e.key) {
         case "ArrowLeft": handleNavigate("left"); break;
@@ -95,8 +95,8 @@ export function ArchiveGrid() {
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [selectedProject]); // Re-bind if modal state changes to ensure closure captures fresh state? 
-  // Actually better to use functional updates if strictly needed, but internal state handles it.
+  }, []); // Empty dependency array as handleNavigate is stable or we can rely on handleNavigate being defined outside (actually it's inside, might need dependency or use ref, but strict mode might complain. For now leaving empty as is typical for simple key listeners unless handleNavigate changes)
+  // Logic tweak: handleNavigate uses state setters which are stable. Correct.
   
   const handleNavigate = (direction: 'up'|'down'|'left'|'right') => {
       // Directions inverted? Arrow Right >> Go to Right Item >> Shift Grid Left
@@ -150,7 +150,7 @@ export function ArchiveGrid() {
       
       {/* Mobile Swipe Hint */}
       <div className="md:hidden absolute bottom-12 left-1/2 -translate-x-1/2 text-white/40 text-sm font-light tracking-widest animate-pulse pointer-events-none z-30">
-        SWIPE TO EXPLORE
+        {t("swipeHint")}
       </div>
 
       {/* Navigation Arrows (Only show if valid move exists) */}
@@ -203,62 +203,39 @@ export function ArchiveGrid() {
         {projects.map((project, index) => (
           <div 
             key={index}
-            onClick={() => setSelectedProject(project)}
             className={cn(
-                "group relative w-full h-full bg-card/5 rounded-none overflow-hidden cursor-pointer border border-white/5 transition-opacity duration-500",
+                "group relative w-full h-full bg-card/5 rounded-none overflow-hidden border border-white/5 transition-opacity duration-500",
                 // Dim non-active items? Optional, but adds focus
                 // Calculate item position
-                (Math.floor(index / 3) === activeY && index % 3 === activeX) ? "opacity-100 ring-2 ring-white/10 z-10" : "opacity-30 hover:opacity-100"
+                (Math.floor(index / 3) === activeY && index % 3 === activeX) ? "opacity-100 ring-2 ring-white/10 z-10" : "opacity-30"
             )}
           >
-            <Image 
-              src={project.image} 
-              alt={project.title} 
-              fill 
-              sizes="90vw"
-              className="object-cover transition-transform duration-1000 group-hover:scale-105 opacity-80 group-hover:opacity-100"
-            />
+            {project.image ? (
+              <Image 
+                src={project.image} 
+                alt={project.title} 
+                fill 
+                sizes="90vw"
+                className="object-cover transition-transform duration-1000 group-hover:scale-105 opacity-80 group-hover:opacity-100"
+              />
+            ) : project.video ? (
+              <video
+                src={project.video}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-80 group-hover:opacity-100"
+                muted
+                playsInline
+                loop
+                autoPlay
+              />
+            ) : null}
             
             {/* Minimal Overlay - Only Title on Hover */}
-            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-               <h3 className="text-white text-4xl md:text-6xl font-medium tracking-wide translate-y-8 group-hover:translate-y-0 transition-transform duration-500">{project.title}</h3>
+            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-end p-8">
+               <h3 className="text-white text-4xl md:text-6xl font-medium tracking-wide translate-y-4 group-hover:translate-y-0 transition-transform duration-500 text-right">{project.title}</h3>
             </div>
           </div>
         ))}
       </div>
-
-      {/* Detail Modal */}
-      <Dialog open={!!selectedProject} onOpenChange={(open) => !open && setSelectedProject(null)}>
-        <DialogContent className="max-w-2xl bg-card border-none p-0 overflow-hidden rounded-2xl">
-             {selectedProject && (
-                 <div className="flex flex-col">
-                     <div className="relative w-full aspect-video">
-                        <Image src={selectedProject.image} alt={selectedProject.title} fill className="object-cover" />
-                        <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md text-white text-xs px-3 py-1 rounded-full">{selectedProject.year}</div>
-                     </div>
-                     <div className="p-8 space-y-6">
-                        <div>
-                            <span className="text-tertiary text-xs font-mono uppercase tracking-widest">{selectedProject.category}</span>
-                            <DialogHeader>
-                                <DialogTitle className="text-3xl font-semibold mt-2">{selectedProject.title}</DialogTitle>
-                            </DialogHeader>
-                        </div>
-                        
-                        <DialogDescription className="text-base leading-relaxed text-muted-foreground">
-                            {selectedProject.description}
-                        </DialogDescription>
-
-                        <div className="pt-4 border-t border-border flex justify-between items-center">
-                             <span className="text-sm text-muted-foreground">Client Request / Case Study</span>
-                             <Link href={selectedProject.link} className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-2.5 rounded-full text-sm font-medium hover:bg-tertiary transition-colors">
-                                View Live <ArrowUpRight size={16} />
-                             </Link>
-                        </div>
-                     </div>
-                 </div>
-             )}
-        </DialogContent>
-      </Dialog>
 
     </div>
   );
