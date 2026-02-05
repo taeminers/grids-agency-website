@@ -135,7 +135,7 @@ export default function CoreValueAnimation({ id }: CoreValueAnimationProps) {
 
   return (
     <div ref={container} className="w-full h-full absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center">
-        <div className="w-[80%] h-[80%] max-w-[300px] max-h-[300px]">
+        <div className="w-[60%] h-[60%] md:w-[80%] md:h-[80%] max-w-[300px] max-h-[300px]">
             {renderContent()}
         </div>
     </div>

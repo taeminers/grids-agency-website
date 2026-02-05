@@ -121,17 +121,25 @@ export default function CoreValuesSection() {
              >
                 <CarouselContent className="-ml-4">
                     {values.map((value) => (
-                        <CarouselItem key={value.id} className="pl-4 basis-1/2">
+                        <CarouselItem key={value.id} className="pl-4 basis-full">
                             <div className={cn(
-                                "aspect-[3/4] rounded-2xl p-6 flex flex-col justify-between",
+                                "aspect-[3/4] rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden",
                                 value.color,
                                 value.textColor
                             )}>
                                 <CoreValueAnimation id={value.id} />
-                                <div>
+                                
+                                <div className="relative z-10">
                                     <span className="text-xs font-medium opacity-80 uppercase tracking-wider block mb-2">{t(`items.item${value.id}.subtitle`)}</span>
                                     <h3 className="text-xl font-medium">{t(`items.item${value.id}.title`)}</h3>
                                 </div>
+                                
+                                <p className={cn(
+                                    "text-sm leading-relaxed mt-4",
+                                    value.textColor === "text-white" ? "text-white/80" : "text-black/80"
+                                )}>
+                                    {t(`items.item${value.id}.description`)}
+                                </p>
                             </div>
                         </CarouselItem>
                     ))}
