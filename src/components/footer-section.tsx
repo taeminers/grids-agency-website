@@ -25,7 +25,7 @@ export default function FooterSection({ className }: FooterSectionProps) {
     setMounted(true);
   }, []);
 
-  if (pathname?.includes('/connect')) return null;
+  if (pathname?.includes('/connect') || pathname?.includes('/archive')) return null;
 
   return (
     <footer 
