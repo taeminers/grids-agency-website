@@ -145,11 +145,11 @@ export function ArchiveGrid() {
         ref={containerRef} 
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
-        className="w-full h-screen overflow-hidden relative bg-neutral-900 flex items-center justify-center select-none"
+        className="w-full h-screen overflow-hidden relative bg-background flex items-center justify-center select-none"
     >
       
       {/* Mobile Swipe Hint */}
-      <div className="md:hidden absolute bottom-12 left-1/2 -translate-x-1/2 text-white/40 text-sm font-light tracking-widest animate-pulse pointer-events-none z-30">
+      <div className="md:hidden absolute bottom-12 left-1/2 -translate-x-1/2 text-muted-foreground text-sm font-light tracking-widest animate-pulse pointer-events-none z-30">
         {t("swipeHint")}
       </div>
 
@@ -160,7 +160,7 @@ export function ArchiveGrid() {
             onClick={() => handleNavigate("up")}
             className="hidden md:block absolute top-16 left-1/2 -translate-x-1/2 z-40 p-4 transition-all animate-in fade-in slide-in-from-top-4 hover:-translate-y-1"
         >
-            <ArrowUpRight className="w-12 h-12 text-white/50 hover:text-white rotate-[-45deg] transition-colors" />{/* Up Arrow using rotated icon or lucide ArrowUp */}
+            <ArrowUpRight className="w-12 h-12 text-muted-foreground hover:text-foreground rotate-[-45deg] transition-colors" />{/* Up Arrow using rotated icon or lucide ArrowUp */}
         </button>
       )}
       
@@ -170,7 +170,7 @@ export function ArchiveGrid() {
             onClick={() => handleNavigate("down")}
             className="hidden md:block absolute bottom-12 left-1/2 -translate-x-1/2 z-40 p-4 transition-all animate-in fade-in slide-in-from-bottom-4 hover:translate-y-1"
         >
-            <ArrowUpRight className="w-12 h-12 text-white/50 hover:text-white rotate-[135deg] transition-colors" />
+            <ArrowUpRight className="w-12 h-12 text-muted-foreground hover:text-foreground rotate-[135deg] transition-colors" />
         </button>
       )}
 
@@ -180,7 +180,7 @@ export function ArchiveGrid() {
             onClick={() => handleNavigate("left")}
             className="hidden md:block absolute left-12 top-1/2 -translate-y-1/2 z-40 p-4 transition-all animate-in fade-in slide-in-from-left-4 hover:-translate-x-1"
         >
-             <ArrowUpRight className="w-12 h-12 text-white/50 hover:text-white rotate-[-135deg] transition-colors" />
+             <ArrowUpRight className="w-12 h-12 text-muted-foreground hover:text-foreground rotate-[-135deg] transition-colors" />
         </button>
       )}
 
@@ -190,7 +190,7 @@ export function ArchiveGrid() {
             onClick={() => handleNavigate("right")}
             className="hidden md:block absolute right-12 top-1/2 -translate-y-1/2 z-40 p-4 transition-all animate-in fade-in slide-in-from-right-4 hover:translate-x-1"
         >
-            <ArrowUpRight className="w-12 h-12 text-white/50 hover:text-white rotate-[45deg] transition-colors" />
+            <ArrowUpRight className="w-12 h-12 text-muted-foreground hover:text-foreground rotate-[45deg] transition-colors" />
         </button>
       )}
 
@@ -204,10 +204,10 @@ export function ArchiveGrid() {
           <div 
             key={index}
             className={cn(
-                "group relative w-full h-full bg-card/5 rounded-none overflow-hidden border border-white/5 transition-opacity duration-500",
+                "group relative w-full h-full bg-card/5 rounded-none overflow-hidden border border-foreground/5 transition-opacity duration-500",
                 // Dim non-active items? Optional, but adds focus
                 // Calculate item position
-                (Math.floor(index / 3) === activeY && index % 3 === activeX) ? "opacity-100 ring-2 ring-white/10 z-10" : "opacity-30"
+                (Math.floor(index / 3) === activeY && index % 3 === activeX) ? "opacity-100 ring-2 ring-foreground/10 z-10" : "opacity-30"
             )}
           >
             {project.image ? (
