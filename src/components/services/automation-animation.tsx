@@ -42,7 +42,8 @@ export default function AutomationAnimation() {
             duration: 1.5,
             repeat: -1,
             ease: "power1.out",
-            delay: i * 0.2
+            delay: i * 0.2,
+            transformOrigin: "center"
         });
     });
 

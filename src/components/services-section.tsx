@@ -45,19 +45,22 @@ export default function ServicesSection() {
       id: "item1",
       icon: Icons.Web,
       number: "[01]",
-      customContent: <WebDesignCombined />
+      customContent: <WebDesignCombined />,
+      tags: ["UX/UI", "React", "Next.js", "WebGL"]
     },
     {
       id: "item2",
       icon: Icons.Brand, // You might want to change this icon too if it's video, but keeping as is for now
       number: "[02]",
-      videoSrc: "/videos/video-creation.mp4"
+      videoSrc: "/videos/video-creation.mp4",
+      tags: ["Veo3", "Nano Banana", "Kling", "Capcut"]
     },
     {
       id: "item3",
       icon: Icons.Marketing,
       number: "[03]",
-      customContent: <AutomationAnimation />
+      customContent: <AutomationAnimation />,
+      tags: ["n8n", "OpenClaw", "Agentic Workflow", "MCP"]
     },
   ];
 
@@ -129,6 +132,7 @@ export default function ServicesSection() {
                   Icon={service.icon}
                   videoSrc={service.videoSrc}
                   customContent={service.customContent}
+                  tags={service.tags}
                   isOpen={openIndex === index}
                   onClick={() => setOpenIndex(index === openIndex ? null : index)}
                 />

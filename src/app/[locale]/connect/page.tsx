@@ -44,7 +44,7 @@ export default function ConnectPage() {
                         { label: t("Cards.address"), value: t("Cards.addressValue"), href: "https://www.google.com/maps/search/?api=1&query=435+Olympic-ro,+Songpa-gu,+Seoul,+Republic+of+Korea" },
                         { label: t("Cards.email"), value: "hello@gridsagency.com", href: "mailto:hello@gridsagency.com" },    
                         { label: t("Cards.telegram"), value: "@kyle_lee10", href: "https://t.me/kyle_lee10" },
-                        { label: t("Cards.workingHours"), value: "10:00 am - 6:00 pm(KST)", href: "https://www.google.com/search?q=10am+kst+to+local+time" },
+                        { label: t("Cards.workingHours"), value: "10:00 am - 7:00 pm(KST)", href: "https://www.google.com/search?q=10am+kst+to+local+time" },
                     ].map((item, i) => {
                         const CardContent = (
                             <>
@@ -90,7 +90,7 @@ export default function ConnectPage() {
                             
                             {/* Partnership Card */}
                             {/* Partnership Card / Instagram */}
-                            <a 
+                            {/* <a 
                                 href="https://www.instagram.com/gridsagency" 
                                 target="_blank" 
                                 rel="noopener noreferrer"
@@ -103,7 +103,7 @@ export default function ConnectPage() {
                                 <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center group-hover:bg-tertiary transition-colors">
                                     <ArrowUpRight size={16} />
                                 </div>
-                            </a>
+                            </a> */}
                         </div>
 
                         {/* Right Column: Contact Form */}

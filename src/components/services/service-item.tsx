@@ -13,6 +13,7 @@ interface ServiceItemProps {
   Icon: React.FC;
   videoSrc?: string;
   customContent?: React.ReactNode;
+  tags?: string[];
 }
 
 export default function ServiceItem({
@@ -24,6 +25,7 @@ export default function ServiceItem({
   Icon,
   videoSrc,
   customContent,
+  tags,
 }: ServiceItemProps) {
   return (
     <div className="border-t border-border/40 last:border-b">
@@ -119,15 +121,8 @@ export default function ServiceItem({
               </p>
               
               <div className="mt-8 flex flex-wrap gap-1">
-                  {/* Decorative Tags based on service type */}
-                  {title.includes("Web") && ["UX/UI", "React", "Next.js", "WebGL"].map(tag => (
-                      <span key={tag} className="text-xs font-mono uppercase border border-border px-3 py-1 rounded-sm text-tertiary bg-tertiary-foreground">{tag}</span>
-                  ))}
-                  {title.includes("Video") && ["Veo3", "Nano Banana", "Kling", "Capcut"].map(tag => (
-                      <span key={tag} className="text-xs font-mono uppercase border border-border px-3 py-1 rounded-sm text-tertiary bg-tertiary-foreground">{tag}</span>
-                  ))}
-                   {/* Fallback tags */}
-                    {!title.includes("Web") && !title.includes("Video") && ["n8n", "Moltbot", "Agentic Workflow", "MCP"].map(tag => (
+                  {/* Decorative Tags passed via props */}
+                  {tags?.map(tag => (
                       <span key={tag} className="text-xs font-mono uppercase border border-border px-3 py-1 rounded-sm text-tertiary bg-tertiary-foreground">{tag}</span>
                   ))}
               </div>
