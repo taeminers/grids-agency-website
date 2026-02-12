@@ -52,7 +52,7 @@ export default function ServicesSection() {
       id: "item2",
       icon: Icons.Brand, // You might want to change this icon too if it's video, but keeping as is for now
       number: "[02]",
-      videoSrc: "/videos/video-creation.mp4",
+      videoSrc: "/videos/aether-hero-small.mp4",
       tags: ["Veo3", "Nano Banana", "Kling", "Capcut"]
     },
     {
