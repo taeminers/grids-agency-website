@@ -19,11 +19,12 @@ export function ArchiveGrid() {
 
   // Mock Data - Moved inside for translations
   const projects = [
-    { id: 1, title: "Fablo App", category: t("Projects.project1.category"), image: "/images/fablo-app.png", description: t("Projects.project1.description"), year: "2025", link: "#" },
-    { id: 2, title: "Personal Website", category: t("Projects.project2.category"),  image: "/images/website.png", description: t("Projects.project2.description"), year: "2023", link: "#" },
+    { id: 2, title: "Personal Website", category: t("Projects.project2.category"),  image: "/images/website.png", description: t("Projects.project2.description"), year: "2023", link: "https://grids-kyle.vercel.app/" },
     { id: 3, title: "Instagram Ads", category: t("Projects.project3.category"), image: "/images/ads/ad-2.png", description: t("Projects.project3.description"), year: "2024", link: "#" },
     { id: 4, title: "Cinematics", category: t("Projects.project4.category"), video: "/videos/cinematics.mp4", description: t("Projects.project4.description"), year: "2023", link: "#" },
-    { id: 5, title: "The Clear Labs", category: t("Projects.project5.category"), video: "/videos/tcl.mp4", description: t("Projects.project5.description"), year: "2024", link: "#" }, 
+       { id: 5, title: "The Clear Labs", category: t("Projects.project5.category"), video: "/videos/tcl.mp4", description: t("Projects.project5.description"), year: "2024", link: "#" }, 
+
+    { id: 1, title: "AETHER", category: t("Projects.project1.category"), video: "/videos/aether-hero-small.mp4", description: t("Projects.project1.description") , year: "2025", link: "https://aetherfragrances.vercel.app/" },
     { id: 6, title: "AI Videos", category: t("Projects.project6.category"), video: "/videos/hero.mp4", description: t("Projects.project6.description"), year: "2023", link: "#" },
     // Duplicates for grid density - Need 9 for 3x3 grid centered layout
     { id: 7, title: "Jeisys", category: t("Projects.project7.category"), video: "/videos/jeisys.mp4", description: t("Projects.project7.description"), year: "2023", link: "#" },
@@ -203,11 +204,17 @@ export function ArchiveGrid() {
         {projects.map((project, index) => (
           <div 
             key={index}
+            onClick={() => {
+              if (project.link && project.link !== "#") {
+                window.open(project.link, "_blank");
+              }
+            }}
             className={cn(
                 "group relative w-full h-full bg-card/5 rounded-none overflow-hidden border border-foreground/5 transition-opacity duration-500",
                 // Dim non-active items? Optional, but adds focus
                 // Calculate item position
-                (Math.floor(index / 3) === activeY && index % 3 === activeX) ? "opacity-100 ring-2 ring-foreground/10 z-10" : "opacity-30"
+                (Math.floor(index / 3) === activeY && index % 3 === activeX) ? "opacity-100 ring-2 ring-foreground/10 z-10" : "opacity-30",
+                project.link && project.link !== "#" ? "cursor-pointer" : "cursor-default"
             )}
           >
             {project.image ? (
