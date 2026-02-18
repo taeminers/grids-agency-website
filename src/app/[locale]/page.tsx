@@ -6,7 +6,6 @@ import AboutSection from "@/components/about-section";
 import ServicesSection from "@/components/services-section";
 import ProcessSection from "@/components/process-section";
 import CoreValuesSection from "@/components/core-values-section";
-import VideoSection from "@/components/video-section";
 
 import { cn } from "@/lib/utils";
 
@@ -42,9 +41,7 @@ export default function Home() {
           <AboutSection />
      
           
-          {/* Video Showcase */}
-          <VideoSection />
-     
+      
           {/* Services Section */}
           <ServicesSection />
           
