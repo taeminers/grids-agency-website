@@ -76,7 +76,7 @@ export default function ServicesSection() {
   });
 
   return (
-    <section className="relative w-full min-h-screen bg-background py-24 md:py-32 overflow-hidden">
+    <section className="relative w-full min-h-screen bg-background py-24 lg:py-0  overflow-hidden">
       
       <div className="container mx-auto px-6 md:px-12">
         <div className="flex flex-col lg:flex-row">
@@ -91,10 +91,14 @@ export default function ServicesSection() {
               Our Services
                 </span>
                 <h2 className="text-4xl md:text-6xl font-medium tracking-tight leading-[1.1]">
-                  {t('title')}
+                  {t.rich('title', {
+                    highlight: (chunks) => <span className="text-tertiary">{chunks}</span>,
+                  })}
                 </h2>
                 <p className="text-lg text-muted-foreground max-w-md">
-                   {t('description')}
+                   {t.rich('description', {
+                    highlight: (chunks) => <span className="font-bold text-foreground">{chunks}</span>,
+                  })}
                 </p>
                 {/* <div className="pt-2">
                     <Button 

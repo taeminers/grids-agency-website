@@ -6,6 +6,7 @@ import AboutSection from "@/components/about-section";
 import ServicesSection from "@/components/services-section";
 import ProcessSection from "@/components/process-section";
 import CoreValuesSection from "@/components/core-values-section";
+import ManifestoSection from "@/components/manifesto-section";
 
 import { cn } from "@/lib/utils";
 
@@ -44,6 +45,9 @@ export default function Home() {
       
           {/* Services Section */}
           <ServicesSection />
+
+          {/* Manifesto Section */}
+          <ManifestoSection />
           
           {/* Core Values Section */}
           <CoreValuesSection />

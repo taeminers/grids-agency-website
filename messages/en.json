@@ -14,8 +14,13 @@
       "korean": "Korean"
     }
   },
+  "Manifesto": {
+    "tagline": "Digital Artists.\nWorld-class.\nNothing less.",
+    "description": "Our visionary digital artists bring ideas to life. Together, we will craft unique digital content that stands out.",
+    "cta": "Get in touch!"
+  },
   "About": {
-    "title" : "The premier <highlight>AI agency</highlight> for elite-tier production.",
+    "title" : "The premier <highlight>AI agency</highlight> <newline></newline> for elite-tier production.",
     "description": "Scale beyond your competitors, leveraging cutting-edge AI to deliver unmatched production quality and a decisive market advantage.",
     "location": "Based in Seoul"
   },
@@ -26,8 +31,8 @@
     "subtext": "A design-driven production studio focused on telling your story through motion, interaction, and clean typography."
   },
   "Services": {
-    "title": "Providing solutions and services that uplift your business.",
-    "description": "We handle every technical nuance to ensure your business operates at a level far above the industry standard.",
+    "title": "Providing solutions and services that <highlight>uplift your business</highlight>.",
+    "description": "We handle every technical nuance to ensure your business operates at a <highlight> level far above the industry standard </highlight>.",
     "cta": "Learn More",
     "Items": {
       "item1": {

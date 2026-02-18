@@ -177,7 +177,7 @@ export default function AboutSection({ className }: AboutSectionProps) {
       <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-background from-30% via-background/80 to-transparent z-0 pointer-events-none" />
 
       {/* Sticky Content Wrapper */}
-      <div ref={contentRef} className="sticky top-0 w-full min-h-auto md:min-h-screen flex flex-col items-center justify-start py-10 md:py-20 overflow-hidden z-10 pointer-events-none md:pointer-events-auto">
+      <div ref={contentRef} className="sticky top-0 w-full min-h-auto md:min-h-screen flex flex-col items-center justify-start py-10 md:py-0  overflow-hidden z-10 pointer-events-none md:pointer-events-auto">
         
         {/* Huge GRIDS Text (z-30 to stay on top) */}
         <div className="relative w-full flex justify-center mb-0 md:mb-8 z-30">
