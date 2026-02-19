@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import dynamic from "next/dynamic";
 
 import HaloScene from "@/components/archive/halo-scene";
@@ -28,7 +28,7 @@ export function ArchiveEntry({ onEnter }: ArchiveEntryProps) {
                     
 
                     <p className="text-base md:text-lg text-muted-foreground font-light max-w-md leading-relaxed">
-                        description
+                        A legacy of building what’s next. Our portfolio of scalable web architectures and cutting-edge AI video productions.
                     </p>
 
                     <div className="pt-8 relative">
@@ -37,17 +37,19 @@ export function ArchiveEntry({ onEnter }: ArchiveEntryProps) {
 
                         <button 
                             onClick={onEnter} 
-                            className="group relative flex items-center gap-4 text-sm tracking-widest uppercase hover:text-foreground/80 transition-colors pl-8 md:pl-0"
+                            className="group relative flex items-center gap-2 text-sm tracking-widest uppercase hover:text-foreground/80 transition-colors pl-8 md:pl-0"
                         >
                             <span className="relative z-10 border-b border-transparent group-hover:border-foreground transition-all duration-300">
-                                Explore as Grid
+                                Explore as Grid                             
+
                             </span>
+                            <ArrowUpRight className="w-4 h-4 transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
                         </button>
                     </div>
                 </div>
                 
-                 <div className="absolute bottom-12 left-8 md:left-24 text-[10px] tracking-widest text-muted-foreground opacity-50 flex items-center gap-2 pointer-events-auto">
-                    EXPLORE THE VOID <ArrowRight className="w-3 h-3 rotate-90" />
+                 <div className="absolute bottom-12 right-8 md:right-24 text-[10px] tracking-widest text-muted-foreground opacity-50 flex items-center gap-2 pointer-events-auto">
+                    OR check out featured <ArrowRight className="w-3 h-3 rotate-90" />
                 </div>
             </div>
 

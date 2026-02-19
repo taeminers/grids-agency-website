@@ -1,8 +1,7 @@
-"use client";
-
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
+import { Button } from "@/components/ui/button";
 
 const GlassShape = dynamic(() => import("./manifesto/glass-shape"), { ssr: false });
 
@@ -30,8 +29,10 @@ export default function ManifestoSection() {
               <p className="text-2xl md:text-3xl lg:text-5xl leading-tight font-medium text-foreground/80">
                   {t.rich('description', {
                       highlight: (chunks) => <span className="text-tertiary">{chunks}</span>,
+                      newline: (chunks) => <br />,
                   })}
               </p>
+    
     
             </div>
           </div>
