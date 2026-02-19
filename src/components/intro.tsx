@@ -41,72 +41,16 @@ export default function Intro({ onReveal }: IntroProps) {
         { opacity: 0, scale: 0.5, y: 20 }, 
         { opacity: 1, scale: 0.5, y: 0, duration: 1 }
       )
-      .to({}, { duration: 1 }); // Delay
+      .to({}, { duration: 0.2 }); // Reduced Delay
 
-      // Responsive Animations
-      mm.add({
-        isDesktop: "(min-width: 768px)",
-        isMobile: "(max-width: 767px)",
-      }, (context) => {
-        // @ts-ignore - conditions exists on context
-        const { isDesktop, isMobile } = context.conditions;
-
-        if (isDesktop) {
-            // DESKTOP: Split Left/Right and Scale Down
-            tl.to(gridsRef.current, {
-                x: "-60vw", // Move further left (closer to edge)
-                duration: 1.5,
-                ease: "power4.inOut"
-            }, "move")
-            .to(agencyRef.current, {
-                x: "60vw",  // Move further right (closer to edge)
-                duration: 1.5,
-                ease: "power4.inOut"
-            }, "move")
-            .to(textWrapperRef.current, {
-                scale: 0.4, // Larger scale (was 0.25)
-                duration: 1.5,
-                ease: "power4.inOut"
-            }, "move");
-        } 
-        
-        if (isMobile) {
-            // MOBILE: Move to Bottom Center (Unified)
-            if (textWrapperRef.current) {
-                const windowHeight = window.innerHeight;
-                const textHeight = textWrapperRef.current.offsetHeight;
-                const yOffset = (windowHeight / 2) - (textHeight / 2) - 40; // Bottom offset padding
-
-                tl.to(textWrapperRef.current, {
-                    y: yOffset,
-                    scale: 1, // Full width on mobile? Or keep small? User said "like before". Before was scale 1.
-                    duration: 1.5,
-                    ease: "power4.inOut"
-                }, "move");
-            }
-        }
-      });
-
-      // Common: Fade out background
-      tl.to(backgroundRef.current, {
-        opacity: 0,
-        duration: 1.0,
-        ease: "power2.inOut",
-        onComplete: () => {
-          if (backgroundRef.current) backgroundRef.current.style.display = "none";
-        }
-      }, "move+=0.5")
-      
-
-
-      // Step 2: Animate OLD text OUT (Push Down)
-      .to([gridsRef.current, agencyRef.current], {
+      // Step 2: Animate OLD text OUT (Push Down) - IMMEDIATE SWAP
+      tl.to([gridsRef.current, agencyRef.current], {
         y: 100,
         opacity: 0,
         duration: 0.4,
         ease: "back.in(2)",
         stagger: 0.1
-      }, "move+=2.0")
+      })
 
       // Step 3: Swap Text & Reset Position (Instant)
       .call(() => {
@@ -131,7 +75,57 @@ export default function Intro({ onReveal }: IntroProps) {
         duration: 0.6,
         ease: "back.out(1.5)",
         stagger: 0.1
-      }, "final");
+      })
+      .addLabel("move"); // Define label for responsive animations to start AFTER swap
+
+      // Responsive Animations
+      mm.add({
+        isDesktop: "(min-width: 768px)",
+        isMobile: "(max-width: 767px)",
+      }, (context) => {
+        // @ts-ignore - conditions exists on context
+        const { isDesktop, isMobile } = context.conditions;
+
+        if (isDesktop) {
+            // DESKTOP: Scale Down only, NO split
+            tl.to(textWrapperRef.current, {
+                scale: 0.4, // Larger scale (was 0.25)
+                duration: 1.5,
+                ease: "power4.inOut"
+            }, "move");
+        } 
+        
+        if (isMobile) {
+            // MOBILE: Move to Bottom Center (Unified)
+            if (textWrapperRef.current) {
+                const windowHeight = window.innerHeight;
+                const textHeight = textWrapperRef.current.offsetHeight;
+                const yOffset = (windowHeight / 2) - (textHeight / 2) - 40; // Bottom offset padding
+
+                tl.to(textWrapperRef.current, {
+                    y: yOffset,
+                    scale: 1, // Full width on mobile? Or keep small? User said "like before". Before was scale 1.
+                    duration: 1.5,
+                    ease: "power4.inOut"
+                }, "move");
+            }
+        }
+      });
+
+      // Common: Fade out background
+      // Runs at "move" label (after swap)
+      tl.to(backgroundRef.current, {
+        opacity: 0,
+        duration: 1.0,
+        ease: "power2.inOut",
+        onComplete: () => {
+          if (backgroundRef.current) backgroundRef.current.style.display = "none";
+        }
+      }, "move+=0.5");
+      
+
+
+
 
       // Step 5: Responsive Scale Adjustment for New Text
       mm.add({
@@ -141,41 +135,52 @@ export default function Intro({ onReveal }: IntroProps) {
         // @ts-ignore
         const { isDesktop, isMobile } = context.conditions;
 
-        if (isDesktop) {
-            // DESKTOP: Keep same size as before (0.4)
+        // Helper to calculate bottom position
+        const getBottomY = (element: HTMLElement) => {
+            const windowHeight = window.innerHeight;
+            const elementHeight = element.offsetHeight;
+            return (windowHeight / 2) - (elementHeight / 2) - 60; 
+        };
+
+        if (isDesktop && textWrapperRef.current) {
+            // DESKTOP: Scale Down and MOve to Bottom
             tl.to(textWrapperRef.current, {
+                y: getBottomY(textWrapperRef.current),
                 scale: 0.4, 
-                duration: 0.6,
-                ease: "back.out(1.5)"
-            }, "final");
+                duration: 1.5,
+                ease: "power4.inOut"
+            }, "move"); 
         }
         
-        if (isMobile) {
-            // MOBILE: Shrink to 0.6 to fit long text (User requested larger than 0.5)
+        if (isMobile && textWrapperRef.current) {
+            // MOBILE: Move to Bottom
             tl.to(textWrapperRef.current, {
+                y: getBottomY(textWrapperRef.current), 
                 scale: 0.8,
-                duration: 0.6,
-                ease: "back.out(1.5)"
-            }, "final");
+                duration: 1.5,
+                ease: "power4.inOut"
+            }, "move"); 
         }
       });
 
       // Step 6: Scroll-Linked Exit Animation
-      // This runs independently of the intro timeline, driven by user scroll
-      const scrollTl = gsap.timeline({
-        scrollTrigger: {
-            trigger: document.body,
-            start: "top top",
-            end: "+=500", // Animate out over first 500px of scroll
-            scrub: true,
-        }
-      });
-      
-      scrollTl.to(textWrapperRef.current, {
-        opacity: 0,
-        y: -100,
-        scale: "-=0.1", // Slight shrink
-        ease: "power1.out"
+      // Delayed initialization to ensure correct start values (opacity: 1) are captured
+      tl.call(() => {
+          const scrollTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: document.body,
+                start: "top top",
+                end: "+=500", // Animate out over first 500px of scroll
+                scrub: true,
+            }
+          });
+          
+          scrollTl.to(textWrapperRef.current, {
+            opacity: 0,
+            y: -100,
+            scale: "-=0.1", // Slight shrink
+            ease: "power1.out"
+          });
       });
 
     }, containerRef); 
