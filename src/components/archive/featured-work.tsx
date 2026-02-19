@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 export function FeaturedWork() {
   const t = useTranslations("Archive");
 
-  const featuredProjectsArg: {
+  const featuredProjects: {
       id: string;
       service: string;
       title: string;
@@ -20,18 +20,18 @@ export function FeaturedWork() {
   }[] = [
     {
       id: "web-dev",
-      service: "Web Development & AI Video Production",
-      title: "AETHER",
-      description: "Next-gen e-commerce experience with immersive 3D interactions.",
+      service: t("Featured.Projects.web-dev.service"),
+      title: t("Featured.Projects.web-dev.title"),
+      description: t("Featured.Projects.web-dev.description"),
       video: "/videos/aether-velum.mp4",
       link: "https://aetherfragrances.vercel.app/",
       year: "2025"
     },
     {
         id: "ai-video",
-        service: "AI Video Production",
-        title: "Cinematics",
-        description: "Pushing the boundaries of generative AI video.",
+        service: t("Featured.Projects.ai-video.service"),
+        title: t("Featured.Projects.ai-video.title"),
+        description: t("Featured.Projects.ai-video.description"),
         video: "/videos/tcl.mp4",
         link: "https://drive.google.com/drive/folders/1jMGQeDtEEHjjFct-hJTBl5PQHehL795N?usp=drive_link",
         year: "2024"
@@ -39,20 +39,20 @@ export function FeaturedWork() {
   ];
 
   return (
-    <section className="w-full bg-background relative z-10 pb-24">
+    <section className="w-full bg-background relative z-30 pb-24">
       <div className="container mx-auto px-6 md:px-12">
         <div className="flex flex-col gap-32">
             
             {/* Header */}
             <div className="border-t border-foreground/10 pt-8 flex justify-between items-start">
-                <h2 className="text-sm tracking-widest text-muted-foreground uppercase">Featured Work</h2>
+                <h2 className="text-sm tracking-widest text-muted-foreground uppercase">{t("Featured.label")}</h2>
                 <div className="text-sm tracking-widest text-muted-foreground uppercase text-right">
-                    Selected Projects <br/> 2025 — 2026
+                    {t("Featured.sublabel")} <br/> {t("Featured.years")}
                 </div>
             </div>
 
             {/* Projects Loop */}
-            {featuredProjectsArg.map((project, index) => (
+            {featuredProjects.map((project, index) => (
                 <div key={project.id} className="group relative flex flex-col md:grid md:grid-cols-12 gap-8 md:gap-12 items-center">
                     
                     {/* Project Number */}
@@ -81,7 +81,7 @@ export function FeaturedWork() {
                             />
                         ) : (
                             <Image
-                                src={project.image!}
+                                src={project?.image!}
                                 alt={project.title}
                                 fill
                                 className="object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700"
@@ -118,7 +118,7 @@ export function FeaturedWork() {
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 text-sm uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors mt-4 group/link"
                         >
-                            View Project
+                            {t("Featured.viewProject")}
                             <ArrowUpRight className="w-4 h-4 transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
                         </a>
                     </div>

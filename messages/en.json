@@ -198,6 +198,30 @@
         "category": "Urban Planning",
         "description": "Green energy utopian concepts."
       }
+    },
+    "Entry": {
+      "title": "Our Works, Our History",
+      "subtitle": "A legacy of building what’s next. Our portfolio of scalable web architectures and cutting-edge AI video productions.",
+      "explore": "Explore as Grid",
+      "checkFeatured": "OR check out featured"
+    },
+    "Featured": {
+      "label": "Featured Work",
+      "sublabel": "Selected Projects",
+      "years": "2025 — 2026",
+      "viewProject": "View Project",
+      "Projects": {
+        "web-dev": {
+          "service": "Web Development & AI Video Production",
+          "title": "AETHER",
+          "description": "Next-gen e-commerce experience with immersive 3D interactions."
+        },
+        "ai-video": {
+          "service": "AI Video Production",
+          "title": "Cinematics",
+          "description": "Pushing the boundaries of generative AI video."
+        }
+      }
     }
   }
 }
