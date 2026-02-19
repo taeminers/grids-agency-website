@@ -14,6 +14,13 @@
       "korean": "한국어"
     }
   },
+  
+  "Manifesto": {
+    "tagline": "디지털 아티스트.\n월드 클래스.\n그 이상.",
+    "description": "타협 없는 기준. 모든 프로젝트를 우리의 비즈니스라 생각하며 몰입합니다. <newline></newline> <highlight> 고객의 성공이 곧 우리의 성공입니다. </highlight>",
+    "cta": "지금 문의하기"
+  },
+
   "About": {
     "title": "최상의 제작 퀄리티를 지향하는 <newline></newline> <highlight>엘리트 AI 에이전시</highlight>",
     "description": "최첨단 AI 기술로 압도적인 퀄리티와 시장 우위를 확보하십시오. 경쟁사를 앞서가는 압도적인 스케일을 경험할 수 있습니다.",
@@ -136,17 +143,17 @@
     "Phases": {
       "phase1": {
         "label": "[ PHASE 01 ]",
-        "title": "무한한 토대 (The Infinite Base)",
+        "title": "무한한 토대",
         "description": "견고한 기본기에서 시작합니다. XZ 평면은 안정성과 도달 범위를 의미하며, 효율적인 저변 확대를 통해 무한한 수평적 확장을 지원하는 네트워크를 구축합니다."
       },
       "phase2": {
         "label": "[ PHASE 02 ]",
-        "title": "수직적 확장 (Vertical Scaling)",
+        "title": "수직적 확장",
         "description": "XY 평면을 통해 고도를 높입니다. 단순히 옆으로 넓어지는 것이 아니라 위로 쌓아 올립니다. 이는 더 높은 곳을 향한 야망과 로컬의 한계를 넘어서는 성장을 의미합니다."
       },
       "phase3": {
         "label": "[ PHASE 03 ]",
-        "title": "입체적 완성 (Holistic Volume)",
+        "title": "입체적 완성",
         "description": "YZ 평면이 더해져 공간이 완성됩니다. 이제 우리는 완전히 구현된 입체적 생태계에 존재합니다. 깊이와 넓이, 높이가 조화를 이루어 복합적인 전략들이 상호작용하는 완전한 비즈니스 환경을 형성합니다."
       }
     }
@@ -191,6 +198,30 @@
       "project9": {
         "category": "도시 계획",
         "description": "그린 에너지를 기반으로 한 유토피아 컨셉의 도시 기획입니다."
+      }
+    },
+    "Entry": {
+      "title": "우리의 작업, 우리의 역사",
+      "subtitle": "미래를 만드는 유산. 확장 가능한 웹 아키텍처와 최첨단 AI 영상 제작 포트폴리오를 확인하세요.",
+      "explore": "그리드로 탐색하기",
+      "checkFeatured": "또는 주요 작업 확인하기"
+    },
+    "Featured": {
+      "label": "주요 작업",
+      "sublabel": "엄선된 프로젝트",
+      "years": "2025 — 2026",
+      "viewProject": "프로젝트 보기",
+      "Projects": {
+        "web-dev": {
+          "service": "웹 개발 & AI 영상 제작",
+          "title": "AETHER",
+          "description": "최고급 브랜드의 차세대 이커머스 경험."
+        },
+        "ai-video": {
+          "service": "AI 영상 제작",
+          "title": "Cinematics",
+          "description": "생성형 AI 비디오의 한계를 뛰어넘다."
+        }
       }
     }
   }

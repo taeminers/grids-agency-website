@@ -5,11 +5,15 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ArrowLeft } from "lucide-react";
 
 import { useTranslations } from "next-intl";
 
-export function ArchiveGrid() {
+interface ArchiveGridProps {
+  onBack: () => void;
+}
+
+export function ArchiveGrid({ onBack }: ArchiveGridProps) {
   const t = useTranslations("Archive");
   
   const containerRef = useRef<HTMLDivElement>(null);
@@ -148,6 +152,15 @@ export function ArchiveGrid() {
         onTouchEnd={handleTouchEnd}
         className="w-full h-screen overflow-hidden relative bg-background flex items-center justify-center select-none"
     >
+      {/* Back Button */}
+      <button 
+          onClick={onBack}
+          className="absolute top-4 left-4 md:top-8 md:left-8 z-50 p-4 transition-all animate-in fade-in slide-in-from-left-4 hover:opacity-70 group"
+      >
+          <div className="flex items-center gap-4">
+            <ArrowLeft className="w-8 h-8 text-muted-foreground group-hover:text-foreground transition-colors" />
+          </div>
+      </button>
       
       {/* Mobile Swipe Hint */}
       <div className="md:hidden absolute bottom-12 left-1/2 -translate-x-1/2 text-muted-foreground text-sm font-light tracking-widest animate-pulse pointer-events-none z-30">

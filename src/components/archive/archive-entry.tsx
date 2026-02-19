@@ -1,78 +1,63 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code, Video, Bot } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import dynamic from "next/dynamic";
+
+import HaloScene from "@/components/archive/halo-scene";
+// const HaloScene = dynamic(() => import("@/components/archive/halo-scene"), { ssr: false });
 
 interface ArchiveEntryProps {
   onEnter: () => void;
 }
 
+import { useTranslations } from "next-intl";
+
 export function ArchiveEntry({ onEnter }: ArchiveEntryProps) {
-    // const t = useTranslations("ArchiveEntry"); // Assuming key exists, or use hardcoded for now if not provided
-    
+    const t = useTranslations("Archive");
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center p-8 md:p-24 relative overflow-hidden">
-             {/* Background Decoration - subtle grid or gradient to match theme */}
-            <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" />
-            
-            <div className="max-w-5xl w-full z-10 space-y-16">
-                
-                {/* Header */}
-                <div className="text-center space-y-4">
-                    <h1 className="text-4xl md:text-7xl font-light tracking-tighter text-foreground">
-                        ARCHIVE
+        <div className="w-full h-screen sticky top-0 overflow-hidden bg-background">
+            {/* Background - 3D Halo */}
+            <div className="absolute inset-0 z-1 pointer-events-none">
+                <HaloScene />
+            </div>
+
+            {/* Content Overlay */}
+            <div className="relative z-20 w-full h-full flex flex-col justify-center p-8 md:p-24 pointer-events-none">
+                <div className="space-y-8 animate-in fade-in slide-in-from-left-8 duration-1000 pointer-events-auto">
+                    <h1 className="text-5xl md:text-8xl font-regular tracking-tighter text-foreground leading-[0.9]">
+                        {t("Entry.title")}
                     </h1>
-                 </div>
+                    
 
-                {/* Three Sections */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-                    {/* Web Development */}
-                    <div className="group flex flex-col items-center text-center space-y-4 p-6 rounded-2xl bg-card/5 border border-border/50 hover:bg-card/10 transition-colors duration-500">
-                        <div className="w-16 h-16 rounded-full bg-primary/5 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-                            <Code className="w-8 h-8 text-primary/80" />
-                        </div>
-                        <h3 className="text-xl font-medium tracking-wide">Web Development</h3>
-                        <p className="text-muted-foreground text-sm leading-relaxed max-w-[250px]">
-                            Crafting immersive digital experiences with modern technologies and clean code.
-                        </p>
-                    </div>
+                    <p className="text-base md:text-lg text-muted-foreground font-light max-w-md leading-relaxed">
+                        {t("Entry.subtitle")}
+                    </p>
 
-                    {/* Videos */}
-                    <div className="group flex flex-col items-center text-center space-y-4 p-6 rounded-2xl bg-card/5 border border-border/50 hover:bg-card/10 transition-colors duration-500">
-                         <div className="w-16 h-16 rounded-full bg-primary/5 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-                            <Video className="w-8 h-8 text-primary/80" />
-                        </div>
-                        <h3 className="text-xl font-medium tracking-wide">Videos</h3>
-                        <p className="text-muted-foreground text-sm leading-relaxed max-w-[250px]">
-                             Cinematic storytelling through motion, editing, and visual creativity.
-                        </p>
-                    </div>
+                    <div className="pt-8 relative">
+                        {/* Decorative Line for button grouping */}
+                       
 
-                    {/* Automation */}
-                    <div className="group flex flex-col items-center text-center space-y-4 p-6 rounded-2xl bg-card/5 border border-border/50 hover:bg-card/10 transition-colors duration-500">
-                         <div className="w-16 h-16 rounded-full bg-primary/5 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-                            <Bot className="w-8 h-8 text-primary/80" />
-                        </div>
-                        <h3 className="text-xl font-medium tracking-wide">Automation</h3>
-                        <p className="text-muted-foreground text-sm leading-relaxed max-w-[250px]">
-                            Streamlining workflows and enhancing efficiency with intelligent systems.
-                        </p>
+                        <button 
+                            onClick={onEnter} 
+                            className="group relative flex items-center gap-2 text-sm tracking-widest uppercase hover:text-foreground/80 transition-colors pl-8 md:pl-0"
+                        >
+                            <span className="relative z-10 border-b border-transparent group-hover:border-foreground transition-all duration-300">
+                                {t("Entry.explore")}
+                            </span>
+                            <ArrowUpRight className="w-4 h-4 transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
+                        </button>
                     </div>
                 </div>
-
-                {/* Enter Button */}
-                <div className="flex justify-center pt-8">
-                    <Button 
-                        onClick={onEnter} 
-                        size="lg"
-                        className="rounded-full px-8 py-6 text-lg group relative overflow-hidden"
-                    >
-                         <span className="relative z-10 flex items-center gap-2">
-                            View Grid <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                        </span>
-                    </Button>
+                
+                 <div className="absolute bottom-12 right-8 md:right-24 text-[10px] tracking-widest text-muted-foreground opacity-50 flex items-center gap-2 pointer-events-auto">
+                    {t("Entry.checkFeatured")} <ArrowRight className="w-3 h-3 rotate-90" />
                 </div>
+            </div>
+
+            {/* Interactive/Decorative Circle - Bottom Right */}
+            <div className="absolute bottom-8 right-8 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center animate-spin-slow opacity-50 hover:opacity-100 transition-opacity cursor-pointer">
+                <div className="w-1 h-1 bg-white rounded-full" />
             </div>
         </div>
     );
