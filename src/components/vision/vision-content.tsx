@@ -1,8 +1,8 @@
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import React from "react";
 
-export default function VisionContent() {
-    const t = useTranslations("Vision");
+export default async function VisionContent() {
+    const t = await getTranslations("Vision");
 
     return (
         <>

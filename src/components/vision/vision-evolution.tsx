@@ -7,8 +7,6 @@ import { useGSAP } from "@gsap/react";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 
-gsap.registerPlugin(ScrollTrigger);
-
 export default function VisionEvolution() {
     const containerRef = useRef<HTMLDivElement>(null);
     const sceneRef = useRef<HTMLDivElement>(null);
@@ -19,7 +17,22 @@ export default function VisionEvolution() {
     const [mounted, setMounted] = useState(false);
     const t = useTranslations("Vision.Phases");
 
-    useEffect(() => { setMounted(true); }, []);
+    const gridCells = React.useMemo(() => (
+        [...Array(36)].map((_, i) => <div key={i} className="border border-cyan-500/30" />)
+    ), []);
+
+    const gridCellsYellow = React.useMemo(() => (
+        [...Array(36)].map((_, i) => <div key={i} className="border border-yellow-500/30" />)
+    ), []);
+
+    const gridCellsRed = React.useMemo(() => (
+        [...Array(36)].map((_, i) => <div key={i} className="border border-red-500/30" />)
+    ), []);
+
+    useEffect(() => {
+        gsap.registerPlugin(ScrollTrigger);
+        setMounted(true);
+    }, []);
 
     useGSAP(() => {
         if (!containerRef.current || !sceneRef.current) return;
@@ -143,7 +156,7 @@ export default function VisionEvolution() {
                         <div className="absolute top-1/2 left-1/2 w-[1px] h-[200%] bg-foreground/20 -translate-x-1/2 -translate-y-1/2 pointer-events-none" style={{ transform: 'rotateX(90deg)' }} />
 
 
-                        {/* Plane 1: Cyan (XZ) - Horizontal Plane */}
+                            {/* Plane 1: Cyan (XZ) - Horizontal Plane */}
                         <div 
                             ref={plane1Ref}
                             className="absolute bg-cyan-500/20 border-2 border-cyan-500"
@@ -161,7 +174,7 @@ export default function VisionEvolution() {
                             }}
                         >
                             <div className="w-full h-full grid grid-cols-6 grid-rows-6 opacity-50">
-                                {[...Array(36)].map((_, i) => <div key={i} className="border border-cyan-500/30" />)}
+                                {gridCells}
                             </div>
                         </div>
 
@@ -180,7 +193,7 @@ export default function VisionEvolution() {
                             }}
                         >
                              <div className="w-full h-full grid grid-cols-6 grid-rows-6 opacity-50">
-                                {[...Array(36)].map((_, i) => <div key={i} className="border border-yellow-500/30" />)}
+                                {gridCellsYellow}
                             </div>
                         </div>
 
@@ -198,7 +211,7 @@ export default function VisionEvolution() {
                             }} 
                         >
                              <div className="w-full h-full grid grid-cols-6 grid-rows-6 opacity-50">
-                                {[...Array(36)].map((_, i) => <div key={i} className="border border-red-500/30" />)}
+                                {gridCellsRed}
                             </div>
                         </div>
 

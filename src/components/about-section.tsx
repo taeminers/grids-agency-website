@@ -182,7 +182,7 @@ export default function AboutSection({ className }: AboutSectionProps) {
         {/* Huge GRIDS Text (z-30 to stay on top) */}
         <div className="relative w-full flex justify-center mb-0 md:mb-8 z-30">
            <div 
-              className="relative inline-block mt-[-5vh] w-full text-center cursor-default pointer-events-auto"
+              className="relative inline-block mt-0 w-full text-center cursor-default pointer-events-auto pt-4"
               onMouseEnter={() => {
                   if (!textRef.current) return;
                   gsap.to(".grids-char", {
@@ -203,7 +203,7 @@ export default function AboutSection({ className }: AboutSectionProps) {
                   });
               }}
            >
-              <h1 className="text-[12.5vw] leading-[0.8] font-black tracking-tighter text-foreground/80 dark:text-foreground/80 select-none relative z-10 whitespace-nowrap overflow-hidden py-4">
+              <h1 className="text-[12.5vw] leading-[0.8] font-black tracking-tighter text-foreground/80 dark:text-foreground/80 select-none relative z-10 whitespace-nowrap overflow-visible py-8">
                   {"GRIDS AGENCY".split("").map((char, i) => (
                       <span key={i} className="grids-char inline-block relative">
                           {char === " " ? "\u00A0" : char}

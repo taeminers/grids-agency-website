@@ -78,7 +78,7 @@ export default function ServicesSection() {
   return (
     <section className="relative w-full min-h-screen bg-background py-24 lg:py-0  overflow-hidden">
       
-      <div className="container mx-auto px-6 md:px-12">
+      <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col lg:flex-row">
           
           {/* LEFT COLUMN: Sticky Content & 3D */}

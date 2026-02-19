@@ -2,35 +2,39 @@
 
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
+import dynamic from "next/dynamic";
+
+const GlassShape = dynamic(() => import("./manifesto/glass-shape"), { ssr: false });
 
 export default function ManifestoSection() {
   const t = useTranslations("Manifesto");
 
   return (
-    <section className="w-full py-24 bg-background">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+    <section className="w-full py-24 bg-background relative overflow-hidden">
+      <div className="absolute inset-0 w-full h-full ">
+         <GlassShape />
+      </div>
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
+        <div className="flex flex-col">
           
           {/* Left Column: Tagline */}
           <div className="flex flex-col">
-             <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-tighter whitespace-pre-line text-foreground/90">
+             <h2 className="md:text-4xl  font-medium tracking-tight leading-tighter whitespace-pre-line text-foreground/90">
                 {t("tagline")}
              </h2>
           </div>
 
           {/* Right Column: Description & CTA */}
-          <div className="flex flex-col gap-8 md:pt-4">
-             <p className="text-2xl md:text-3xl lg:text-4xl leading-tight font-medium text-foreground/80 text-balance">
-                {t("description")}
-             </p>
-             <div>
-                <a href="/connect" className="group inline-flex items-center gap-2 text-red-500 font-medium text-lg hover:text-red-400 transition-colors">
-                    <span className="w-2 h-2 rounded-full bg-red-500 group-hover:bg-red-400 transition-colors"></span>
-                    {t("cta")}
-                </a>
-             </div>
+          <div className="flex justify-end w-full mt-8 md:mt-12">
+            <div className="flex flex-col gap-8 w-full md:w-3/4 lg:w-2/3">
+              <p className="text-2xl md:text-3xl lg:text-5xl leading-tight font-medium text-foreground/80">
+                  {t.rich('description', {
+                      highlight: (chunks) => <span className="text-tertiary">{chunks}</span>,
+                  })}
+              </p>
+    
+            </div>
           </div>
-
         </div>
       </div>
     </section>

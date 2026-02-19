@@ -58,7 +58,7 @@ export default function VisionCanvas() {
 
     return (
         <div className="w-full h-[60vh] md:h-[70vh] relative overflow-hidden bg-background">
-            <Canvas>
+            <Canvas dpr={[1, 1.5]} gl={{ powerPreference: "high-performance" }}>
                 <PerspectiveCamera makeDefault position={[0, 5, 10]} fov={50} />
                 <color attach="background" args={[fogColor]} />
                 <fog attach="fog" args={[fogColor, 5, 30]} />
