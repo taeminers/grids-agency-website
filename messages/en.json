@@ -200,7 +200,7 @@
       }
     },
     "Entry": {
-      "title": "Our Works, Our History",
+      "title": "Our Works, <newline></newline> Our History",
       "subtitle": "A legacy of building what’s next. Our portfolio of scalable web architectures and cutting-edge AI video productions.",
       "explore": "Explore as Grid",
       "checkFeatured": "OR check out featured"

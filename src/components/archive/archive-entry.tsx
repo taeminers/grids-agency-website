@@ -26,7 +26,9 @@ export function ArchiveEntry({ onEnter }: ArchiveEntryProps) {
             <div className="relative z-20 w-full h-full flex flex-col justify-center p-8 md:p-24 pointer-events-none">
                 <div className="space-y-8 animate-in fade-in slide-in-from-left-8 duration-1000 pointer-events-auto">
                     <h1 className="text-5xl md:text-8xl font-regular tracking-tighter text-foreground leading-[0.9]">
-                        {t("Entry.title")}
+                        {t.rich("Entry.title", {
+                            newline: () => <br />,
+                        })}
                     </h1>
                     
 

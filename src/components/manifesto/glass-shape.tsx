@@ -63,28 +63,7 @@ function Scene() {
           </mesh>
       </group>
 
-      {/* Fluted Glass Panel - Only in Light Mode */}
-      {!isDark && (
-      <group position={[0, 0, 0]}>
-         {Array.from({ length: numStrips }).map((_, i) => (
-            <mesh key={i} position={[(i - numStrips / 2) * stripWidth, 0, 0]} rotation={[0, 0, 0]}>
-               <cylinderGeometry args={[stripWidth / 2, stripWidth / 2, 15, 16, 1, false, 0, Math.PI]} />
-               <meshPhysicalMaterial 
-                  transmission={1}
-                  thickness={1.5}
-                  roughness={roughness}
-                  clearcoat={clearcoat}
-                  clearcoatRoughness={0.1}
-                  ior={1.5}
-                  color={colors.glass}
-                  attenuationColor={colors.glass}
-                  attenuationDistance={5}
-                  envMapIntensity={envMapIntensity}
-               />
-            </mesh>
-         ))}
-      </group>
-      )}
+
 
        {/* Lighting */}
        <ambientLight intensity={isDark ? 0.8 : 1.5} />
