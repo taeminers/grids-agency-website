@@ -13,7 +13,7 @@ interface ArchiveEntryProps {
 
 export function ArchiveEntry({ onEnter }: ArchiveEntryProps) {
     return (
-        <div className="w-full h-screen relative overflow-hidden bg-black">
+        <div className="w-full h-screen relative overflow-hidden bg-background">
             {/* Background - 3D Halo */}
             <div className="absolute inset-0 z-1 pointer-events-none">
                 <HaloScene />

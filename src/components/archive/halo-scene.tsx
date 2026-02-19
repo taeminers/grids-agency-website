@@ -30,7 +30,7 @@ function HaloRing() {
         {/* Thicker ring for more presence */}
         <torusGeometry args={[3.2, 0.15, 64, 200]} />
         <meshPhysicalMaterial
-          color={"#000000"} 
+          color={isDark ? "#000000" : "#ffffff"} 
           roughness={0.2}
           metalness={1}
           clearcoat={1}
@@ -93,19 +93,22 @@ const AuroraRayMaterial = {
 
 function AuroraRays() {
   const groupRef = useRef<THREE.Group>(null);
-  
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
+
+  // Re-create materials when theme changes to handle blending/color correctly
   const mat1 = useMemo(() => new THREE.ShaderMaterial({
       ...AuroraRayMaterial,
       transparent: true,
       depthWrite: false,
-      blending: THREE.AdditiveBlending,
+      blending: isDark ? THREE.AdditiveBlending : THREE.NormalBlending,
       side: THREE.DoubleSide,
       uniforms: {
-          uColor: { value: new THREE.Color("#e0fbff") }, // Cyan-ish White
-          uOpacity: { value: 0.12 }, // MUCH Subtler
+          uColor: { value: new THREE.Color(isDark ? "#e0fbff" : "#1a1a1a") }, 
+          uOpacity: { value: isDark ? 0.12 : 0.05 }, // Lower opacity for dark rays on white?
           uTime: { value: 0 }
       }
-  }), []);
+  }), [isDark]);
 
   const mat2 = useMemo(() => mat1.clone(), [mat1]);
   const mat3 = useMemo(() => mat1.clone(), [mat1]); // Third ray
@@ -164,9 +167,9 @@ export default function HaloScene() {
             <Canvas dpr={[1, 1.5]} gl={{ antialias: true, toneMapping: THREE.ACESFilmicToneMapping }}>
                 <PerspectiveCamera makeDefault position={[0, 0, 10]} fov={40} />
                 
-                <color attach="background" args={['#050505']} />
+                <color attach="background" args={[isDark ? '#050505' : '#ffffff']} />
                 {/* Fog to blend the ring into the void */}
-                <fog attach="fog" args={['#050505', 8, 25]} />
+                <fog attach="fog" args={[isDark ? '#050505' : '#ffffff', 8, 25]} />
                 
                  <AuroraRays />
 
@@ -174,7 +177,7 @@ export default function HaloScene() {
                 <directionalLight 
                     position={[-10, 10, 5]} 
                     intensity={2} 
-                    color="#fff8e7" 
+                    color={isDark ? "#fff8e7" : "#fff"} 
                     castShadow
                     shadow-bias={-0.0001}
                 />

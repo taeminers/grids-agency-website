@@ -16,7 +16,7 @@ export function ArchiveWrapper() {
   return (
     <div 
       className={cn(
-        "w-full bg-black relative",
+        "w-full bg-background relative",
         !showGrid ? "h-screen overflow-y-auto" : "h-screen overflow-hidden"
       )}
       ref={scrollContainerRef}

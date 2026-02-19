@@ -39,12 +39,12 @@ export function FeaturedWork() {
   ];
 
   return (
-    <section className="w-full bg-black relative z-10 pb-24">
+    <section className="w-full bg-background relative z-10 pb-24">
       <div className="container mx-auto px-6 md:px-12">
         <div className="flex flex-col gap-32">
             
             {/* Header */}
-            <div className="border-t border-white/10 pt-8 flex justify-between items-start">
+            <div className="border-t border-foreground/10 pt-8 flex justify-between items-start">
                 <h2 className="text-sm tracking-widest text-muted-foreground uppercase">Featured Work</h2>
                 <div className="text-sm tracking-widest text-muted-foreground uppercase text-right">
                     Selected Projects <br/> 2025 — 2026
@@ -63,7 +63,7 @@ export function FeaturedWork() {
                     {/* Visual Asset */}
                     <div 
                         className={cn(
-                            "col-span-12 md:col-span-7 w-full aspect-video relative bg-card/5 border border-white/5 overflow-hidden transition-all duration-700 group-hover:border-white/20",
+                            "col-span-12 md:col-span-7 w-full aspect-video relative bg-card/5 border border-foreground/5 overflow-hidden transition-all duration-700 group-hover:border-foreground/20",
                             index % 2 === 1 ? "md:order-last" : "" 
                         )}
                     >
@@ -97,10 +97,10 @@ export function FeaturedWork() {
                         )}
                     >
                         <div className={cn("flex flex-col gap-2", index % 2 === 1 ? "items-end" : "items-start")}>
-                             <span className="w-fit text-xs flex justify-center tracking-widest text-blue-400/80 uppercase px-2 py-1 border border-blue-500/20 rounded-full bg-blue-500/5">
+                             <span className="w-fit text-xs flex justify-center tracking-widest text-blue-600/80 dark:text-blue-400/80 uppercase px-2 py-1 border border-blue-500/20 rounded-full bg-blue-500/5">
                                 {project.service}
                             </span>
-                            <h3 className="text-4xl md:text-6xl font-light tracking-tight text-white group-hover:text-blue-100 transition-colors duration-500">
+                            <h3 className="text-4xl md:text-6xl font-light tracking-tight text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-100 transition-colors duration-500">
                                 {project.title}
                             </h3>
                         </div>
@@ -113,7 +113,7 @@ export function FeaturedWork() {
                             href={project.link} 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-sm uppercase tracking-widest text-white/50 hover:text-white transition-colors mt-4 group/link"
+                            className="inline-flex items-center gap-2 text-sm uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors mt-4 group/link"
                         >
                             View Project
                             <ArrowUpRight className="w-4 h-4 transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
