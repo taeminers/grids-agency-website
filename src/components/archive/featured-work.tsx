@@ -70,7 +70,10 @@ export function FeaturedWork() {
                          {project.video ? (
                             <video
                                 src={project.video}
-                                className="absolute inset-0 w-full h-full object-cover  transition-opacity duration-700"
+                                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
+                                controls
+                                controlsList="nodownload"
+                                onContextMenu={(e) => e.preventDefault()}
                                 muted
                                 playsInline
                                 loop
@@ -86,7 +89,7 @@ export function FeaturedWork() {
                         )}
                         
                         {/* Interactive Overlay */}
-                         <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
+                         <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 pointer-events-none" />
                     </div>
 
                     {/* Content Info */}
@@ -97,10 +100,10 @@ export function FeaturedWork() {
                         )}
                     >
                         <div className={cn("flex flex-col gap-2", index % 2 === 1 ? "items-end" : "items-start")}>
-                             <span className="w-fit text-xs flex justify-center tracking-widest text-blue-600/80 dark:text-blue-400/80 uppercase px-2 py-1 border border-blue-500/20 rounded-full bg-blue-500/5">
+                             <span className="w-fit text-xs flex justify-center tracking-widest text-tertiary/80 dark:text-tertiary/80 uppercase px-2 py-1 border border-tertiary/20 rounded-full bg-tertiary/5">
                                 {project.service}
                             </span>
-                            <h3 className="text-4xl md:text-6xl font-light tracking-tight text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-100 transition-colors duration-500">
+                            <h3 className="text-4xl md:text-6xl font-light tracking-tight text-foreground group-hover:text-tertiary dark:group-hover:text-tertiary transition-colors duration-500">
                                 {project.title}
                             </h3>
                         </div>
