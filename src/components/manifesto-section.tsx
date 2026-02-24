@@ -1,17 +1,33 @@
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
-import dynamic from "next/dynamic";
-import { Button } from "@/components/ui/button";
-
-const GlassShape = dynamic(() => import("./manifesto/glass-shape"), { ssr: false });
+import { LiquidMetal, liquidMetalPresets } from '@paper-design/shaders-react';
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 
 export default function ManifestoSection() {
   const t = useTranslations("Manifesto");
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   return (
-    <section className="w-full py-24 bg-background relative overflow-hidden">
+    <section className="w-full py-24 bg-background relative overflow-hidden min-h-[600px] flex items-center">
       <div className="absolute inset-0 w-full h-full ">
-         <GlassShape />
+         <LiquidMetal
+           {...liquidMetalPresets[0]}
+           shape="metaballs"
+           colorBack={resolvedTheme === 'dark' ? '#09090b' : '#ffffff'}
+           style={{ 
+             position: "absolute", 
+             inset: 0, 
+             zIndex: 0,
+           }}
+         />
       </div>
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="flex flex-col">
