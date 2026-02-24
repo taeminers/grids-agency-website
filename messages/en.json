@@ -25,9 +25,7 @@
     "location": "Based in Seoul"
   },
   "Hero": {
-    "headline_prefix": "We craft digital ",
-    "headline_suffix": "experiences",
-    "headline_end": " that matter.",
+    "headline_prefix": "Witness Tomorrow.",
     "subtext": "A design-driven production studio focused on telling your story through motion, interaction, and clean typography."
   },
   "Services": {
@@ -91,26 +89,48 @@
   },
   "Process": {
     "label": "Work Process",
-    "items": {
-      "item1": {
-        "title": "Meeting",
-        "subtitle": "Setting the Foundation",
-        "description": "We start by understanding your vision, requirements, and business goals. This is the blueprint phase where we align on scope and strategy."
+    "title": "Our Strategic Workflow",
+    "description": "We've engineered a process that balances high-intensity strategic planning with transparent client involvement, ensuring every milestone is reached with precision and purpose.",
+    "Features": {
+      "collaborative": {
+        "title": "Collaborative Foundation",
+        "description": "Heavy involvement in early stages ensures our vision perfectly aligns with your business goals."
       },
-      "item2": {
-        "title": "Plan",
-        "subtitle": "Structuring the Frame",
-        "description": "Detailed wireframes, architecture design, and project roadmaps. We build the skeleton of your project before adding the weight."
-      },
-      "item3": {
-        "title": "Build",
-        "subtitle": "Constructing the Core",
-        "description": "Our team implements your project with precision and care, ensuring every detail aligns with your vision."
-      },
-      "item4": {
-        "title": "Feedback",
-        "subtitle": "Polishing the Details",
-        "description": "Rigorous testing, refinement, and feedback cycles. We ensure every detail is perfect before handing over the keys."
+      "execution": {
+        "title": "Seamless Execution",
+        "description": "Once design is locked, our team handles the heavy lifting, keeping you informed but unburdened."
+      }
+    },
+    "Timeline": {
+      "step": "STEP",
+      "involvement": "Client Involvement",
+      "connected": "Connected Nodes",
+      "Items": {
+        "planning": {
+          "title": "Planning",
+          "deliverable": "Strategic Roadmap",
+          "content": "Project planning and requirements gathering phase."
+        },
+        "design": {
+          "title": "Design",
+          "deliverable": "High-Fidelity UI",
+          "content": "UI/UX design and system architecture."
+        },
+        "development": {
+          "title": "Development",
+          "deliverable": "Core Architecture",
+          "content": "Core features implementation and testing."
+        },
+        "testing": {
+          "title": "Testing",
+          "deliverable": "QA Audit Report",
+          "content": "User testing and bug fixes."
+        },
+        "release": {
+          "title": "Release",
+          "deliverable": "Global Deployment",
+          "content": "Final deployment and release."
+        }
       }
     }
   },
@@ -122,9 +142,32 @@
       "address": "Address",
       "addressValue": "435 Olympic-ro, Songpa-gu, Seoul, Republic of Korea",
       "email": "You Can Email Here",
+      "emailValue": "hello@gridsagency.com",
       "telegram": "Telegram",
+      "telegramValue": "@kyle_lee10",
       "workingHours": "Working Hours",
+      "workingHoursValue": "10:00 am - 7:00 pm(KST)",
       "partnerships": "Partnerships and Collaborations"
+    },
+    "Form": {
+      "firstName": "First Name",
+      "firstNamePlaceholder": "Enter First Name",
+      "lastName": "Last Name",
+      "lastNamePlaceholder": "Enter Last Name",
+      "email": "Email",
+      "emailPlaceholder": "Enter your Email",
+      "phone": "Phone",
+      "phonePlaceholder": "Enter Phone Number",
+      "optional": "(Optional)",
+      "message": "Message",
+      "messagePlaceholder": "Enter your Message",
+      "terms": "I agree with Terms of Use and Privacy Policy",
+      "termsAlert": "Please agree to the Terms of Use and Privacy Policy.",
+      "submit": "Send your Message",
+      "sending": "Sending...",
+      "success": "Message Sent!",
+      "successNote": "We'll get back to you soon!",
+      "error": "Something went wrong. Please try again."
     }
   },
   "Vision": {
@@ -223,5 +266,11 @@
         }
       }
     }
+  },
+  "NotFound": {
+    "title": "404",
+    "subtitle": "COORDINATE NOT FOUND",
+    "description": "The page you are looking for has been lost in the digital void. Let's get you back to the system.",
+    "cta": "Back to Home"
   }
 }

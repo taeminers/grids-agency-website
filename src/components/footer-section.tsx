@@ -9,6 +9,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import WarpShader from "@/components/ui/wrap-shader";
 
 interface FooterSectionProps {
   className?: string;
@@ -34,11 +35,10 @@ export default function FooterSection({ className }: FooterSectionProps) {
         className
       )}
     >
-      {/* Background Grid Pattern */}
-      <div className="absolute inset-0 z-0 pointer-events-none bg-grid" />
-      
-      {/* Right Side Colored Gradient Overlay */}
-      <div className="absolute inset-y-0 right-0 w-1/2 md:w-1/3 z-0 pointer-events-none bg-gradient-to-l from-tertiary/15 to-transparent opacity-80" />
+      {/* Warp Shader Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none invert dark:invert-0">
+        <WarpShader />
+      </div>
       
       {/* Top Section: Logo (Left Only) */}
       <div className="relative z-10 w-full flex justify-start items-center gap-4">

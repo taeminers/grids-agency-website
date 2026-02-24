@@ -1,25 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import ScrollToTop from "@/components/scroll-to-top";
 import Navbar from "@/components/navbar";
 import FooterSection from "@/components/footer-section";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
-  title: "Grids Agency",
-  description: "A people-centered AI agency specializing in cinematic AI video production and high-performance Next.js web development. We scale your vision with intelligent digital craft.",
-};
 
 // ... imports
 import { NextIntlClientProvider } from 'next-intl';
@@ -45,24 +29,18 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
+    <NextIntlClientProvider messages={messages} locale={locale}>
+      <ScrollToTop />
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="dark"
+        enableSystem={false}
+        disableTransitionOnChange
       >
-        <NextIntlClientProvider messages={messages}>
-          <ScrollToTop />
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="light"
-            enableSystem={false}
-            disableTransitionOnChange
-          >
-            <Navbar />
-            {children}
-            <FooterSection />
-          </ThemeProvider>
-        </NextIntlClientProvider>
-      </body>
-    </html>
+        <Navbar />
+        {children}
+        <FooterSection />
+      </ThemeProvider>
+    </NextIntlClientProvider>
   );
 }

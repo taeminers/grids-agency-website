@@ -1,113 +1,129 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { Canvas } from "@react-three/fiber";
-import ProcessScene from "./process-scene";
-import { cn } from "@/lib/utils";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
+import { Calendar, Code, FileText, User, Clock } from "lucide-react";
+import RadialOrbitalTimeline from "@/components/ui/radial-orbital-timeline";
 import { useTranslations } from "next-intl";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function ProcessSection() {
   const t = useTranslations("Process");
-  const [activeStep, setActiveStep] = useState(0);
-  const containerRef = useRef<HTMLElement>(null);
-  const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const counterRef = useRef<HTMLDivElement>(null);
 
-  const items = [1, 2, 3, 4].map((id) => ({
-    title: t(`items.item${id}.title`),
-    subtitle: t(`items.item${id}.subtitle`),
-    description: t(`items.item${id}.description`),
-    step: `0${id}`
-  }));
-
-  // Animate Step Counter on change
-  useGSAP(() => {
-    gsap.fromTo(".step-number",
-      { y: 100, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }
-    );
-  }, { dependencies: [activeStep], scope: counterRef });
-
-  useGSAP(() => {
-    sectionRefs.current.forEach((el, index) => {
-      if (!el) return;
-      
-      ScrollTrigger.create({
-        trigger: el,
-        start: "top 10%", 
-        end: "bottom 10%", 
-        onEnter: () => setActiveStep(index),
-        onEnterBack: () => setActiveStep(index),
-      });
-    });
-  }, { scope: containerRef });
-
-  const activeItem = items[activeStep] || items[0];
+  const timelineData = [
+    {
+      id: 1,
+      title: t("Timeline.Items.planning.title"),
+      deliverable: t("Timeline.Items.planning.deliverable"),
+      content: t("Timeline.Items.planning.content"),
+      category: t("Timeline.Items.planning.title"),
+      icon: Calendar,
+      relatedIds: [2],
+      status: "completed" as const,
+      intensity: 90,
+    },
+    {
+      id: 2,
+      title: t("Timeline.Items.design.title"),
+      deliverable: t("Timeline.Items.design.deliverable"),
+      content: t("Timeline.Items.design.content"),
+      category: t("Timeline.Items.design.title"),
+      icon: FileText,
+      relatedIds: [1, 3],
+      status: "completed" as const,
+      intensity: 60,
+    },
+    {
+      id: 3,
+      title: t("Timeline.Items.development.title"),
+      deliverable: t("Timeline.Items.development.deliverable"),
+      content: t("Timeline.Items.development.content"),
+      category: t("Timeline.Items.development.title"),
+      icon: Code,
+      relatedIds: [2, 4],
+      status: "in-progress" as const,
+      intensity: 10,
+    },
+    {
+      id: 4,
+      title: t("Timeline.Items.testing.title"),
+      deliverable: t("Timeline.Items.testing.deliverable"),
+      content: t("Timeline.Items.testing.content"),
+      category: t("Timeline.Items.testing.title"),
+      icon: User,
+      relatedIds: [3, 5],
+      status: "pending" as const,
+      intensity: 50,
+    },
+    {
+      id: 5,
+      title: t("Timeline.Items.release.title"),
+      deliverable: t("Timeline.Items.release.deliverable"),
+      content: t("Timeline.Items.release.content"),
+      category: t("Timeline.Items.release.title"),
+      icon: Clock,
+      relatedIds: [4],
+      status: "pending" as const,
+      intensity: 10,
+    },
+  ];
 
   return (
-    <section ref={containerRef} id="process-container" className="relative w-full bg-background" style={{ height: "500vh" }}>
-      
-      {/* 3D Canvas Layer (Sticky Background) */}
-      <div className="sticky top-0 w-full h-screen overflow-hidden z-0">
-        <Canvas gl={{ antialias: true }} camera={{ position: [5, 5, 5], fov: 45 }}>
-             <ProcessScene />
-        </Canvas>
-        
-        {/* Optional: Overlay Gradient for better text readability if needed */}
-        <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-background/80 via-transparent to-transparent z-10" />
-
-        {/* Work Process Label */}
-        <div className="absolute top-12 left-8 md:top-24 md:left-24 z-20 pointer-events-none">
-             <div className="h-24 md:h-32 flex flex-col justify-end items-start">
-                 <span className="text-sm font-mono text-tertiary tracking-wider uppercase">
-                    {t("label")}
-                 </span>
-             </div>
-        </div>
-
-        {/* Content Card Layer (Absolute within sticky container) */}
-        <div className="absolute inset-0 h-screen w-full flex items-center px-8 md:px-24 z-20 pointer-events-none">
-            <div className="max-w-lg p-8 md:p-12 bg-background/40 backdrop-blur-md border border-border/50 rounded-3xl pointer-events-auto transition-all duration-500 ease-in-out">
-                <div key={activeStep} className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-                    <span className="text-chart-2 font-mono mb-4 block text-sm tracking-wider">
-                       {activeItem.title}
-                    </span>
-                    <h3 className="text-4xl font-medium mb-4">{activeItem.subtitle}</h3>
-                    <p className="text-muted-foreground text-lg leading-relaxed">
-                        {activeItem.description}
-                    </p>
-                </div>
+    <section className="relative w-full py-24 bg-background">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Left Column: Descriptive Text */}
+          <div className="max-w-xl">
+            <div className="h-12 flex flex-col justify-end items-start mb-6">
+              <span className="text-sm font-mono text-tertiary tracking-wider uppercase">
+                {t("label")}
+              </span>
             </div>
-        </div>
+            
+            <h2 className="text-4xl md:text-5xl font-medium tracking-tight mb-6">
+              {t("title")}
+            </h2>
+            
+            <p className="text-muted-foreground text-lg leading-relaxed mb-8">
+              {t("description")}
+            </p>
 
-        {/* Animated Step Counter (Top Right) */}
-        <div ref={counterRef} className="absolute top-12 right-8 md:top-24 md:right-24 z-20 pointer-events-none mix-blend-difference text-primary">
-             <div className="overflow-hidden h-24 md:h-32 flex flex-col justify-end items-end">
-                <span className="step-number text-3xl font-bold tracking-tighter block leading-none">
-                    {activeItem.step}
-                </span>
-             </div>
-             <div className="text-right text-sm md:text-base opacity-60 font-mono mt-2 mr-1">
-                / 0{items.length}
-             </div>
+            <div className="space-y-6">
+              <div className="flex gap-4">
+                <div className="w-1 h-auto bg-tertiary/30 rounded-full" />
+                <div>
+                  <h4 className="font-medium mb-1">
+                    {t("Features.collaborative.title")}
+                  </h4>
+                  <p className="text-sm text-muted-foreground">
+                    {t("Features.collaborative.description")}
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <div className="w-1 h-auto bg-tertiary/30 rounded-full" />
+                <div>
+                  <h4 className="font-medium mb-1">
+                    {t("Features.execution.title")}
+                  </h4>
+                  <p className="text-sm text-muted-foreground">
+                    {t("Features.execution.description")}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Orbital Timeline in Card */}
+          <div className="relative group">
+            <div className="absolute -inset-px bg-gradient-to-tr from-tertiary/20 via-transparent to-tertiary/10 rounded-[2rem] blur-sm opacity-50 group-hover:opacity-100 transition-opacity" />
+            <Card className="relative bg-background/50 backdrop-blur-xl border-border/50 rounded-[2rem] overflow-hidden shadow-2xl">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-tertiary/20 to-transparent" />
+              <CardContent className="p-0">
+                <RadialOrbitalTimeline timelineData={timelineData} />
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
-
-      {/* Invisible Scroll Triggers/Spacers */}
-      <div className="absolute inset-0 z-30 pointer-events-none flex flex-col">
-          {items.map((_, index) => (
-              <div 
-                key={index}
-                ref={(el) => { sectionRefs.current[index] = el }}
-                className="h-screen w-full border-l-2 border-transparent" // Invisible spacer
-              />
-          ))}
-      </div>
-
     </section>
   );
 }

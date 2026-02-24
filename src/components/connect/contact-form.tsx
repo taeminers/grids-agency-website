@@ -3,8 +3,10 @@
 import React, { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { Check } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export function ContactForm() {
+    const t = useTranslations("Connect.Form");
     const form = useRef<HTMLFormElement>(null);
     const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
@@ -16,7 +18,7 @@ export function ContactForm() {
         // Check terms
         const formData = new FormData(form.current);
         if (!formData.get("terms")) {
-           alert("Please agree to the Terms of Use and Privacy Policy.");
+           alert(t("termsAlert"));
            return;
         }
 
@@ -44,29 +46,29 @@ export function ContactForm() {
         <form ref={form} onSubmit={sendEmail} className="space-y-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-2">
-                    <label className="text-sm font-semibold text-foreground">First Name <span className="text-red-500">*</span></label>
-                    <input name="firstName" required type="text" placeholder="Enter First Name" className="w-full bg-card border-none rounded-xl p-4 text-sm placeholder:text-muted-foreground focus:ring-1 focus:ring-tertiary outline-none shadow-sm" />
+                    <label className="text-sm font-semibold text-foreground">{t("firstName")} <span className="text-red-500">*</span></label>
+                    <input name="firstName" required type="text" placeholder={t("firstNamePlaceholder")} className="w-full bg-card border-none rounded-xl p-4 text-sm placeholder:text-muted-foreground focus:ring-1 focus:ring-tertiary outline-none shadow-sm" />
                 </div>
                 <div className="space-y-2">
-                    <label className="text-sm font-semibold text-foreground">Last Name <span className="text-red-500">*</span></label>
-                    <input name="lastName" required type="text" placeholder="Enter Last Name" className="w-full bg-card border-none rounded-xl p-4 text-sm placeholder:text-muted-foreground focus:ring-1 focus:ring-tertiary outline-none shadow-sm" />
+                    <label className="text-sm font-semibold text-foreground">{t("lastName")} <span className="text-red-500">*</span></label>
+                    <input name="lastName" required type="text" placeholder={t("lastNamePlaceholder")} className="w-full bg-card border-none rounded-xl p-4 text-sm placeholder:text-muted-foreground focus:ring-1 focus:ring-tertiary outline-none shadow-sm" />
                 </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-2">
-                    <label className="text-sm font-semibold text-foreground">Email <span className="text-red-500">*</span></label>
-                    <input name="email" required type="email" placeholder="Enter your Email" className="w-full bg-card border-none rounded-xl p-4 text-sm placeholder:text-muted-foreground focus:ring-1 focus:ring-tertiary outline-none shadow-sm" />
+                    <label className="text-sm font-semibold text-foreground">{t("email")} <span className="text-red-500">*</span></label>
+                    <input name="email" required type="email" placeholder={t("emailPlaceholder")} className="w-full bg-card border-none rounded-xl p-4 text-sm placeholder:text-muted-foreground focus:ring-1 focus:ring-tertiary outline-none shadow-sm" />
                 </div>
                 <div className="space-y-2">
-                    <label className="text-sm font-semibold text-foreground">Phone <span className="text-muted-foreground text-xs font-normal">(Optional)</span></label>
-                    <input name="phone" type="tel" placeholder="Enter Phone Number" className="w-full bg-card border-none rounded-xl p-4 text-sm placeholder:text-muted-foreground focus:ring-1 focus:ring-tertiary outline-none shadow-sm" />
+                    <label className="text-sm font-semibold text-foreground">{t("phone")} <span className="text-muted-foreground text-xs font-normal">{t("optional")}</span></label>
+                    <input name="phone" type="tel" placeholder={t("phonePlaceholder")} className="w-full bg-card border-none rounded-xl p-4 text-sm placeholder:text-muted-foreground focus:ring-1 focus:ring-tertiary outline-none shadow-sm" />
                 </div>
             </div>
 
             <div className="space-y-2">
-                <label className="text-sm font-semibold text-foreground">Message <span className="text-red-500">*</span></label>
-                <textarea name="message" required placeholder="Enter your Message" rows={4} className="w-full bg-card border-none rounded-xl p-4 text-sm placeholder:text-muted-foreground focus:ring-1 focus:ring-tertiary resize-none outline-none shadow-sm"></textarea>
+                <label className="text-sm font-semibold text-foreground">{t("message")} <span className="text-red-500">*</span></label>
+                <textarea name="message" required placeholder={t("messagePlaceholder")} rows={4} className="w-full bg-card border-none rounded-xl p-4 text-sm placeholder:text-muted-foreground focus:ring-1 focus:ring-tertiary resize-none outline-none shadow-sm"></textarea>
             </div>
 
             <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-4">
@@ -77,7 +79,7 @@ export function ContactForm() {
                             <Check size={12} className="text-white opacity-0 peer-checked:opacity-100 transition-opacity" />
                         </div>
                     </div>
-                    <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">I agree with Terms of Use and Privacy Policy</span>
+                    <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">{t("terms")}</span>
                 </label>
 
                 <div className="flex flex-col items-center gap-2 w-full md:w-auto">
@@ -86,10 +88,10 @@ export function ContactForm() {
                         disabled={status === 'sending' || status === 'success'}
                         className="bg-primary text-primary-foreground px-8 py-3 rounded-full text-sm font-medium hover:bg-tertiary hover:text-white transition-all duration-300 w-full md:w-auto shadow-lg shadow-tertiary/20 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                        {status === 'sending' ? 'Sending...' : status === 'success' ? 'Message Sent!' : 'Send your Message'}
+                        {status === 'sending' ? t("sending") : status === 'success' ? t("success") : t("submit")}
                     </button>
-                    {status === 'success' && <p className="text-xs text-green-500">We'll get back to you soon!</p>}
-                    {status === 'error' && <p className="text-xs text-red-500">Something went wrong. Please try again.</p>}
+                    {status === 'success' && <p className="text-xs text-green-500">{t("successNote")}</p>}
+                    {status === 'error' && <p className="text-xs text-red-500">{t("error")}</p>}
                 </div>
             </div>
         </form>
