@@ -18,10 +18,10 @@ export default function WarpShader() {
         rotation={0}
         speed={1}
         colors={[
-          "hsl(200, 100%, 20%)",
-          "hsl(160, 100%, 75%)",
-          "hsl(180, 90%, 30%)",
-          "hsl(170, 100%, 80%)",
+          "hsl(0, 0%, 0%)",
+          "hsl(0, 0%, 10%)",
+          "hsl(0, 0%, 20%)",
+          "hsl(0, 0%, 100%)",
         ]}
       />
     </div>
