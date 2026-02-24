@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import AboutSection from "@/components/about-section";
 import ManifestoSection from "@/components/manifesto-section";
 import HeroBackground from "@/components/hero-background";
+import HeroContent from "@/components/hero-content";
 
 export default function Home() {
   return (
@@ -27,7 +28,9 @@ export default function Home() {
 
          
           {/* Spacer to reveal fixed hero */}
-          <div className="w-full min-h-screen"></div>
+          <div className="w-full min-h-screen relative">
+             <HeroContent />
+          </div>
 
           {/* New About Section sliding up */}
           <AboutSection />

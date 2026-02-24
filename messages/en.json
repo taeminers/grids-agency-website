@@ -25,9 +25,7 @@
     "location": "Based in Seoul"
   },
   "Hero": {
-    "headline_prefix": "We craft digital ",
-    "headline_suffix": "experiences",
-    "headline_end": " that matter.",
+    "headline_prefix": "Witness Tomorrow.",
     "subtext": "A design-driven production studio focused on telling your story through motion, interaction, and clean typography."
   },
   "Services": {
@@ -223,5 +221,11 @@
         }
       }
     }
+  },
+  "NotFound": {
+    "title": "404",
+    "subtitle": "COORDINATE NOT FOUND",
+    "description": "The page you are looking for has been lost in the digital void. Let's get you back to the system.",
+    "cta": "Back to Home"
   }
 }

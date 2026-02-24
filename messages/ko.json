@@ -27,9 +27,7 @@
     "location": "Seoul 기반"
   },
   "Hero": {
-    "headline_prefix": "우리는 가치 있는 ",
-    "headline_suffix": "디지털 경험",
-    "headline_end": "을 설계합니다.",
+    "headline_prefix": "미래를 보다.",
     "subtext": "모션, 인터랙션, 정제된 타이포그래피를 통해 당신의 스토리를 감각적으로 풀어내는 디자인 중심 프로덕션 스튜디오입니다."
   },
   "Services": {
@@ -224,5 +222,11 @@
         }
       }
     }
+  },
+  "NotFound": {
+    "title": "404",
+    "subtitle": "좌표를 찾을 수 없습니다",
+    "description": "찾으시는 페이지가 디지털 공간 어딘가로 사라졌습니다. 처음으로 돌아가 볼까요?",
+    "cta": "홈으로 돌아가기"
   }
 }
