@@ -4,6 +4,7 @@ import { ArrowRight, Link, User } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useTranslations } from "next-intl";
 
 interface TimelineItem {
   id: number;
@@ -24,9 +25,11 @@ interface RadialOrbitalTimelineProps {
 export default function RadialOrbitalTimeline({
   timelineData,
 }: RadialOrbitalTimelineProps) {
+  const t = useTranslations("Process.Timeline");
   const [expandedItems, setExpandedItems] = useState<Record<number, boolean>>(
     {}
   );
+  // ... rest of state remain same
   const [viewMode, setViewMode] = useState<"orbital">("orbital");
   const [rotationAngle, setRotationAngle] = useState<number>(0);
   const [autoRotate, setAutoRotate] = useState<boolean>(true);
@@ -249,7 +252,7 @@ export default function RadialOrbitalTimeline({
 
                 <div
                   className={`
-                  absolute top-12  whitespace-nowrap
+                  absolute top-12 left-5 -translate-x-1/2 whitespace-nowrap
                   text-xs font-semibold tracking-wider
                   transition-all duration-300
                   ${isExpanded ? "text-foreground scale-125" : "text-foreground/70"}
@@ -259,7 +262,7 @@ export default function RadialOrbitalTimeline({
                 </div>
 
                 {isExpanded && (
-                  <Card className="absolute top-20 left-1/2 -translate-x-1/2 w-64 bg-card/90 backdrop-blur-lg border-border shadow-xl shadow-foreground/10 overflow-visible">
+                  <Card className="absolute top-20 left-5 -translate-x-1/2 w-64 bg-card/90 backdrop-blur-lg border-border shadow-xl shadow-foreground/10 overflow-visible">
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-px h-3 bg-border"></div>
                     <CardHeader className="pb-2">
                       <div className="flex justify-between items-center">
@@ -268,7 +271,7 @@ export default function RadialOrbitalTimeline({
                             item.status
                           )}`}
                         >
-                          STEP {index + 1}
+                          {t("step")} {index + 1}
                         </Badge>
                         <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-tight">
                           {item.deliverable}
@@ -285,7 +288,7 @@ export default function RadialOrbitalTimeline({
                         <div className="flex justify-between items-center text-[10px] mb-1">
                           <span className="flex items-center uppercase tracking-wider font-medium text-muted-foreground">
                             <User size={10} className="mr-1" />
-                            Client Involvement
+                            {t("involvement")}
                           </span>
                           <span className="font-mono">{item.intensity}%</span>
                         </div>
@@ -302,7 +305,7 @@ export default function RadialOrbitalTimeline({
                           <div className="flex items-center mb-2">
                             <Link size={10} className="text-muted-foreground mr-1" />
                             <h4 className="text-xs uppercase tracking-wider font-medium text-muted-foreground">
-                              Connected Nodes
+                              {t("connected")}
                             </h4>
                           </div>
                           <div className="flex flex-wrap gap-1">

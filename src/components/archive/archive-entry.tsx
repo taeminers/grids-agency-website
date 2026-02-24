@@ -40,7 +40,7 @@ export function ArchiveEntry({ onEnter }: ArchiveEntryProps) {
 
                         <button 
                             onClick={onEnter} 
-                            className="group relative flex items-center gap-2 text-sm tracking-widest uppercase hover:text-foreground/80 transition-colors pl-8 md:pl-0"
+                            className="group relative flex items-center gap-2 text-sm tracking-widest uppercase hover:text-foreground/80 transition-colors"
                         >
                             <span className="relative z-10 border-b border-transparent group-hover:border-foreground transition-all duration-300">
                                 {t("Entry.explore")}

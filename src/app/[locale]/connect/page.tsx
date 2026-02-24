@@ -26,15 +26,24 @@ export default function ConnectPage() {
             <div className="max-w-7xl mx-auto space-y-6 relative z-10">
                 
                 {/* 1. Header Section */}
+                <div className="mb-12">
+                    <h1 className="text-4xl md:text-6xl font-medium tracking-tight mb-6">
+                        {t("titlePrefix")}{" "}
+                        <span className="text-tertiary">{t("titleHighlight")}</span>
+                    </h1>
+                    <p className="max-w-2xl text-lg text-muted-foreground leading-relaxed">
+                        {t("description")}
+                    </p>
+                </div>
               
-            <div className="bg-card rounded-[2rem] p-4 md:p-8 shadow-sm border border-border">
+                <div className="bg-card rounded-[2rem] p-4 md:p-8 shadow-sm border border-border">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
                         
                         {/* Left Column: Image & Sub-card */}
                         <div className="lg:col-span-5 flex flex-col gap-4 h-full">
                             {/* Abstract Brand Image */}
                             {/* Abstract Brand Image / 3D Canvas */}
-                            <div className="bg-tertiary/5 rounded-[1.5rem] w-full flex-grow relative overflow-hidden min-h-[400px]">
+                            <div className="bg-tertiary/5 rounded-[1.5rem] w-full flex-grow relative overflow-hidden min-h-[250px] md:min-h-[400px]">
                                 <ConnectCanvas />
                             </div>
                         </div>
@@ -50,9 +59,9 @@ export default function ConnectPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     {[
                         { label: t("Cards.address"), value: t("Cards.addressValue"), href: "https://www.google.com/maps/search/?api=1&query=435+Olympic-ro,+Songpa-gu,+Seoul,+Republic+of+Korea" },
-                        { label: t("Cards.email"), value: "hello@gridsagency.com", href: "mailto:hello@gridsagency.com" },    
-                        { label: t("Cards.telegram"), value: "@kyle_lee10", href: "https://t.me/kyle_lee10" },
-                        { label: t("Cards.workingHours"), value: "10:00 am - 7:00 pm(KST)", href: "https://www.google.com/search?q=10am+kst+to+local+time" },
+                        { label: t("Cards.email"), value: t("Cards.emailValue"), href: `mailto:${t("Cards.emailValue")}` },    
+                        { label: t("Cards.telegram"), value: t("Cards.telegramValue"), href: `https://t.me/${t("Cards.telegramValue").replace('@', '')}` },
+                        { label: t("Cards.workingHours"), value: t("Cards.workingHoursValue"), href: "https://www.google.com/search?q=10am+kst+to+local+time" },
                     ].map((item, i) => {
                         const CardContent = (
                             <>
