@@ -8,36 +8,44 @@ import { ContactForm } from "@/components/connect/contact-form";
 
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { EtheralShadow } from "@/components/ui/etheral-shadow";
 
 export default function ConnectPage() {
     const t = useTranslations("Connect");
 
     return (
-        <div className="min-h-screen bg-background p-4 md:p-8 pt-32 pb-16 md:pt-32 md:pb-32 font-sans text-foreground">
-            <div className="max-w-7xl mx-auto space-y-6">
+        <div className="min-h-screen bg-background p-4 md:p-8 pt-32 pb-16 md:pt-32 md:pb-32 font-sans text-foreground relative overflow-hidden">
+            {/* Dynamic Background */}
+            <EtheralShadow 
+                color="rgba(255, 255, 255, 0.18)"
+                animation={{ scale: 100, speed: 80 }}
+                noise={{ opacity: 0.85, scale: 2.5 }}
+                className="opacity-100"
+            />
+            
+            <div className="max-w-7xl mx-auto space-y-6 relative z-10">
                 
                 {/* 1. Header Section */}
-                <div className="bg-card rounded-[2rem] p-8 md:p-12 shadow-sm flex flex-col lg:flex-row justify-between gap-12 relative overflow-hidden">
-                    {/* Glow Effect matching reference but with tertiary color */}
-                    <div className="absolute -bottom-32 -right-32 w-[500px] h-[500px] bg-tertiary/40 rounded-full blur-[120px] pointer-events-none"></div>
+              
+            <div className="bg-card rounded-[2rem] p-4 md:p-8 shadow-sm border border-border">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                        
+                        {/* Left Column: Image & Sub-card */}
+                        <div className="lg:col-span-5 flex flex-col gap-4 h-full">
+                            {/* Abstract Brand Image */}
+                            {/* Abstract Brand Image / 3D Canvas */}
+                            <div className="bg-tertiary/5 rounded-[1.5rem] w-full flex-grow relative overflow-hidden min-h-[400px]">
+                                <ConnectCanvas />
+                            </div>
+                        </div>
 
-                    <div className="relative z-10 max-w-2xl pt-20 lg:pt-0">
-                        <h1 className="text-5xl md:text-7xl font-semibold leading-tight tracking-tight text-foreground">
-                            {t("titlePrefix")}
-                            <span className="inline-block text-tertiary px-2 -rotate-1 mx-1 rounded-lg relative">
-                                {/* Subtle backing for the highlight text to pop on dark */}
-                                <span className="absolute inset-0  rounded-lg -z-10"></span>
-                                {t("titleHighlight")}
-                            </span>
-                        </h1>
-                    </div>
+                        {/* Right Column: Contact Form */}
+                        <div className="lg:col-span-7 bg-muted/30 rounded-[1.5rem] p-6 md:p-12 h-full flex flex-col justify-center">
+                            <ContactForm />
+                        </div>
 
-                    <div className="relative z-10 max-w-md flex flex-col justify-center space-y-8">
-                        <p className="text-neutral-400 text-lg leading-relaxed">
-                        {t("description")}</p>
                     </div>
                 </div>
-
                 {/* 2. Info Cards Row */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     {[
@@ -77,42 +85,7 @@ export default function ConnectPage() {
                 </div>
 
                 {/* 3. Main Split Section */}
-                <div className="bg-card rounded-[2rem] p-4 md:p-8 shadow-sm border border-border">
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                        
-                        {/* Left Column: Image & Sub-card */}
-                        <div className="lg:col-span-5 flex flex-col gap-4">
-                            {/* Abstract Brand Image */}
-                            {/* Abstract Brand Image / 3D Canvas */}
-                            <div className="bg-tertiary/5 rounded-[1.5rem] aspect-square w-full relative overflow-hidden">
-                                <ConnectCanvas />
-                            </div>
-                            
-                            {/* Partnership Card */}
-                            {/* Partnership Card / Instagram */}
-                            {/* <a 
-                                href="https://www.instagram.com/gridsagency" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                className="bg-card border border-border rounded-[1.5rem] p-6 flex items-center justify-between shadow-sm cursor-pointer hover:border-tertiary transition-colors group"
-                            >
-                                <div>
-                                    <p className="text-xs text-muted-foreground mb-1">{t("Cards.partnerships")}</p>
-                                    <p className="text-sm font-semibold text-foreground">@gridsagency</p>
-                                </div>
-                                <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center group-hover:bg-tertiary transition-colors">
-                                    <ArrowUpRight size={16} />
-                                </div>
-                            </a> */}
-                        </div>
-
-                        {/* Right Column: Contact Form */}
-                        <div className="lg:col-span-7 bg-muted/30 rounded-[1.5rem] p-6 md:p-12">
-                            <ContactForm />
-                        </div>
-
-                    </div>
-                </div>
+              
 
             </div>
         </div>
