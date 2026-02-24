@@ -240,9 +240,9 @@ export default function AboutSection({ className }: AboutSectionProps) {
             loop
             muted
             playsInline
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover invert dark:invert-0"
           >
-            <source src="/videos/cta-video.mp4" type="video/mp4" />
+            <source src="/videos/hero.mp4" type="video/mp4" />
           </video>
         </div>
 
