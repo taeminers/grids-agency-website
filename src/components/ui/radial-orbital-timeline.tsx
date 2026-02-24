@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useTranslations } from "next-intl";
+import { cn } from "@/lib/utils";
 
 interface TimelineItem {
   id: number;
@@ -20,10 +21,12 @@ interface TimelineItem {
 
 interface RadialOrbitalTimelineProps {
   timelineData: TimelineItem[];
+  className?: string;
 }
 
 export default function RadialOrbitalTimeline({
   timelineData,
+  className,
 }: RadialOrbitalTimelineProps) {
   const t = useTranslations("Process.Timeline");
   const [expandedItems, setExpandedItems] = useState<Record<number, boolean>>(
@@ -164,7 +167,7 @@ export default function RadialOrbitalTimeline({
 
   return (
     <div
-      className="w-full h-full min-h-[500px] flex flex-col items-center justify-center overflow-hidden transition-colors duration-500"
+      className={cn("w-full h-full min-h-[500px] flex flex-col items-center justify-center overflow-hidden transition-colors duration-500", className)}
       ref={containerRef}
       onClick={handleContainerClick}
     >
