@@ -72,7 +72,7 @@ export default function ProcessSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Column: Descriptive Text */}
           <div className="max-w-xl">
-            <div className="h-12 flex flex-col justify-end items-start mb-6">
+            <div className="h-12 flex flex-col justify-end items-start mb-2">
               <span className="text-sm font-mono text-tertiary tracking-wider uppercase">
                 {t("label")}
               </span>

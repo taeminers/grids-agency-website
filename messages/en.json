@@ -183,22 +183,22 @@
       "textPart4": "."
     },
     "Phases": {
-      "phase1": {
-        "label": "[ PHASE 01 ]",
-        "title": "The Infinite Base",
-        "description": "We start with a solid foundation. The XZ plane represents stability and reach—covering the ground efficiently, establishing a network that supports infinite horizontal expansion."
-      },
-      "phase2": {
-        "label": "[ PHASE 02 ]",
-        "title": "Vertical Scaling",
-        "description": "Adding the XY plane introduces altitude. We don't just grow outwards; we build upwards. This dimension represents ambition, hierarchy, and the ability to rise above localized challenges."
-      },
-      "phase3": {
-        "label": "[ PHASE 03 ]",
-        "title": "Holistic Volume",
-        "description": "The YZ plane completes the space. We now inhabit a fully realized cubic environment. This is where complex strategies interact, forming a complete ecosystem of depth, breadth, and height."
-      }
+    "phase1": {
+      "label": "[ PHASE 01 ]",
+      "title": "The Origin Grid",
+      "description": "Every great design begins on an empty grid. By unfolding a boundless lattice across the XZ plane, we secure an infinite territory where your vision can expand in any direction."
+    },
+    "phase2": {
+      "label": "[ PHASE 02 ]",
+      "title": "Vertical Ascension",
+      "description": "We bestow height (Y) upon ideas once bound to a flat surface. Moving beyond simple expansion, we engineer breakthrough growth that transcends local limits and defines the altitude of your business."
+    },
+    "phase3": {
+      "label": "[ PHASE 03 ]",
+      "title": "Dimensional Integrity",
+      "description": "As the Z-axis aligns, imagination finally becomes a three-dimensional reality. Within the space built by GRIDS, your business transforms into a living ecosystem, revealing its complete presence and volume."
     }
+  }
   },
   "Archive": {
     "swipeHint": "SWIPE TO EXPLORE",

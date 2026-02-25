@@ -25,16 +25,7 @@ export default function ConnectPage() {
             
             <div className="max-w-7xl mx-auto space-y-6 relative z-10">
                 
-                {/* 1. Header Section */}
-                <div className="mb-12">
-                    <h1 className="text-4xl md:text-6xl font-medium tracking-tight mb-6">
-                        {t("titlePrefix")}{" "}
-                        <span className="text-tertiary">{t("titleHighlight")}</span>
-                    </h1>
-                    <p className="max-w-2xl text-lg text-muted-foreground leading-relaxed">
-                        {t("description")}
-                    </p>
-                </div>
+    
               
                 <div className="bg-card rounded-[2rem] p-4 md:p-8 shadow-sm border border-border">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">

@@ -33,8 +33,8 @@ export default function ManifestoSection() {
         <div className="flex flex-col">
           
           {/* Left Column: Tagline */}
-          <div className="flex flex-col gap-2">
-            <span className="text-sm font-mono text-tertiary tracking-wider uppercase">
+          <div className="flex flex-col">
+            <span className="text-sm font-mono text-tertiary tracking-wider uppercase mb-2">
               CORE VALUES
                 </span>
              <h2 className="md:text-4xl  font-medium tracking-tight leading-tighter whitespace-pre-line text-foreground/90">
