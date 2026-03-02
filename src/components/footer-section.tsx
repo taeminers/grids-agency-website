@@ -68,7 +68,7 @@ export default function FooterSection({ className }: FooterSectionProps) {
 
         {/* CTA Button moved here */}
         <Link 
-          href="mailto:hello@grids.agency"
+          href="mailto:kyle@grids.agency"
           className="group flex items-center gap-3 px-6 py-3 rounded-full bg-tertiary text-foreground font-bold hover:scale-105 transition-transform duration-300 w-max"
         >
           <span>{t('cta')}</span>

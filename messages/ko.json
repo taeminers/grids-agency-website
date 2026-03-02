@@ -37,7 +37,7 @@
     "Items": {
       "item1": {
         "title": "웹 디자인 & 개발",
-        "desc": "서울대 컴퓨터공학부 출신 엔지니어들이 웹 기반 서비스부터 핵심 시스템 개발까지, 비즈니스 전반을 아우르는 엔드 투 엔드(End-to-End) 개발 솔루션을 제공합니다."
+        "desc": "서울대학교 컴퓨터공학부 출신 엔지니어들이 웹 기반 서비스부터 핵심 시스템 개발까지, 비즈니스 전반을 아우르는 엔드 투 엔드(End-to-End) 개발 솔루션을 제공합니다."
       },
       "item2": {
         "title": "AI 영상 제작",
@@ -55,7 +55,7 @@
     "locationLabel": "Location",
     "location": "서울특별시 송파구 올림픽로 435",
     "contactLabel": "Contact",
-    "email": "hello@gridsagency.com",
+    "email": "kyle@gridsagency.com",
     "phone": "telegram @kyle_lee10",
     "cta": "프로젝트 시작하기"
   },
@@ -143,7 +143,7 @@
       "address": "주소",
       "addressValue": "서울특별시 송파구 올림픽로 435",
       "email": "이메일 문의",
-      "emailValue": "hello@gridsagency.com",
+      "emailValue": "kyle@gridsagency.com",
       "telegram": "텔레그램",
       "telegramValue": "@kyle_lee10",
       "workingHours": "업무 시간",

@@ -14,7 +14,19 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Grids Agency",
-  description: "A people-centered AI agency specializing in cinematic AI video production and high-performance Next.js web development. We scale your vision with intelligent digital craft.",
+  description: "서울대학교 컴퓨터공학부 출신 팀. AI 영상 제작부터 업무 효율을 극대화하는 AI 자동화 시스템 구축까지. 단순 웹사이트 제작을 넘어, 기업의 생산성을 혁신하는 맞춤형 내부 관리 툴과 워크플로우를 설계합니다. 그리즈 에이전시와 함께 비즈니스 운영의 초격차를 만드세요.",
+  openGraph: {
+    title: "Grids Agency",
+    description: "서울대학교 컴퓨터공학부 출신 팀. AI 영상 제작부터 업무 효율을 극대화하는 AI 자동화 시스템 구축까지. 단순 웹사이트 제작을 넘어, 기업의 생산성을 혁신하는 맞춤형 내부 관리 툴과 워크플로우를 설계합니다. 그리즈 에이전시와 함께 비즈니스 운영의 초격차를 만드세요.",
+    images: [
+      {
+        url: "/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Grids Agency",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

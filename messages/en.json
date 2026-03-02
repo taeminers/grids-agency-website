@@ -54,7 +54,7 @@
     "locationLabel": "Location",
     "location": "435 Olympic-ro, Songpa-gu, Seoul, Republic of Korea",
     "contactLabel": "Contact",
-    "email": "hello@gridsagency.com",
+    "email": "kyle@gridsagency.com",
     "phone": "telegram @kyle_lee10",
     "cta": "Start a Project"
   },
@@ -142,7 +142,7 @@
       "address": "Address",
       "addressValue": "435 Olympic-ro, Songpa-gu, Seoul, Republic of Korea",
       "email": "You Can Email Here",
-      "emailValue": "hello@gridsagency.com",
+      "emailValue": "kyle@gridsagency.com",
       "telegram": "Telegram",
       "telegramValue": "@kyle_lee10",
       "workingHours": "Working Hours",
