@@ -2,15 +2,13 @@
 
 import Intro from "@/components/intro";
 
-import ServicesSection from "@/components/services-section";
 import ProcessSection from "@/components/process-section";
-import CoreValuesSection from "@/components/core-values-section";
+import ServicesSection from "@/components/services-section";
 
-import { cn } from "@/lib/utils";
 import AboutSection from "@/components/about-section";
-import ManifestoSection from "@/components/manifesto-section";
 import HeroBackground from "@/components/hero-background";
 import HeroContent from "@/components/hero-content";
+import ManifestoSection from "@/components/manifesto-section";
 
 export default function Home() {
   return (
@@ -24,8 +22,6 @@ export default function Home() {
         {/* Content wrapper */}
         <div className="relative z-0 flex flex-col min-h-screen">
           
-
-
          
           {/* Spacer to reveal fixed hero */}
           <div className="w-full min-h-screen relative">

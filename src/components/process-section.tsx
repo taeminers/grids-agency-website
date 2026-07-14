@@ -1,9 +1,9 @@
 "use client";
 
-import { Calendar, Code, FileText, User, Clock } from "lucide-react";
-import RadialOrbitalTimeline from "@/components/ui/radial-orbital-timeline";
-import { useTranslations } from "next-intl";
 import { Card, CardContent } from "@/components/ui/card";
+import RadialOrbitalTimeline from "@/components/ui/radial-orbital-timeline";
+import { Calendar, Clock, Code, FileText, User } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function ProcessSection() {
   const t = useTranslations("Process");
@@ -115,8 +115,7 @@ export default function ProcessSection() {
           {/* Right Column: Orbital Timeline in Card */}
           <div className="relative group">
             <div className="absolute -inset-px bg-gradient-to-tr from-tertiary/20 via-transparent to-tertiary/10 rounded-[2rem] blur-sm opacity-50 group-hover:opacity-100 transition-opacity" />
-            <Card className="relative bg-background/50 backdrop-blur-xl border-border/50 rounded-[2rem] overflow-hidden shadow-2xl">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-tertiary/20 to-transparent" />
+            <Card className="relative bg-background/50 backdrop-blur-xl border-border/50 rounded-[2rem] overflow-hidden">
               <CardContent className="p-0">
                 <RadialOrbitalTimeline timelineData={timelineData} />
               </CardContent>

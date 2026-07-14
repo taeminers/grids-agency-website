@@ -1,10 +1,10 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
-import { cn } from "@/lib/utils";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 // Register usage of ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);

@@ -1,14 +1,13 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { useTranslations } from "next-intl";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import Services3D from "@/components/services/services-3d";
 import AutomationAnimation from "@/components/services/automation-animation";
-import WebDesignCombined from "@/components/services/web-design-combined";
 import ServiceItem from "@/components/services/service-item";
-import { Button } from "@/components/ui/button";
+import Services3D from "@/components/services/services-3d";
+import WebDesignCombined from "@/components/services/web-design-combined";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { useTranslations } from "next-intl";
+import { useRef, useState } from "react";
 
 // --- Icons ---
 // Abstract icons for the accordion items to match the reference style
@@ -93,6 +92,8 @@ export default function ServicesSection() {
                 <h2 className="text-4xl md:text-6xl font-medium tracking-tight leading-[1.1]">
                   {t.rich('title', {
                     highlight: (chunks) => <span className="text-tertiary">{chunks}</span>,
+                    newline: () => <br />
+
                   })}
                 </h2>
                 <p className="text-lg text-muted-foreground max-w-md">

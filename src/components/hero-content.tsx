@@ -1,9 +1,8 @@
 "use client";
 
-import React from "react";
+import { LiquidButton } from "@/components/ui/liquid-glass-button";
 import { motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
-import { LiquidButton } from "@/components/ui/liquid-glass-button";
 import Link from "next/link";
 
 const HeroContent = () => {
