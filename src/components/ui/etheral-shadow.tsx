@@ -103,7 +103,7 @@ export function EtheralShadow({
 
     return (
         <div
-            className={cn("pointer-events-none bg-[#09090b] transition-opacity duration-700", className)}
+            className={cn("pointer-events-none bg-background transition-opacity duration-700", className)}
             style={{
                 overflow: "hidden",
                 position: "absolute",

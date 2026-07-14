@@ -20,7 +20,7 @@ export default function ConnectPage() {
                 color="rgba(255, 255, 255, 0.18)"
                 animation={{ scale: 100, speed: 80 }}
                 noise={{ opacity: 0.85, scale: 2.5 }}
-                className="opacity-100"
+                className="opacity-10 dark:opacity-100"
             />
             
             <div className="max-w-7xl mx-auto space-y-6 relative z-10">

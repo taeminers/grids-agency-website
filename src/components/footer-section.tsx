@@ -2,14 +2,14 @@
 
 import { usePathname } from "next/navigation";
 
-import { useTranslations } from "next-intl";
-import { cn } from "@/lib/utils";
-import Image from "next/image";
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import WarpShader from "@/components/ui/wrap-shader";
+import { cn } from "@/lib/utils";
+import { ArrowUpRight } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
+import { useTheme } from "next-themes";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 interface FooterSectionProps {
   className?: string;
@@ -17,6 +17,7 @@ interface FooterSectionProps {
 
 export default function FooterSection({ className }: FooterSectionProps) {
   const t = useTranslations('Footer');
+  const locale = useLocale();
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -68,7 +69,7 @@ export default function FooterSection({ className }: FooterSectionProps) {
 
         {/* CTA Button moved here */}
         <Link 
-          href="mailto:kyle@grids.agency"
+          href={`/${locale}/connect`}
           className="group flex items-center gap-3 px-6 py-3 rounded-full bg-tertiary text-foreground font-bold hover:scale-105 transition-transform duration-300 w-max"
         >
           <span>{t('cta')}</span>

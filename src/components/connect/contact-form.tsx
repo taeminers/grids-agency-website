@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { Check } from "lucide-react";
 import { useTranslations } from "next-intl";
+import React, { useRef, useState } from "react";
 
 export function ContactForm() {
     const t = useTranslations("Connect.Form");
@@ -45,28 +45,28 @@ export function ContactForm() {
     return (
         <form ref={form} onSubmit={sendEmail} className="space-y-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="space-y-2">
+                <div className="flex flex-col gap-2">
                     <label className="text-sm font-semibold text-foreground">{t("firstName")} <span className="text-red-500">*</span></label>
                     <input name="firstName" required type="text" placeholder={t("firstNamePlaceholder")} className="w-full bg-card border-none rounded-xl p-4 text-sm placeholder:text-muted-foreground focus:ring-1 focus:ring-tertiary outline-none shadow-sm" />
                 </div>
-                <div className="space-y-2">
+                <div className="flex flex-col gap-2">
                     <label className="text-sm font-semibold text-foreground">{t("lastName")} <span className="text-red-500">*</span></label>
                     <input name="lastName" required type="text" placeholder={t("lastNamePlaceholder")} className="w-full bg-card border-none rounded-xl p-4 text-sm placeholder:text-muted-foreground focus:ring-1 focus:ring-tertiary outline-none shadow-sm" />
                 </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="space-y-2">
+                <div className="flex flex-col gap-2">
                     <label className="text-sm font-semibold text-foreground">{t("email")} <span className="text-red-500">*</span></label>
                     <input name="email" required type="email" placeholder={t("emailPlaceholder")} className="w-full bg-card border-none rounded-xl p-4 text-sm placeholder:text-muted-foreground focus:ring-1 focus:ring-tertiary outline-none shadow-sm" />
                 </div>
-                <div className="space-y-2">
+                <div className="flex flex-col gap-2">
                     <label className="text-sm font-semibold text-foreground">{t("phone")} <span className="text-muted-foreground text-xs font-normal">{t("optional")}</span></label>
                     <input name="phone" type="tel" placeholder={t("phonePlaceholder")} className="w-full bg-card border-none rounded-xl p-4 text-sm placeholder:text-muted-foreground focus:ring-1 focus:ring-tertiary outline-none shadow-sm" />
                 </div>
             </div>
 
-            <div className="space-y-2">
+                <div className="flex flex-col gap-2">
                 <label className="text-sm font-semibold text-foreground">{t("message")} <span className="text-red-500">*</span></label>
                 <textarea name="message" required placeholder={t("messagePlaceholder")} rows={4} className="w-full bg-card border-none rounded-xl p-4 text-sm placeholder:text-muted-foreground focus:ring-1 focus:ring-tertiary resize-none outline-none shadow-sm"></textarea>
             </div>
@@ -86,7 +86,7 @@ export function ContactForm() {
                     <button 
                         type="submit" 
                         disabled={status === 'sending' || status === 'success'}
-                        className="bg-primary text-primary-foreground px-8 py-3 rounded-full text-sm font-medium hover:bg-tertiary hover:text-white transition-all duration-300 w-full md:w-auto shadow-lg shadow-tertiary/20 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="bg-primary text-primary-foreground px-8 py-3 rounded-full text-sm font-medium hover:bg-tertiary hover:text-white transition-all duration-300 w-full md:w-auto shadow-lg cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         {status === 'sending' ? t("sending") : status === 'success' ? t("success") : t("submit")}
                     </button>

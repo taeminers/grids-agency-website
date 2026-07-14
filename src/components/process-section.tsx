@@ -67,60 +67,32 @@ export default function ProcessSection() {
   ];
 
   return (
-    <section className="relative w-full py-24 bg-background">
+    <section className="relative w-full py-24 bg-background overflow-hidden">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left Column: Descriptive Text */}
-          <div className="max-w-xl">
-            <div className="h-12 flex flex-col justify-end items-start mb-2">
-              <span className="text-sm font-mono text-tertiary tracking-wider uppercase">
-                {t("label")}
-              </span>
-            </div>
-            
-            <h2 className="text-4xl md:text-5xl font-medium tracking-tight mb-6">
-              {t("title")}
-            </h2>
-            
-            <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-              {t("description")}
-            </p>
-
-            <div className="space-y-6">
-              <div className="flex gap-4">
-                <div className="w-1 h-auto bg-tertiary/30 rounded-full" />
-                <div>
-                  <h4 className="font-medium mb-1">
-                    {t("Features.collaborative.title")}
-                  </h4>
-                  <p className="text-sm text-muted-foreground">
-                    {t("Features.collaborative.description")}
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div className="w-1 h-auto bg-tertiary/30 rounded-full" />
-                <div>
-                  <h4 className="font-medium mb-1">
-                    {t("Features.execution.title")}
-                  </h4>
-                  <p className="text-sm text-muted-foreground">
-                    {t("Features.execution.description")}
-                  </p>
-                </div>
-              </div>
-            </div>
+        <div className="flex flex-col w-full mb-16">
+          <div className="mb-2">
+            <span className="text-sm font-mono text-tertiary tracking-wider uppercase">
+              {t("label")}
+            </span>
           </div>
+          
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-6">
+            {t("title")}
+          </h2>
+          
+          <p className="text-muted-foreground text-lg leading-relaxed break-keep">
+            {t("description")}
+          </p>
+        </div>
 
-          {/* Right Column: Orbital Timeline in Card */}
-          <div className="relative group">
-            <div className="absolute -inset-px bg-gradient-to-tr from-tertiary/20 via-transparent to-tertiary/10 rounded-[2rem] blur-sm opacity-50 group-hover:opacity-100 transition-opacity" />
-            <Card className="relative bg-background/50 backdrop-blur-xl border-border/50 rounded-[2rem] overflow-hidden">
-              <CardContent className="p-0">
-                <RadialOrbitalTimeline timelineData={timelineData} />
-              </CardContent>
-            </Card>
-          </div>
+        {/* Orbital Timeline in Card */}
+        <div className="relative group w-full">
+          <div className="absolute -inset-px bg-gradient-to-tr from-tertiary/20 via-transparent to-tertiary/10 rounded-[2rem] blur-sm opacity-50 group-hover:opacity-100 transition-opacity" />
+          <Card className="relative bg-background/50 backdrop-blur-xl border-border/50 rounded-[2rem] overflow-hidden">
+            <CardContent className="p-0">
+              <RadialOrbitalTimeline timelineData={timelineData} />
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>
