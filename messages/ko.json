@@ -256,6 +256,11 @@
       "years": "2025 — 2026",
       "viewProject": "프로젝트 보기",
       "Projects": {
+        "jiam": {
+          "service": "이러닝 플랫폼",
+          "title": "JIAM",
+          "description": "Jeisys를 위해 개발된 최첨단 이러닝 플랫폼."
+        },
         "web-dev": {
           "service": "웹 개발 & AI 영상 제작",
           "title": "AETHER",

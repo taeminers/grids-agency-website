@@ -1,9 +1,9 @@
 "use client";
 
+import { cn } from "@/lib/utils";
+import { ArrowUpRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 export function FeaturedWork() {
   const t = useTranslations("Archive");
@@ -18,6 +18,15 @@ export function FeaturedWork() {
       link: string;
       year: string;
   }[] = [
+    {
+      id: "jiam",
+      service: t("Featured.Projects.web-dev.service"),
+      title: t("Featured.Projects.jiam.title"),
+      description: t("Featured.Projects.jiam.description"),
+      video: "/videos/jiam.mov",
+      link: "https://jiam.jeisys.com",
+      year: "2025"
+    },
     {
       id: "web-dev",
       service: t("Featured.Projects.web-dev.service"),
@@ -40,7 +49,7 @@ export function FeaturedWork() {
 
   return (
     <section className="w-full bg-background relative z-30 pb-24">
-      <div className="container mx-auto px-6 md:px-12">
+      <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col gap-32">
             
             {/* Header */}
@@ -88,8 +97,6 @@ export function FeaturedWork() {
                             />
                         )}
                         
-                        {/* Interactive Overlay */}
-                         <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 pointer-events-none" />
                     </div>
 
                     {/* Content Info */}
