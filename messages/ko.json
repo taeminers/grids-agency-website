@@ -637,22 +637,22 @@
       "enlarge": "{image} 크게 보기",
       "close": "닫기",
       "title": "어드민 툴",
-      "projectLabel": "OPERATIONS · UI CONCEPT",
-      "projectTitle": "Operations",
+      "projectLabel": "GRIDS · ADMIN WORKSPACE",
+      "projectTitle": "GRIDS Admin",
       "tags": {
         "admin": "운영 대시보드",
-        "concept": "UI 컨셉"
+        "analytics": "데이터 분석"
       },
       "industry": "사내 운영 · 데이터 관리",
-      "scope": "관리 도구 · 업무 흐름 설계",
-      "visit": "프로젝트 상담",
+      "scope": "관리 도구 · 웹사이트 성과 분석",
+      "visit": "대시보드 방문",
       "images": {
         "overview": "운영 현황 대시보드 UI 컨셉",
         "records": "데이터 관리 화면 UI 컨셉",
         "workflow": "업무 흐름 관리 화면 UI 컨셉"
       },
       "heading": "복잡한 운영을, 한눈에.",
-      "description": "흩어진 데이터와 업무 흐름을 한곳에서 파악하는 관리 도구를 설계합니다. 고객의 내부 정보 보호를 위해 실제 운영 화면 대신, 대시보드와 데이터 관리, 업무 흐름의 UI 컨셉을 소개합니다."
+      "description": "GRIDS가 직접 사용하는 어드민 대시보드입니다. 웹사이트 방문부터 상담 시작, 문의 전환까지 이어지는 흐름을 한곳에서 확인하고, 비즈니스에 필요한 데이터를 명확하게 파악할 수 있도록 설계했습니다."
     }
   },
   "NotFound": {

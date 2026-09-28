@@ -34,14 +34,10 @@ export const archiveProjects = [
   },
   {
     key: "admin", namespace: "AdminTools",
-    video: null, poster: null,
-    href: "/connect", external: false,
-    tags: ["admin", "concept"],
-    gallery: [
-      { src: "/images/archive/admin-overview.svg", key: "overview" },
-      { src: "/images/archive/admin-records.svg", key: "records" },
-      { src: "/images/archive/admin-workflow.svg", key: "workflow" },
-    ],
+    video: "/videos/admin-tool.mov", poster: null,
+    href: "https://admin.gridsagency.com/", external: true,
+    tags: ["admin", "analytics"],
+    gallery: [],
   },
 ] as const;
 

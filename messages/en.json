@@ -637,22 +637,22 @@
       "enlarge": "Enlarge {image}",
       "close": "Close",
       "title": "Admin tools",
-      "projectLabel": "OPERATIONS · UI CONCEPT",
-      "projectTitle": "Operations",
+      "projectLabel": "GRIDS · ADMIN WORKSPACE",
+      "projectTitle": "GRIDS Admin",
       "tags": {
         "admin": "Operations dashboard",
-        "concept": "UI concept"
+        "analytics": "Data analytics"
       },
       "industry": "Internal operations · Data management",
-      "scope": "Admin tools · Workflow design",
-      "visit": "Discuss a project",
+      "scope": "Admin tools · Website performance analytics",
+      "visit": "Visit dashboard",
       "images": {
         "overview": "Operations dashboard UI concept",
         "records": "Data management UI concept",
         "workflow": "Workflow management UI concept"
       },
       "heading": "Complex operations, at a glance.",
-      "description": "We design tools that bring data and workflows into one clear view. To protect our clients’ internal information, these previews show UI concepts for dashboards, records, and workflows rather than live client systems."
+      "description": "The admin dashboard we use at GRIDS. It brings website visits, inquiry starts, and lead conversions into one clear view, making it easier to understand the data behind the business."
     }
   },
   "NotFound": {

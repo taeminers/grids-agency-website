@@ -6,7 +6,6 @@ import { useLocale, useTranslations } from "next-intl";
 import { Dialog } from "radix-ui";
 import { ArrowUpRight } from "reicon-react/icons/ArrowUpRight";
 
-import CrmDashboardPreview from "@/components/crm-dashboard-preview";
 import { MetalButton } from "@/components/spectrumui/metal-button";
 import type { ArchiveProject } from "./archive-project-data";
 
@@ -35,28 +34,17 @@ export function ArchiveProjectPanel({
 
   return (
     <div className="@container/project relative isolate flex min-h-full flex-col bg-[#141614] text-[#f5f3ec] md:bg-[#080908] md:px-9 md:pt-8 md:pb-16 lg:px-12 lg:pt-10">
-      {project.video ? (
-        <video
-          data-archive-panel={index}
-          src={project.video}
-          poster={project.poster}
-          aria-hidden="true"
-          className="pointer-events-none block aspect-video w-full shrink-0 bg-[#080908] object-contain md:absolute md:inset-0 md:-z-20 md:aspect-auto md:h-full md:object-cover"
-          muted
-          loop
-          playsInline
-          preload="none"
-        />
-      ) : (
-        <div
-          aria-hidden="true"
-          className="pointer-events-none relative aspect-video w-full shrink-0 overflow-hidden bg-[#080908] md:absolute md:inset-0 md:-z-20 md:aspect-auto"
-        >
-          <div className="dark absolute inset-x-[5%] top-[10%] h-[65%] min-h-80 origin-top-left scale-110 opacity-80">
-            {active && <CrmDashboardPreview />}
-          </div>
-        </div>
-      )}
+      <video
+        data-archive-panel={index}
+        src={project.video}
+        poster={project.poster ?? undefined}
+        aria-hidden="true"
+        className={`pointer-events-none block w-full shrink-0 bg-[#080908] object-contain md:absolute md:inset-0 md:-z-20 md:aspect-auto md:h-full ${project.key === "admin" ? "aspect-auto h-auto md:object-contain md:object-top" : "aspect-video md:object-cover"}`}
+        muted
+        loop
+        playsInline
+        preload="none"
+      />
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10 hidden bg-[linear-gradient(180deg,#08090866_0%,#08090815_25%,#08090855_46%,#080908ed_72%,#080908_100%)] md:block"
@@ -121,6 +109,7 @@ export function ArchiveProjectPanel({
         </div>
 
         <div className="min-w-0">
+          {gallery.length > 0 && (
           <Dialog.Root
             open={active && selected !== null}
             onOpenChange={(open) => {
@@ -245,8 +234,9 @@ export function ArchiveProjectPanel({
               </Dialog.Content>
             </Dialog.Portal>
           </Dialog.Root>
+          )}
 
-          <h4 className="mt-6 text-lg leading-[1.5] font-medium tracking-[-0.03em] [word-break:keep-all] sm:text-xl">
+          <h4 className={`${gallery.length > 0 ? "mt-6 " : ""}text-lg leading-[1.5] font-medium tracking-[-0.03em] [word-break:keep-all] sm:text-xl`}>
             {t("heading")}
           </h4>
           <p className="mt-3 max-w-[42em] text-sm leading-[1.85] text-white/70 [word-break:keep-all]">
