@@ -138,18 +138,18 @@ function FooterContent({ className }: FooterSectionProps) {
               </li>
               <li>
                 <a
-                  href="https://t.me/kyle_lee10"
+                  href="https://pf.kakao.com/_FGQrX"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() =>
                     trackEvent("cta_click", {
                       cta_location: "footer",
-                      cta_text: "Telegram ↗",
+                      cta_text: "KakaoTalk ↗",
                     })
                   }
                   className={footerLink}
                 >
-                  Telegram ↗
+                  KakaoTalk ↗
                 </a>
               </li>
             </ul>
