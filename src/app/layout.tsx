@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 const isProduction = process.env.NODE_ENV === "production";
 
 export const metadata: Metadata = {
-  title: "Grids Agency [그리즈 에이전시]",
+  title: "GRIDS AGENCY [그리즈 에이전시]",
   description:
     "서울대학교 컴퓨터공학부 기술진의 전문적인 프로그램 개발. 웹사이트, 시스템, 앱, 자동화. 모든것을 만들어드립니다.",
   openGraph: {
@@ -43,7 +43,11 @@ export default async function RootLayout({
   const locale = await getLocale();
 
   return (
-    <html lang={locale} className="[scrollbar-gutter:stable]" suppressHydrationWarning>
+    <html
+      lang={locale}
+      className="[scrollbar-gutter:stable]"
+      suppressHydrationWarning
+    >
       <head>
         {isProduction && (
           <Script
