@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "templates:discover": "tsc --project scripts/templates/tsconfig.json && node scripts/templates/.build/discover.js",
+    "templates:deploy": "tsc --project scripts/templates/tsconfig.json && node scripts/templates/.build/deploy.js",
+    "templates:deploy-all": "tsc --project scripts/templates/tsconfig.json && node scripts/templates/.build/deploy-all.js",
+    "templates:dns-check": "tsc --project scripts/templates/tsconfig.json && node scripts/templates/.build/dns-check.js"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

@@ -19,6 +19,8 @@
 
 # production
 /build
+/scripts/templates/.build/
+/.tmp/
 
 # misc
 .DS_Store
