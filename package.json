@@ -7,6 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "templates:setup-vercel-all": "tsc --project scripts/templates/tsconfig.json && node scripts/templates/.build/setup-vercel-all.js",
+    "templates:setup-vercel": "tsc --project scripts/templates/tsconfig.json && node scripts/templates/.build/setup-vercel.js",
     "templates:discover": "tsc --project scripts/templates/tsconfig.json && node scripts/templates/.build/discover.js",
     "templates:deploy": "tsc --project scripts/templates/tsconfig.json && node scripts/templates/.build/deploy.js",
     "templates:deploy-all": "tsc --project scripts/templates/tsconfig.json && node scripts/templates/.build/deploy-all.js",

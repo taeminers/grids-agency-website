@@ -11,7 +11,7 @@ function fixture(options = {}) {
   const root = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'grids-template-test-')));
   const build = path.join(root, 'scripts/templates/.build');
   fs.mkdirSync(build, { recursive: true });
-  for (const file of ['deploy.js', 'shared.js', 'discover.js', 'manifest.js', 'plan.js', 'workspace.js', 'deploy-all.js', 'domain.js', 'dns-check.js', 'configure-domain.js', 'godaddy.js']) fs.copyFileSync(path.join(__dirname, '.build', file), path.join(build, file));
+  for (const file of ['deploy.js', 'shared.js', 'discover.js', 'manifest.js', 'plan.js', 'workspace.js', 'deploy-all.js', 'domain.js', 'dns-check.js', 'configure-domain.js', 'read-retry.js', 'godaddy.js', 'setup-state.js', 'state.js']) fs.copyFileSync(path.join(__dirname, '.build', file), path.join(build, file));
   const bin = path.join(root, 'bin');
   fs.mkdirSync(bin);
   fs.writeFileSync(path.join(bin, 'options.json'), JSON.stringify(options));
@@ -60,6 +60,19 @@ assert(process.cwd().startsWith(path.join(root,'.tmp/templates/002-')));
 if(args[0]==='--version')process.exit(0);
 if(args[0]==='whoami'){if(opt.vercelAuthFail)fail('not logged in');console.log('fixture-user');process.exit(0)}
 if(args[0]==='api'){
+  if(args[1]!=='/v10/projects'){
+    assert(opt.domainFlow, 'normal deployment must not configure domains');
+    assert(args[1].includes('teamId=team_demo'));
+    if(args[1].startsWith('/v9/projects/prj_demo?')){
+      console.log(JSON.stringify({id:'prj_demo',name:opt.domainWrongProject?'GRIDS':'grids-demo-002',accountId:'team_demo'}));process.exit(0);
+    }
+    if(args[1].startsWith('/v6/domains/demo-002.gridsagency.com/config?')){
+      console.log(JSON.stringify({recommendedCNAME:[{rank:1,value:'exact-002.vercel-dns-099.com.'}],misconfigured:false}));process.exit(0);
+    }
+    assert(args[1].startsWith('/v10/projects/prj_demo/domains?')||args[1].startsWith('/v9/projects/prj_demo/domains/demo-002.gridsagency.com?'));
+    if(args[3]==='POST')assert.deepEqual(JSON.parse(fs.readFileSync(args[args.indexOf('--input')+1],'utf8')),{name:'demo-002.gridsagency.com'});
+    console.log(JSON.stringify({name:'demo-002.gridsagency.com',projectId:'prj_demo',verified:true}));process.exit(0);
+  }
   assert.deepEqual(args.slice(0,4),['api','/v10/projects','-X','POST']);
   const request=JSON.parse(fs.readFileSync(args[args.indexOf('--input')+1],'utf8'));
   assert.equal(request.name,'grids-demo-002');assert.equal(request.framework,'astro');
@@ -82,8 +95,31 @@ console.log('https://grids-demo-002-fixture.vercel.app');
   fs.mkdirSync(path.join(root, 'outside'));
   fs.writeFileSync(path.join(root, 'outside/sentinel'), 'keep');
   const env = { ...process.env, PATH: bin, GITHUB_TOKEN: 'unused-gh-token', GH_TOKEN: 'unused-gh-token', VERCEL_TOKEN: 'unused-vercel-token', VERCEL_PROJECT_ID: 'prj_GRIDS_PRODUCTION', VERCEL_ORG_ID: 'team_PRODUCTION', NEXT_PUBLIC_SECRET: 'never-forward', DATABASE_URL: 'never-forward' };
+  if (options.domainFlow) {
+    fs.writeFileSync(path.join(root, '.env.local'), 'GODADDY_PAT=offline-domain-fixture-only\n');
+    fs.writeFileSync(path.join(root, 'fetch-mock.cjs'), `
+const fs = require('node:fs'), assert = require('node:assert/strict');
+let entries = ${options.domainConflict ? "[{type:'A',name:'demo-002',data:'192.0.2.1',ttl:600}]" : '[]'};
+globalThis.fetch = async (input, options) => {
+  const url = new URL(String(input));
+  assert.equal(url.origin, 'https://api.godaddy.com');
+  assert.equal(url.pathname, '/v3/domains/zones/gridsagency.com/dns-records');
+  assert.equal(options.headers.Authorization, 'Bearer offline-domain-fixture-only');
+  fs.appendFileSync(${JSON.stringify(path.join(root, 'calls.jsonl'))}, JSON.stringify({cmd:'godaddy',args:[options.method,url.searchParams.get('name')],cwd:process.cwd()})+'\\n');
+  if(options.method==='GET'){
+    assert.equal(url.searchParams.get('name'),'demo-002');
+    return Response.json({items:entries,totalItems:entries.length,totalPages:1});
+  }
+  assert.equal(options.method,'POST');
+  const record=JSON.parse(options.body);
+  assert.deepEqual(record,{type:'CNAME',name:'demo-002',data:'exact-002.vercel-dns-099.com.',ttl:600});
+  entries=[record];return Response.json(record,{status:201});
+};
+`);
+  }
   function execute(file = 'deploy.js', args = ['--id=002']) {
-    const result = spawnSync(process.execPath, [path.join(build, file), ...args], { env, cwd: root, encoding: 'utf8' });
+    const preload = options.domainFlow ? ['--require', path.join(root, 'fetch-mock.cjs')] : [];
+    const result = spawnSync(process.execPath, [...preload, path.join(build, file), ...args], { env, cwd: root, encoding: 'utf8' });
     const calls = fs.existsSync(path.join(root, 'calls.jsonl')) ? fs.readFileSync(path.join(root, 'calls.jsonl'), 'utf8').trim().split('\n').map(JSON.parse) : [];
     return { ...result, output: result.stdout + result.stderr, calls };
   }
@@ -297,5 +333,41 @@ test('domain mode refuses other IDs before external calls', () => {
       const r = f.execute('deploy.js', ['--id=' + id, '--configure-domain']);
       assert.equal(r.status, 1); assert.equal(r.calls.length, 0);
     }
+  } finally { f.clean(); }
+});
+
+test('full opt-in workflow configures only 002 after successful deployment and cleans up', () => {
+  const f = fixture({ domainFlow: true });
+  try {
+    const r = f.execute('deploy.js', ['--id=002', '--configure-domain']);
+    assert.equal(r.status, 0, r.output);
+    const deploy = r.calls.findIndex(c => c.cmd === 'vercel' && c.args[0] === 'deploy');
+    const assignment = r.calls.findIndex(c => c.cmd === 'vercel' && c.args[1]?.startsWith('/v10/projects/prj_demo/domains?'));
+    const dns = r.calls.findIndex(c => c.cmd === 'godaddy');
+    assert(deploy >= 0 && assignment > deploy && dns > assignment);
+    assert.equal(r.calls.filter(c => c.cmd === 'godaddy' && c.args[0] === 'POST').length, 1);
+    for (const stage of ['Vercel deployment', 'Domain assignment', 'GoDaddy DNS', 'Domain verification']) assert.match(r.output, new RegExp(stage + ':\\s+SUCCESS'));
+    assert.match(r.output, /Production URL:\nhttps:\/\/demo-002.gridsagency.com/);
+    assert.deepEqual(fs.readdirSync(path.join(f.root, '.tmp/templates')), []);
+    assert(!r.output.includes('offline-domain-fixture-only'));
+  } finally { f.clean(); }
+});
+for (const options of [{domainFlow:true,domainConflict:true},{domainFlow:true,domainWrongProject:true}]) {
+  test('domain guard failure retains successful deployment and cleans up: '+JSON.stringify(options), () => {
+    const f=fixture(options);
+    try {
+      const r=f.execute('deploy.js',['--id=002','--configure-domain']);
+      assert.equal(r.status,1,r.output);assert.match(r.output,/Vercel deployment:\s+SUCCESS/);
+      assert(!r.calls.some(c=>c.cmd==='godaddy'&&c.args[0]==='POST'));
+      assert.deepEqual(fs.readdirSync(path.join(f.root,'.tmp/templates')),[]);
+    }finally{f.clean();}
+  });
+}
+test('normal deployment remains opt-out even when PAT is available', () => {
+  const f=fixture({domainFlow:true});
+  try {
+    const r=f.execute();assert.equal(r.status,0,r.output);
+    assert(!r.calls.some(c=>c.cmd==='godaddy'));
+    assert(!r.calls.some(c=>c.cmd==='vercel'&&c.args[1]?.includes('/domains')));
   } finally { f.clean(); }
 });
