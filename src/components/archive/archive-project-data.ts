@@ -1,6 +1,24 @@
-export const archiveProjects = [
+import { demoProjects } from "./demo-project-data";
+
+export interface ArchiveProject {
+  key: string;
+  slug: string;
+  namespace: string;
+  category: "websites" | "webApps" | "aiFilm" | "admin";
+  title?: string;
+  video?: string;
+  preview?: string;
+  poster: string | null;
+  href: string;
+  external: boolean;
+  tags: readonly string[];
+  gallery: readonly { src: string; key: string }[];
+}
+
+export const featuredProjects: readonly ArchiveProject[] = [
   {
     key: "websites", namespace: "Websites",
+    slug: "aether", category: "websites",
     video: "/videos/aether-hero-small.mp4", poster: "/images/archive/aether.jpg",
     href: "https://aetherparfums.com/", external: true,
     tags: ["website", "film"],
@@ -12,6 +30,7 @@ export const archiveProjects = [
   },
   {
     key: "webApps", namespace: "WebApps",
+    slug: "jiam", category: "webApps",
     video: "/videos/jiam.mp4", poster: "/images/archive/jiam.jpg",
     href: "https://jiam.jeisys.com", external: true,
     tags: ["platform", "learning"],
@@ -23,6 +42,7 @@ export const archiveProjects = [
   },
   {
     key: "aiFilm", namespace: "AiFilm",
+    slug: "the-clear-labs", category: "aiFilm",
     video: "/videos/tcl.mp4", poster: "/images/archive/tcl.jpg",
     href: "https://drive.google.com/drive/folders/1jMGQeDtEEHjjFct-hJTBl5PQHehL795N?usp=drive_link", external: true,
     tags: ["brand", "ai"],
@@ -34,11 +54,20 @@ export const archiveProjects = [
   },
   {
     key: "admin", namespace: "AdminTools",
-    video: "/videos/admin-tool.mov", poster: null,
+    slug: "grids-admin", category: "admin",
+    video: "/videos/admin-tool.mov", poster: "/images/archive/admin-overview.svg",
     href: "https://admin.gridsagency.com/", external: true,
     tags: ["admin", "analytics"],
-    gallery: [],
+    gallery: [
+      { src: "/images/archive/admin-overview.svg", key: "overview" },
+      { src: "/images/archive/admin-records.svg", key: "records" },
+      { src: "/images/archive/admin-workflow.svg", key: "workflow" },
+    ],
   },
 ] as const;
 
-export type ArchiveProject = (typeof archiveProjects)[number];
+export const archiveProjects: readonly ArchiveProject[] = [
+  ...featuredProjects.filter((project) => project.key !== "admin"),
+  ...demoProjects,
+  ...featuredProjects.filter((project) => project.key === "admin"),
+];

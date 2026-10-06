@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState, type RefObject } from "react";
+import { useLayoutEffect, useRef, useState, type RefObject } from "react";
 import gsap from "gsap";
 import { lockIntroScroll } from "@/lib/lock-intro-scroll";
+import { claimIntroVisit } from "@/lib/intro-visit";
 
 interface IntroProps {
   contentRef: RefObject<HTMLDivElement | null>;
@@ -15,11 +16,26 @@ export default function Intro({ contentRef, onReveal }: IntroProps) {
   const textWrapperRef = useRef<HTMLHeadingElement>(null);
   const gridsRef = useRef<HTMLSpanElement>(null);
   const agencyRef = useRef<HTMLSpanElement>(null);
+  const playIntroRef = useRef<boolean | null>(null);
 
-  // The content is a later sibling: wait until all sibling refs are attached.
-  useEffect(() => {
+  // Home renders this after the hero so its ref exists before layout effects run.
+  useLayoutEffect(() => {
     const content = contentRef.current;
-    if (!content) return;
+    if (!content) {
+      // Never leave the full-screen overlay visible if its reveal target is absent.
+      gsap.set(containerRef.current, { display: "none" });
+      onReveal?.();
+      return;
+    }
+    // Keep the decision stable through Strict Mode's effect cleanup/setup cycle.
+    playIntroRef.current ??= claimIntroVisit();
+    if (!playIntroRef.current) {
+      // Reveal before paint, without creating a timeline or locking scroll.
+      gsap.set(containerRef.current, { display: "none" });
+      content.dataset.heroPending = "false";
+      onReveal?.();
+      return;
+    }
     const heroGrid = content.querySelectorAll<HTMLElement>('[data-hero-reveal="grid"]');
     const heroText = content.querySelectorAll<HTMLElement>('[data-hero-reveal="text"]');
     const unlockScroll = lockIntroScroll();

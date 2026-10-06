@@ -26,6 +26,8 @@ export interface MetalButtonProps extends Omit<
   size?: 'sm' | 'md' | 'lg';
   /** Freeze the shader on its current frame */
   paused?: boolean;
+  /** Keep the control visible while its container is entering or being sized. */
+  effectEnabled?: boolean;
   /** Classes for the inner button */
   className?: string;
   /** Classes for the MetalFx wrapper */
@@ -50,6 +52,7 @@ export function MetalButton({
   strength = 1,
   size = 'md',
   paused = false,
+  effectEnabled = true,
   className,
   wrapperClassName,
   children,
@@ -91,7 +94,7 @@ export function MetalButton({
 
   // MetalFx detects WebGL during render, so only mount it after hydration.
   // Keep the actual link/button visible and usable in the server-rendered HTML.
-  if (!hydrated) return <div className={wrapperClasses}>{button}</div>;
+  if (!hydrated || !effectEnabled) return <div className={wrapperClasses}>{button}</div>;
 
   return (
     <MetalFx

@@ -1,352 +1,77 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import Image from "next/image";
-import { cn } from "@/lib/utils";
-import { ArrowUpRight, ArrowLeft } from "lucide-react";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
+import { ArrowUpRight } from "lucide-react";
+import { archiveProjects } from "./archive-project-data";
+import { ArchiveProjectMedia } from "./archive-project-media";
+import { ArchiveProjectSheet } from "./archive-project-sheet";
 
-import { useTranslations } from "next-intl";
-
-interface ArchiveGridProps {
-  onBack: () => void;
-}
-
-export function ArchiveGrid({ onBack }: ArchiveGridProps) {
+export function ArchiveGrid({ initialProjectSlug }: { initialProjectSlug?: string }) {
   const t = useTranslations("Archive");
+  const locale = useLocale();
+  const router = useRouter();
+  const [selectedSlug, setSelectedSlug] = useState(initialProjectSlug ?? null);
+  const [detailOpen, setDetailOpen] = useState(Boolean(initialProjectSlug));
+  const selectedIndex = archiveProjects.findIndex((project) => project.slug === selectedSlug);
 
-  const containerRef = useRef<HTMLDivElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
-  const [activeX, setActiveX] = useState(1); // Start at center (1, 1)
-  const [activeY, setActiveY] = useState(1);
-
-  // Mock Data - Moved inside for translations
-  const projects = [
-    {
-      id: 2,
-      title: "Personal Website",
-      category: t("Projects.project2.category"),
-      image: "/images/website.png",
-      description: t("Projects.project2.description"),
-      year: "2023",
-      link: "https://grids-kyle.vercel.app/",
-    },
-    {
-      id: 3,
-      title: "Instagram Ads",
-      category: t("Projects.project3.category"),
-      image: "/images/ads/ad-2.png",
-      description: t("Projects.project3.description"),
-      year: "2024",
-      link: "#",
-    },
-    {
-      id: 4,
-      title: "Cinematics",
-      category: t("Projects.project4.category"),
-      video: "/videos/cinematics.mp4",
-      description: t("Projects.project4.description"),
-      year: "2023",
-      link: "#",
-    },
-    {
-      id: 5,
-      title: "The Clear Labs",
-      category: t("Projects.project5.category"),
-      video: "/videos/tcl.mp4",
-      description: t("Projects.project5.description"),
-      year: "2024",
-      link: "#",
-    },
-
-    {
-      id: 1,
-      title: "AETHER",
-      category: t("Projects.project1.category"),
-      video: "/videos/aether-hero-small.mp4",
-      description: t("Projects.project1.description"),
-      year: "2025",
-      link: "https://aetherparfums.com/",
-    },
-    {
-      id: 6,
-      title: "AI Videos",
-      category: t("Projects.project6.category"),
-      video: "/videos/hero.mp4",
-      description: t("Projects.project6.description"),
-      year: "2023",
-      link: "#",
-    },
-    // Duplicates for grid density - Need 9 for 3x3 grid centered layout
-    {
-      id: 7,
-      title: "Jeisys",
-      category: t("Projects.project7.category"),
-      video: "/videos/jeisys.mp4",
-      description: t("Projects.project7.description"),
-      year: "2023",
-      link: "#",
-    },
-    {
-      id: 8,
-      title: "Haneul Mask",
-      category: t("Projects.project8.category"),
-      video: "/videos/haneul.mp4",
-      description: t("Projects.project8.description"),
-      year: "2024",
-      link: "#",
-    },
-    {
-      id: 9,
-      title: "Automation",
-      category: t("Projects.project9.category"),
-      image: "/images/automation.jpeg",
-      description: t("Projects.project9.description"),
-      year: "2025",
-      link: "#",
-    },
-  ];
-
-  // Animate grid position based on active coordinate
-  useGSAP(() => {
-    if (!gridRef.current) return;
-
-    // Grid Size: 250vw x 250vh
-    // Cell Size: ~83.33vw x ~83.33vh
-    // Logic: We want to center the active cell.
-    // Center of Screen = 50vw, 50vh
-    // Center of Grid = 125vw, 125vh (since activeX=1, activeY=1 is the middle)
-    // Shift needed per step = 83.33vw (250/3)
-
-    // Calculate offset percentage
-    // cell size in % of grid = 100% / 3 = 33.333%
-    // Shift to center activeX:
-    // If activeX = 0 (Left), we want left col centered. Grid x = 33.333% (Shift right? No, grid origin is top-left)
-    // Let's us vw/vh units for precision with the container style
-
-    const xPercent = -(activeX * 33.333) + 33.333; // 0->33.3, 1->0, 2->-33.3
-    const yPercent = -(activeY * 33.333) + 33.333;
-
-    // Actually, simpler logic:
-    // We want to translate the grid.
-    // At (1,1), transform is 0 (or centered if layout allows).
-    // Let's assume the grid is centered by flexbox initially?
-    // The previous CSS was: flex items-center justify-center.
-    // So if width is 250vw, the Center (1,1) is ALREADY centered by default layout flow?
-    // No, justify-center centers the *element*, so the center of the 250vw wide element is at viewport center.
-    // That means coordinate (1.5, 1.5) is at center?
-    // A 3x3 grid:
-    // Col 0 | Col 1 | Col 2
-    // Center of Grid is middle of Col 1.
-    // So activeX=1 is "default".
-    // activeX=0 (Left col) needs grid to move RIGHT by 1 column width (+83.33vw).
-    // activeX=2 (Right col) needs grid to move LEFT by 1 column width (-83.33vw).
-
-    const cellWidth = 250 / 3; // ~83.33 vw
-    const cellHeight = 220 / 3; // ~73.33 vh - Reduced height to prevent blocking arrows/nav
-
-    const xOffset = (1 - activeX) * cellWidth; // 1-0=1(+), 1-1=0, 1-2=-1(-)
-    const yOffset = (1 - activeY) * cellHeight;
-
-    gsap.to(gridRef.current, {
-      x: `${xOffset}vw`,
-      y: `${yOffset}vh`,
-      duration: 0.8,
-      ease: "power4.out",
-    });
-  }, [activeX, activeY]);
-
-  // Keyboard navigation
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      // Removed modal check since modal is removed
-
-      switch (e.key) {
-        case "ArrowLeft":
-          handleNavigate("left");
-          break;
-        case "ArrowRight":
-          handleNavigate("right");
-          break;
-        case "ArrowUp":
-          handleNavigate("up");
-          break;
-        case "ArrowDown":
-          handleNavigate("down");
-          break;
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []); // Empty dependency array as handleNavigate is stable or we can rely on handleNavigate being defined outside (actually it's inside, might need dependency or use ref, but strict mode might complain. For now leaving empty as is typical for simple key listeners unless handleNavigate changes)
-  // Logic tweak: handleNavigate uses state setters which are stable. Correct.
-
-  const handleNavigate = (direction: "up" | "down" | "left" | "right") => {
-    // Directions inverted? Arrow Right >> Go to Right Item >> Shift Grid Left
-    // Yes.
-    if (direction === "left") setActiveX((prev) => Math.max(0, prev - 1));
-    if (direction === "right") setActiveX((prev) => Math.min(2, prev + 1));
-    if (direction === "up") setActiveY((prev) => Math.max(0, prev - 1));
-    if (direction === "down") setActiveY((prev) => Math.min(2, prev + 1));
-  };
-
-  // Touch / Swipe Navigation
-  const touchStart = useRef<{ x: number; y: number } | null>(null);
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (!touchStart.current) return;
-
-    const touchEnd = {
-      x: e.changedTouches[0].clientX,
-      y: e.changedTouches[0].clientY,
-    };
-    const diffX = touchStart.current.x - touchEnd.x;
-    const diffY = touchStart.current.y - touchEnd.y;
-
-    const absDiffX = Math.abs(diffX);
-    const absDiffY = Math.abs(diffY);
-
-    // Minimum swipe distance
-    if (Math.max(absDiffX, absDiffY) < 50) return;
-
-    if (absDiffX > absDiffY) {
-      // Horizontal Swipe
-      if (diffX > 0)
-        handleNavigate("right"); // Swipe Left -> Grid moves Left (Nav Right)
-      else handleNavigate("left");
-    } else {
-      // Vertical Swipe
-      if (diffY > 0)
-        handleNavigate("down"); // Swipe Up -> Grid moves Up (Nav Down)
-      else handleNavigate("up");
-    }
-
-    touchStart.current = null;
-  };
+    // Only direct project URLs need a route change when dismissed. Normal card
+    // clicks are local dialog state, so the grid and its scroll position persist.
+    if (!initialProjectSlug || detailOpen) return;
+    const timer = window.setTimeout(() => {
+      router.replace(`/${locale}/archive`, { scroll: false });
+    }, window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 200);
+    return () => window.clearTimeout(timer);
+  }, [initialProjectSlug, detailOpen, locale, router]);
 
   return (
-    <div
-      ref={containerRef}
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
-      className="w-full h-screen overflow-hidden relative bg-background flex items-center justify-center select-none"
-    >
-      {/* Back Button */}
-      <button
-        onClick={onBack}
-        className="absolute top-4 left-4 md:top-8 md:left-8 z-50 p-4 transition-all animate-in fade-in slide-in-from-left-4 hover:opacity-70 group"
-      >
-        <div className="flex items-center gap-4">
-          <ArrowLeft className="w-8 h-8 text-muted-foreground group-hover:text-foreground transition-colors" />
+    <section className="mx-auto max-w-[1920px] px-5 pt-32 pb-[calc(7rem+env(safe-area-inset-bottom))] sm:px-8 md:px-12 md:pt-40 lg:px-16">
+      <header className="mb-10 grid items-start gap-6 md:grid-cols-2 md:gap-12">
+        <h1 className="text-4xl leading-tight font-medium tracking-[-0.05em] sm:text-5xl lg:text-6xl">
+          {t("Index.title")}
+        </h1>
+        <div className="max-w-xl space-y-3 text-xs leading-relaxed text-muted-foreground md:justify-self-end">
+          <p>{t("Gallery.disclosure.client.description")}</p>
+          <p>{t("Gallery.disclosure.internal.description")}</p>
+          <p>{t("Gallery.disclosure.nda.description")}</p>
         </div>
-      </button>
+      </header>
 
-      {/* Mobile Swipe Hint */}
-      <div className="md:hidden absolute bottom-12 left-1/2 -translate-x-1/2 text-muted-foreground text-sm font-light tracking-widest animate-pulse pointer-events-none z-30">
-        {t("swipeHint")}
+      <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-y-12">
+        {archiveProjects.map((project) => {
+          const title = project.title ?? t(`${project.namespace}.projectTitle`);
+          return (
+            <Link key={project.key} href={`/${locale}/archive/${project.slug}`} data-archive-project={project.slug} onClick={(event) => {
+              if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+              event.preventDefault();
+              setSelectedSlug(project.slug);
+              setDetailOpen(true);
+            }} scroll={false} prefetch={false} className="group block min-w-0 focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-foreground" aria-label={t("Index.open", { title })}>
+              <div className="relative aspect-[16/10] overflow-hidden bg-muted">
+                <ArchiveProjectMedia project={project} title={title} active={!detailOpen} className="absolute inset-0 transition-transform duration-700 group-hover:scale-[1.025] motion-reduce:transform-none" />
+                <span aria-hidden="true" className="absolute right-3 bottom-3 flex size-9 items-center justify-center bg-background text-foreground opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"><ArrowUpRight size={18} /></span>
+              </div>
+              <div className="mt-4 flex items-start justify-between gap-3">
+                <div className="min-w-0">
+                  <h2 className="text-lg leading-tight font-medium tracking-[-0.03em]">{title}</h2>
+                  <p className="mt-1.5 text-xs text-muted-foreground">{t(`${project.namespace}.title`)}</p>
+                </div>
+              </div>
+            </Link>
+          );
+        })}
       </div>
-
-      {/* Navigation Arrows (Only show if valid move exists) */}
-      {/* Up */}
-      {activeY > 0 && (
-        <button
-          onClick={() => handleNavigate("up")}
-          className="hidden md:block absolute top-16 left-1/2 -translate-x-1/2 z-40 p-4 transition-all animate-in fade-in slide-in-from-top-4 hover:-translate-y-1"
-        >
-          <ArrowUpRight className="w-12 h-12 text-muted-foreground hover:text-foreground rotate-[-45deg] transition-colors" />
-          {/* Up Arrow using rotated icon or lucide ArrowUp */}
-        </button>
+      {selectedIndex !== -1 && (
+        <ArchiveProjectSheet
+          key={selectedSlug}
+          project={archiveProjects[selectedIndex]}
+          open={detailOpen}
+          onOpenChange={setDetailOpen}
+        />
       )}
-
-      {/* Down */}
-      {activeY < 2 && (
-        <button
-          onClick={() => handleNavigate("down")}
-          className="hidden md:block absolute bottom-12 left-1/2 -translate-x-1/2 z-40 p-4 transition-all animate-in fade-in slide-in-from-bottom-4 hover:translate-y-1"
-        >
-          <ArrowUpRight className="w-12 h-12 text-muted-foreground hover:text-foreground rotate-[135deg] transition-colors" />
-        </button>
-      )}
-
-      {/* Left */}
-      {activeX > 0 && (
-        <button
-          onClick={() => handleNavigate("left")}
-          className="hidden md:block absolute left-12 top-1/2 -translate-y-1/2 z-40 p-4 transition-all animate-in fade-in slide-in-from-left-4 hover:-translate-x-1"
-        >
-          <ArrowUpRight className="w-12 h-12 text-muted-foreground hover:text-foreground rotate-[-135deg] transition-colors" />
-        </button>
-      )}
-
-      {/* Right */}
-      {activeX < 2 && (
-        <button
-          onClick={() => handleNavigate("right")}
-          className="hidden md:block absolute right-12 top-1/2 -translate-y-1/2 z-40 p-4 transition-all animate-in fade-in slide-in-from-right-4 hover:translate-x-1"
-        >
-          <ArrowUpRight className="w-12 h-12 text-muted-foreground hover:text-foreground rotate-[45deg] transition-colors" />
-        </button>
-      )}
-
-      {/* Grid Container */}
-      <div
-        ref={gridRef}
-        className="grid grid-cols-3 gap-8 w-[250vw] h-[220vh] transform-gpu flex-none"
-        style={{ willChange: "transform" }}
-      >
-        {projects.map((project, index) => (
-          <div
-            key={index}
-            onClick={() => {
-              if (project.link && project.link !== "#") {
-                window.open(project.link, "_blank");
-              }
-            }}
-            className={cn(
-              "group relative w-full h-full bg-card/5 rounded-none overflow-hidden border border-foreground/5 transition-opacity duration-500",
-              // Dim non-active items? Optional, but adds focus
-              // Calculate item position
-              Math.floor(index / 3) === activeY && index % 3 === activeX
-                ? "opacity-100 ring-2 ring-foreground/10 z-10"
-                : "opacity-30",
-              project.link && project.link !== "#"
-                ? "cursor-pointer"
-                : "cursor-default",
-            )}
-          >
-            {project.image ? (
-              <Image
-                src={project.image}
-                alt={project.title}
-                fill
-                sizes="90vw"
-                className="object-cover transition-transform duration-1000 group-hover:scale-105 opacity-80 group-hover:opacity-100"
-              />
-            ) : project.video ? (
-              <video
-                src={project.video}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-80 group-hover:opacity-100"
-                muted
-                playsInline
-                loop
-                autoPlay
-              />
-            ) : null}
-
-            {/* Minimal Overlay - Only Title on Hover */}
-            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-end p-8">
-              <h3 className="text-white text-4xl md:text-6xl font-medium tracking-wide translate-y-4 group-hover:translate-y-0 transition-transform duration-500 text-right">
-                {project.title}
-              </h3>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+    </section>
   );
 }
