@@ -194,7 +194,6 @@ function FooterContent({ className }: FooterSectionProps) {
 
 export default function FooterSection(props: FooterSectionProps) {
   const pathname = usePathname();
-  if (pathname?.includes("/connect") || pathname?.includes("/archive"))
-    return null;
+  if (pathname?.includes("/connect")) return null;
   return <FooterContent {...props} />;
 }

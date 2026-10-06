@@ -168,7 +168,7 @@ export function ArchivePanels() {
                   )}
                 >
                   {category ? (
-                    <ArchiveProjectPanel active={opened} project={category} index={index} />
+                    <ArchiveProjectPanel active={opened} project={category} />
                   ) : (
                     <ArchiveAbout
                       active={opened}

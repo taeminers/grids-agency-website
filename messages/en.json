@@ -94,6 +94,17 @@
     "location": "Based in Seoul"
   },
   "Hero": {
+    "showcase": {
+      "pauseHint": "Hover to pause. Press Space to pause or resume.",
+      "title": "Website collection",
+      "viewAll": "View all work",
+      "carousel": "carousel",
+      "slide": "slide",
+      "position": "Website {current} of {total}",
+      "open": "Explore {title}",
+      "previous": "Previous website",
+      "next": "Next website"
+    },
     "heatmap": {
       "clients": "Clients we’ve partnered with",
       "meaning": "One square. One partnership.",
@@ -653,6 +664,51 @@
       },
       "heading": "Complex operations, at a glance.",
       "description": "The admin dashboard we use at GRIDS. It brings website visits, inquiry starts, and lead conversions into one clear view, making it easier to understand the data behind the business."
+    },
+    "Index": {
+      "title": "Our work",
+      "description": "Websites, platforms, and films. A collection of selected projects and website demos.",
+      "filterLabel": "Filter projects",
+      "filters": {
+        "all": "All work",
+        "websites": "Websites",
+        "webApps": "Web apps",
+        "aiFilm": "AI films",
+        "admin": "Admin tools"
+      },
+      "count": "{count} projects",
+      "open": "View {title}",
+      "back": "All work",
+      "previous": "Previous project",
+      "next": "Next project",
+      "detailNavigation": "Archive navigation",
+      "projectNavigation": "More projects",
+      "note": "Selected public work and website demos. Some client projects remain private, in line with our clients’ wishes and confidentiality agreements."
+    },
+    "Demo": {
+      "title": "Website",
+      "tags": {
+        "website": "Website",
+        "demo": "Demo"
+      },
+      "industryLabel": "Industry",
+      "industry": "Digital experiences",
+      "scopeLabel": "Scope",
+      "scope": "Website design · Development",
+      "visit": "Explore website",
+      "galleryLabel": "Visual references",
+      "galleryNote": "AETHER · VISUAL REFERENCES",
+      "enlarge": "Enlarge {image}",
+      "close": "Close",
+      "images": {
+        "bottle": "AETHER fragrance bottle product visual",
+        "coffee": "Coffee beans evoking the fragrance notes",
+        "rum": "A brand film still capturing the texture of rum"
+      },
+      "heading": "A different way to experience the web.",
+      "description": "Explore this website demo from our collection. Open the live site to browse its pages, layouts, and interactions.",
+      "projectTitle": "Website demo",
+      "projectLabel": "GRIDS · WEBSITE COLLECTION"
     }
   },
   "NotFound": {

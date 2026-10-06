@@ -4,23 +4,24 @@ import Image from "next/image";
 import { useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Dialog } from "radix-ui";
-import { ArrowUpRight } from "reicon-react/icons/ArrowUpRight";
-
-import { MetalButton } from "@/components/spectrumui/metal-button";
 import type { ArchiveProject } from "./archive-project-data";
+import { ArchiveProjectMedia } from "./archive-project-media";
+import { ArchivePanelContent } from "./archive-panel-content";
+import { ArchiveOutlink } from "./archive-outlink";
 
 export function ArchiveProjectPanel({
   active,
   project,
-  index,
+  fitToSheet = false,
 }: {
   active: boolean;
   project: ArchiveProject;
-  index: number;
+  fitToSheet?: boolean;
 }) {
   const t = useTranslations(`Archive.${project.namespace}`);
   const locale = useLocale();
   const gallery = project.gallery;
+  const title = project.title ?? t("projectTitle");
   const href = project.external ? project.href : `/${locale}${project.href}`;
   const triggerRef = useRef<HTMLButtonElement>(null);
   const [selected, setSelected] = useState<number | null>(null);
@@ -32,80 +33,67 @@ export function ArchiveProjectPanel({
   } | null>(null);
   const suppressClick = useRef(false);
 
+  if (fitToSheet && project.preview) {
+    return (
+      <div className="relative h-full min-h-0 bg-white">
+        <ArchiveProjectMedia
+          project={project}
+          title={title}
+          active={active}
+          showFallbackLabel={false}
+          previewViewport="responsive"
+          className="absolute inset-0"
+        />
+        <div className="absolute right-5 bottom-5 z-10 sm:right-8 sm:bottom-6">
+          <ArchiveOutlink href={href} external={project.external} label={t("visit")} />
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="@container/project relative isolate flex min-h-full flex-col bg-[#141614] text-[#f5f3ec] md:bg-[#080908] md:px-9 md:pt-8 md:pb-16 lg:px-12 lg:pt-10">
-      <video
-        data-archive-panel={index}
-        src={project.video}
-        poster={project.poster ?? undefined}
-        aria-hidden="true"
-        className={`pointer-events-none block w-full shrink-0 bg-[#080908] object-contain md:absolute md:inset-0 md:-z-20 md:aspect-auto md:h-full ${project.key === "admin" ? "aspect-auto h-auto md:object-contain md:object-top" : "aspect-video md:object-cover"}`}
-        muted
-        loop
-        playsInline
-        preload="none"
+    <div className={`@container/project relative isolate flex flex-col bg-[#141614] text-[#f5f3ec] md:bg-[#080908] ${fitToSheet ? "h-full min-h-0" : "min-h-full"}`}>
+      <ArchiveProjectMedia
+        project={project}
+        title={title}
+        active={active}
+        className={fitToSheet ? "absolute inset-0 -z-20" : "relative aspect-[16/10] w-full shrink-0 md:absolute md:inset-0 md:-z-20 md:aspect-auto"}
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 hidden bg-[linear-gradient(180deg,#08090866_0%,#08090815_25%,#08090855_46%,#080908ed_72%,#080908_100%)] md:block"
+        className={`pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,#08090866_0%,#08090815_25%,#08090855_46%,#080908ed_72%,#080908_100%)] ${fitToSheet ? "block" : "hidden md:block"}`}
       />
 
-      <header className="flex items-start justify-between gap-6 px-6 pt-6 sm:px-9 sm:pt-8 md:px-0 md:pt-0">
-        <h2 className="text-[clamp(26px,3.6cqw,42px)] leading-none font-medium tracking-[-0.045em]">
-          {t("title")}
-        </h2>
-        <span
-          aria-hidden="true"
-          className="pt-1 font-mono text-[10px] tracking-[0.12em] text-white/70 sm:text-xs"
-        >
-          [{String(index).padStart(2, "0")} / 04]
-        </span>
-      </header>
-
+      <ArchivePanelContent fit={fitToSheet}>
       <div
         aria-hidden="true"
-        className="hidden min-h-[clamp(180px,28svh,340px)] flex-1 md:block"
+        className={fitToSheet ? "min-h-4 flex-1" : "hidden min-h-[clamp(180px,28svh,340px)] flex-1 md:block"}
       />
 
-      <div className="mt-6 grid items-start gap-10 px-6 pb-6 sm:px-9 md:mt-0 md:px-0 md:pb-0 @min-[620px]/project:grid-cols-[minmax(180px,0.8fr)_minmax(0,1.4fr)] @min-[620px]/project:gap-10 @min-[900px]/project:gap-16">
+      <div className={`grid shrink-0 items-start @min-[620px]/project:grid-cols-[minmax(180px,0.8fr)_minmax(0,1.4fr)] ${fitToSheet ? "gap-5 @min-[620px]/project:gap-8" : "mt-6 gap-10 px-6 pb-6 sm:px-9 md:mt-0 md:px-0 md:pb-0 @min-[620px]/project:gap-10 @min-[900px]/project:gap-16"}`}>
         <div>
-          <p className="mb-3 font-mono text-[9px] tracking-[0.16em] text-white/55">
+          <p className={`${fitToSheet ? "mb-2" : "mb-3"} font-mono text-[9px] tracking-[0.16em] text-white/55`}>
             {t("projectLabel")}
           </p>
           <h3 className="text-[clamp(38px,5.2cqw,64px)] leading-none font-medium tracking-[-0.06em]">
-            {t("projectTitle")}
+            {title}
           </h3>
-          <div className="mt-5 flex flex-wrap gap-2 text-[10px] text-white/80">
+          <div className={`${fitToSheet ? "mt-3" : "mt-5"} flex flex-wrap gap-2 text-[10px] text-white/80`}>
             {project.tags.map((tag) => (
               <span key={tag} className="border border-white/25 px-2.5 py-1.5">
                 {t(`tags.${tag}`)}
               </span>
             ))}
           </div>
-          <dl className="mt-7 grid grid-cols-[auto_1fr] gap-x-5 gap-y-3 text-xs leading-[1.6]">
+          <dl className={`grid grid-cols-[auto_1fr] gap-x-5 text-xs leading-[1.6] ${fitToSheet ? "mt-4 gap-y-2" : "mt-7 gap-y-3"}`}>
             <dt className="text-white/50">{t("industryLabel")}</dt>
             <dd>{t("industry")}</dd>
             <dt className="text-white/50">{t("scopeLabel")}</dt>
             <dd>{t("scope")}</dd>
           </dl>
-          <MetalButton
-            asChild
-            className="group/link gap-6 rounded-none text-xs"
-            wrapperClassName="mt-7 w-fit rounded-none"
-          >
-            <a
-              href={href}
-              target={project.external ? "_blank" : undefined}
-              rel={project.external ? "noopener noreferrer" : undefined}
-            >
-              {t("visit")}
-              <ArrowUpRight
-                size={15}
-                aria-hidden="true"
-                className="transition-transform duration-300 ease-out group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 motion-reduce:transform-none"
-              />
-            </a>
-          </MetalButton>
+          <div className={fitToSheet ? "mt-4" : "mt-7"}>
+            <ArchiveOutlink href={href} external={project.external} label={t("visit")} />
+          </div>
         </div>
 
         <div className="min-w-0">
@@ -198,18 +186,18 @@ export function ArchiveProjectPanel({
               ))}
             </div>
             <Dialog.Portal>
-              <Dialog.Overlay className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm" />
+              <Dialog.Overlay className="fixed inset-0 z-[80] bg-black/85 backdrop-blur-sm" />
               <Dialog.Content
                 onCloseAutoFocus={(event) => {
                   event.preventDefault();
                   if (active)
                     triggerRef.current?.focus({ preventScroll: true });
                 }}
-                className="fixed top-1/2 left-1/2 z-50 w-[calc(100%-32px)] max-w-5xl -translate-x-1/2 -translate-y-1/2 border border-white/15 bg-[#101110] p-3 text-white shadow-2xl outline-none sm:p-5"
+                className="fixed top-1/2 left-1/2 z-[90] w-[calc(100%-32px)] max-w-5xl -translate-x-1/2 -translate-y-1/2 border border-white/15 bg-[#101110] p-3 text-white shadow-2xl outline-none sm:p-5"
               >
                 <div className="mb-4 flex items-center justify-between gap-4">
                   <Dialog.Title className="text-sm font-medium">
-                    {t("projectTitle")} — {t("galleryLabel")}
+                    {title} — {t("galleryLabel")}
                   </Dialog.Title>
                   <Dialog.Close className="flex min-h-11 min-w-11 cursor-pointer items-center justify-center border border-white/20 px-3 text-xs transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
                     {t("close")}
@@ -244,6 +232,7 @@ export function ArchiveProjectPanel({
           </p>
         </div>
       </div>
+      </ArchivePanelContent>
     </div>
   );
 }

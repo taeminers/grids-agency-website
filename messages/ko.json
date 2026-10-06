@@ -94,6 +94,17 @@
     "location": "Seoul 기반"
   },
   "Hero": {
+    "showcase": {
+      "pauseHint": "마우스를 올리면 일시정지합니다. 스페이스 키로 재생하거나 일시정지할 수 있습니다.",
+      "title": "웹사이트 컬렉션",
+      "viewAll": "전체 작업 보기",
+      "carousel": "캐러셀",
+      "slide": "슬라이드",
+      "position": "전체 {total}개 중 {current}번째 웹사이트",
+      "open": "{title} 자세히 보기",
+      "previous": "이전 웹사이트",
+      "next": "다음 웹사이트"
+    },
     "heatmap": {
       "clients": "함께한 고객사",
       "meaning": "한 칸에 하나의 파트너십",
@@ -653,6 +664,51 @@
       },
       "heading": "복잡한 운영을, 한눈에.",
       "description": "GRIDS가 직접 사용하는 어드민 대시보드입니다. 웹사이트 방문부터 상담 시작, 문의 전환까지 이어지는 흐름을 한곳에서 확인하고, 비즈니스에 필요한 데이터를 명확하게 파악할 수 있도록 설계했습니다."
+    },
+    "Index": {
+      "title": "우리의 작업",
+      "description": "웹사이트, 플랫폼, 그리고 영상. 다양한 프로젝트와 웹사이트 데모를 만나보세요.",
+      "filterLabel": "프로젝트 필터",
+      "filters": {
+        "all": "전체",
+        "websites": "웹사이트",
+        "webApps": "웹 앱",
+        "aiFilm": "AI 영상",
+        "admin": "관리 도구"
+      },
+      "count": "{count}개 프로젝트",
+      "open": "{title} 자세히 보기",
+      "back": "전체 작업",
+      "previous": "이전 프로젝트",
+      "next": "다음 프로젝트",
+      "detailNavigation": "아카이브 탐색",
+      "projectNavigation": "다른 프로젝트",
+      "note": "공개 가능한 작업과 웹사이트 데모를 소개합니다. 일부 고객 프로젝트는 고객의 요청과 비밀유지 계약에 따라 공개하지 않습니다."
+    },
+    "Demo": {
+      "title": "웹사이트",
+      "tags": {
+        "website": "웹사이트",
+        "demo": "데모"
+      },
+      "industryLabel": "분야",
+      "industry": "디지털 경험",
+      "scopeLabel": "제작 범위",
+      "scope": "웹 디자인 · 개발",
+      "visit": "웹사이트 둘러보기",
+      "galleryLabel": "비주얼 레퍼런스",
+      "galleryNote": "AETHER · 비주얼 레퍼런스",
+      "enlarge": "{image} 크게 보기",
+      "close": "닫기",
+      "images": {
+        "bottle": "AETHER 향수병의 제품 비주얼",
+        "coffee": "커피 원두로 표현한 향의 이미지",
+        "rum": "럼의 질감을 표현한 브랜드 필름 장면"
+      },
+      "heading": "웹을 경험하는 새로운 방식.",
+      "description": "컬렉션의 웹사이트 데모를 살펴보세요. 실제 사이트에서 다양한 페이지, 레이아웃, 인터랙션을 경험할 수 있습니다.",
+      "projectTitle": "웹사이트 데모",
+      "projectLabel": "GRIDS · WEBSITE COLLECTION"
     }
   },
   "NotFound": {

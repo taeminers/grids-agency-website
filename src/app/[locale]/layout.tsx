@@ -1,6 +1,7 @@
 import "../globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import ScrollToTop from "@/components/scroll-to-top";
+import SiteVisitTracker from "@/components/site-visit-tracker";
 import Navbar from "@/components/navbar";
 import FooterSection from "@/components/footer-section";
 import ConsultationButton from "@/components/consultation-button";
@@ -30,6 +31,7 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider messages={messages} locale={locale}>
+      <SiteVisitTracker />
       <ScrollToTop />
       <ThemeProvider
         attribute="class"

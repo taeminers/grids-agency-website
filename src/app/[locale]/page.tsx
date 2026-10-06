@@ -19,8 +19,6 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-background text-foreground relative selection:bg-primary selection:text-primary-foreground">
-      <Intro contentRef={heroRef} onReveal={revealContent} />
-
       <div
         ref={heroRef}
         data-hero-pending={!revealed}
@@ -44,6 +42,8 @@ export default function Home() {
           <FaqSection />
         </div>
       </div>
+      {/* Attach the hero ref before Intro's layout effect reads it. */}
+      <Intro contentRef={heroRef} onReveal={revealContent} />
     </main>
   );
 }
