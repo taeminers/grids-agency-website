@@ -1,5 +1,8 @@
 // Source: src/components/knowledge/quotation-rules.md.
-// Package scopes are proposals; base rates and add-on amounts come from that file.
+// Run npm run pricing:sync after editing rates. Package scopes remain reviewed proposals.
+import quotationRates from "./quotation-rates.generated.json";
+
+type PricedRateId = keyof typeof quotationRates;
 export type Copy = { ko: string; en: string };
 const text = (ko: string, en: string): Copy => ({ ko, en });
 export type Rate = {
@@ -11,10 +14,10 @@ export type Rate = {
   detail?: Copy;
 };
 export type RateSection = { id: string; title: Copy; note?: Copy; rows: Rate[] };
-const from = (id: string, ko: string, en: string, amount: number, detail?: Copy, unit?: Copy): Rate =>
-  ({ id, label: text(ko, en), amount, mode: "from", detail, unit });
-const fixed = (id: string, ko: string, en: string, amount: number, unit?: Copy): Rate =>
-  ({ id, label: text(ko, en), amount, mode: "fixed", unit });
+const from = (id: PricedRateId, ko: string, en: string, detail?: Copy, unit?: Copy): Rate =>
+  ({ id, label: text(ko, en), amount: quotationRates[id], mode: "from", detail, unit });
+const fixed = (id: PricedRateId, ko: string, en: string, unit?: Copy): Rate =>
+  ({ id, label: text(ko, en), amount: quotationRates[id], mode: "fixed", unit });
 const included = (id: string, ko: string, en: string, detail?: Copy): Rate =>
   ({ id, label: text(ko, en), mode: "included", detail });
 const custom = (id: string, ko: string, en: string, detail?: Copy): Rate =>
@@ -25,22 +28,22 @@ export const rateSections: RateSection[] = [
     id: "production", title: text("기본 제작비", "Production"),
     note: text("프로젝트 유형에 따른 시작 금액입니다. 실제 범위와 난이도를 확인한 뒤 견적을 확정합니다.", "Starting rates by project type. The final quote depends on the confirmed scope and complexity."),
     rows: [
-      from("landing", "랜딩페이지", "Landing page", 1500000, text("기획 · UI/UX · 반응형 개발 · 기본 인터랙션 · 문의 폼 · SEO · Analytics · 배포 · QA", "Planning, UI/UX, responsive development, basic interactions, inquiry form, SEO, analytics, deployment and QA")),
-      from("brand", "기업 / 브랜드 홈페이지", "Company / brand website", 3500000, text("최대 5페이지 · 맞춤 디자인 · 기획 / 개발 · 문의 폼 · SEO · Analytics · 배포 · QA · 기본 수정 2회", "Up to 5 pages, custom design, planning and development, inquiry form, SEO, analytics, deployment, QA and 2 revision rounds")),
-      from("premium", "고급 브랜드 홈페이지", "Advanced brand website", 5000000, text("더 높은 수준의 디자인, 인터랙션 또는 브랜드 표현", "Higher design, interaction or brand-expression requirements")),
-      from("commerce", "쇼핑몰", "E-commerce", 6000000, text("상품 · 주문 · 결제 등 커머스 기능. 세부 기능에 따라 별도 산정", "Products, orders and payments; detailed features are scoped separately")),
-      from("mvp", "웹서비스 / MVP", "Web service / MVP", 8000000, text("회원 · 데이터베이스 · 비즈니스 로직을 포함하는 맞춤 웹서비스", "Custom web services with accounts, a database and business logic")),
-      from("platform", "복잡한 웹서비스 / 플랫폼", "Complex web service / platform", 15000000, text("복잡한 권한 · 사용자 유형 · 결제 · 관리자 · 외부 연동. 개별 산정 원칙", "Complex roles, user types, payments, administration and integrations. Individually quoted")),
-      from("existing", "기존 서비스 수정 / 추가 개발", "Changes to an existing service", 500000, text("최소 작업비. 기존 코드 분석과 작업 난이도에 따라 산정", "Minimum engagement; subject to code review and implementation difficulty")),
+      from("landing", "랜딩페이지", "Landing page", text("기획 · UI/UX · 반응형 개발 · 기본 인터랙션 · 문의 폼 · SEO · Analytics · 배포 · QA", "Planning, UI/UX, responsive development, basic interactions, inquiry form, SEO, analytics, deployment and QA")),
+      from("brand", "기업 / 브랜드 홈페이지", "Company / brand website", text("최대 5페이지 · 맞춤 디자인 · 기획 / 개발 · 문의 폼 · SEO · Analytics · 배포 · QA · 기본 수정 2회", "Up to 5 pages, custom design, planning and development, inquiry form, SEO, analytics, deployment, QA and 2 revision rounds")),
+      from("premium", "고급 브랜드 홈페이지", "Advanced brand website", text("더 높은 수준의 디자인, 인터랙션 또는 브랜드 표현", "Higher design, interaction or brand-expression requirements")),
+      from("commerce", "쇼핑몰", "E-commerce", text("상품 · 주문 · 결제 등 커머스 기능. 세부 기능에 따라 별도 산정", "Products, orders and payments; detailed features are scoped separately")),
+      from("mvp", "웹서비스 / MVP", "Web service / MVP", text("회원 · 데이터베이스 · 비즈니스 로직을 포함하는 맞춤 웹서비스", "Custom web services with accounts, a database and business logic")),
+      from("platform", "복잡한 웹서비스 / 플랫폼", "Complex web service / platform", text("복잡한 권한 · 사용자 유형 · 결제 · 관리자 · 외부 연동. 개별 산정 원칙", "Complex roles, user types, payments, administration and integrations. Individually quoted")),
+      from("existing", "기존 서비스 수정 / 추가 개발", "Changes to an existing service", text("최소 작업비. 기존 코드 분석과 작업 난이도에 따라 산정", "Minimum engagement; subject to code review and implementation difficulty")),
     ],
   },
   {
     id: "pages", title: text("페이지 추가", "Additional pages"),
     note: text("기업 / 브랜드 홈페이지는 기본 5페이지를 포함합니다. 페이지 수가 많거나 반복 구조인 경우 별도 조정할 수 있습니다.", "Company / brand websites include 5 pages. Large page counts and repeated layouts may be adjusted separately."),
     rows: [
-      fixed("page", "일반 페이지", "Standard page", 200000, text("페이지", "page")),
-      fixed("advanced-page", "고급 페이지", "Advanced page", 400000, text("페이지", "page")),
-      from("special-page", "특수 인터랙션 / 고난도 디자인 페이지", "Special interaction / complex design page", 600000, undefined, text("페이지", "page")),
+      fixed("page", "일반 페이지", "Standard page", text("페이지", "page")),
+      fixed("advanced-page", "고급 페이지", "Advanced page", text("페이지", "page")),
+      from("special-page", "특수 인터랙션 / 고난도 디자인 페이지", "Special interaction / complex design page", undefined, text("페이지", "page")),
     ],
   },
   {
@@ -48,21 +51,21 @@ export const rateSections: RateSection[] = [
     note: text("별도 표시가 없는 금액은 시작가입니다. 기능의 범위와 복잡도에 따라 달라집니다.", "Unless stated otherwise, these are starting rates and vary with feature scope and complexity."),
     rows: [
       included("form", "기본 문의 폼", "Basic inquiry form"),
-      from("advanced-form", "고급 문의 폼", "Advanced inquiry form", 300000),
-      from("board", "게시판", "Bulletin board", 300000),
-      from("blog", "블로그 / 뉴스", "Blog / news", 500000),
-      from("cms", "CMS", "CMS", 700000),
-      from("login", "회원가입 / 로그인", "Sign-up / login", 1000000),
-      from("social", "소셜 로그인", "Social login", 300000, undefined, text("서비스", "provider")),
-      from("profile", "사용자 마이페이지", "User account page", 700000),
-      from("search", "검색", "Search", 500000),
-      from("payment", "결제", "Payments", 1500000),
-      from("booking", "예약", "Bookings", 1500000),
-      from("admin", "관리자 페이지", "Admin panel", 1500000),
-      from("api", "외부 API 연동", "External API integration", 500000),
-      from("email", "이메일 자동 발송", "Automated emails", 300000),
-      from("sms", "SMS / 알림톡", "SMS / Kakao notifications", 500000),
-      from("dashboard", "대시보드 / 통계", "Dashboard / analytics", 1000000),
+      from("advanced-form", "고급 문의 폼", "Advanced inquiry form"),
+      from("board", "게시판", "Bulletin board"),
+      from("blog", "블로그 / 뉴스", "Blog / news"),
+      from("cms", "CMS", "CMS"),
+      from("login", "회원가입 / 로그인", "Sign-up / login"),
+      from("social", "소셜 로그인", "Social login", undefined, text("서비스", "provider")),
+      from("profile", "사용자 마이페이지", "User account page"),
+      from("search", "검색", "Search"),
+      from("payment", "결제", "Payments"),
+      from("booking", "예약", "Bookings"),
+      from("admin", "관리자 페이지", "Admin panel"),
+      from("api", "외부 API 연동", "External API integration"),
+      from("email", "이메일 자동 발송", "Automated emails"),
+      from("sms", "SMS / 알림톡", "SMS / Kakao notifications"),
+      from("dashboard", "대시보드 / 통계", "Dashboard / analytics"),
       custom("ai", "AI 기능", "AI features"),
       custom("realtime", "실시간 기능", "Real-time features"),
       custom("custom", "기타 커스텀 기능", "Other custom features"),
@@ -71,11 +74,11 @@ export const rateSections: RateSection[] = [
   {
     id: "languages", title: text("다국어", "Languages"),
     note: text("번역 비용은 포함하지 않으며, 번역문은 기본적으로 고객이 제공합니다.", "Translation is excluded. Translated copy is normally supplied by the client."),
-    rows: [included("primary-language", "기본 언어 1개", "One primary language"), from("language", "추가 언어", "Additional language", 500000, undefined, text("언어", "language"))],
+    rows: [included("primary-language", "기본 언어 1개", "One primary language"), from("language", "추가 언어", "Additional language", undefined, text("언어", "language"))],
   },
   {
     id: "design", title: text("디자인 및 인터랙션", "Design & interaction"),
-    rows: [included("basic-design", "일반 디자인 / 인터랙션", "Standard design / interaction"), from("interaction", "고급 인터랙션", "Advanced interactions", 500000), custom("webgl", "WebGL · 3D · 고급 스크롤 인터랙션", "WebGL, 3D and advanced scroll interactions")],
+    rows: [included("basic-design", "일반 디자인 / 인터랙션", "Standard design / interaction"), from("interaction", "고급 인터랙션", "Advanced interactions"), custom("webgl", "WebGL · 3D · 고급 스크롤 인터랙션", "WebGL, 3D and advanced scroll interactions")],
   },
   {
     id: "external", title: text("외부 비용", "Third-party costs"),
@@ -100,12 +103,12 @@ export const rateSections: RateSection[] = [
   {
     id: "minimum", title: text("최소 수주 금액", "Minimum engagements"),
     note: text("계산 금액이 최소 수주 금액보다 낮으면 최소 금액을 적용합니다. 신규 홈페이지의 최소 금액은 기업 / 브랜드 홈페이지 시작가와 구분됩니다.", "The minimum applies if the calculation falls below it. The new-website minimum is distinct from the company / brand website starting rate."),
-    rows: [fixed("min-landing", "랜딩페이지", "Landing page", 1500000), fixed("min-website", "신규 홈페이지", "New website", 3000000), fixed("min-mvp", "웹서비스 / MVP", "Web service / MVP", 8000000), fixed("min-existing", "기존 서비스 수정", "Existing service changes", 500000)],
+    rows: [fixed("min-landing", "랜딩페이지", "Landing page"), fixed("min-website", "신규 홈페이지", "New website"), fixed("min-mvp", "웹서비스 / MVP", "Web service / MVP"), fixed("min-existing", "기존 서비스 수정", "Existing service changes")],
   },
   {
     id: "vat", title: text("VAT 표시 예시", "VAT example"),
-    note: text("모든 기준 금액은 VAT 별도입니다. 최종 견적에는 공급가액과 VAT를 구분해 표시합니다. 아래는 공급가액 500만 원 기준 예시입니다.", "All reference prices exclude VAT. Final quotations show the supply amount and VAT separately. Example based on a ₩5,000,000 supply amount."),
-    rows: [fixed("supply", "공급가액", "Supply amount", 5000000), fixed("vat-amount", "VAT", "VAT", 500000), fixed("total", "총액", "Total", 5500000)],
+    note: text("모든 기준 금액은 VAT 별도입니다. 최종 견적에는 공급가액과 VAT를 구분해 표시합니다. 아래는 문서에 명시된 공급가액과 VAT의 표시 예시입니다.", "All reference prices exclude VAT. Final quotations show the supply amount and VAT separately. The example below uses the supply amount and VAT stated in the rules."),
+    rows: [fixed("supply", "공급가액", "Supply amount"), fixed("vat-amount", "VAT", "VAT"), fixed("total", "총액", "Total")],
   },
 ];
 
@@ -159,11 +162,26 @@ export const packageServices: ServicePackages[] = [
   ] },
 ];
 
-export function packageAmount(service: ServicePackages, tier: PackageTier): number {
+function packageSubtotal(service: ServicePackages, tier: PackageTier): number {
   const amount = (id: string) => {
     const value = getRate(id).amount;
     if (value === undefined) throw new Error(`No documented price for ${id}`);
     return value;
   };
   return amount(service.id) + tier.extras.reduce((total, item) => total + amount(item.id) * item.quantity, 0);
+}
+
+const minimumIds: Record<string, PricedRateId> = {
+  landing: "min-landing", brand: "min-website", premium: "min-website",
+  commerce: "min-website", mvp: "min-mvp", platform: "min-mvp", existing: "min-existing",
+};
+
+export function packageMinimumAdjustment(service: ServicePackages, tier: PackageTier): number {
+  const minimumId = minimumIds[service.id];
+  if (!minimumId) throw new Error(`Unknown package minimum: ${service.id}`);
+  return Math.max(0, quotationRates[minimumId] - packageSubtotal(service, tier));
+}
+
+export function packageAmount(service: ServicePackages, tier: PackageTier): number {
+  return packageSubtotal(service, tier) + packageMinimumAdjustment(service, tier);
 }

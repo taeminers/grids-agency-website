@@ -7,9 +7,11 @@ import { Tabs } from "radix-ui";
 import { ArrowUpRight, Check, Plus } from "lucide-react";
 import { MetalButton } from "@/components/spectrumui/metal-button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { cn } from "@/lib/utils";
-import { getRate, packageAmount, packageServices, rateSections, type Copy, type Rate } from "./pricing-data";
+import { getRate, packageAmount, packageMinimumAdjustment, packageServices, rateSections, type Copy, type Rate } from "./pricing-data";
 import CustomBuilds from "./custom-builds";
+import PackageCard from "./package-card";
+import RulesNavigation from "./rules-navigation";
+import rulesGrid from "./rules-grid.module.css";
 
 const tierNames = ["Basic", "Plus", "Pro"];
 
@@ -30,7 +32,7 @@ export default function PricingContent() {
 
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <div className="mx-auto max-w-[1920px] px-5 pt-36 pb-16 sm:px-8 md:px-12 md:pt-44 lg:px-16">
+      <div className="mx-auto max-w-[1920px] px-(--pricing-gutter) pt-36 pb-16 [--pricing-gutter:1.25rem] sm:[--pricing-gutter:2rem] md:pt-44 md:[--pricing-gutter:3rem] lg:[--pricing-gutter:4rem]">
         <header className="mb-12 grid gap-7 md:grid-cols-[1.2fr_1fr] md:items-end md:gap-16">
           <div>
             <h1 className="whitespace-pre-line text-[clamp(36px,5.5vw,68px)] leading-[1.12] font-medium tracking-[-0.055em]">{t("title")}</h1>
@@ -62,7 +64,7 @@ export default function PricingContent() {
                   <SelectTrigger id="pricing-service" className="min-h-14 w-full cursor-pointer rounded-none border-foreground/20 bg-background px-4 text-sm">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent position="popper" className="rounded-none">
+                  <SelectContent data-pricing-service-select position="popper" className="rounded-none">
                     {packageServices.map((item) => <SelectItem key={item.id} value={item.id} className="min-h-10 cursor-pointer rounded-none">{copy(getRate(item.id).label)}</SelectItem>)}
                   </SelectContent>
                 </Select>
@@ -79,12 +81,12 @@ export default function PricingContent() {
               <p className="max-w-xl text-xs leading-6 text-muted-foreground">{copy(service.description)}</p>
             </div>
 
-            <div className="grid gap-4 lg:grid-cols-3">
+            <div className="grid gap-6 lg:grid-cols-3">
               {service.tiers.map((tier, index) => (
-                <article key={`${service.id}-${index}`} className={cn("flex min-w-0 flex-col border p-6 sm:p-8", index === 1 ? "border-foreground/40 bg-foreground/[0.035]" : "border-foreground/15")}>
+                <PackageCard key={`${service.id}-${index}`} featured={index === 1}>
                   <div className="mb-6 flex items-center justify-between">
                     <h4 className="text-lg font-medium tracking-tight">{tierNames[index]}</h4>
-                    <span aria-hidden="true" className="font-mono text-[10px] text-muted-foreground">0{index + 1}</span>
+                    <span aria-hidden="true" className="absolute top-3 right-6 font-mono text-[10px] text-muted-foreground sm:right-8">0{index + 1}</span>
                   </div>
                   <p className="min-h-10 text-xs leading-5 text-muted-foreground">{copy(tier.summary)}</p>
                   <div className="mt-5 border-b border-foreground/10 pb-7">
@@ -101,13 +103,14 @@ export default function PricingContent() {
                       <dl className="mt-2 space-y-2 border-l border-foreground/15 pl-3 text-[11px] leading-5 text-muted-foreground">
                         <div className="flex justify-between gap-3"><dt>{t("packages.base")}</dt><dd className="shrink-0 tabular-nums">{money(getRate(service.id).amount!)}</dd></div>
                         {tier.extras.map((item) => <div key={item.id} className="flex justify-between gap-3"><dt>{copy(getRate(item.id).label)}{item.quantity > 1 ? ` × ${item.quantity}` : ""}</dt><dd className="shrink-0 tabular-nums">{money(getRate(item.id).amount! * item.quantity)}</dd></div>)}
+                        {packageMinimumAdjustment(service, tier) > 0 && <div className="flex justify-between gap-3"><dt>{t("packages.minimumAdjustment")}</dt><dd className="shrink-0 tabular-nums">{money(packageMinimumAdjustment(service, tier))}</dd></div>}
                       </dl>
                     </details>
-                    <MetalButton asChild wrapperClassName="w-full rounded-none" className="w-full gap-5 rounded-none text-xs">
+                    <MetalButton asChild inverted wrapperClassName="w-full rounded-none" className="w-full gap-5 rounded-none text-xs">
                       <Link href={`/${locale}/connect`}>{t("packages.cta")}<ArrowUpRight size={14} aria-hidden="true" /></Link>
                     </MetalButton>
                   </div>
-                </article>
+                </PackageCard>
               ))}
             </div>
 
@@ -119,14 +122,14 @@ export default function PricingContent() {
 
           <Tabs.Content value="rules" className="outline-none">
             <div className="mb-9 max-w-2xl"><h2 className="text-2xl font-medium tracking-[-0.04em] sm:text-3xl">{t("rules.title")}</h2><p className="mt-3 text-sm leading-7 text-muted-foreground">{t("rules.description")}</p></div>
-            <div className="grid gap-8 lg:grid-cols-[190px_minmax(0,1fr)] lg:gap-12">
-              <nav aria-label={t("rules.contents")} className="flex flex-wrap content-start gap-x-5 gap-y-2 border-b border-foreground/10 pb-5 text-xs lg:flex-col lg:gap-3 lg:border-0 lg:pb-0">
-                <a href="#pricing-calculation" className="py-1 text-muted-foreground hover:text-foreground">{t("rules.calculation")}</a>
-                {rateSections.map((section) => <a key={section.id} href={`#pricing-${section.id}`} className="py-1 text-muted-foreground hover:text-foreground">{copy(section.title)}</a>)}
-                <a href="#pricing-principles" className="py-1 text-muted-foreground hover:text-foreground">{t("rules.principles")}</a>
-              </nav>
-              <div className="min-w-0 space-y-12">
-                <section id="pricing-calculation" className="scroll-mt-36 border border-foreground/15 p-5 sm:p-7">
+            <div className={rulesGrid.grid}>
+              <RulesNavigation label={t("rules.contents")} items={[
+                { id: "pricing-calculation", label: t("rules.calculation") },
+                ...rateSections.map((section) => ({ id: `pricing-${section.id}`, label: copy(section.title) })),
+                { id: "pricing-principles", label: t("rules.principles") },
+              ]} />
+              <div className="min-w-0">
+                <section id="pricing-calculation" className={`${rulesGrid.section} scroll-mt-36`}>
                   <h3 className="text-base font-medium">{t("rules.calculation")}</h3>
                   <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-3 text-xs leading-6">
                     {(["base", "pages", "features", "languages", "design", "work"] as const).map((part, index) => <span key={part} className="inline-flex items-center gap-3">{index > 0 && <Plus size={12} aria-hidden="true" className="text-muted-foreground" />}<span>{t(`rules.formula.${part}`)}</span></span>)}
@@ -134,7 +137,7 @@ export default function PricingContent() {
                   <p className="mt-5 border-t border-foreground/10 pt-4 text-xs leading-6 text-muted-foreground">{t("rules.calculationNote")}</p>
                 </section>
                 {rateSections.map((section) => (
-                  <section key={section.id} id={`pricing-${section.id}`} className="scroll-mt-36">
+                  <section key={section.id} id={`pricing-${section.id}`} className={`${rulesGrid.section} scroll-mt-36`}>
                     <h3 className="text-lg font-medium tracking-tight">{copy(section.title)}</h3>
                     {section.note && <p className="mt-2 text-xs leading-6 text-muted-foreground">{copy(section.note)}</p>}
                     <table className="mt-5 w-full table-fixed border-collapse text-left text-xs">
@@ -145,7 +148,7 @@ export default function PricingContent() {
                     </table>
                   </section>
                 ))}
-                <section id="pricing-principles" className="scroll-mt-36 border-t border-foreground/20 pt-6">
+                <section id="pricing-principles" className={`${rulesGrid.section} scroll-mt-36`}>
                   <h3 className="text-lg font-medium">{t("rules.principles")}</h3>
                   <ul className="mt-4 space-y-3 text-xs leading-6 text-muted-foreground">{(["scope", "information", "custom", "adjustment"] as const).map((item) => <li key={item} className="flex gap-3"><span aria-hidden="true">—</span>{t(`rules.policy.${item}`)}</li>)}</ul>
                 </section>

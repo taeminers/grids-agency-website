@@ -937,6 +937,7 @@
       "priceUnit": "프로젝트 단위 · VAT 별도",
       "breakdown": "금액 구성 보기",
       "base": "기본 제작비",
+      "minimumAdjustment": "최소 수주 금액 조정",
       "cta": "프로젝트 상담",
       "notes": {
         "scope": {
@@ -959,7 +960,7 @@
       "cta": "맞춤 범위 상담"
     },
     "rules": {
-      "title": "무엇에 얼마가 필요한지.",
+      "title": "기준표",
       "description": "기본 제작비와 필요한 추가 작업을 함께 살펴보세요. 이 표는 견적의 기준이며, 실제 범위와 난이도를 검토해 최종 제안 금액을 정합니다.",
       "contents": "견적 기준 목차",
       "calculation": "견적 계산 방식",

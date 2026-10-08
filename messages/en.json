@@ -937,6 +937,7 @@
       "priceUnit": "Per project · VAT excluded",
       "breakdown": "View price breakdown",
       "base": "Base production",
+      "minimumAdjustment": "Minimum engagement adjustment",
       "cta": "Discuss a project",
       "notes": {
         "scope": {
