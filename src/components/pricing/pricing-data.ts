@@ -26,11 +26,11 @@ const custom = (id: string, ko: string, en: string, detail?: Copy): Rate =>
 export const rateSections: RateSection[] = [
   {
     id: "production", title: text("기본 제작비", "Production"),
-    note: text("프로젝트 유형에 따른 시작 금액입니다. 실제 범위와 난이도를 확인한 뒤 견적을 확정합니다.", "Starting rates by project type. The final quote depends on the confirmed scope and complexity."),
+    note: text("홈페이지는 템플릿형 · 맞춤형 · 프리미엄의 세 가지 구성입니다. 각 구성에 포함된 기능은 중복 청구하지 않으며, 추가 범위는 별도 협의합니다.", "Websites have three tiers: Template, Custom and Premium. Included features are not charged again; additional scope is agreed separately."),
     rows: [
-      from("landing", "랜딩페이지", "Landing page", text("기획 · UI/UX · 반응형 개발 · 기본 인터랙션 · 문의 폼 · SEO · Analytics · 배포 · QA", "Planning, UI/UX, responsive development, basic interactions, inquiry form, SEO, analytics, deployment and QA")),
-      from("brand", "기업 / 브랜드 홈페이지", "Company / brand website", text("최대 5페이지 · 맞춤 디자인 · 기획 / 개발 · 문의 폼 · SEO · Analytics · 배포 · QA · 기본 수정 2회", "Up to 5 pages, custom design, planning and development, inquiry form, SEO, analytics, deployment, QA and 2 revision rounds")),
-      from("premium", "고급 브랜드 홈페이지", "Advanced brand website", text("더 높은 수준의 디자인, 인터랙션 또는 브랜드 표현", "Higher design, interaction or brand-expression requirements")),
+      from("landing", "홈페이지 · 템플릿형 (랜딩페이지)", "Website · Template (landing page)", text("템플릿 선택형 · 제공 자료 적용 · 반응형 · 문의 폼 · SEO · 배포 · QA. Analytics / CMS 미포함", "Template-based website, supplied content, responsive layout, inquiry form, SEO, deployment and QA. Analytics / CMS excluded")),
+      from("brand", "홈페이지 · 맞춤형 (기업 / 브랜드)", "Website · Custom (company / brand)", text("맞춤 디자인 · Analytics · AI 브랜드 영상 1개 · 문의 폼 · SEO · 배포 · QA · 수정 2회", "Custom design, analytics, one AI brand video, inquiry form, SEO, deployment, QA and 2 revision rounds")),
+      from("premium", "홈페이지 · 프리미엄 (고급 브랜드)", "Website · Premium (advanced brand)", text("맞춤형 구성 전체 · CMS 1개 · 프리미엄 모션 / 스크롤 연출 · 고급 브랜드 디자인 · CMS 사용 안내", "Everything in Custom, one CMS, premium motion / scroll effects, advanced brand design and CMS handover")),
       from("commerce", "쇼핑몰", "E-commerce", text("상품 · 주문 · 결제 등 커머스 기능. 세부 기능에 따라 별도 산정", "Products, orders and payments; detailed features are scoped separately")),
       from("mvp", "웹서비스 / MVP", "Web service / MVP", text("회원 · 데이터베이스 · 비즈니스 로직을 포함하는 맞춤 웹서비스", "Custom web services with accounts, a database and business logic")),
       from("platform", "복잡한 웹서비스 / 플랫폼", "Complex web service / platform", text("복잡한 권한 · 사용자 유형 · 결제 · 관리자 · 외부 연동. 개별 산정 원칙", "Complex roles, user types, payments, administration and integrations. Individually quoted")),
@@ -39,7 +39,7 @@ export const rateSections: RateSection[] = [
   },
   {
     id: "pages", title: text("페이지 추가", "Additional pages"),
-    note: text("기업 / 브랜드 홈페이지는 기본 5페이지를 포함합니다. 페이지 수가 많거나 반복 구조인 경우 별도 조정할 수 있습니다.", "Company / brand websites include 5 pages. Large page counts and repeated layouts may be adjusted separately."),
+    note: text("기본 페이지 범위는 선택한 홈페이지 구성과 합의한 제작 범위에 따릅니다. 추가 페이지 수가 많거나 반복 구조인 경우 별도 조정할 수 있습니다.", "The included pages follow the chosen website package and agreed scope. Large additions and repeated layouts may be adjusted separately."),
     rows: [
       fixed("page", "일반 페이지", "Standard page", text("페이지", "page")),
       fixed("advanced-page", "고급 페이지", "Advanced page", text("페이지", "page")),
@@ -48,7 +48,7 @@ export const rateSections: RateSection[] = [
   },
   {
     id: "features", title: text("추가 기능", "Additional features"),
-    note: text("별도 표시가 없는 금액은 시작가입니다. 기능의 범위와 복잡도에 따라 달라집니다.", "Unless stated otherwise, these are starting rates and vary with feature scope and complexity."),
+    note: text("별도 표시가 없는 금액은 시작가입니다. 패키지에 포함된 기능은 중복 청구하지 않으며, 추가 범위와 복잡도에 따라 달라집니다.", "Unless stated otherwise, these are starting rates. Included package features are not charged again; extra scope and complexity may affect the quote."),
     rows: [
       included("form", "기본 문의 폼", "Basic inquiry form"),
       from("advanced-form", "고급 문의 폼", "Advanced inquiry form"),
@@ -78,6 +78,7 @@ export const rateSections: RateSection[] = [
   },
   {
     id: "design", title: text("디자인 및 인터랙션", "Design & interaction"),
+    note: text("프리미엄 홈페이지에 포함된 모션은 중복 청구하지 않습니다. WebGL / 3D 등 별도 범위는 개별 산정합니다.", "Motion included in the Premium website is not charged again. Additional WebGL / 3D work is scoped separately."),
     rows: [included("basic-design", "일반 디자인 / 인터랙션", "Standard design / interaction"), from("interaction", "고급 인터랙션", "Advanced interactions"), custom("webgl", "WebGL · 3D · 고급 스크롤 인터랙션", "WebGL, 3D and advanced scroll interactions")],
   },
   {
@@ -102,7 +103,7 @@ export const rateSections: RateSection[] = [
   },
   {
     id: "minimum", title: text("최소 수주 금액", "Minimum engagements"),
-    note: text("계산 금액이 최소 수주 금액보다 낮으면 최소 금액을 적용합니다. 신규 홈페이지의 최소 금액은 기업 / 브랜드 홈페이지 시작가와 구분됩니다.", "The minimum applies if the calculation falls below it. The new-website minimum is distinct from the company / brand website starting rate."),
+    note: text("계산 금액이 최소 수주 금액보다 낮으면 최소 금액을 적용합니다. 템플릿형은 랜딩페이지 최소 금액, 맞춤형과 프리미엄은 신규 홈페이지 최소 금액을 적용합니다.", "The minimum applies if the calculation falls below it. Template uses the landing-page minimum; Custom and Premium use the new-website minimum."),
     rows: [fixed("min-landing", "랜딩페이지", "Landing page"), fixed("min-website", "신규 홈페이지", "New website"), fixed("min-mvp", "웹서비스 / MVP", "Web service / MVP"), fixed("min-existing", "기존 서비스 수정", "Existing service changes")],
   },
   {
@@ -119,26 +120,45 @@ export function getRate(id: string): Rate {
   return rate;
 }
 
-export type PackageTier = { summary: Copy; scope: Copy[]; extras: { id: string; quantity: number }[] };
-export type ServicePackages = { id: string; description: Copy; tiers: PackageTier[] };
+export type PackageTier = { title?: Copy; baseRateId?: PricedRateId; summary: Copy; scope: Copy[]; extras: { id: string; quantity: number }[] };
+export type ServicePackages = { id: string; label?: Copy; description: Copy; tiers: PackageTier[] };
 const extra = (id: string, quantity = 1) => ({ id, quantity });
 const tier = (summary: Copy, scope: Copy[], extras: PackageTier["extras"] = []): PackageTier => ({ summary, scope, extras });
 
 export const packageServices: ServicePackages[] = [
-  { id: "landing", description: text("하나의 메시지에 집중하는 제품 소개와 캠페인 페이지.", "A focused launch page for a product, service or campaign."), tiers: [
-    tier(text("빠르게 시작하는 한 페이지", "One page to get started"), [text("랜딩페이지 1개", "One landing page"), text("기획 · UI/UX · 반응형 개발", "Planning, UI/UX and responsive build"), text("기본 문의 폼 · SEO · Analytics", "Basic inquiry form, SEO and analytics"), text("기본 인터랙션 · 배포 · QA", "Basic interactions, deployment and QA")]),
-    tier(text("문의 전환에 집중한 구성", "Built around qualified inquiries"), [text("Basic 구성 전체", "Everything in Basic"), text("고급 문의 폼 1개", "One advanced inquiry form")], [extra("advanced-form")]),
-    tier(text("콘텐츠와 언어를 확장하는 구성", "Add content and another language"), [text("Plus 구성 전체", "Everything in Plus"), text("블로그 / 뉴스 모듈 1개", "One blog / news module"), text("추가 언어 1개 · 번역문 고객 제공", "One additional language; client supplies translations")], [extra("advanced-form"), extra("blog"), extra("language")]),
-  ] },
-  { id: "brand", description: text("비즈니스의 정보와 브랜드를 함께 담는 홈페이지.", "A complete home for your business and brand."), tiers: [
-    tier(text("브랜드의 기본을 담은 홈페이지", "Your brand essentials"), [text("최대 5페이지 · 맞춤 디자인", "Up to 5 pages with custom design"), text("기획 · 반응형 개발 · 기본 인터랙션", "Planning, responsive build and basic interactions"), text("문의 폼 · SEO · Analytics · 배포 · QA", "Inquiry form, SEO, analytics, deployment and QA"), text("기본 수정 2회", "Two standard revision rounds")]),
-    tier(text("직접 콘텐츠를 관리하는 홈페이지", "Manage your own content"), [text("Basic 구성 전체", "Everything in Basic"), text("일반 페이지 2개 추가 · 총 7페이지", "Two extra standard pages; 7 pages total"), text("CMS 1개", "One CMS")], [extra("page", 2), extra("cms")]),
-    tier(text("더 많은 콘텐츠와 글로벌 접점", "More content, broader reach"), [text("Basic 구성 전체", "Everything in Basic"), text("일반 페이지 5개 추가 · 총 10페이지", "Five extra standard pages; 10 pages total"), text("CMS · 블로그 / 뉴스 각 1개", "One CMS and one blog / news module"), text("추가 언어 1개 · 고급 인터랙션 1개", "One extra language and one advanced interaction")], [extra("page", 5), extra("cms"), extra("blog"), extra("language"), extra("interaction")]),
-  ] },
-  { id: "premium", description: text("브랜드 표현과 디자인 완성도에 더 집중하는 웹 경험.", "A web experience with greater emphasis on brand expression and design."), tiers: [
-    tier(text("디자인 중심의 브랜드 경험", "A design-led brand experience"), [text("최대 5페이지 구성안", "Proposed scope of up to 5 pages"), text("고급 브랜드 디자인 · 반응형 개발", "Advanced brand design and responsive build"), text("기획 · 배포 · QA", "Planning, deployment and QA"), text("WebGL / 3D 제외", "WebGL / 3D excluded")]),
-    tier(text("운영과 인터랙션까지", "Add editing and interaction"), [text("Basic 구성 전체", "Everything in Basic"), text("CMS 1개 · 고급 인터랙션 1개", "One CMS and one advanced interaction")], [extra("cms"), extra("interaction")]),
-    tier(text("확장된 브랜드 콘텐츠 경험", "An expanded brand experience"), [text("Plus 구성 전체", "Everything in Plus"), text("일반 페이지 5개 추가 · 총 10페이지", "Five extra standard pages; 10 pages total"), text("추가 언어 1개 · 번역문 고객 제공", "One additional language; client supplies translations")], [extra("cms"), extra("interaction"), extra("page", 5), extra("language")]),
+  { id: "homepage", label: text("홈페이지", "Website"), description: text("템플릿형부터 맞춤 제작, 프리미엄 브랜드 경험까지. 필요한 수준에 맞춰 선택하세요.", "Choose a template, a custom website, or a premium brand experience."), tiers: [
+    {
+      ...tier(text("준비된 템플릿으로 가볍게 시작", "A simple start with a ready-made template"), [
+        text("기존 템플릿 선택형", "Built with an existing template"),
+        text("고객 제공 로고 · 문구 · 이미지 적용", "Your supplied logo, copy and images"),
+        text("반응형 기본 레이아웃", "Responsive template layout"),
+        text("기본 문의 폼 · SEO", "Basic inquiry form and SEO"),
+        text("배포 · QA", "Deployment and QA"),
+      ]),
+      title: text("템플릿형", "Template"), baseRateId: "landing",
+    },
+    {
+      ...tier(text("브랜드에 맞춰 설계하는 기업 홈페이지", "A company website designed around your brand"), [
+        text("맞춤 브랜드 디자인", "Custom brand design"),
+        text("기획 · UI/UX · 반응형 개발", "Planning, UI/UX and responsive development"),
+        text("Analytics 설정 · 방문자 분석", "Analytics setup and visitor insights"),
+        text("AI 브랜드 영상 1개 · 웹사이트 적용", "One AI brand video, integrated into the website"),
+        text("기본 인터랙션 · 문의 폼 · SEO", "Basic interactions, inquiry form and SEO"),
+        text("기본 수정 2회 · 배포 · QA", "Two revision rounds, deployment and QA"),
+      ]),
+      title: text("맞춤형", "Custom"), baseRateId: "brand",
+    },
+    {
+      ...tier(text("콘텐츠 운영과 모션까지 완성한 브랜드 경험", "A premium brand experience with content management and motion"), [
+        text("맞춤형 구성 전체", "Everything in Custom"),
+        text("고급 브랜드 디자인", "Advanced brand design"),
+        text("CMS 1개 · 콘텐츠 직접 관리", "One CMS to manage your own content"),
+        text("프리미엄 모션 · 스크롤 연출 · 전환 인터랙션", "Premium motion, scroll effects and transitions"),
+        text("Analytics 설정 · AI 브랜드 영상 1개", "Analytics setup and one AI brand video"),
+        text("CMS 사용 안내 · 배포 · QA", "CMS handover, deployment and QA"),
+      ]),
+      title: text("프리미엄", "Premium"), baseRateId: "premium",
+    },
   ] },
   { id: "commerce", description: text("상품 소개부터 주문과 결제까지 이어지는 온라인 스토어.", "An online store connecting products, orders and payments."), tiers: [
     tier(text("온라인 판매의 기본 구성", "The essentials for online sales"), [text("스토어 1개 · 기본 상품 / 주문 흐름", "One store with a basic product and order flow"), text("결제 흐름 1개", "One payment flow"), text("기획 · 디자인 · 개발 · 배포 · QA", "Planning, design, build, deployment and QA"), text("상품 수 / 배송 정책은 범위 확정 시 합의", "Product count and shipping rules agreed during scoping")]),
@@ -162,13 +182,17 @@ export const packageServices: ServicePackages[] = [
   ] },
 ];
 
+export function getPackageBaseRate(service: ServicePackages, tier: PackageTier): Rate {
+  return getRate(tier.baseRateId ?? service.id);
+}
+
 function packageSubtotal(service: ServicePackages, tier: PackageTier): number {
   const amount = (id: string) => {
     const value = getRate(id).amount;
     if (value === undefined) throw new Error(`No documented price for ${id}`);
     return value;
   };
-  return amount(service.id) + tier.extras.reduce((total, item) => total + amount(item.id) * item.quantity, 0);
+  return amount(tier.baseRateId ?? service.id) + tier.extras.reduce((total, item) => total + amount(item.id) * item.quantity, 0);
 }
 
 const minimumIds: Record<string, PricedRateId> = {
@@ -177,7 +201,7 @@ const minimumIds: Record<string, PricedRateId> = {
 };
 
 export function packageMinimumAdjustment(service: ServicePackages, tier: PackageTier): number {
-  const minimumId = minimumIds[service.id];
+  const minimumId = minimumIds[tier.baseRateId ?? service.id];
   if (!minimumId) throw new Error(`Unknown package minimum: ${service.id}`);
   return Math.max(0, quotationRates[minimumId] - packageSubtotal(service, tier));
 }

@@ -38,7 +38,7 @@ export function FooterBeams() {
       <div className="absolute -inset-1 opacity-50 blur-[0.5px] dark:opacity-70">
         {nearby && (
           <GraphicsBoundary>
-            <Beams active={Boolean(active)} beamWidth={3} beamHeight={22} beamNumber={8} speed={0.35} rotation={24} noiseIntensity={0.35} scale={0.16} lightColor={dark ? "#c4d8f2" : "#e9620e"} beamColor={dark ? "#171a22" : "#241d19"} backgroundColor={dark ? "#171717" : "#ffffff"} lightMode={!dark} />
+            <Beams active={Boolean(active)} beamWidth={3} beamHeight={22} beamNumber={8} speed={0.35} rotation={24} noiseIntensity={0.35} scale={0.16} lightColor={dark ? "#c4d8f2" : "#62b0ed"} beamColor={dark ? "#171a22" : "#192532"} backgroundColor={dark ? "#171717" : "#ffffff"} lightMode={!dark} />
           </GraphicsBoundary>
         )}
       </div>

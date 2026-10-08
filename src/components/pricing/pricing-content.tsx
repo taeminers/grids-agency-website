@@ -7,11 +7,12 @@ import { Tabs } from "radix-ui";
 import { ArrowUpRight, Check, Plus } from "lucide-react";
 import { MetalButton } from "@/components/spectrumui/metal-button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { getRate, packageAmount, packageMinimumAdjustment, packageServices, rateSections, type Copy, type Rate } from "./pricing-data";
+import { getRate, getPackageBaseRate, packageAmount, packageMinimumAdjustment, packageServices, rateSections, type Copy, type Rate } from "./pricing-data";
 import CustomBuilds from "./custom-builds";
 import PackageCard from "./package-card";
 import RulesNavigation from "./rules-navigation";
 import rulesGrid from "./rules-grid.module.css";
+import PricingHeader from "./pricing-header";
 
 const tierNames = ["Basic", "Plus", "Pro"];
 
@@ -31,17 +32,9 @@ export default function PricingContent() {
   };
 
   return (
-    <main className="min-h-screen bg-background text-foreground">
-      <div className="mx-auto max-w-[1920px] px-(--pricing-gutter) pt-36 pb-16 [--pricing-gutter:1.25rem] sm:[--pricing-gutter:2rem] md:pt-44 md:[--pricing-gutter:3rem] lg:[--pricing-gutter:4rem]">
-        <header className="mb-12 grid gap-7 md:grid-cols-[1.2fr_1fr] md:items-end md:gap-16">
-          <div>
-            <h1 className="whitespace-pre-line text-[clamp(36px,5.5vw,68px)] leading-[1.12] font-medium tracking-[-0.055em]">{t("title")}</h1>
-          </div>
-          <div className="max-w-md text-sm leading-7 text-muted-foreground md:justify-self-end">
-            <p>{t("description")}</p>
-            <p className="mt-4 text-xs font-medium text-foreground">{t("currencyNote")}</p>
-          </div>
-        </header>
+    <main className="min-h-screen bg-background text-foreground [--pricing-gutter:1.25rem] sm:[--pricing-gutter:2rem] md:[--pricing-gutter:3rem] lg:[--pricing-gutter:4rem]">
+      <PricingHeader />
+      <div className="mx-auto max-w-[1920px] px-(--pricing-gutter) pt-2 pb-16 md:pt-4">
 
         <Tabs.Root defaultValue="packages">
           <Tabs.List aria-label={t("tabs.label")} className="mb-10 grid grid-cols-2 border-b border-foreground/20">
@@ -65,7 +58,7 @@ export default function PricingContent() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent data-pricing-service-select position="popper" className="rounded-none">
-                    {packageServices.map((item) => <SelectItem key={item.id} value={item.id} className="min-h-10 cursor-pointer rounded-none">{copy(getRate(item.id).label)}</SelectItem>)}
+                    {packageServices.map((item) => <SelectItem key={item.id} value={item.id} className="min-h-10 cursor-pointer rounded-none">{copy(item.label ?? getRate(item.id).label)}</SelectItem>)}
                   </SelectContent>
                 </Select>
               </div>
@@ -73,11 +66,11 @@ export default function PricingContent() {
 
             <div className="mb-10 border-l-2 border-foreground/25 bg-foreground/[0.025] px-5 py-5 text-sm leading-7 text-muted-foreground sm:px-6">
               <p className="mb-2 font-medium text-foreground">{t("packages.draftLabel")}</p>
-              <p className="max-w-5xl [word-break:keep-all]">{t("packages.draftNote")}</p>
+              <p className="max-w-5xl [word-break:keep-all]">{t(service.id === "homepage" ? "packages.homepageNote" : "packages.draftNote")}</p>
             </div>
 
             <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
-              <h3 className="text-lg font-medium tracking-tight">{copy(getRate(service.id).label)}</h3>
+              <h3 className="text-lg font-medium tracking-tight">{copy(service.label ?? getRate(service.id).label)}</h3>
               <p className="max-w-xl text-xs leading-6 text-muted-foreground">{copy(service.description)}</p>
             </div>
 
@@ -85,12 +78,12 @@ export default function PricingContent() {
               {service.tiers.map((tier, index) => (
                 <PackageCard key={`${service.id}-${index}`} featured={index === 1}>
                   <div className="mb-6 flex items-center justify-between">
-                    <h4 className="text-lg font-medium tracking-tight">{tierNames[index]}</h4>
+                    <h4 className="text-lg font-medium tracking-tight">{tier.title ? copy(tier.title) : tierNames[index]}</h4>
                     <span aria-hidden="true" className="absolute top-3 right-6 font-mono text-[10px] text-muted-foreground sm:right-8">0{index + 1}</span>
                   </div>
                   <p className="min-h-10 text-xs leading-5 text-muted-foreground">{copy(tier.summary)}</p>
                   <div className="mt-5 border-b border-foreground/10 pb-7">
-                    <p className="mb-2 text-[10px] text-muted-foreground">{t("packages.proposedPrice")}</p>
+                    <p className="mb-2 text-[10px] text-muted-foreground">{t(service.id === "homepage" ? "packages.packagePrice" : "packages.proposedPrice")}</p>
                     <p className="text-[clamp(28px,3vw,40px)] leading-none font-medium tracking-[-0.05em] tabular-nums">{money(packageAmount(service, tier))}</p>
                     <p className="mt-3 text-[11px] text-muted-foreground">{t("packages.priceUnit")}</p>
                   </div>
@@ -101,7 +94,7 @@ export default function PricingContent() {
                     <details className="mb-6 text-xs">
                       <summary className="cursor-pointer py-2 text-muted-foreground transition-colors hover:text-foreground">{t("packages.breakdown")}</summary>
                       <dl className="mt-2 space-y-2 border-l border-foreground/15 pl-3 text-[11px] leading-5 text-muted-foreground">
-                        <div className="flex justify-between gap-3"><dt>{t("packages.base")}</dt><dd className="shrink-0 tabular-nums">{money(getRate(service.id).amount!)}</dd></div>
+                        <div className="flex justify-between gap-3"><dt>{t("packages.base")}</dt><dd className="shrink-0 tabular-nums">{money(getPackageBaseRate(service, tier).amount!)}</dd></div>
                         {tier.extras.map((item) => <div key={item.id} className="flex justify-between gap-3"><dt>{copy(getRate(item.id).label)}{item.quantity > 1 ? ` × ${item.quantity}` : ""}</dt><dd className="shrink-0 tabular-nums">{money(getRate(item.id).amount! * item.quantity)}</dd></div>)}
                         {packageMinimumAdjustment(service, tier) > 0 && <div className="flex justify-between gap-3"><dt>{t("packages.minimumAdjustment")}</dt><dd className="shrink-0 tabular-nums">{money(packageMinimumAdjustment(service, tier))}</dd></div>}
                       </dl>

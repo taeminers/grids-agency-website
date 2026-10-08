@@ -24,9 +24,9 @@ export default function HeroGridBackground() {
       <PredictiveArc
         variant="aurora"
         background={isDark ? "#0a0a0a" : "#ffffff"}
-        baseColor={isDark ? "#7896a0" : "#e9620e"}
-        accentColor={isDark ? "#d3bea0" : "#b39169"}
-        highlight={isDark ? "#eeeede" : "#d6c9a9"}
+        baseColor={isDark ? "#789ebd" : "#62b0ed"}
+        accentColor={isDark ? "#b8d9f0" : "#277db8"}
+        highlight={isDark ? "#e8f6ff" : "#d8efff"}
         intensity={isDark ? 1.1 : 1.4}
         speed={reducedMotion ? 0 : 24}
         arch={arch}

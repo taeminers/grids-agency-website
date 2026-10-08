@@ -19,8 +19,9 @@
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
 
-  --tertiary: #e9620e;
-  --tertiary-foreground: #efab6f;
+  /* Sky-blue accent shared by hover states and section glows. */
+  --tertiary: #277db8;
+  --tertiary-foreground: #e0f2fe;
 
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
@@ -41,15 +42,15 @@
 
   --foreground: oklch(0.145 0 0);
 
-  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-1: #277db8;
 
   --chart-2: oklch(0.6 0.118 184.704);
 
   --chart-3: oklch(0.398 0.07 227.392);
 
-  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-4: #8bcff0;
 
-  --chart-5: oklch(0.769 0.188 70.08);
+  --chart-5: #667cca;
 
   --sidebar: oklch(0.985 0 0);
 
@@ -84,7 +85,7 @@
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
 
-  --tertiary: #f2fdff;
+  --tertiary: #d8efff;
   --tertiary-foreground: #0c4a6e;
 
   --muted: oklch(0.269 0 0);
@@ -101,9 +102,9 @@
   --ring: oklch(0.556 0 0);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-3: #62b0ed;
   --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
+  --chart-5: #a6dcf5;
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);

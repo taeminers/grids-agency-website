@@ -162,7 +162,7 @@ export default function ProcessScene() {
                 </RoundedBox>
                  {/* Light Emissive */}
                  <RoundedBox args={[0.2, 0.1, 0.2]} radius={0.01} smoothness={4} position={[0, 0.5, 0]}>
-                    <meshStandardMaterial color="#ffaa00" emissive="#ffaa00" emissiveIntensity={3} toneMapped={false} />
+                    <meshStandardMaterial color="#62b0ed" emissive="#62b0ed" emissiveIntensity={3} toneMapped={false} />
                 </RoundedBox>
             </group>
 
@@ -187,7 +187,7 @@ export default function ProcessScene() {
             </group>
 
             {/* Additional Light Sources */}
-            <pointLight position={[2, 2, 2]} intensity={1} color="#ffeebb" distance={5} decay={2} />
+            <pointLight position={[2, 2, 2]} intensity={1} color="#d8efff" distance={5} decay={2} />
             <ambientLight intensity={0.5} />
             
             </group>
