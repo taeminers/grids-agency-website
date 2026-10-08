@@ -35,6 +35,17 @@
     "label": "카톡 상담",
     "accessibleLabel": "카카오톡으로 상담하기 (새 탭에서 열림)"
   },
+  "HomePricing": {
+    "lead": "고객은 <strong>검색하고, 비교하고, 결정합니다.</strong>",
+    "headline": "온라인에서 보이지 않으면,\n<strong>선택받기 어렵습니다.</strong>",
+    "reflection": "지금 이 순간에도, 당신이 그러하듯.",
+    "context": "앞서가는 기업은 <strong>IT와 AI</strong>로",
+    "outcome": "비용은 줄이고,\n<strong>속도는 높이고</strong> 있습니다.",
+    "expertise": "필요한 IT·AI 기술과 인재를,\n<strong>합리적인 비용으로.</strong>",
+    "invitation": "GRIDS를 <strong>당신의 팀처럼</strong> 활용하세요.",
+    "cta": "제작 비용 알아보기",
+    "continueScrolling": "계속 내리기"
+  },
   "StudioIntroduction": {
     "lanyardHint": "카드를 드래그해 보세요",
     "eyebrow": "우리는 누구인가",

@@ -35,6 +35,17 @@
     "label": "Let’s talk",
     "accessibleLabel": "Chat with us on KakaoTalk (opens in a new tab)"
   },
+  "HomePricing": {
+    "lead": "Customers <strong>search, compare, and then decide.</strong>",
+    "headline": "If you’re not visible online,\n<strong>you’re harder to choose.</strong>",
+    "reflection": "Just as you’re doing, right now.",
+    "context": "Leading businesses use <strong>AI and automation</strong> to",
+    "outcome": "cut costs\nand <strong>move faster.</strong>",
+    "expertise": "The IT & AI skills and talent you need,\n<strong>at a reasonable cost.</strong>",
+    "invitation": "Make GRIDS <strong>part of your team.</strong>",
+    "cta": "Explore pricing",
+    "continueScrolling": "Keep scrolling"
+  },
   "StudioIntroduction": {
     "lanyardHint": "DRAG TO EXPLORE",
     "eyebrow": "WHO WE ARE",

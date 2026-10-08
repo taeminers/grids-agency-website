@@ -10,6 +10,7 @@ interface HighlightedTextProps {
   className?: string;
   from?: From;
   delay?: number;
+  active?: boolean;
   inView?: boolean;
   once?: boolean;
 }
@@ -38,6 +39,7 @@ export function HighlightedText({
   className,
   from = "bottom",
   delay = 0,
+  active = true,
   inView = false,
   once = true,
 }: HighlightedTextProps) {
@@ -51,15 +53,17 @@ export function HighlightedText({
         className,
       )}
       initial="hidden"
-      whileInView={inView ? "visible" : undefined}
-      animate={inView ? undefined : "visible"}
+      whileInView={active && inView ? "visible" : undefined}
+      animate={!active ? "hidden" : inView ? undefined : "visible"}
       viewport={{ once }}
+      style={active ? undefined : { visibility: "hidden" }}
+      aria-hidden={!active || undefined}
     >
       <motion.span
         aria-hidden="true"
         className="absolute inset-0 -left-[0.15em] -right-[0.18em] bg-black dark:bg-white z-0 motion-reduce:transform-none!"
         variants={variants}
-        transition={reducedMotion ? { duration: 0 } : {
+        transition={reducedMotion || !active ? { duration: 0, delay: 0 } : {
           type: "spring",
           damping: 30,
           stiffness: 300,

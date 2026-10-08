@@ -1,0 +1,24 @@
+.opening { position: relative; display: flow-root; }
+.measurement { visibility: hidden; pointer-events: none; }
+.word { display: inline-block; line-height: 1; white-space: nowrap; }
+.emphasized { color: var(--foreground); font-weight: 500; }
+.largeMeasurement {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(1120px, calc(100vw - 128px));
+  margin: 0;
+  transform: translateX(-50%);
+  font-size: clamp(40px, 5.3vw, 72px);
+  line-height: 1.22;
+  font-weight: 400;
+  letter-spacing: -.035em;
+  text-align: center;
+  text-wrap: balance;
+  word-break: keep-all;
+}
+.visual { position: absolute; inset: 0; pointer-events: none; }
+.movingWord { position: absolute; top: 0; left: 0; display: block; line-height: 1; white-space: nowrap; transform-origin: top left; will-change: transform; }
+@media (max-width: 767px) {
+  .largeMeasurement { width: calc(100vw - 64px); font-size: clamp(32px, 10.3vw, 44px); line-height: 1.25; }
+}
