@@ -177,7 +177,7 @@ export default function Navbar({ className, inHero = false }: NavbarProps) {
           >
             <BrandLogo className="size-[22px]" />
             <span
-              className="relative inline-grid h-6 overflow-hidden text-[17px] font-bold tracking-[-0.025em] leading-6"
+              className="relative inline-grid h-6 overflow-hidden text-[17px] font-bold tracking-[-0.025em] leading-6 max-[360px]:text-sm"
               data-locale={locale}
               aria-hidden="true"
             >
@@ -226,11 +226,25 @@ export default function Navbar({ className, inHero = false }: NavbarProps) {
               {t("about")}
             </Link>
             <Link
+              href={`/${locale}/pricing`}
+              className="transition-colors hover:text-tertiary"
+            >
+              {t("pricing")}
+            </Link>
+            <Link
               href={`/${locale}/connect`}
               className="transition-colors hover:text-tertiary"
             >
               {t("contact")}
             </Link>
+          </motion.div>
+          <motion.div
+            layout="position"
+            layoutDependency={scrolled}
+            transition={{ layout: pillTransition }}
+            data-hero-reveal="text"
+            className="ml-auto group-data-[hero-pending=true]/hero:opacity-0 group-data-[hero-pending=true]/hero:blur-[10px] md:ml-0"
+          >
             {controls}
           </motion.div>
         </div>

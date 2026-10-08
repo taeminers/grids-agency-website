@@ -245,6 +245,7 @@ const lensFragmentShader =  `
   uniform sampler2D uTex;
   uniform vec2  uRes;
   uniform vec2  uCenter;
+  uniform float uEdgePlacement;
   uniform float uSizeX;
   uniform float uSizeY;
   uniform float uAspect;
@@ -285,7 +286,7 @@ const lensFragmentShader =  `
     return min(max(q.x, q.y), 0.0) + length(max(q, 0.0)) - r;
   }
 
-  vec3 discLens(vec2 center, float aspectCorrect, out float outA) {
+  vec3 discLens(vec2 center, float aspectCorrect, out float outA, out float sampledAlpha) {
     vec2 p = (vUv - center);
     p.x *= aspectCorrect;
 
@@ -295,6 +296,7 @@ const lensFragmentShader =  `
 
     float dist = length(p / halfSize);
     outA = 0.0;
+    sampledAlpha = 0.0;
 
     float maskND;
     if (uShape > 0.5) {
@@ -332,14 +334,18 @@ const lensFragmentShader =  `
     vec3 col = vec3(0.0);
 
     if (uDispersion < 0.01) {
-      col = texture2D(uTex, baseUV).rgb;
+      vec4 sampleColor = texture2D(uTex, baseUV);
+      col = sampleColor.rgb;
+      sampledAlpha = sampleColor.a;
     } else {
       vec3 caW = vec3(0.0);
       for (int i = 0; i < MAX_SAMPLES; i++) {
         if (i >= N) break;
         float t = float(i) / float(N - 1);
         vec2 sUV = baseUV + dispDir * (t - 0.5);
-        vec3 s = texture2D(uTex, sUV).rgb;
+        vec4 sampleColor = texture2D(uTex, sUV);
+        vec3 s = sampleColor.rgb;
+        sampledAlpha += sampleColor.a / float(N);
         vec3 w = vec3(
           exp(-pow((t - 0.00) / 0.38, 2.0)),
           exp(-pow((t - 0.50) / 0.38, 2.0)),
@@ -393,12 +399,27 @@ const lensFragmentShader =  `
   }
 
   void main(){
-    vec3 base = texture2D(uTex, vUv).rgb;
-    vec3 outc = base;
+    vec4 base = texture2D(uTex, vUv);
+    vec3 outc = base.rgb;
 
     float a = 0.0;
-    vec3 c = discLens(uCenter, uAspect, a);
-    outc = mix(outc, c, a);
+    float sampledAlpha = 0.0;
+    float outAlpha = base.a;
+    if (uEdgePlacement > 0.5) {
+      // Place each lens just outside the viewport so only its rim reaches the
+      // row. A minimum aspect keeps the middle clear on narrow screens too.
+      float edgeAspect = max(uAspect, 3.2);
+      vec3 left = discLens(vec2(-0.12, 0.5), edgeAspect, a, sampledAlpha);
+      outc = mix(outc, left, a);
+      outAlpha = mix(outAlpha, sampledAlpha, a);
+      vec3 right = discLens(vec2(1.12, 0.5), edgeAspect, a, sampledAlpha);
+      outc = mix(outc, right, a);
+      outAlpha = mix(outAlpha, sampledAlpha, a);
+    } else {
+      vec3 c = discLens(uCenter, uAspect, a, sampledAlpha);
+      outc = mix(outc, c, a);
+      outAlpha = mix(outAlpha, sampledAlpha, a);
+    }
 
     if (uVignette > 0.001) {
       vec2 vc = vUv - 0.5;
@@ -408,7 +429,8 @@ const lensFragmentShader =  `
       outc *= clamp(vig, 0.0, 1.0);
     }
 
-    gl_FragColor = vec4(outc, 1.0);
+    // Carry the same warped coverage through to the hero background.
+    gl_FragColor = vec4(outc, outAlpha);
   }
 `
 
@@ -476,11 +498,14 @@ const offsetOf = (v: ItemValue): number => {
 }
 
 export interface LensSettings {
+    placement?: "center" | "edges"
     shape?: "circle" | "square"
     width?: number
     height?: number
     rotation?: number
     dispersion?: number
+    /** Decorative lens glow; zero keeps only the original refraction. */
+    glow?: number
     ringColor?: string
 }
 
@@ -614,6 +639,7 @@ function makeParams(p: LiquidGlassCarouselProps) {
         },
 
         lens: {
+            edgePlacement: l.placement === "edges",
             enabled: true,
             square: l.shape === "square",
             round: 0,
@@ -626,7 +652,7 @@ function makeParams(p: LiquidGlassCarouselProps) {
             zoom: 0,
             dispersion: clamp(l.dispersion ?? 11, 0, 60),
             blur: 0,
-            glow: 3,
+            glow: clamp(l.glow ?? 3, 0, 17),
             whiteGlow: 0.08,
             novaSize: 12,
             ring: 1 * lensAlpha,
@@ -741,11 +767,11 @@ function createEngine(mount: HTMLElement, getParams: () => Params, onPanels?: (p
         if (!renderer || pp.background === clearKey) return
         clearKey = pp.background
         try {
-            clearColor.set(pp.background)
+            clearColor.set(pp.background === "transparent" ? "#000000" : pp.background)
         } catch {
             clearColor.set("#ffffff")
         }
-        renderer?.setClearColor(clearColor, 1)
+        renderer?.setClearColor(clearColor, pp.background === "transparent" ? 0 : 1)
     }
     applyClear()
 
@@ -907,6 +933,7 @@ function createEngine(mount: HTMLElement, getParams: () => Params, onPanels?: (p
         uTex: { value: rt.texture as THREE.Texture },
         uRes: { value: new THREE.Vector2(W * dpr, H * dpr) },
         uCenter: { value: new THREE.Vector2(0.5, 0.5) },
+        uEdgePlacement: { value: 0 },
         uSizeX: { value: 0.565 },
         uSizeY: { value: 1 },
         uShape: { value: 0 },
@@ -957,6 +984,7 @@ function createEngine(mount: HTMLElement, getParams: () => Params, onPanels?: (p
         const L = pp.lens
         const rad = (a: number) => (a * Math.PI) / 180
         lensU.uCenter.value.set(L.posX, L.posY)
+        lensU.uEdgePlacement.value = L.edgePlacement ? 1 : 0
         lensU.uAspect.value = W / H
         lensU.uTime.value = now * 0.001
         lensU.uRotation.value = rad(L.rotation) + rad(L.spin) * (now * 0.001)

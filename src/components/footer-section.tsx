@@ -7,7 +7,7 @@ import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { ArrowRight } from "reicon-react/icons/ArrowRight";
 import BrandLogo from "@/components/brand-logo";
-import { FooterBeams } from "@/components/footer-graphics";
+import { FooterAurora } from "@/components/footer-graphics";
 import { MetalButton } from "@/components/spectrumui/metal-button";
 import { cn } from "@/lib/utils";
 import { trackEvent } from "@/lib/analytics";
@@ -39,7 +39,7 @@ function FooterContent({ className }: FooterSectionProps) {
       )}
       aria-labelledby="footer-heading"
     >
-      <FooterBeams />
+      <FooterAurora />
       <div className="relative px-[clamp(20px,4.2vw,72px)]">
         <div className="flex flex-col items-center py-section text-center">
           <h2
@@ -52,7 +52,7 @@ function FooterContent({ className }: FooterSectionProps) {
           </h2>
           <p
             data-scroll-reveal="text"
-            className="mt-6 max-w-sm text-sm leading-7 text-muted-foreground [text-wrap:balance] [word-break:keep-all]"
+            className="mt-6 max-w-sm text-sm leading-7 [text-wrap:balance] [word-break:keep-all]"
           >
             {t("closing")}
           </p>
@@ -108,6 +108,7 @@ function FooterContent({ className }: FooterSectionProps) {
               {[
                 { href: `/${locale}`, label: t("home") },
                 { href: `/${locale}/archive`, label: nav("work") },
+                { href: `/${locale}/pricing`, label: nav("pricing") },
                 { href: `/${locale}/connect`, label: nav("contact") },
               ].map((item) => (
                 <li key={item.href}>

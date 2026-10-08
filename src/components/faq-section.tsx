@@ -54,7 +54,7 @@ function FaqTitle() {
       />
       <BeamCard
         size="pulse-inner"
-        colorVariant="colorful"
+        colorVariant="ocean"
         strength={1}
         theme={"auto"}
         duration={8}
@@ -70,7 +70,7 @@ function FaqTitle() {
             className="pointer-events-none absolute inset-x-0 -inset-y-12 -z-10 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_65%,transparent)]"
           >
             <div className="absolute inset-0 [mask-image:linear-gradient(to_right,transparent,black_25%,black_75%,transparent)]">
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_65%,#e9620e30,transparent_70%)] dark:bg-[radial-gradient(ellipse_at_50%_65%,#66b3ff40,transparent_70%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_65%,#62b0ed30,transparent_70%)] dark:bg-[radial-gradient(ellipse_at_50%_65%,#66b3ff40,transparent_70%)]" />
               {visible && (
                 <AnimatedGradient config={config} style={{ zIndex: 0 }} />
               )}

@@ -20,8 +20,8 @@ import { trackEvent } from "@/lib/analytics";
 
 const LightRays = dynamic(() => import("@/components/light-rays"), { ssr: false });
 const successRayColors = {
-  light: { mode: "multi", color1: "#677e9b", color2: "#ad805e" },
-  dark: { mode: "multi", color1: "#c1d6ed", color2: "#ecd0ac" },
+  light: { mode: "multi", color1: "#277db8", color2: "#62b0ed" },
+  dark: { mode: "multi", color1: "#b6d8f2", color2: "#d8efff" },
 } as const;
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -139,7 +139,7 @@ export default function ConnectExperience() {
                 reduced ? {} : { scale: [1, 1.12, 1], opacity: [0.5, 0.8, 0.5] }
               }
               transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute inset-x-[10%] top-[46%] h-[70%] bg-[radial-gradient(ellipse_at_32%_65%,#d8b79540,transparent_48%),radial-gradient(ellipse_at_72%_65%,#829b9e30,transparent_48%)] blur-3xl dark:bg-[radial-gradient(ellipse_at_32%_65%,#c58e6430,transparent_48%),radial-gradient(ellipse_at_72%_65%,#799aab28,transparent_48%)]"
+              className="absolute inset-x-[10%] top-[46%] h-[70%] bg-[radial-gradient(ellipse_at_32%_65%,#62b0ed40,transparent_48%),radial-gradient(ellipse_at_72%_65%,#8bcff030,transparent_48%)] blur-3xl dark:bg-[radial-gradient(ellipse_at_32%_65%,#a6dcf530,transparent_48%),radial-gradient(ellipse_at_72%_65%,#789ebd28,transparent_48%)]"
             />
             <svg
               viewBox="0 0 1440 600"

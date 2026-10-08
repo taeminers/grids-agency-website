@@ -4,10 +4,11 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import LiquidGlassCarousel from "@/components/originkit/ui/liquid-glass-carousel";
 import { demoProjects } from "@/components/archive/demo-project-data";
-import { ArchiveProjectMedia } from "@/components/archive/archive-project-media";
 
-// DOM slides retain their live iframes; OriginKit controls their panel motion.
-const items = demoProjects.map(() => ({ image: "" }));
+// Local screenshots use OriginKit's original WebGL refraction path.
+const items = demoProjects.map((project) => ({
+  image: `/images/demo-previews/${project.key}.webp`,
+}));
 
 export default function HeroDemoCarousel() {
   const t = useTranslations("Hero.showcase");
@@ -53,13 +54,10 @@ export default function HeroDemoCarousel() {
           cardHeight={cardWidth / 1.6}
           gap={width < 640 ? 16 : 28}
           background="transparent"
+          lens={{ placement: "edges", glow: 0 }}
           motion={{ autoplay: paused || reducedMotion ? 0 : 36, snap: false, glide: 6 }}
           entry={{ enabled: !reducedMotion, enterFrom: "alternate", transition: { duration: 0.6, delay: 0 } }}
           interaction={{ wheel: false, drag: !reducedMotion, clickToFocus: false }}
-          renderItem={(index) => {
-            const project = demoProjects[index];
-            return <ArchiveProjectMedia project={project} title={project.title ?? project.key} showFallbackLabel={false} keepPreviewMounted className="absolute inset-0" />;
-          }}
         />
       )}
     </div>

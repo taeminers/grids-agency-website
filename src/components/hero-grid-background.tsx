@@ -1,37 +1,32 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import dynamic from "next/dynamic";
 import { useReducedMotion } from "framer-motion";
-import { useTheme } from "next-themes";
-import PredictiveArc from "@/components/originkit/ui/predictive-arc";
+import { useSurfaceTheme } from "@/components/spectrumui/use-surface-theme";
 
-const arch = { peak: 43, archHeight: 60, thickness: 135, falloff: 250 };
-const pointer = { enabled: false };
-const subscribeToHydration = () => () => {};
+const LiquidFilm = dynamic(() => import("@/components/originkit/ui/liquid-film"), { ssr: false });
 
 export default function HeroGridBackground() {
   const reducedMotion = useReducedMotion();
-  const { resolvedTheme } = useTheme();
-  const mounted = useSyncExternalStore(subscribeToHydration, () => true, () => false);
-  // Match the dark default on the server and during the first hydration render.
-  const isDark = !mounted || resolvedTheme !== "light";
+  const isDark = useSurfaceTheme() === "dark";
 
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 z-0 overflow-hidden [mask-image:linear-gradient(to_bottom,black_55%,transparent_88%)]"
+      className="pointer-events-none absolute inset-0 z-0 overflow-hidden [mask-image:linear-gradient(to_bottom,black_60%,transparent_95%)]"
     >
-      <PredictiveArc
-        variant="aurora"
-        background={isDark ? "#0a0a0a" : "#ffffff"}
-        baseColor={isDark ? "#7896a0" : "#e9620e"}
-        accentColor={isDark ? "#d3bea0" : "#b39169"}
-        highlight={isDark ? "#eeeede" : "#d6c9a9"}
-        intensity={isDark ? 1.1 : 1.4}
-        speed={reducedMotion ? 0 : 24}
-        arch={arch}
-        pointer={pointer}
+      <LiquidFilm
+        background={isDark ? "#141414" : "#ffffff"}
+        color1={isDark ? "#789ebd" : "#62b0ed"}
+        color2={isDark ? "#b8d9f0" : "#277db8"}
+        speed={24}
+        flow={100}
+        hover={reducedMotion ? 0 : 50}
+        ripple={reducedMotion ? 0 : 70}
+        paused={Boolean(reducedMotion)}
+        style={{ minWidth: 0, minHeight: 0 }}
       />
+      <div className="absolute inset-0 bg-linear-to-r from-background/70 via-background/30 to-background/10" />
     </div>
   );
 }

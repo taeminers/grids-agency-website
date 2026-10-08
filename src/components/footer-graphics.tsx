@@ -5,7 +5,9 @@ import dynamic from "next/dynamic";
 import { useInView, useReducedMotion } from "motion/react";
 import { useSurfaceTheme } from "@/components/spectrumui/use-surface-theme";
 
-const Beams = dynamic(() => import("@/components/Beams"), { ssr: false });
+const PredictiveArc = dynamic(() => import("@/components/originkit/ui/predictive-arc"), { ssr: false });
+const arch = { peak: 43, archHeight: 60, thickness: 135, falloff: 250 };
+const pointer = { enabled: false };
 
 function subscribeToVisibility(callback: () => void) {
   document.addEventListener("visibilitychange", callback);
@@ -30,20 +32,30 @@ function useFooterScene() {
   return { ref, nearby: nearby && pageVisible && !reducedMotion, active: visible && pageVisible && !reducedMotion, dark: theme === "dark" };
 }
 
-export function FooterBeams() {
+export function FooterAurora() {
   const { ref, nearby, active, dark } = useFooterScene();
   return (
     <div data-scroll-reveal="fade" ref={ref} aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_35%,var(--tertiary),transparent_65%)] opacity-[0.08]" />
-      <div className="absolute -inset-1 opacity-50 blur-[0.5px] dark:opacity-70">
+      <div className="absolute inset-0">
         {nearby && (
           <GraphicsBoundary>
-            <Beams active={Boolean(active)} beamWidth={3} beamHeight={22} beamNumber={8} speed={0.35} rotation={24} noiseIntensity={0.35} scale={0.16} lightColor={dark ? "#c4d8f2" : "#e9620e"} beamColor={dark ? "#171a22" : "#241d19"} backgroundColor={dark ? "#171717" : "#ffffff"} lightMode={!dark} />
+            <PredictiveArc
+              variant="aurora"
+              background={dark ? "#141414" : "#ffffff"}
+              baseColor={dark ? "#789ebd" : "#62b0ed"}
+              accentColor={dark ? "#b8d9f0" : "#277db8"}
+              highlight={dark ? "#e8f6ff" : "#d8efff"}
+              intensity={dark ? 1.1 : 1.4}
+              speed={active ? 24 : 0}
+              arch={arch}
+              pointer={pointer}
+            />
           </GraphicsBoundary>
         )}
       </div>
       <div className="absolute inset-0 bg-[linear-gradient(to_bottom,var(--background)_0%,transparent_20%,transparent_40%,var(--background)_95%)]" />
-      <div className="absolute inset-0 bg-linear-to-r from-background/75 via-background/40 to-transparent" />
+      <div className="absolute inset-0 bg-background/20" />
     </div>
   );
 }

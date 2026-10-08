@@ -47,7 +47,7 @@ function BentoGlow({ kind }: { kind: Idea }) {
       />
       <span
         className={cn(
-          "absolute h-2/3 w-3/4 bg-radial from-amber-200/25 via-amber-100/8 to-transparent blur-2xl dark:from-indigo-300/12 dark:via-indigo-300/4",
+          "absolute h-2/3 w-3/4 bg-radial from-sky-200/25 via-sky-100/8 to-transparent blur-2xl dark:from-indigo-300/12 dark:via-indigo-300/4",
           highlight,
         )}
       />

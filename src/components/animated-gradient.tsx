@@ -45,8 +45,8 @@ const presets: Record<PresetName, PresetParams> = {
     color3: "#FFFFFF",
     lightColors: {
       color1: "#FFFFFF",
-      color2: "#E9620E",
-      color3: "#F2DFC5",
+      color2: "#62B0ED",
+      color3: "#D8EFFF",
     },
     rotation: -50,
     proportion: 1,

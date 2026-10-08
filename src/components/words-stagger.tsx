@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 interface WordsStaggerProps {
   children: React.ReactNode;
   className?: string;
+  wordClassName?: string | ((word: string, index: number) => string);
   delay?: number;
   stagger?: number;
   speed?: number;
@@ -20,6 +21,7 @@ interface WordsStaggerProps {
 export function WordsStagger({
   children,
   className,
+  wordClassName,
   delay = 0,
   stagger = 0.1,
   speed = 0.5,
@@ -80,7 +82,10 @@ export function WordsStagger({
       {words.map((word, index) => (
         <motion.span
           key={`${word}-${index}`}
-          className="inline-block motion-reduce:opacity-100! motion-reduce:transform-none! motion-reduce:filter-none!"
+          className={cn(
+            "inline-block motion-reduce:opacity-100! motion-reduce:transform-none! motion-reduce:filter-none!",
+            typeof wordClassName === "function" ? wordClassName(word, index) : wordClassName,
+          )}
           variants={wordVariants}
         >
           {word}

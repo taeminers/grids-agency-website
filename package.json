@@ -12,7 +12,12 @@
     "templates:discover": "tsc --project scripts/templates/tsconfig.json && node scripts/templates/.build/discover.js",
     "templates:deploy": "tsc --project scripts/templates/tsconfig.json && node scripts/templates/.build/deploy.js",
     "templates:deploy-all": "tsc --project scripts/templates/tsconfig.json && node scripts/templates/.build/deploy-all.js",
-    "templates:dns-check": "tsc --project scripts/templates/tsconfig.json && node scripts/templates/.build/dns-check.js"
+    "templates:dns-check": "tsc --project scripts/templates/tsconfig.json && node scripts/templates/.build/dns-check.js",
+    "predev": "npm run pricing:sync",
+    "prebuild": "npm run pricing:sync",
+    "pricing:sync": "node scripts/sync-pricing.mjs",
+    "pricing:check": "node scripts/sync-pricing.mjs --check",
+    "pricing:test": "node --test scripts/sync-pricing.test.mjs && node scripts/pricing-data.test.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

@@ -9,14 +9,14 @@ function Scene() {
   const { resolvedTheme } = useTheme();
   
   // Colors based on globals.css
-  // Light: Tertiary #e9620e, Secondary oklch(0.97 0 0) [approx #f5f5f5]
+  // Light: Tertiary #277db8, Secondary oklch(0.97 0 0) [approx #f5f5f5]
   // Dark: Tertiary #38bdf8, Secondary oklch(0.269 0 0) [approx #444]
   
   const isDark = resolvedTheme === 'dark';
   
   const colors = {
-      sphere: isDark ? "#38bdf8" : "#e9620e",      // Tertiary
-      accent: isDark ? "#0c4a6e" : "#efab6f",      // Tertiary Foreground
+      sphere: isDark ? "#38bdf8" : "#277db8",      // Tertiary
+      accent: isDark ? "#0c4a6e" : "#e0f2fe",      // Tertiary Foreground
       lighting: isDark ? "#0a0a0a" : "#ffffff",    // Even dimmer lighting in dark
       glass: isDark ? "#0a0a0a" : "#ffffff"        // Pure black glass in dark mode
   };

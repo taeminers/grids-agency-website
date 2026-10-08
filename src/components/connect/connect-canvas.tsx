@@ -35,7 +35,7 @@ export default function ConnectCanvas() {
                     {/* Simple ambient light to ensure visibility */}
                     <ambientLight intensity={0.5} />
                     <directionalLight position={[5, 10, 5]} intensity={2} color="white" />
-                    <spotLight position={[-10, 10, -5]} intensity={1} color="#e9620e" /> {/* Hint of orange/tertiary */}
+                    <spotLight position={[-10, 10, -5]} intensity={1} color="#62b0ed" /> {/* Sky-blue accent */}
 
                     <ContactShadows position={[0, -3, 0]} opacity={0.4} scale={15} blur={3} far={4.5} />
                 </Suspense>

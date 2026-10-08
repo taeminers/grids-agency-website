@@ -2,6 +2,7 @@
 
 import { useCallback, useRef, useState } from "react";
 import Intro from "@/components/intro";
+import HomePricingSection from "@/components/home-pricing-section";
 import StudioIntroduction from "@/components/studio-introduction";
 import AboutSection from "@/components/about-section";
 import HeroContent from "@/components/hero-content";
@@ -36,6 +37,7 @@ export default function Home() {
           id="about"
           className="relative z-10 flex flex-col scroll-mt-6 bg-background"
         >
+          <HomePricingSection />
           <StudioIntroduction />
           <AboutSection />
           <ManifestoSection />

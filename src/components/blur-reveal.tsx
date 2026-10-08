@@ -9,6 +9,7 @@ export interface BlurRevealProps {
   speedReveal?: number
   speedSegment?: number
   trigger?: boolean
+  active?: boolean
   onAnimationComplete?: () => void
   onAnimationStart?: () => void
   as?: keyof React.JSX.IntrinsicElements
@@ -25,6 +26,7 @@ export function BlurReveal({
   speedReveal = 1.5,
   speedSegment = 0.5,
   trigger = true,
+  active = true,
   onAnimationComplete,
   onAnimationStart,
   as = "p",
@@ -74,15 +76,16 @@ export function BlurReveal({
       {trigger && (
         <MotionTag
           initial="hidden"
-          whileInView={inView ? "visible" : undefined}
-          animate={inView ? undefined : "visible"}
+          whileInView={active && inView ? "visible" : undefined}
+          animate={!active ? "hidden" : inView ? undefined : "visible"}
           exit="exit"
           variants={containerVariants}
           viewport={{ once }}
           className={[className, "motion-reduce:opacity-100!"].filter(Boolean).join(" ")}
           onAnimationComplete={onAnimationComplete}
           onAnimationStart={onAnimationStart}
-          style={style}
+          style={active ? style : { ...style, visibility: "hidden" }}
+          aria-hidden={!active || undefined}
         >
           <span className="sr-only">{children}</span>
           {children &&
