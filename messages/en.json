@@ -684,7 +684,9 @@
       "next": "Next project",
       "detailNavigation": "Archive navigation",
       "projectNavigation": "More projects",
-      "note": "Selected public work and website demos. Some client projects remain private, in line with our clients’ wishes and confidentiality agreements."
+      "note": "Selected public work and website demos. Some client projects remain private, in line with our clients’ wishes and confidentiality agreements.",
+      "disclosureHeadline": "Selected work, shared with permission.",
+      "disclosureDescription": "Projects restricted by client requests or NDAs, and live internal systems, stay private."
     },
     "Demo": {
       "title": "Website",
