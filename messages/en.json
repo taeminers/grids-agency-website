@@ -53,6 +53,7 @@
   "Navbar": {
     "work": "Portfolio",
     "about": "Vision",
+    "pricing": "Pricing",
     "team": "Team",
     "contact": "Connect",
     "Settings": {
@@ -907,6 +908,78 @@
         "priority": "High",
         "assigned": "Assigned team",
         "sales": "Sales operations"
+      }
+    }
+  },
+  "Pricing": {
+    "metaTitle": "Pricing",
+    "title": "The right scope.\nA clear price.",
+    "description": "From planning and design to development and launch. Explore packages for the work you want us to handle, or review the rates behind a custom quote.",
+    "currencyNote": "All prices in KRW · VAT excluded",
+    "tabs": {
+      "label": "Pricing options",
+      "packages": "Fixed-price packages",
+      "rules": "Quotation guide"
+    },
+    "rate": {
+      "from": "+",
+      "included": "Included",
+      "custom": "Quoted separately",
+      "excluded": "Additional cost"
+    },
+    "packages": {
+      "title": "Choose a scope. We’ll take it from there.",
+      "description": "Share your goals and materials; we’ll guide planning and production. Choose a service and compare three proposed scopes.",
+      "serviceLabel": "Service type",
+      "draftLabel": "Proposed packages",
+      "draftNote": "These proposals combine documented starting rates and add-ons. A fixed fee is confirmed after detailed scoping; these are not yet finalized selling prices.",
+      "proposedPrice": "Proposed price",
+      "priceUnit": "Per project · VAT excluded",
+      "breakdown": "View price breakdown",
+      "base": "Base production",
+      "cta": "Discuss a project",
+      "notes": {
+        "scope": {
+          "title": "A fixed fee for an agreed scope",
+          "body": "Pages, features and revisions are agreed first. Requests outside that scope receive a separate quote."
+        },
+        "costs": {
+          "title": "Third-party costs are separate",
+          "body": "Domains, hosting, API usage, payment fees and paid assets are excluded."
+        },
+        "translation": {
+          "title": "Content and translations",
+          "body": "We review your brand materials and content during consultation. Multilingual packages assume client-supplied translations."
+        }
+      }
+    },
+    "custom": {
+      "title": "Need AI, automation or a mobile app?",
+      "description": "AI features, standalone CRM / admin systems, automation, mobile apps, real-time features and other unpriced work require a separate scope review. Overlapping functionality is also reconciled during scoping.",
+      "cta": "Discuss a custom scope"
+    },
+    "rules": {
+      "title": "Understand what goes into the quote.",
+      "description": "Review base production rates and the additional work you need. These are quotation guidelines; the final proposal reflects actual scope and complexity.",
+      "contents": "Quotation guide contents",
+      "calculation": "How a quote is calculated",
+      "formula": {
+        "base": "Base production",
+        "pages": "Additional pages",
+        "features": "Additional features",
+        "languages": "Languages",
+        "design": "Special design / interactions",
+        "work": "Other additional work"
+      },
+      "calculationNote": "We total these components, apply the minimum engagement where relevant and review project scale and complexity to determine the final supply amount. VAT and external costs are separate.",
+      "item": "Item / scope",
+      "amount": "Reference price · excl. VAT",
+      "principles": "How we apply these rates",
+      "policy": {
+        "scope": "Rates are not applied mechanically to every project. Actual scope and complexity take priority.",
+        "information": "When information is missing or scope is unclear, we clarify it before quoting. We do not guess a low fixed price.",
+        "custom": "Unlisted features are not assigned the price of a similar feature by assumption. They are assessed separately where needed.",
+        "adjustment": "Final amounts may be adjusted for project scale, complexity and proposal terms. Work beyond the initially agreed scope is quoted separately."
       }
     }
   }

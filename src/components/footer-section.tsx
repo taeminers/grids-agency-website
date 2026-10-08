@@ -108,6 +108,7 @@ function FooterContent({ className }: FooterSectionProps) {
               {[
                 { href: `/${locale}`, label: t("home") },
                 { href: `/${locale}/archive`, label: nav("work") },
+                { href: `/${locale}/pricing`, label: nav("pricing") },
                 { href: `/${locale}/connect`, label: nav("contact") },
               ].map((item) => (
                 <li key={item.href}>

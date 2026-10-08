@@ -1,0 +1,57 @@
+.scene {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.float {
+  animation: float 7s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.signal {
+  stroke-dasharray: 0.12 0.88;
+  animation: signal 5s linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.core {
+  animation: core 5s ease-in-out infinite;
+}
+
+.scene .float,
+.scene .signal,
+.scene .core {
+  animation-play-state: paused;
+}
+
+.scene[data-active="true"] .float,
+.scene[data-active="true"] .signal,
+.scene[data-active="true"] .core {
+  animation-play-state: running;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes signal {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: -1; }
+}
+
+@keyframes core {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.8; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene .float,
+  .scene .signal,
+  .scene .core {
+    animation: none;
+  }
+
+  .scene .signal { opacity: 0; }
+}
