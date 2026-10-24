@@ -4,7 +4,7 @@ import { ArrowRight } from "reicon-react/icons/ArrowRight";
 import { Infinite } from "reicon-react/icons/Infinite";
 import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
-import HeroDemoCarousel from "@/components/hero-demo-carousel";
+// import HeroDemoCarousel from "@/components/hero-demo-carousel";
 import { MetalButton } from "@/components/spectrumui/metal-button";
 import { cn } from "@/lib/utils";
 import { trackEvent } from "@/lib/analytics";
@@ -107,7 +107,8 @@ export default function HeroContent() {
           </div>
         </div>
       </div>
-      <HeroDemoCarousel />
+      {/* Temporarily disabled while the demo showcase is being updated. */}
+      {/* <HeroDemoCarousel /> */}
     </section>
   );
 }

@@ -1,5 +1,3 @@
-import { demoProjects } from "./demo-project-data";
-
 export interface ArchiveProject {
   key: string;
   slug: string;
@@ -66,8 +64,4 @@ export const featuredProjects: readonly ArchiveProject[] = [
   },
 ] as const;
 
-export const archiveProjects: readonly ArchiveProject[] = [
-  ...featuredProjects.filter((project) => project.key !== "admin"),
-  ...demoProjects,
-  ...featuredProjects.filter((project) => project.key === "admin"),
-];
+export const archiveProjects: readonly ArchiveProject[] = featuredProjects;
