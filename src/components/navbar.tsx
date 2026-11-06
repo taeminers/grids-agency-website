@@ -1,25 +1,27 @@
 "use client";
 
-import { useCallback, useSyncExternalStore } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { useCallback, useEffect, useId, useRef, useState, useSyncExternalStore } from "react";
 import BrandLogo from "@/components/brand-logo";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { Sun, Moon, Languages } from "lucide-react";
+import { Sun, Moon, Menu } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
+import { trackEvent } from "@/lib/analytics";
+import {
+  DropdownMenu, DropdownMenuTrigger, DropdownMenuContent,
+  DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator,
+} from "@/components/ui/dropdown-menu";
+import styles from "./navbar.module.css";
 
 interface NavbarProps {
   className?: string;
   inHero?: boolean;
 }
 
-const MotionLink = motion.create(Link);
-
 const subscribeToHydration = () => () => {};
 const subscribeToScroll = (onChange: () => void) => {
-  // Capture also receives scroll events from page-owned containers (Archive).
   window.addEventListener("scroll", onChange, { passive: true, capture: true });
   window.addEventListener("resize", onChange);
   return () => {
@@ -28,19 +30,13 @@ const subscribeToScroll = (onChange: () => void) => {
   };
 };
 const getScrolled = () => {
-  const pinnedStage = document.querySelector<HTMLElement>(
-    "[data-navbar-pinned-stage]",
-  );
+  const pinnedStage = document.querySelector<HTMLElement>("[data-navbar-pinned-stage]");
   if (pinnedStage) {
-    // Scroll used to animate a pinned scene is not visible page movement.
-    // Compact only after the scene itself starts leaving its sticky position.
     const stickyTop = parseFloat(getComputedStyle(pinnedStage).top) || 0;
     return stickyTop - pinnedStage.getBoundingClientRect().top > 80;
   }
-  const pageScroller = document.querySelector<HTMLElement>(
-    "[data-navbar-scroll]",
-  );
-  return Math.max(window.scrollY, pageScroller?.scrollTop ?? 0) > 80;
+  const scroller = document.querySelector<HTMLElement>("[data-navbar-scroll]");
+  return Math.max(window.scrollY, scroller?.scrollTop ?? 0) > 80;
 };
 const getServerScrolled = () => false;
 
@@ -49,28 +45,43 @@ export default function Navbar({ className, inHero = false }: NavbarProps) {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
+  const navRef = useRef<HTMLElement>(null);
+  const brandRef = useRef<HTMLButtonElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const detailsId = useId();
+  const [hovered, setHovered] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const [pinnedPath, setPinnedPath] = useState<string | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
   const subscribeToPageScroll = useCallback((onChange: () => void) => {
     const unsubscribe = subscribeToScroll(onChange);
-    // Re-read after the destination page and its scroll position are committed.
+    // Re-read when a route replaces a page-owned scroll container.
     const frame = requestAnimationFrame(() => {
       if (window.location.pathname === pathname) onChange();
     });
-    return () => {
-      cancelAnimationFrame(frame);
-      unsubscribe();
-    };
+    return () => { cancelAnimationFrame(frame); unsubscribe(); };
   }, [pathname]);
+  const scrolled = useSyncExternalStore(subscribeToPageScroll, getScrolled, getServerScrolled);
+  const expanded = !scrolled || hovered || focused || pinnedPath === pathname || menuOpen;
 
-  const reducedMotion = useReducedMotion();
-  const pillTransition = {
-    duration: reducedMotion ? 0 : 0.42,
-    ease: [0.22, 1, 0.36, 1] as const,
-  };
-  const scrolled = useSyncExternalStore(
-    subscribeToPageScroll,
-    getScrolled,
-    getServerScrolled,
-  );
+  useEffect(() => {
+    const onOutsidePress = (event: PointerEvent) => {
+      if (!(event.target instanceof Node)) return;
+      if (navRef.current?.contains(event.target) || dropdownRef.current?.contains(event.target)) return;
+      setPinnedPath(null);
+      setHovered(false);
+      setFocused(false);
+    };
+    document.addEventListener("pointerdown", onOutsidePress);
+    return () => document.removeEventListener("pointerdown", onOutsidePress);
+  }, []);
+
+  useEffect(() => {
+    const desktop = window.matchMedia("(min-width: 768px)");
+    const closeMobileMenu = () => { if (desktop.matches) setMenuOpen(false); };
+    desktop.addEventListener("change", closeMobileMenu);
+    return () => desktop.removeEventListener("change", closeMobileMenu);
+  }, []);
 
   const isHome = pathname === `/${locale}` || pathname === `/${locale}/`;
 
@@ -102,153 +113,215 @@ export default function Navbar({ className, inHero = false }: NavbarProps) {
         ? "Switch to light mode"
         : "Switch to dark mode";
   const languageLabel = locale === "ko" ? "Switch to English" : "한국어로 전환";
-  const iconButtonClass =
-    "flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-sm text-inherit transition-colors hover:text-tertiary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tertiary disabled:cursor-default disabled:opacity-50";
-  const controls = (
-    <div className="flex items-center gap-1">
-      <button
-        type="button"
-        disabled={!mounted}
-        aria-label={mounted ? themeLabel : t("Settings.darkMode")}
-        title={mounted ? themeLabel : t("Settings.darkMode")}
-        onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-        className={iconButtonClass}
-      >
-        <Moon size={18} aria-hidden="true" className="dark:hidden" />
-        <Sun size={18} aria-hidden="true" className="hidden dark:block" />
-      </button>
-      <button
-        type="button"
-        disabled={!mounted}
-        aria-label={languageLabel}
-        title={languageLabel}
-        onClick={switchLocale}
-        className={iconButtonClass}
-      >
-        <Languages size={18} aria-hidden="true" />
-      </button>
-    </div>
+  const links = [
+    { id: "work", label: t("work"), link: `/${locale}/archive` },
+    { id: "about", label: t("about"), link: `/${locale}/vision` },
+    { id: "pricing", label: t("pricing"), link: `/${locale}/pricing` },
+    { id: "contact", label: t("contact"), link: `/${locale}/connect` },
+  ];
+  const activeIndex = links.findIndex(({ link }) =>
+    pathname === link || pathname.startsWith(`${link}/`),
   );
 
   return (
-    <motion.div key={pathname} layoutRoot className="pointer-events-none fixed inset-0 z-40">
-      <motion.nav
-        layout
-        layoutDependency={scrolled}
-        transition={{ layout: pillTransition }}
-        aria-label={locale === "ko" ? "주 메뉴" : "Main navigation"}
-        className={cn(
-          "pointer-events-auto absolute inset-x-0 mx-auto rounded-none text-foreground",
-          scrolled
-            ? "top-3 h-[104px] w-[calc(100%-24px)] px-5 md:top-4 md:h-16 md:w-[min(760px,calc(100%-48px))] md:px-7"
-            : "top-0 h-[112px] w-[calc(100%-clamp(20px,4.2vw,72px)*2)] px-5 md:h-[72px] md:px-9",
-          className,
-        )}
-      >
-        <span
-          aria-hidden="true"
-          className={cn(
-            "pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit] border border-white/60 bg-white/25 shadow-[0_8px_32px_-12px_rgb(0_0_0/0.22),inset_0_1px_0_rgb(255_255_255/0.8),inset_0_-1px_0_rgb(255_255_255/0.25)] backdrop-blur-[16px] backdrop-saturate-[1.8] transition-opacity duration-300 motion-reduce:transition-none dark:border-white/20 dark:bg-black/25 dark:shadow-[0_8px_32px_-12px_rgb(0_0_0/0.5),inset_0_1px_0_rgb(255_255_255/0.3),inset_0_-1px_0_rgb(255_255_255/0.08)]",
-            scrolled ? "opacity-100" : "opacity-0",
-          )}
+    <nav
+      ref={navRef}
+      data-scrolled={scrolled}
+      data-expanded={expanded}
+      onPointerMove={(event) => {
+        if (event.pointerType !== "mouse" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        const bounds = event.currentTarget.getBoundingClientRect();
+        event.currentTarget.style.setProperty("--glass-light-x", `${event.clientX - bounds.left}px`);
+      }}
+      onPointerOver={(event) => {
+        if (event.pointerType === "mouse" && event.target instanceof Element &&
+            !event.target.closest("[data-navbar-cta]")) setHovered(true);
+      }}
+      onPointerLeave={() => setHovered(false)}
+      onFocusCapture={(event) => {
+        // Pointer focus must not move the button before its click is delivered.
+        if (event.target.matches(":focus-visible") && !event.target.closest("[data-navbar-cta]")) setFocused(true);
+      }}
+      onClick={(event) => {
+        if (scrolled && event.target instanceof Element && !event.target.closest("a, button")) {
+          setPinnedPath(pathname);
+        }
+      }}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false);
+      }}
+      onKeyDown={(event) => {
+        if (event.key !== "Escape" || !scrolled || menuOpen || window.matchMedia("(max-width: 767px)").matches) return;
+        event.preventDefault();
+        brandRef.current?.focus({ preventScroll: true });
+        setPinnedPath(null);
+        setHovered(false);
+        setFocused(false);
+      }}
+      aria-label={locale === "ko" ? "주 메뉴" : "Main navigation"}
+      className={cn(styles.navbar, className)}
+    >
+      <span aria-hidden="true" className={styles.glassSurface} />
+      <div className={styles.content}>
+        <Link
+          href={`/${locale}`}
+          aria-label={locale === "ko" ? "그리즈 홈" : "Grids home"}
+          className={cn(styles.item, styles.mobileLogo)}
         >
-          <span className="absolute inset-0 bg-[linear-gradient(115deg,rgba(255,255,255,0.4)_0%,rgba(255,255,255,0.06)_35%,transparent_55%,rgba(255,255,255,0.16)_100%)] dark:opacity-50" />
-          <span className="absolute inset-x-[12%] top-0 h-px bg-linear-to-r from-transparent via-white/90 to-transparent dark:via-white/60" />
-        </span>
-        {(isHome || pathname.replace(/\/$/, "") === `/${locale}/connect`) && (
-          <span
-            data-hero-reveal="grid"
-            aria-hidden="true"
-            className={cn(
-              "pointer-events-none absolute bottom-0 -inset-x-[clamp(20px,4.2vw,72px)] border-b border-foreground/15 transition-opacity duration-300 motion-reduce:transition-none group-data-[hero-pending=true]/hero:opacity-0",
-              scrolled && "opacity-0",
-            )}
-          />
-        )}
-        <div className="relative flex h-full flex-wrap items-center justify-between gap-x-3 py-3 md:flex-nowrap md:py-0">
-          <MotionLink
-            layout="position"
-            layoutDependency={scrolled}
-            transition={{ layout: pillTransition }}
-            data-hero-reveal="text"
-            href={`/${locale}`}
-            aria-label={locale === "ko" ? "그리즈 에이전시" : "Grids Agency"}
-            className="flex items-center gap-2.5 group-data-[hero-pending=true]/hero:opacity-0 group-data-[hero-pending=true]/hero:blur-[10px]"
+          <BrandLogo className="size-[19px] bg-current" />
+        </Link>
+      <div className={styles.brand}>
+        {scrolled ? (
+          <button
+            ref={brandRef}
+            type="button"
+            className={cn(styles.item, styles.brandButton)}
+            aria-expanded={expanded}
+            aria-controls={detailsId}
+            aria-label={locale === "ko" ? "GRIDS AGENCY 메뉴" : "GRIDS AGENCY menu"}
+            onClick={() => {
+              if (pinnedPath === pathname) {
+                setPinnedPath(null);
+                setHovered(false);
+                setFocused(false);
+              } else {
+                setPinnedPath(pathname);
+              }
+            }}
           >
-            <BrandLogo className="size-[22px]" />
-            <span
-              className="relative inline-grid h-6 overflow-hidden text-[17px] font-bold tracking-[-0.025em] leading-6 max-[360px]:text-sm"
-              data-locale={locale}
-              aria-hidden="true"
-            >
-              <span className="invisible col-start-1 row-start-1 whitespace-nowrap">
-                GRIDS AGENCY
-              </span>
-              <span className="invisible col-start-1 row-start-1 whitespace-nowrap">
-                그리즈 에이전시
-              </span>
-              <span
-                className={cn(
-                  "absolute top-0 left-0 animate-brand-roll motion-reduce:animate-none",
-                  locale === "ko" && "motion-reduce:-translate-y-1/3",
-                )}
-              >
-                <span lang="en" className="block h-6 whitespace-nowrap">
-                  GRIDS<span className="opacity-50"> AGENCY</span>
-                </span>
-                <span lang="ko" className="block h-6 whitespace-nowrap">
-                  그리즈
-                  <span className="opacity-50"> 에이전시</span>
-                </span>
-                <span lang="en" className="block h-6 whitespace-nowrap">
-                  GRIDS<span className="opacity-50"> AGENCY</span>
-                </span>
-              </span>
-            </span>
-          </MotionLink>
-          <motion.div
-            layout="position"
-            layoutDependency={scrolled}
-            transition={{ layout: pillTransition }}
-            data-hero-reveal="text"
-            className="order-3 flex w-full items-center justify-between gap-3 text-xs group-data-[hero-pending=true]/hero:opacity-0 group-data-[hero-pending=true]/hero:blur-[10px] md:order-none md:ml-auto md:w-auto md:gap-7 md:text-[13px]"
-          >
+            <BrandLogo className="size-[19px] bg-current" />
+            <span>GRIDS AGENCY</span>
+          </button>
+        ) : (<>
+        <Link
+          data-hero-reveal="text"
+          href={`/${locale}`}
+          aria-label={locale === "ko" ? "그리즈 홈" : "Grids home"}
+          className={cn(styles.item, styles.logo)}
+        >
+          <BrandLogo className="size-[19px] bg-current" />
+        </Link>
+        <Link
+          data-hero-reveal="text"
+          href={`/${locale}`}
+          className={cn(styles.item, styles.appName)}
+        >
+          GRIDS AGENCY
+        </Link>
+        </>)}
+      </div>
+      <div id={detailsId} className={styles.details} inert={!expanded} aria-hidden={!expanded}>
+        <div data-hero-reveal="text" className={styles.links}>
+          {links.map((item, index) => (
             <Link
-              href={`/${locale}/archive`}
-              className="transition-colors hover:text-tertiary"
+              key={item.id}
+              href={item.link}
+              aria-current={activeIndex === index ? "page" : undefined}
+              className={styles.item}
             >
-              {t("work")}
+              {item.label}
             </Link>
-            <Link
-              href={`/${locale}/vision`}
-              className="transition-colors hover:text-tertiary"
-            >
-              {t("about")}
-            </Link>
-            <Link
-              href={`/${locale}/pricing`}
-              className="transition-colors hover:text-tertiary"
-            >
-              {t("pricing")}
-            </Link>
-            <Link
-              href={`/${locale}/connect`}
-              className="transition-colors hover:text-tertiary"
-            >
-              {t("contact")}
-            </Link>
-          </motion.div>
-          <motion.div
-            layout="position"
-            layoutDependency={scrolled}
-            transition={{ layout: pillTransition }}
-            data-hero-reveal="text"
-            className="ml-auto group-data-[hero-pending=true]/hero:opacity-0 group-data-[hero-pending=true]/hero:blur-[10px] md:ml-0"
-          >
-            {controls}
-          </motion.div>
+          ))}
         </div>
-      </motion.nav>
-    </motion.div>
+      <div data-hero-reveal="text" className={styles.controls}>
+        <button
+          type="button"
+          disabled={!mounted}
+          aria-label={mounted ? themeLabel : t("Settings.darkMode")}
+          title={mounted ? themeLabel : t("Settings.darkMode")}
+          onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+          className={cn(styles.item, styles.control)}
+        >
+          <Moon size={16} aria-hidden="true" className="dark:hidden" />
+          <Sun size={16} aria-hidden="true" className="hidden dark:block" />
+        </button>
+        <button
+          type="button"
+          disabled={!mounted}
+          aria-label={languageLabel}
+          title={languageLabel}
+          onClick={switchLocale}
+          className={cn(styles.item, styles.control, styles.language)}
+        >
+          <span aria-hidden="true" className={styles.locale}>{locale.toUpperCase()}</span>
+        </button>
+
+      </div>
+      </div>
+        <Link
+          href={`/${locale}/connect`}
+          className={cn(styles.item, styles.cta)}
+          data-navbar-cta="true"
+          aria-label={t("consultation")}
+          title={t("consultation")}
+          onClick={() => trackEvent("cta_click", {
+            cta_location: "navbar",
+            cta_text: t("consultation"),
+          })}
+        >
+          <span aria-hidden="true">{t("consultation")}</span>
+          <svg
+            width="14"
+            height="10"
+            viewBox="0 0 14 10"
+            fill="none"
+            aria-hidden="true"
+            focusable="false"
+            className={styles.ctaArrow}
+          >
+            <path d="M1 5H12.5M9 1.5 12.5 5 9 8.5" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </Link>
+        <div data-hero-reveal="text" className={styles.mobileMenu}>
+          <DropdownMenu open={menuOpen} onOpenChange={setMenuOpen}>
+            <DropdownMenuTrigger asChild>
+              <button type="button" className={cn(styles.item, styles.control)}
+                aria-label={locale === "ko" ? "메뉴 열기" : "Open menu"}>
+                <Menu size={17} aria-hidden="true" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent ref={dropdownRef} data-scrolled={scrolled} align="end" sideOffset={5} collisionPadding={12}
+              className={cn(styles.dropdown, "w-64 max-w-[calc(100vw-24px)] rounded-xl p-2 motion-reduce:animate-none")}>
+              <DropdownMenuLabel className="px-3 py-2 text-xs tracking-tight">GRIDS AGENCY</DropdownMenuLabel>
+              {links.map((item, index) => (
+                <DropdownMenuItem key={item.id} asChild className="min-h-11 rounded px-3">
+                  <Link href={item.link} aria-current={activeIndex === index ? "page" : undefined}>
+                    {item.label}
+                    {activeIndex === index && <span aria-hidden="true" className="ml-auto size-1 rounded-full bg-current" />}
+                  </Link>
+                </DropdownMenuItem>
+              ))}
+              <DropdownMenuSeparator className={styles.menuSeparator} />
+              <DropdownMenuItem
+                disabled={!mounted}
+                onSelect={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+                className="min-h-11 rounded px-3"
+              >
+                <Moon size={16} aria-hidden="true" className="dark:hidden" />
+                <Sun size={16} aria-hidden="true" className="hidden dark:block" />
+                {mounted ? themeLabel : t("Settings.darkMode")}
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                disabled={!mounted}
+                onSelect={switchLocale}
+                aria-label={languageLabel}
+                className="min-h-11 rounded px-3"
+              >
+                {locale.toUpperCase()}
+              </DropdownMenuItem>
+              <DropdownMenuSeparator className={styles.menuSeparator} />
+              <DropdownMenuItem asChild className={styles.menuCta}>
+                <Link href={`/${locale}/connect`} onClick={() => trackEvent("cta_click", {
+                  cta_location: "navbar",
+                  cta_text: t("consultation"),
+                })}>
+                  {t("consultation")}
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+      </div>
+    </nav>
   );
 }

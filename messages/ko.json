@@ -46,6 +46,57 @@
     "cta": "제작 비용 알아보기",
     "continueScrolling": "계속 내리기"
   },
+  "HomeStatement": {
+    "text": "좋은 웹사이트와 앱, 개발팀 없이도 가능합니다.\n기획부터 디자인, 개발까지.\nGRIDS의 전문가들이 합리적인 비용으로 귀사의 팀처럼 함께합니다."
+  },
+  "HomeOfferings": {
+    "organizations": "서울대학교, Google, Samsung, LG",
+    "heading": "GRIDS는 귀사에",
+    "headingSecondary": "두 가지 핵심 가치를 제공합니다.",
+    "introduction": "더 많은 고객에게 발견되고, 더 많은 기회로 이어지도록.",
+    "build": {
+      "title": "Websites & Applications",
+      "description": "기획부터 디자인, 개발까지. 브랜드를 보여주는 웹사이트부터 비즈니스를 움직이는 애플리케이션까지, 필요한 제품을 함께 만듭니다.",
+      "cta": "프로젝트 상담하기"
+    },
+    "growth": {
+      "title": "Growth",
+      "description": "출시 이후에도 귀사의 팀처럼. 데이터로 개선점을 찾고, AI와 자동화로 업무를 연결하며 비즈니스의 다음 성장을 함께합니다.",
+      "cta": "성장 방향 상담하기",
+      "visual": {
+        "title": "성장을 위한 연결",
+        "subtitle": "비즈니스의 다음 기회를 함께 찾습니다.",
+        "analytics": "사용자 행동 분석",
+        "ads": "잠재 고객 유입",
+        "seo": "검색 노출 최적화",
+        "more": "+ 네이버, 인스타그램 등"
+      }
+    }
+  },
+  "HomeProcess": {
+    "eyebrow": "01 / BEFORE GRIDS",
+    "heading": "하나의 제품을 만들기까지.",
+    "headingSecondary": "팀도, 비용도, 시간도 필요했습니다.",
+    "costPlaceholder": "비용 미정",
+    "teams": {
+      "planning": {
+        "name": "기획팀",
+        "cost": "기획 비용"
+      },
+      "design": {
+        "name": "디자인팀",
+        "cost": "디자인 비용"
+      },
+      "development": {
+        "name": "개발팀",
+        "cost": "개발 비용"
+      }
+    },
+    "context": "팀마다 쌓이는 비용. 그 사이에 흐르는 시간.",
+    "durationLabel": "제작에 걸리는 시간",
+    "duration": "수개월에서 수년까지.",
+    "durationNote": "프로젝트의 규모와 범위에 따라"
+  },
   "StudioIntroduction": {
     "lanyardHint": "카드를 드래그해 보세요",
     "eyebrow": "우리는 누구인가",
@@ -67,6 +118,7 @@
     "pricing": "요금 안내",
     "team": "Team",
     "contact": "문의",
+    "consultation": "상담하기",
     "Settings": {
       "darkMode": "다크 모드",
       "lightMode": "라이트 모드",
@@ -106,6 +158,15 @@
     "location": "Seoul 기반"
   },
   "Hero": {
+    "ribbon": {
+      "label": "유리 리본 움직이기",
+      "viewWork": "작업 살펴보기",
+      "drag": "드래그해서 움직여 보세요",
+      "pause": "움직임 멈추기",
+      "play": "움직임 재생",
+      "help": "가로로 드래그해 리본을 움직일 수 있습니다. 세로로 밀면 페이지가 스크롤됩니다. 키보드 좌우 화살표로 이동하고, 스페이스 키로 재생 또는 일시정지, Home 키로 처음 배치로 돌아가기, Escape 키로 일시정지할 수 있습니다.",
+      "reducedHelp": "자동 움직임은 꺼져 있습니다. 가로로 드래그하거나 좌우 화살표 키로 리본을 움직일 수 있습니다. 세로로 밀면 페이지가 스크롤됩니다."
+    },
     "showcase": {
       "pauseHint": "마우스를 올리면 일시정지합니다. 스페이스 키로 재생하거나 일시정지할 수 있습니다.",
       "title": "웹사이트 컬렉션",
@@ -948,7 +1009,7 @@
       "draftLabel": "패키지 구성안",
       "draftNote": "아래 금액은 문서화된 시작가와 추가 비용을 합산한 제안입니다. 상세 범위를 확인한 뒤 정액 금액을 확정하며, 아직 확정된 판매 가격은 아닙니다.",
       "homepageNote": "홈페이지는 템플릿형, 맞춤형, 프리미엄의 세 가지 구성으로 제공합니다. Analytics는 맞춤형부터, CMS와 프리미엄 모션은 프리미엄에 포함됩니다. AI 영상의 길이와 제작 범위는 착수 전에 함께 정합니다.",
-      "packagePrice": "\ud328\ud0a4\uc9c0 \uae08\uc561",
+      "packagePrice": "패키지 금액",
       "proposedPrice": "제안 금액",
       "priceUnit": "프로젝트 단위 · VAT 별도",
       "breakdown": "금액 구성 보기",

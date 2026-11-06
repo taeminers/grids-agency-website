@@ -7,6 +7,11 @@
 @source inline("animate-brand-roll");
 
 :root {
+  /* Stable brand blues shared by the interface and the hero's 3D material. */
+  --brand-blue: #277db8;
+  --brand-sky: #8bcff0;
+  --brand-ice: #d8efff;
+
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
 
@@ -20,7 +25,7 @@
   --secondary-foreground: oklch(0.205 0 0);
 
   /* Sky-blue accent shared by hover states and section glows. */
-  --tertiary: #277db8;
+  --tertiary: var(--brand-blue);
   --tertiary-foreground: #e0f2fe;
 
   --muted: oklch(0.97 0 0);
@@ -48,7 +53,7 @@
 
   --chart-3: oklch(0.398 0.07 227.392);
 
-  --chart-4: #8bcff0;
+  --chart-4: var(--brand-sky);
 
   --chart-5: #667cca;
 
@@ -85,7 +90,7 @@
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
 
-  --tertiary: #d8efff;
+  --tertiary: var(--brand-ice);
   --tertiary-foreground: #0c4a6e;
 
   --muted: oklch(0.269 0 0);

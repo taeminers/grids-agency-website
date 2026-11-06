@@ -46,6 +46,57 @@
     "cta": "Explore pricing",
     "continueScrolling": "Keep scrolling"
   },
+  "HomeStatement": {
+    "text": "Great websites and apps, without an in-house development team.\nFrom planning and design to development.\nGRIDS experts work as part of your team at a reasonable cost."
+  },
+  "HomeOfferings": {
+    "organizations": "Seoul National University, Google, Samsung, LG",
+    "heading": "GRIDS brings your business",
+    "headingSecondary": "two core values.",
+    "introduction": "Get discovered by more customers. Open doors to more opportunities.",
+    "build": {
+      "title": "Websites & Applications",
+      "description": "From planning and design to development. We build the websites that express your brand and the applications that power your business.",
+      "cta": "Discuss your project"
+    },
+    "growth": {
+      "title": "Growth",
+      "description": "Part of your team, beyond launch. We use data to find improvements and AI and automation to connect your workflows, helping your business take its next step.",
+      "cta": "Plan your next step",
+      "visual": {
+        "title": "Connected for growth",
+        "subtitle": "Your tools. Your next opportunity.",
+        "analytics": "Understand customer behavior",
+        "ads": "Reach potential customers",
+        "seo": "Improve search visibility",
+        "more": "+ Naver, Instagram, and more"
+      }
+    }
+  },
+  "HomeProcess": {
+    "eyebrow": "01 / BEFORE GRIDS",
+    "heading": "To bring one product to life.",
+    "headingSecondary": "Teams. Budgets. Time.",
+    "costPlaceholder": "Cost to be determined",
+    "teams": {
+      "planning": {
+        "name": "Planning team",
+        "cost": "Planning cost"
+      },
+      "design": {
+        "name": "Design team",
+        "cost": "Design cost"
+      },
+      "development": {
+        "name": "Development team",
+        "cost": "Development cost"
+      }
+    },
+    "context": "Costs across every team. Time between every step.",
+    "durationLabel": "Time to build",
+    "duration": "Months. Even years.",
+    "durationNote": "Depending on project size and scope"
+  },
   "StudioIntroduction": {
     "lanyardHint": "DRAG TO EXPLORE",
     "eyebrow": "WHO WE ARE",
@@ -67,6 +118,7 @@
     "pricing": "Pricing",
     "team": "Team",
     "contact": "Connect",
+    "consultation": "Let’s talk",
     "Settings": {
       "darkMode": "Dark Mode",
       "lightMode": "Light Mode",
@@ -106,6 +158,15 @@
     "location": "Based in Seoul"
   },
   "Hero": {
+    "ribbon": {
+      "label": "Move the glass ribbon",
+      "viewWork": "Explore our work",
+      "drag": "Drag to move the glass",
+      "pause": "Pause motion",
+      "play": "Play motion",
+      "help": "Drag horizontally to move the ribbon. Swipe vertically to scroll. Use left and right arrows to move, Space to pause or play, Home to reset, and Escape to pause.",
+      "reducedHelp": "Automatic motion is off. Drag horizontally or use left and right arrows to move the ribbon. Swipe vertically to scroll."
+    },
     "showcase": {
       "pauseHint": "Hover to pause. Press Space to pause or resume.",
       "title": "Website collection",

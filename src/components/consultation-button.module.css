@@ -1,0 +1,8 @@
+.kakaoLogo {
+  display: block;
+  width: 21px;
+  height: 20px;
+  background: currentColor;
+  -webkit-mask: url("/icons/integrations/kakao-bubble.png") center / contain no-repeat;
+  mask: url("/icons/integrations/kakao-bubble.png") center / contain no-repeat;
+}

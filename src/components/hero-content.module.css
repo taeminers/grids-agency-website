@@ -1,0 +1,119 @@
+.hero {
+  composes: bounds from "./layout-gutters.module.css";
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: #f3f6f7;
+  color: #20211f;
+  padding-top: clamp(6.5rem, 12svh, 8rem);
+  padding-bottom: clamp(2.5rem, 5vw, 5rem);
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset-inline: 0;
+  bottom: 0;
+  height: clamp(180px, 24svh, 280px);
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgb(255 255 255 / 0), rgb(255 255 255 / 0.12) 24%, rgb(255 255 255 / 0.45) 55%, rgb(255 255 255 / 0.82) 80%, #fff);
+}
+.stage { position: relative; flex: 1 0 auto; height: clamp(30rem, 65svh, 44rem); overflow: hidden; }
+.stage::before, .stage::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset-block: 0;
+  width: calc((var(--navbar-gutter) + var(--navbar-content-padding)) * 1.2);
+  pointer-events: none;
+  background: rgb(243 246 247 / 0.12);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+.stage::before {
+  left: 0;
+  -webkit-mask-image: linear-gradient(to right, #000 0%, #000 12%, transparent 100%);
+  mask-image: linear-gradient(to right, #000 0%, #000 12%, transparent 100%);
+}
+.stage::after {
+  right: 0;
+  -webkit-mask-image: linear-gradient(to left, #000 0%, #000 12%, transparent 100%);
+  mask-image: linear-gradient(to left, #000 0%, #000 12%, transparent 100%);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .stage::before, .stage::after { background: rgb(243 246 247 / 0.85); }
+}
+.scene, .poster { position: absolute; inset: 0; }
+.scene:not([data-ready="true"]) { visibility: hidden; }
+.poster img { object-fit: fill; }
+.poster picture { position: absolute; inset: 0; display: block; }
+.poster[data-ready="true"] { visibility: hidden; }
+.title { position: absolute; z-index: 2; top: 5%; inset-inline: 6%; text-align: center; pointer-events: none; }
+.title h1 { margin: 0; font-size: clamp(2.5rem, 4.6vw, 4.5rem); font-weight: 500; line-height: 1.13; letter-spacing: -0.055em; word-break: keep-all; }
+.title h1 span { display: block; }
+.hero:lang(ko) .title h1 { font-weight: 500; font-synthesis: none; line-height: 1.14; letter-spacing: -0.035em; }
+.hero:lang(en) .title h1 { font-size: clamp(2rem, 4.25vw, 4rem); line-height: 1.08; letter-spacing: -0.045em; }
+.content { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1.5rem 1.5rem 0; }
+.description { max-width: 35rem; margin: 0; color: #6b6b6b; font-size: clamp(0.9375rem, 1.2vw, 1rem); font-weight: 500; line-height: 1.75; word-break: keep-all; text-wrap: pretty; }
+.actions { display: flex; width: fit-content; max-width: 100%; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.75rem; margin: 1.5rem auto 0; pointer-events: auto; }
+.portfolio {
+  position: relative;
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 0.625rem 1.25rem;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: background-color 180ms ease-out, color 180ms ease-out, transform 120ms ease-out;
+}
+.portfolio:focus-visible,
+.portfolio:active { background: #20211f; color: #fff; }
+.portfolio:active { transform: scale(0.97); transition-duration: 0ms; }
+
+.portfolioCorners {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 180ms ease-out;
+}
+.portfolio:is(:focus-visible, :active) .portfolioCorners { opacity: 0; }
+.portfolioCorners > span {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: currentColor;
+  border-style: solid;
+  border-width: 0;
+}
+.portfolioCorners > span:nth-child(1) { top: 0; left: 0; border-top-width: 1px; border-left-width: 1px; border-top-left-radius: 8px; }
+.portfolioCorners > span:nth-child(2) { top: 0; right: 0; border-top-width: 1px; border-right-width: 1px; border-top-right-radius: 8px; }
+.portfolioCorners > span:nth-child(3) { bottom: 0; left: 0; border-bottom-width: 1px; border-left-width: 1px; border-bottom-left-radius: 8px; }
+.portfolioCorners > span:nth-child(4) { bottom: 0; right: 0; border-bottom-width: 1px; border-right-width: 1px; border-bottom-right-radius: 8px; }
+
+.hero :is(a, button):focus-visible { outline: 2px solid #277db8; outline-offset: 4px; }
+@media (hover: hover) and (pointer: fine) {
+  .portfolio:hover { background: #20211f; color: #fff; }
+  .portfolio:hover .portfolioCorners { opacity: 0; }
+}
+@media (max-width: 767px) {
+  .hero { padding-top: 8.5rem; }
+  .stage { height: clamp(27rem, 56svh, 32rem); }
+  .title { top: 5%; inset-inline: 1rem; }
+  .title h1 { font-size: clamp(2rem, 7.8vw, 3rem); }
+  .hero:lang(en) .title h1 { font-size: clamp(1.75rem, 6.6vw, 2.75rem); }
+  .content { padding-top: 1rem; }
+  .description { max-width: 27rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .portfolio, .portfolioCorners { transition: none; }
+  .portfolio:active { transform: none; }
+}
