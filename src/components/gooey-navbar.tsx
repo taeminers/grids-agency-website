@@ -173,7 +173,8 @@ export function GooeyNavbar({
       x: widths.slice(0, index).reduce((sum, previous) => sum + previous + gap, 0),
       y: 0,
       width,
-      height: fontSize + paddingY * 2,
+      // Match the 44px minimum hit area in .item so the SVG and labels share a center.
+      height: Math.max(44, fontSize + paddingY * 2),
     }));
   }, [items, measuredWidths, fontSize, paddingX, paddingY, gap]);
 

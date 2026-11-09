@@ -1,0 +1,38 @@
+.heading { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); align-items: end; gap: 48px; margin-bottom: 48px; }
+.heading h2 { margin: 0; font-size: clamp(36px, 4vw, 56px); font-weight: 500; line-height: 1.16; letter-spacing: -.05em; word-break: keep-all; }
+.heading h2 span { display: block; color: #969b94; }
+.heading > p { justify-self: end; text-align: right; white-space: pre-line; max-width: 400px; margin: 0 0 4px; color: #777e71; font-size: 14px; line-height: 1.85; word-break: keep-all; }
+.layout { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); align-items: stretch; gap: 24px; }
+.contactCard { position: relative; isolation: isolate; display: grid; align-items: center; min-width: 0; min-height: 420px; padding: 28px; overflow: hidden; border-radius: var(--site-card-radius); background: #050505; }
+.artwork { position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(ellipse at 65% 60%, #66b3ff, #050505 70%); }
+/* A single glass surface lets the blue artwork show through without a white wash. */
+.glass {
+  position: relative;
+  padding: 28px;
+  color: #fff;
+  border: 1px solid rgb(223 240 255 / .24);
+  border-top-color: rgb(239 248 255 / .5);
+  border-radius: var(--site-card-radius);
+  background: linear-gradient(145deg, rgb(34 53 72 / .4), rgb(7 15 25 / .48));
+  -webkit-backdrop-filter: blur(18px) saturate(145%) brightness(.7);
+  backdrop-filter: blur(18px) saturate(145%) brightness(.7);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / .16), inset 0 -1px 0 rgb(175 218 255 / .07), 0 16px 40px -20px rgb(0 0 0 / .65);
+}
+
+.contactHeading { display: flex; align-items: center; gap: 14px; }
+.brandIcon { display: grid; place-items: center; width: 36px; height: 36px; flex-shrink: 0; border-radius: 8px; background: #fff; box-shadow: 0 2px 5px #16334e0d; }
+.brandIcon .brandMark { width: 20px; height: 20px; background: #293b49; }
+.contactHeading h3 { margin: 0; font-size: 18px; font-weight: 500; line-height: 1.5; letter-spacing: -.03em; word-break: keep-all; }
+.glass > p { margin: 24px 0 32px; color: #e0eaf2; font-size: 14px; line-height: 1.9; word-break: keep-all; }
+@media (max-width: 1199px) { .contactCard { padding: 20px; } .glass { padding: 24px; } }
+@media (max-width: 1023px) {
+  .heading { grid-template-columns: minmax(0, 1fr); gap: 24px; margin-bottom: 32px; }
+  .heading > p { max-width: 560px; }
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  .contactCard { min-height: 340px; padding: 32px; }
+  .glass { width: 100%; max-width: 560px; justify-self: center; }
+}
+@media (max-width: 599px) { .contactCard { padding: 20px; } .glass { padding: 24px 20px; } .contactHeading { gap: 12px; } .contactHeading h3 { font-size: 17px; } }
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) { .glass { background: #152331; backdrop-filter: none; -webkit-backdrop-filter: none; } }
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .glass { background: #152331; } }

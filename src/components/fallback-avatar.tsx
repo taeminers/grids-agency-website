@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
+import { useReducedMotionPreference } from "./coin-preview/use-reduced-motion";
 
 // --- Hash utilities ---
 
@@ -72,6 +73,12 @@ function getColors(
   return [oklchToRgb(0.8, 0.18, hue), oklchToRgb(0.45, 0.18, hue)];
 }
 
+type AvatarAppearance = "sky" | "original";
+
+// Match the project's --brand-sky and --brand-blue palette.
+const SKY_COLOR = [139 / 255, 207 / 255, 240 / 255] as const;
+const BLUE_COLOR = [39 / 255, 125 / 255, 184 / 255] as const;
+
 // --- Uniforms ---
 
 interface Uniforms {
@@ -83,10 +90,10 @@ interface Uniforms {
   C2: [number, number, number];
 }
 
-function computeUniforms(name: string): Uniforms {
+function computeUniforms(name: string, appearance: AvatarAppearance): Uniforms {
   const hash = hashString(name);
   const rng = mulberry32(hash[0]);
-  const [c1, c2] = getColors(hash);
+  const [originalLight, originalDark] = getColors(hash);
   const p: number[] = [];
   for (let i = 0; i < 8; i++) p.push(rng());
   return {
@@ -94,8 +101,8 @@ function computeUniforms(name: string): Uniforms {
     H: deriveHue(hash) / 360,
     P: [p[0], p[1], p[2], p[3]],
     Q: [p[4], p[5], p[6], p[7]],
-    C1: [c1[0] / 255, c1[1] / 255, c1[2] / 255],
-    C2: [c2[0] / 255, c2[1] / 255, c2[2] / 255],
+    C1: appearance === "sky" ? [...SKY_COLOR] : [originalLight[0] / 255, originalLight[1] / 255, originalLight[2] / 255],
+    C2: appearance === "sky" ? [...BLUE_COLOR] : [originalDark[0] / 255, originalDark[1] / 255, originalDark[2] / 255],
   };
 }
 
@@ -219,6 +226,7 @@ interface FallbackAvatarProps {
   name: string;
   size?: number;
   animated?: boolean;
+  appearance?: AvatarAppearance;
   className?: string;
 }
 
@@ -226,8 +234,10 @@ export default function FallbackAvatar({
   name,
   size = 32,
   animated = true,
+  appearance = "sky",
   className,
 }: FallbackAvatarProps) {
+  const reduced = useReducedMotionPreference();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animRef = useRef<number>(0);
   const isHovering = useRef(false);
@@ -236,14 +246,14 @@ export default function FallbackAvatar({
 
   const getUniforms = useCallback(() => {
     if (!uniformsRef.current) {
-      uniformsRef.current = computeUniforms(name);
+      uniformsRef.current = computeUniforms(name, appearance);
     }
     return uniformsRef.current;
-  }, [name]);
+  }, [name, appearance]);
 
   useEffect(() => {
     uniformsRef.current = null;
-  }, [name]);
+  }, [name, appearance]);
 
   // Initial static render
   useEffect(() => {
@@ -257,7 +267,7 @@ export default function FallbackAvatar({
 
   // Hover animation
   useEffect(() => {
-    if (!animated) return;
+    if (!animated || reduced) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -273,6 +283,7 @@ export default function FallbackAvatar({
     };
 
     const onEnter = () => {
+      cancelAnimationFrame(animRef.current);
       isHovering.current = true;
       startTime = null;
       animRef.current = requestAnimationFrame(animate);
@@ -288,11 +299,12 @@ export default function FallbackAvatar({
     canvas.addEventListener("mouseleave", onLeave);
 
     return () => {
+      isHovering.current = false;
       canvas.removeEventListener("mouseenter", onEnter);
       canvas.removeEventListener("mouseleave", onLeave);
       cancelAnimationFrame(animRef.current);
     };
-  }, [animated, getUniforms]);
+  }, [animated, reduced, getUniforms]);
 
   return (
     <canvas
@@ -300,7 +312,13 @@ export default function FallbackAvatar({
       width={size}
       height={size}
       className={cn("rounded-full", className)}
-      style={{ width: size, height: size }}
+      style={{
+        width: size,
+        height: size,
+        // Rotate the original bottom shadow to the right, including the CSS fallback.
+        transform: appearance === "sky" ? "rotate(-90deg)" : undefined,
+        background: appearance === "sky" ? "linear-gradient(180deg, var(--brand-sky, #8bcff0), var(--brand-blue, #277db8) 65%, #071520)" : undefined,
+      }}
     />
   );
 }

@@ -2,20 +2,23 @@
 
 import { useEffect, useRef, useState, type RefObject } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
-import type { Mesh } from "three";
+import type { Mesh, Texture } from "three";
 import { BlueGlassMaterial, type GlassPalette } from "./blue-glass-material";
-import { RotationMotion, VIEW_ROTATIONS, type TileView } from "./rotation-motion";
+import { RotationMotion, VIEW_ROTATIONS, type Rotation, type TileView } from "./rotation-motion";
 
-export type ViewRequest = { view: TileView; sequence: number };
+export type ViewRequest = { view: TileView; sequence: number; rotation?: Rotation };
 
-export function InteractiveTile({ surface, request, palette, onTurn }: {
+export function InteractiveTile({ surface, request, palette, onTurn, objectRef, buffer }: {
   surface: RefObject<HTMLDivElement | null>;
   request: ViewRequest;
   palette: GlassPalette;
   onTurn: (view?: TileView) => void;
+  objectRef?: RefObject<Mesh | null>;
+  buffer?: Texture;
 }) {
-  const mesh = useRef<Mesh>(null);
-  const [motion] = useState(() => new RotationMotion(VIEW_ROTATIONS[request.view]));
+  const localMesh = useRef<Mesh>(null);
+  const mesh = objectRef ?? localMesh;
+  const [motion] = useState(() => new RotationMotion(request.rotation ?? VIEW_ROTATIONS[request.view]));
   const invalidate = useThree(state => state.invalidate);
   const reduced = useRef(false);
   const lastFrame = useRef(0);
@@ -84,7 +87,7 @@ export function InteractiveTile({ surface, request, palette, onTurn }: {
       if (event.key === "Escape") { cancel(); return; }
       clearPointer();
       onTurn(event.key === "Home" ? "perspective" : undefined);
-      if (event.key === "Home") motion.goTo(VIEW_ROTATIONS.perspective, reduced.current);
+      if (event.key === "Home") motion.goTo(request.rotation ?? VIEW_ROTATIONS.perspective, reduced.current);
       else {
         const step = event.shiftKey ? 0.1 : Math.PI / 12;
         motion.nudge(event.key === "ArrowUp" ? -step : event.key === "ArrowDown" ? step : 0,
@@ -117,11 +120,11 @@ export function InteractiveTile({ surface, request, palette, onTurn }: {
       motion.stop();
       cancelGesture.current = null;
     };
-  }, [surface, motion, invalidate, onTurn]);
+  }, [surface, motion, invalidate, onTurn, request.rotation]);
 
   useEffect(() => {
     cancelGesture.current?.();
-    motion.goTo(VIEW_ROTATIONS[request.view], reduced.current);
+    motion.goTo(request.rotation ?? VIEW_ROTATIONS[request.view], reduced.current);
     lastFrame.current = performance.now();
     invalidate();
   }, [request, motion, invalidate]);
@@ -132,12 +135,12 @@ export function InteractiveTile({ surface, request, palette, onTurn }: {
     lastFrame.current = now;
     mesh.current?.rotation.set(...motion.rotation);
     if (active) invalidate();
-  });
+  }, -1); // Update the pose before any external refraction passes.
 
   return (
     <mesh ref={mesh}>
       <tileGeometry />
-      <BlueGlassMaterial palette={palette} />
+      <BlueGlassMaterial palette={palette} buffer={buffer} />
     </mesh>
   );
 }

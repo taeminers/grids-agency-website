@@ -23,6 +23,7 @@
     "@spell": "https://spell.sh/r/{name}.json",
     "@react-bits": "https://reactbits.dev/r/{name}.json",
     "@spectrumui": "https://ui.spectrumhq.in/r/{name}.json",
-    "@uselayouts": "https://uselayouts.com/r/{name}.json"
+    "@uselayouts": "https://uselayouts.com/r/{name}.json",
+    "@shadcn-space": "https://shadcnspace.com/r/{name}.json"
   }
 }

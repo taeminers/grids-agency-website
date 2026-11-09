@@ -12,3 +12,5 @@ Downloaded September 18, 2026. The gilbarbara/logos distribution license is incl
 Growth card assets (November 6, 2026):
 - `google-analytics.svg`: https://raw.githubusercontent.com/gilbarbara/logos/main/logos/google-analytics.svg
 - `google-ads.svg`: https://raw.githubusercontent.com/gilbarbara/logos/main/logos/google-ads.svg
+
+- `google-play.svg`: https://raw.githubusercontent.com/gilbarbara/logos/main/logos/google-play-icon.svg — downloaded November 6, 2026.

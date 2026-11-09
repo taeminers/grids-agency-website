@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import FallbackAvatar from "./fallback-avatar";
 import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import gsap from "gsap";
@@ -96,7 +96,7 @@ export default function CrmDashboardPreview() {
         <span className="size-1.5 rounded-full bg-[#ff5f57]" /><span className="size-1.5 rounded-full bg-[#febc2e]" /><span className="size-1.5 rounded-full bg-[#28c840]" />
       </div>
       <aside className="absolute top-6 bottom-0 left-0 z-20 flex w-9 flex-col items-center gap-2 border-r border-black/5 dark:border-white/5 bg-[#ffffff] dark:bg-[#101010] py-2">
-        <span className="mb-2 flex size-5 items-center justify-center rounded bg-[#f5f5f5]"><Image src="/logo/grids-black.png" alt="" width={12} height={12} className="size-3 object-contain" /></span>
+        <FallbackAvatar name="GRIDS Growth" size={20} animated={true} className="pointer-events-auto mb-2 shrink-0" />
         {[Layers, Grid, Users, ChartBar, Shield, Database].map((Icon, index) => <span key={index} className={`flex size-6 items-center justify-center rounded ${index === 0 ? "bg-[#e5e5e5] dark:bg-[#252525] text-[#292929] dark:text-[#e8e8e8]" : "text-[#747474]"}`}><Icon size={12} /></span>)}
         <Settings size={12} className="mt-auto text-[#747474]" />
       </aside>

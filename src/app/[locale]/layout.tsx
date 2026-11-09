@@ -35,7 +35,8 @@ export default async function LocaleLayout({
       <ScrollToTop />
       <ThemeProvider
         attribute="class"
-        defaultTheme="dark"
+        defaultTheme="light"
+        forcedTheme="light"
         enableSystem={false}
         disableTransitionOnChange
       >

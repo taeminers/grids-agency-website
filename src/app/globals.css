@@ -41,6 +41,8 @@
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
 
+  /* Outer cards and panels: the site-wide standard documented in DESIGN.md. */
+  --site-card-radius: 8px;
   --radius: 0.625rem;
 
   --background: oklch(1 0 0);

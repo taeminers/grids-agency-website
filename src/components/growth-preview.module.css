@@ -33,7 +33,7 @@
 }
 .endpoint { display: grid; place-items: center; flex: 0 0 42px; height: 42px; }
 .logo { width: 19px; height: 19px; background: #f4f5f6; }
-.avatar { background: linear-gradient(135deg, #d8efff, #8bcff0 48%, #667cca); }
+.avatar { display: block; }
 .line { height: 1px; flex: 1; background: #46484b; }
 .junction { display: grid; place-items: center; flex: 0 0 28px; height: 28px; background: #252628; border-radius: 6px; transform: rotate(45deg); color: #b2b6bc; }
 .junction svg { transform: rotate(-45deg); }

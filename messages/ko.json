@@ -3,7 +3,7 @@
     "contactPrompt": "질문이 더 있으신가요?",
     "contactLink": "편하게 물어보세요",
     "heading": "궁금하셨죠?",
-    "description": "아이디어를 구체화하기 전, 자주 궁금해하시는 내용을 모았습니다.",
+    "description": "프로젝트를 시작하기 전, 궁금한 점이 많으시죠?\n진행 방식부터 비용, 출시 후 관리까지.\n자주 묻는 질문에 먼저 답해드립니다.",
     "items": {
       "company": {
         "question": "그리즈는 어떤 회사인가요?",
@@ -28,8 +28,36 @@
       "support": {
         "question": "출시 후 유지보수 비용은 어떻게 되나요?",
         "answer": "서비스의 규모와 운영 환경, 필요한 지원 범위에 따라 달라집니다. 서버 등 서비스 운영에 드는 비용과 유지보수·기능 개선 비용을 구분해 안내하고, 실제로 필요한 지원 범위를 함께 정합니다."
+      },
+      "integration": {
+        "question": "이미 쓰고 있는 시스템과 연결할 수 있나요?",
+        "answer": "가능한 연동 방식은 기존 시스템의 API 제공 여부, 접근 권한과 데이터 구조에 따라 달라집니다. 사용 중인 도구와 연결하고 싶은 업무 흐름을 알려주시면, 연동 가능 범위와 별도로 필요한 작업을 먼저 검토합니다."
+      },
+      "preparation": {
+        "question": "상담 전에 어떤 자료를 준비하면 좋을까요?",
+        "answer": "서비스의 목적, 주요 이용자, 꼭 필요한 기능, 희망 일정과 예산을 정리해 주시면 좋습니다. 참고 사이트나 현재 사용 중인 시스템이 있다면 함께 알려주세요. 로고·문구·이미지 등 제작에 필요한 자료는 범위를 정하면서 구체적으로 안내합니다."
+      },
+      "timeline": {
+        "question": "제작 일정은 어떻게 정하나요?",
+        "answer": "기능과 페이지 수, 디자인 난이도, 외부 연동, 자료 준비 상황을 기준으로 일정을 검토합니다. 기획·디자인·개발·검수의 주요 단계를 함께 정하고, 출시 시점이 정해져 있다면 먼저 필요한 기능부터 공개하는 단계별 진행도 검토합니다."
+      },
+      "communication": {
+        "question": "제작 중에는 어떻게 소통하고 확인하나요?",
+        "answer": "착수 전에 담당자와 소통 채널, 검토 방식을 함께 정합니다. 주요 단계의 결과물을 확인하며 의견을 모으고, 변경사항은 범위와 일정에 미치는 영향을 확인한 뒤 반영합니다. 피드백을 한곳에 모아주시면 확인과 반영이 더 수월합니다."
+      },
+      "scopeChanges": {
+        "question": "진행 중에 기능이나 디자인을 바꿀 수 있나요?",
+        "answer": "먼저 합의한 작업 범위에 포함되는 변경인지 확인합니다. 새로운 기능이나 큰 디자인 변경처럼 범위를 넘어서는 요청은 추가 비용과 일정 영향을 안내하고, 합의 후 진행합니다. 초기 상담에서 우선순위와 수정 범위를 정리해 두면 변경을 줄일 수 있습니다."
+      },
+      "externalCosts": {
+        "question": "견적 외에 별도로 드는 비용이 있나요?",
+        "answer": "도메인, 호스팅, API 사용료, 결제 수수료와 유료 에셋 등 외부 서비스 비용은 별도입니다. 사용량에 따라 달라지는 비용도 있으므로, 필요한 서비스와 예상 사용 방식을 확인한 뒤 제작비와 구분해 안내합니다."
       }
-    }
+    },
+    "layoutHeading": "궁금하셨죠?",
+    "layoutHeadingSecondary": "하나씩 답해드릴게요.",
+    "contactCardTitle": "함께 이야기해 볼까요?",
+    "contactCardDescription": "찾으시는 답이 없거나 프로젝트에 맞는 이야기가 필요하다면, 해결하고 싶은 문제부터 편하게 알려주세요."
   },
   "ConsultationButton": {
     "label": "카톡 상담",
@@ -50,14 +78,65 @@
     "text": "좋은 웹사이트와 앱, 개발팀 없이도 가능합니다.\n기획부터 디자인, 개발까지.\nGRIDS의 전문가들이 합리적인 비용으로 귀사의 팀처럼 함께합니다."
   },
   "HomeOfferings": {
-    "organizations": "서울대학교, Google, Samsung, LG",
+    "partnership": "GRIDS와 귀사, 함께하는 파트너",
+    "yourCompany": "귀사",
     "heading": "GRIDS는 귀사에",
     "headingSecondary": "두 가지 핵심 가치를 제공합니다.",
     "introduction": "더 많은 고객에게 발견되고, 더 많은 기회로 이어지도록.",
     "build": {
       "title": "Websites & Applications",
       "description": "기획부터 디자인, 개발까지. 브랜드를 보여주는 웹사이트부터 비즈니스를 움직이는 애플리케이션까지, 필요한 제품을 함께 만듭니다.",
-      "cta": "프로젝트 상담하기"
+      "cta": "프로젝트 상담하기",
+      "hero": {
+        "label": "ROAM 여행 웹사이트 예시. 밝은 배경의 중앙 헤드라인과 여행 시작 버튼 아래로 애니메이션 카드가 펼쳐지는 디자인.",
+        "headline": "일상에서 멀리,\n나에게 더 가까이.",
+        "scroll": "새로운 여정 만나보기",
+        "description": "익숙한 길 너머, 당신만의 속도로.\n취향을 담은 여행으로 새로운 일상을 만나보세요.",
+        "explore": "여정 둘러보기",
+        "navigation": "ROAM 예시 내비게이션",
+        "journeys": "여정",
+        "plan": "상담",
+        "about": "회사 소개",
+        "blog": "블로그",
+        "contact": "Contact",
+        "cta": "여행 시작하기"
+      },
+      "mobile": {
+        "label": "morrow 습관 관리 앱: 시작 화면, 나만의 리듬과 성장 안내, 오늘의 대시보드로 이어지는 미리보기",
+        "days": "월 화 수 목 금 토 일",
+        "streakDescription": "나에게 맞는 작은 루틴으로, 하루의 리듬을 찾아요.",
+        "continue": "계속하기",
+        "start": "시작하기",
+        "greeting": "좋은 아침이에요, 민서님",
+        "homeTitle": "오늘도, 나를 위해.",
+        "currentStreak": "이어가는 나의 기록",
+        "dayUnit": "일 연속",
+        "streakNote": "이번 주, 나를 위한 시간이 쌓이고 있어요",
+        "today": "오늘의 작은 실천",
+        "taskCount": "3가지 습관",
+        "water": "물 한 잔으로 시작하기",
+        "waterDetail": "아침 루틴 · 250ml",
+        "focus": "나에게 집중하는 시간",
+        "focusDetail": "마음 챙김 · 10분",
+        "walk": "잠깐, 밖으로 나가기",
+        "walkDetail": "가벼운 산책 · 20분",
+        "reward": "이번 주 나의 변화 살펴보기",
+        "navHome": "오늘",
+        "navProgress": "기록",
+        "navYou": "마이",
+        "gardenDescription": "매일의 작은 실천이 더 나은 내일로 자라요.",
+        "skip": "건너뛰기"
+      },
+      "visual": {
+        "label": "제작 서비스",
+        "intake": "상담 및 요구사항 정의",
+        "delivery": "완성도 높은 결과물",
+        "website": "웹사이트",
+        "appStore": "웹·앱",
+        "internal": "CRM·어드민",
+        "automation": "자동화",
+        "chatbot": "챗봇"
+      }
     },
     "growth": {
       "title": "Growth",
@@ -114,7 +193,6 @@
   },
   "Navbar": {
     "work": "작업",
-    "about": "비전",
     "pricing": "요금 안내",
     "team": "Team",
     "contact": "문의",
@@ -139,19 +217,23 @@
       "feature": "각기 다른 브랜드의 이야기, 그에 맞는 표현. 우리의 작업에서 그 차이를 만나보세요.",
       "tcl": {
         "title": "The Clear Labs",
-        "description": "브랜드의 분위기와 제품의 디테일을 담아낸 올인원 쇼핑몰."
+        "description": "브랜드의 분위기와 제품의 디테일을 담아낸 올인원 쇼핑몰.",
+        "category": "커머스 웹사이트"
       },
       "aether": {
         "title": "AETHER",
-        "description": "향의 감각을 영상과 웹으로 풀어낸 프래그런스 브랜드 경험."
+        "description": "향의 감각을 영상과 웹으로 풀어낸 프래그런스 브랜드 경험.",
+        "category": "브랜드 웹사이트"
       },
       "jiam": {
         "title": "JIAM",
-        "description": "제이시스메디칼의 전문 지식을 체계적인 학습 경험으로 연결한 이러닝 플랫폼."
+        "description": "제이시스메디칼의 전문 지식을 체계적인 학습 경험으로 연결한 이러닝 플랫폼.",
+        "category": "웹 애플리케이션"
       },
       "carouselLabel": "그리즈 대표 프로젝트",
       "showProject": "{title} 프로젝트 펼치기",
-      "learnMore": "자세히 보기"
+      "learnMore": "자세히 보기",
+      "viewProject": "프로젝트 보기"
     },
     "title": "최상의 제작 퀄리티를 지향하는 <newline></newline> <highlight>엘리트 AI 에이전시</highlight>",
     "description": "최첨단 AI 기술로 압도적인 퀄리티와 시장 우위를 확보하십시오. 경쟁사를 앞서가는 압도적인 스케일을 경험할 수 있습니다.",
@@ -190,7 +272,6 @@
     "start_project": "프로젝트 상담하기",
     "studio_description": "DX부터 AX까지, 기획·디자인·개발·도입의 전 과정을 처음부터 끝까지 함께합니다.",
     "approach_description": "웹사이트부터 AI 비주얼, 업무 자동화까지. 비즈니스의 다음 가능성을 함께 설계합니다.",
-    "explore_vision": "우리의 비전",
     "discover": "더 알아보기",
     "capabilities": {
       "web": "웹 & 시스템",
@@ -235,7 +316,12 @@
     "contactLabel": "Contact",
     "email": "kyle@gridsagency.com",
     "phone": "telegram @kyle_lee10",
-    "cta": "프로젝트 상담하기"
+    "cta": "프로젝트 상담하기",
+    "desktopLabel": "GRIDS 데스크톱 · 연락처와 바로가기",
+    "kakaoApp": "카카오톡",
+    "mailApp": "메일",
+    "cubeLabel": "직접 돌려보는 유리 큐브",
+    "cubeHelp": "드래그해서 큐브를 돌려보세요. 터치 화면에서는 좌우로 밀어 회전하고 위아래로 스크롤할 수 있어요. 방향키로 회전, Home으로 초기화, Escape로 멈출 수 있어요."
   },
   "Intro": {
     "text": "GRIDS AGENCY"
@@ -426,80 +512,24 @@
       "error": "전송 중 오류가 발생했습니다. 다시 시도해 주세요."
     }
   },
-  "Vision": {
-    "title": "Our Vision",
-    "Quote": {
-      "role": "FOUNDER & CEO",
-      "textPart1": "우리는 마치 ",
-      "highlight1": "무한한 좌표계",
-      "textPart2": "처럼 글로벌 비즈니스의 복잡성을 가로질러 ",
-      "highlight2": "의미 있는 목적지",
-      "textPart3": "에 도달합니다. 기존의 한계를 넘어서는 ",
-      "highlight3": "새로운 경로를 설계",
-      "textPart4": "해 나갑니다."
-    },
-    "Phases": {
-      "phase1": {
-        "label": "[ PHASE 01 ]",
-        "title": "무한의 기점",
-        "description": "모든 위대한 설계는 빈 그리드에서 시작됩니다. XZ 평면 위에 경계 없는 격자를 펼쳐, 어디로든 뻗어 나갈 수 있는 무한한 영토를 확보합니다."
-      },
-      "phase2": {
-        "label": "[ PHASE 02 ]",
-        "title": "수직적 확장",
-        "description": "평면에 머물러 있던 아이디어에 높이(Y)를 부여합니다. 단순한 확장을 넘어 로컬의 한계를 뚫고 올라가는 압도적인 성장을 설계하며 비즈니스의 고도를 결정짓습니다."
-      },
-      "phase3": {
-        "label": "[ PHASE 03 ]",
-        "title": "입체적 완성",
-        "description": "Z축이 맞물리며 마침내 상상은 입체적인 현실이 됩니다. GRIDS가 구축한 공간 안에서 당신의 비즈니스는 살아 움직이는 생태계가 되어 완벽한 부피감을 드러냅니다."
-      }
-    },
-    "Experience": {
-      "label": "우리의 비전",
-      "navigation": "비전 챕터 탐색",
-      "interaction": "인터랙티브 3D 그리드. 방향키로 회전하고 Enter 키로 파동을 만드세요.",
-      "hint": "드래그하여 회전 · 탭하여 파동 만들기",
-      "scroll": "스크롤하여 탐색",
-      "cta": "다음 가능성을 함께 그리기",
-      "chapters": {
-        "possibility": {
-          "label": "가능성을 그리다",
-          "line1": "하나의 그리드.",
-          "line2": "무엇이든 그리다.",
-          "description": "(GRID)좌표 위에는 정해진 답이 없습니다. 어떤 선을 긋느냐에 따라 전혀 다른 모습이 됩니다. GRIDS도 그렇습니다. 당신의 아이디어에 맞춰, 필요한 모습으로 함께 만들어갑니다.",
-          "scene": "좌표들이 모여 하나의 유연한 곡면을 이루는 입체 그리드"
-        },
-        "connection": {
-          "label": "의미를 연결하다",
-          "line1": "점을 연결하면,",
-          "line2": "새로운 그림이 됩니다.",
-          "description": "따로 놓인 점은 함께할 때 의미를 가집니다. 고객의 비전과 우리의 기술, 사람과 사람, 아이디어와 실행을 연결합니다. 그렇게 혼자서는 그릴 수 없던 하나의 그림을 완성합니다.",
-          "scene": "그리드가 한 번의 꼬임을 가진 연속된 뫼비우스 띠로 연결되는 모습"
-        },
-        "infinity": {
-          "label": "경계 너머로 가다",
-          "line1": "다음 가능성에는,",
-          "line2": "끝이 없으니까.",
-          "description": "그리드가 끝없이 이어지듯, 우리의 성장에도 정해진 경계는 없습니다. 하나의 프로젝트에서 다음 도전으로. 고객과 함께 더 넓은 세상을 향해 좌표를 넓혀갑니다.",
-          "scene": "입체 구조가 수평선 너머로 확장되는 열린 좌표계"
-        }
-      },
-      "fallback": "같은 그리드, 또 다른 시선.",
-      "retry": "3D 다시 보기"
-    }
-  },
   "Archive": {
+    "Detail": {
+      "details": "프로젝트 정보",
+      "client": "클라이언트",
+      "services": "서비스",
+      "introduction": "프로젝트 소개",
+      "inactive": "현재 운영되지 않는 프로젝트입니다."
+    },
     "Websites": {
-      "title": "웹사이트",
+      "client": "AETHER",
+      "title": "영상",
       "tags": {
-        "website": "브랜드 웹사이트",
-        "film": "AI 비주얼"
+        "film": "AI 브랜드 필름"
       },
       "industryLabel": "분야",
       "industry": "프래그런스 · 라이프스타일",
       "scopeLabel": "제작 범위",
-      "scope": "웹 개발 · AI 영상 제작",
+      "scope": "AI 영상 제작",
       "visit": "사이트 방문",
       "galleryLabel": "프로젝트 이미지",
       "galleryNote": "브랜드 필름에서 발췌한 장면",
@@ -511,7 +541,7 @@
         "rum": "럼의 질감을 표현한 브랜드 필름 장면"
       },
       "heading": "보이지 않는 향을, 보이는 경험으로.",
-      "description": "AETHER의 향과 분위기를 웹과 영상으로 풀어냈습니다. 제품의 디테일과 향의 이미지를 담은 AI 비주얼을 웹 경험에 연결해, 브랜드의 세계를 자연스럽게 탐색할 수 있도록 구성했습니다.",
+      "description": "AETHER의 향과 분위기를 영상으로 풀어냈습니다. 향수병의 디테일과 커피, 럼 등 향에서 연상되는 이미지를 AI 비주얼로 표현해, 브랜드의 감각을 하나의 필름에 담았습니다.",
       "projectTitle": "AETHER",
       "projectLabel": "AETHER FRAGRANCES"
     },
@@ -529,7 +559,7 @@
         "websites": {
           "title": "웹사이트",
           "eyebrow": "WEBSITES",
-          "example": "AETHER · 브랜드 웹사이트",
+          "example": "브랜드 웹사이트 · 온라인 스토어",
           "description": "브랜드의 개성을 담은 웹사이트부터 구매로 이어지는 쇼핑몰까지. 첫 방문부터 마지막 클릭까지 자연스러운 경험을 설계합니다."
         },
         "webApps": {
@@ -638,9 +668,9 @@
           "description": "Jeisys를 위해 개발된 최첨단 이러닝 플랫폼."
         },
         "web-dev": {
-          "service": "웹 개발 & AI 영상 제작",
+          "service": "AI 영상 제작",
           "title": "AETHER",
-          "description": "최고급 브랜드의 차세대 이커머스 경험."
+          "description": "향과 제품의 디테일을 시각적으로 표현한 AETHER 브랜드 필름."
         },
         "ai-video": {
           "service": "AI 영상 제작",
@@ -667,6 +697,7 @@
       }
     },
     "WebApps": {
+      "client": "제이시스메디칼",
       "industryLabel": "분야",
       "scopeLabel": "제작 범위",
       "galleryLabel": "프로젝트 이미지",
@@ -691,6 +722,7 @@
       "description": "제이시스메디칼의 이러닝 플랫폼 JIAM. 전문 교육 콘텐츠를 웹에서 만나고 탐색할 수 있도록, 브랜드와 학습 경험을 하나의 서비스로 연결했습니다."
     },
     "AiFilm": {
+      "client": "The Clear Labs",
       "industryLabel": "분야",
       "scopeLabel": "제작 범위",
       "galleryLabel": "프로젝트 이미지",
@@ -703,7 +735,7 @@
         "brand": "브랜드 필름",
         "ai": "AI 영상 제작"
       },
-      "industry": "뷰티 · 라이프스타일",
+      "industry": "화장품 도매 · 해외 판매",
       "scope": "AI 비주얼 · 브랜드 영상",
       "visit": "영상 보기",
       "images": {
@@ -711,10 +743,11 @@
         "second": "The Clear Labs 브랜드 필름 두 번째 장면",
         "third": "The Clear Labs 브랜드 필름 세 번째 장면"
       },
-      "heading": "브랜드의 감각을, 새로운 장면으로.",
-      "description": "제품의 디테일과 브랜드의 분위기를 AI 비주얼로 풀어낸 The Clear Labs의 브랜드 필름입니다. 빛과 질감, 움직임을 통해 브랜드가 전하고 싶은 이미지를 하나의 영상으로 담았습니다."
+      "heading": "화장품 도매 구매부터, 해외 판매까지.",
+      "description": "The Clear Labs는 화장품을 도매로 구매해 해외 시장에 판매하던 비즈니스입니다. 제품의 디테일과 브랜드의 분위기를 AI 비주얼로 표현한 브랜드 영상을 제작했습니다."
     },
     "AdminTools": {
+      "client": "GRIDS AGENCY",
       "industryLabel": "분야",
       "scopeLabel": "제작 범위",
       "galleryLabel": "프로젝트 이미지",
@@ -740,7 +773,9 @@
     },
     "Index": {
       "title": "우리의 작업",
-      "description": "웹사이트, 플랫폼, 그리고 영상. 다양한 프로젝트와 웹사이트 데모를 만나보세요.",
+      "headline": "아이디어를 현실로,",
+      "headlineSecondary": "가능성을 결과로.",
+      "description": "웹사이트부터 플랫폼, 브랜드 영상까지.\nGRIDS가 만들어낸 다양한 결과물을 만나보세요.",
       "filterLabel": "프로젝트 필터",
       "filters": {
         "all": "전체",
@@ -757,8 +792,10 @@
       "detailNavigation": "아카이브 탐색",
       "projectNavigation": "다른 프로젝트",
       "note": "공개 가능한 작업과 웹사이트 데모를 소개합니다. 일부 고객 프로젝트는 고객의 요청과 비밀유지 계약에 따라 공개하지 않습니다.",
-      "disclosureHeadline": "공개 가능한 작업만 소개합니다.",
-      "disclosureDescription": "고객 요청·NDA가 적용된 프로젝트와\n사내 시스템의 운영 화면은 공개하지 않습니다."
+      "disclosurePreview": "공개 가능한 작업만 소개합니다.",
+      "disclosureNotice": "NDA 관련 중요 사항",
+      "disclosureHeadline": "어떤 결과물은,\n고객의 비밀로 남습니다.",
+      "disclosureDescription": "공개할 수 있는 프로젝트만 이곳에 모았습니다. 고객의 요청과 비밀유지 계약(NDA)이 있는 작업, 실제 데이터가 담긴 사내 시스템은 소개하지 않습니다.\n\n보여드리는 일만큼, 지켜드리는 일도 중요하니까요."
     },
     "Demo": {
       "title": "웹사이트",
@@ -813,11 +850,25 @@
       "title": "우리 회사의 노하우를 아는 AI",
       "description": "사내 문서, 매뉴얼, 업무 지식을 연결한 맞춤형 AI를 만듭니다. 필요한 정보를 질문 한 번으로 찾고, 출처를 확인하며 업무에 활용하세요.",
       "question": "신규 고객 온보딩은 어떻게 진행하나요?",
-      "answer": "계약 확인 → 담당자 배정 → 킥오프 순서로 진행해요. 단계별 체크리스트도 정리해 드릴게요.",
+      "answer": "신규 고객 온보딩은 다음 3단계로 진행해요.\n\n1. 계약 확인 — 계약 범위, 일정, 결제 조건을 확인하고 고객 정보를 CRM에 등록합니다.\n2. 담당자 배정 — 프로젝트 담당자와 고객 측 연락 창구를 정하고, 요청 자료와 접근 권한을 체크리스트로 공유합니다.\n3. 킥오프 진행 — 목표와 우선순위, 주요 일정을 합의한 뒤 회의록과 첫 실행 항목을 전달합니다.\n\n시작 전에는 계약서, 요구사항, 담당자 연락처가 준비됐는지 확인하세요. 필요하시면 고객에게 보낼 안내 메일도 작성해 드릴게요.",
       "source": "온보딩 가이드 · 3페이지",
       "placeholder": "회사 업무에 대해 물어보세요",
       "thinking": "관련 문서를 확인하고 있어요",
-      "answerLabel": "사내 가이드를 바탕으로 답변했어요"
+      "answerLabel": "사내 가이드를 바탕으로 답변했어요",
+      "gmail": {
+        "prompt": "온보딩의 첫 단계인 계약·필수 자료 확인 요청을 프로젝트 담당자 김민서님에게 보낼까요?",
+        "to": "받는 사람",
+        "recipient": "김민서 · 프로젝트 담당자",
+        "subjectLabel": "제목",
+        "subject": "[에이콘] 신규 고객 온보딩 준비 요청",
+        "body": "민서님, 에이콘 프로젝트 온보딩 준비를 부탁드립니다.\n\n• 계약서의 업무 범위·일정·결제 조건 확인\n• 고객 연락처와 요구사항을 CRM에 등록\n• 고객에게 요청할 자료·접근 권한 목록 정리\n\n확인 후 킥오프 가능한 일정을 공유해 주세요. 감사합니다.",
+        "review": "초안 검토",
+        "collapse": "접기",
+        "send": "보내기",
+        "sent": "전송 완료 · 데모",
+        "sentDetail": "김민서님에게 온보딩 준비 요청을 전달했습니다.",
+        "previewLabel": "AI 챗봇과 Gmail 연동 예시"
+      }
     },
     "automation": {
       "title": "24시간 이어지는 업무 자동화",
@@ -832,7 +883,7 @@
         "data": "데이터 정리",
         "notify": "팀 알림",
         "report": "보고서 발송",
-        "previewLabel": "업무 자동화 연결 미리보기. 마우스를 올리거나 키보드로 초점을 맞추면 연결 과정이 표시됩니다."
+        "previewLabel": "GRIDS와 네이버, Gmail, Google Drive, 카카오를 연결하는 업무 자동화 미리보기."
       }
     },
     "applications": {
@@ -1058,7 +1109,123 @@
         "information": "정보가 부족하거나 범위가 애매하면 추가 정보를 확인한 뒤 견적합니다. 임의로 낮은 확정 가격을 제시하지 않습니다.",
         "custom": "명시되지 않은 기능에 유사 기능의 가격을 임의로 적용하지 않습니다. 필요한 경우 별도로 산정합니다.",
         "adjustment": "프로젝트 규모와 난이도 등 제안 조건에 따라 최종 금액을 조정할 수 있습니다. 최초 합의 범위를 넘는 작업은 추가 견적합니다."
+      },
+      "headline": "기준은 명확하게."
+    },
+    "guidanceLabel": "견적 안내",
+    "vatNote": "VAT 별도",
+    "examples": {
+      "label": "예시",
+      "heading": "어떤 모습일지,",
+      "headingSecondary": "먼저 만나보세요.",
+      "preparing": "예시 준비 중",
+      "previewHint": "실제 예시를 둘러볼 수 있는 공간입니다.",
+      "scenario": "체험 시나리오",
+      "workflow": "자동화 실행 화면",
+      "conversation": "대화 화면",
+      "automationPlaceholder": "입력부터 결과까지, 업무 흐름을 확인하는 공간",
+      "chatbotPlaceholder": "질문하고 답변을 확인하는 공간",
+      "services": {
+        "homepage": {
+          "title": "웹사이트 미리보기",
+          "description": "미리 제작한 웹사이트를 둘러보며, 브랜드에 어울리는 구성과 분위기를 찾아보세요.",
+          "placeholder": "웹사이트 예시가 이곳에 표시됩니다."
+        },
+        "webApp": {
+          "title": "웹·앱 미리보기",
+          "description": "서비스의 주요 화면과 사용자 흐름을 살펴보세요. 필요한 기능이 어떻게 연결되는지 확인할 수 있습니다.",
+          "placeholder": "웹·앱 예시가 이곳에 표시됩니다."
+        },
+        "crm": {
+          "title": "CRM·어드민 미리보기",
+          "description": "고객 관리부터 운영 현황까지. 팀의 업무를 한곳에 모은 시스템의 모습을 살펴보세요.",
+          "placeholder": "CRM·어드민 예시가 이곳에 표시됩니다."
+        },
+        "automation": {
+          "tabs": {
+            "messages": "자동 메시지 응답",
+            "invoices": "AI 청구서 처리",
+            "briefing": "데일리 AI 브리핑"
+          },
+          "title": "AI 자동화 체험",
+          "description": "반복 업무가 하나의 흐름으로 연결되는 과정을, 간단한 시나리오로 경험해 보세요.",
+          "scenario": "고객 문의를 접수하면",
+          "scenarioDescription": "문의 내용을 분류하고 담당자에게 전달하는 자동화 흐름을 준비하고 있습니다.",
+          "steps": {
+            "first": "문의 내용 입력",
+            "second": "유형 분류와 담당자 배정",
+            "third": "전달 결과 확인"
+          }
+        },
+        "chatbot": {
+          "title": "AI 챗봇 체험",
+          "description": "질문이 답변으로, 답변이 다음 행동으로. 업무에 도움을 주는 챗봇의 대화 흐름을 경험해 보세요.",
+          "scenario": "새로운 고객의 온보딩",
+          "scenarioDescription": "안내 자료를 바탕으로 필요한 절차를 설명하는 챗봇 체험을 준비하고 있습니다.",
+          "steps": {
+            "first": "궁금한 내용 질문",
+            "second": "절차와 준비 자료 안내",
+            "third": "다음 단계 확인"
+          }
+        }
       }
+    },
+    "explorer": {
+      "heading": "필요한 범위에 맞게.",
+      "customTitle": "맞춤 제작",
+      "customLabel": "정해진 틀 없이",
+      "customPrice": "상담 후 산정",
+      "customNote": "요구사항과 연동 범위를 확인한 뒤 견적을 안내합니다.",
+      "services": {
+        "homepage": {
+          "title": "웹사이트",
+          "caption": "브랜드 · 기업 소개",
+          "description": "템플릿형부터 맞춤 제작, 프리미엄 브랜드 경험까지. 필요한 수준에 맞춰 선택하세요."
+        },
+        "webApp": {
+          "title": "웹·앱",
+          "caption": "웹서비스 · 모바일 앱",
+          "description": "아이디어를 실제로 사용할 수 있는 서비스로 만듭니다. 웹서비스부터 모바일 앱까지, 사용자 경험과 핵심 기능을 함께 설계합니다."
+        },
+        "crm": {
+          "title": "CRM·어드민",
+          "caption": "고객 관리 · 운영 도구",
+          "heading": "흩어진 업무를, 하나의 시스템으로.",
+          "description": "고객 정보와 업무 현황을 한곳에서 관리할 수 있도록, 팀의 운영 방식에 맞춘 CRM과 어드민을 만듭니다.",
+          "scope": {
+            "first": "고객 · 영업 · 업무 데이터 관리",
+            "second": "대시보드 · 통계 · 사용자 권한",
+            "third": "기존 시스템 · 외부 서비스 연동"
+          }
+        },
+        "automation": {
+          "title": "AI 자동화",
+          "caption": "반복 업무 · 서비스 연동",
+          "heading": "반복 업무는 줄이고, 중요한 일에 집중하도록.",
+          "description": "반복되는 업무 흐름을 분석하고 AI와 서비스 연동으로 자동화합니다. 팀이 실제로 사용하는 도구와 프로세스에 맞춰 설계합니다.",
+          "scope": {
+            "first": "문서 · 데이터 분류 및 처리",
+            "second": "이메일 · 알림 · 후속 작업 자동화",
+            "third": "업무 도구 연동 · 승인 흐름 설계"
+          }
+        },
+        "chatbot": {
+          "title": "AI 챗봇",
+          "caption": "고객 응대 · 사내 지식",
+          "heading": "우리의 정보를 이해하는 AI 챗봇.",
+          "description": "제품 안내부터 사내 지식 검색까지. 보유한 문서와 데이터를 바탕으로 질문에 답하고, 필요한 업무로 연결하는 챗봇을 만듭니다.",
+          "scope": {
+            "first": "문서 · FAQ 기반 지식 검색과 답변",
+            "second": "웹사이트 · 업무 도구 내 챗봇 연결",
+            "third": "상담 이관 · 권한 · 답변 품질 관리"
+          }
+        },
+        "rules": {
+          "title": "견적 기준표",
+          "caption": "항목별 비용 · 산정 기준"
+        }
+      },
+      "webAppPricingNote": "아래 금액은 웹서비스 MVP 제작 기준입니다. 모바일 앱과 복잡한 플랫폼은 요구사항을 확인한 뒤 별도로 산정합니다."
     }
   }
 }

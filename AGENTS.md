@@ -18,6 +18,8 @@ Apply its principles of purpose, agency, responsibility, familiarity, flexibilit
 
 ## Visual direction
 
+- Follow [DESIGN.md](DESIGN.md) for persistent site-wide design standards. Outer cards and panels use `--site-card-radius: 8px` at every breakpoint; do not introduce competing corner radii.
+
 - Make the purpose and next action immediately understandable. The hero should explain what GRIDS offers with a clear headline, concise supporting copy, and an obvious primary action.
 - Aim for a calm, confident presentation through deliberate whitespace, alignment, typography, and contrast. Every element must have a clear role.
 - Establish hierarchy through size, weight, line height, spacing, and grouping together. Avoid adding ornament to compensate for weak content or composition.

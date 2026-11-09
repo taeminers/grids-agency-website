@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { archiveProjects } from "@/components/archive/archive-project-data";
-import { ArchiveGrid } from "@/components/archive/archive-grid";
+import { ArchiveProjectDetail } from "@/components/archive/archive-project-detail";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -21,7 +21,7 @@ export default async function ArchiveDetailPage({ params }: Props) {
 
   return (
     <main className="min-h-screen bg-background">
-      <ArchiveGrid initialProjectSlug={slug} />
+      <ArchiveProjectDetail project={archiveProjects[index]} />
     </main>
   );
 }

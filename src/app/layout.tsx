@@ -45,7 +45,8 @@ export default async function RootLayout({
   return (
     <html
       lang={locale}
-      className="[scrollbar-gutter:stable]"
+      className="light [scrollbar-gutter:stable]"
+      style={{ colorScheme: "light" }}
       suppressHydrationWarning
     >
       <head>
@@ -62,10 +63,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             }}
           />
         )}
-        {/* Reset before next-themes initializes so refreshes start in dark mode. */}
+        {/* Keep saved preferences aligned with the temporarily light-only site. */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `try { localStorage.setItem('theme', 'dark'); } catch {}`,
+            __html: `try { localStorage.setItem('theme', 'light'); } catch {}`,
           }}
         />
       </head>

@@ -376,6 +376,9 @@ export default function CobaltLouvre({
         const canvas = canvasRef.current
         const host = hostRef.current
         if (!canvas || !host) return
+        host.style.opacity = "0"
+        // Establish the transparent starting style even if setup finishes before paint.
+        void window.getComputedStyle(host).opacity
 
         const gl = (canvas.getContext("webgl", {
             alpha: true,
@@ -433,7 +436,9 @@ export default function CobaltLouvre({
 
         const observer =
             typeof ResizeObserver !== "undefined"
-                ? new ResizeObserver(resize)
+                // Resizing clears the drawing buffer. Repaint in the same callback
+                // so card-width transitions cannot expose an empty canvas.
+                ? new ResizeObserver(() => draw(performance.now()))
                 : null
         observer?.observe(host)
 
@@ -458,9 +463,12 @@ export default function CobaltLouvre({
         let phase = 0
         let last = performance.now()
         let frame = 0
+        let isVisible = false
+        let hasDrawn = false
+        let contextLost = false
 
         const draw = (now: number) => {
-            frame = requestAnimationFrame(draw)
+            if (contextLost) return
 
             // Integrate on elapsed time rather than per frame. The reference
             // loop is a constant angular velocity, and a per-frame step would
@@ -506,12 +514,48 @@ export default function CobaltLouvre({
             gl.uniform1f(u.u_pointerStrength, pointer.active)
 
             gl.drawArrays(gl.TRIANGLES, 0, 3)
+            if (!hasDrawn) {
+                hasDrawn = true
+                host.style.opacity = "1"
+            }
         }
-        frame = requestAnimationFrame(draw)
+        const tick = (now: number) => {
+            frame = 0
+            if (!isVisible || document.hidden || contextLost) return
+            draw(now)
+            frame = requestAnimationFrame(tick)
+        }
+        const syncPlayback = () => {
+            cancelAnimationFrame(frame)
+            frame = 0
+            last = performance.now()
+            if (isVisible && !document.hidden && !contextLost) frame = requestAnimationFrame(tick)
+        }
+        const visibilityObserver = typeof IntersectionObserver !== "undefined"
+            ? new IntersectionObserver(([entry]) => {
+                isVisible = entry.isIntersecting
+                syncPlayback()
+            })
+            : null
+        visibilityObserver?.observe(host)
+        if (!visibilityObserver) isVisible = true
+        const onContextLost = () => {
+            contextLost = true
+            host.style.opacity = "0"
+            syncPlayback()
+        }
+        canvas.addEventListener("webglcontextlost", onContextLost)
+        document.addEventListener("visibilitychange", syncPlayback)
+        // Prepare a complete frame even when preloaded just outside the viewport.
+        draw(performance.now())
+        syncPlayback()
 
         return () => {
             cancelAnimationFrame(frame)
             observer?.disconnect()
+            visibilityObserver?.disconnect()
+            canvas.removeEventListener("webglcontextlost", onContextLost)
+            document.removeEventListener("visibilitychange", syncPlayback)
             host.removeEventListener("pointermove", onPointerMove)
             host.removeEventListener("pointerleave", onPointerLeave)
             host.removeEventListener("pointercancel", onPointerLeave)
@@ -531,6 +575,8 @@ export default function CobaltLouvre({
                 height: "100%",
                 overflow: "hidden",
                 background,
+                opacity: 0,
+                transition: "opacity 600ms ease-out",
                 ...style,
             }}
         >

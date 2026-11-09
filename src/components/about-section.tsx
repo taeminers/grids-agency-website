@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import FeaturedWorkCarousel from "@/components/featured-work-carousel";
+import FeaturedWorkList from "@/components/featured-work-list";
 import { cn } from "@/lib/utils";
 
 interface AboutSectionProps {
@@ -95,7 +95,7 @@ export default function AboutSection({ className }: AboutSectionProps) {
             </div>
           </div>
         </div> */}
-        <FeaturedWorkCarousel />
+        <FeaturedWorkList />
       </div>
     </section>
   );

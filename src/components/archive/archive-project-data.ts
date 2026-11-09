@@ -7,7 +7,8 @@ export interface ArchiveProject {
   video?: string;
   preview?: string;
   poster: string | null;
-  href: string;
+  href: string | null;
+  status?: "inactive";
   external: boolean;
   tags: readonly string[];
   gallery: readonly { src: string; key: string }[];
@@ -16,10 +17,10 @@ export interface ArchiveProject {
 export const featuredProjects: readonly ArchiveProject[] = [
   {
     key: "websites", namespace: "Websites",
-    slug: "aether", category: "websites",
+    slug: "aether", category: "aiFilm",
     video: "/videos/aether-hero-small.mp4", poster: "/images/archive/aether.jpg",
-    href: "https://aetherparfums.com/", external: true,
-    tags: ["website", "film"],
+    href: null, external: false, status: "inactive",
+    tags: ["film"],
     gallery: [
       { src: "/images/archive/aether-detail-3.jpg", key: "bottle" },
       { src: "/images/archive/aether-detail-1.jpg", key: "coffee" },
@@ -42,7 +43,7 @@ export const featuredProjects: readonly ArchiveProject[] = [
     key: "aiFilm", namespace: "AiFilm",
     slug: "the-clear-labs", category: "aiFilm",
     video: "/videos/tcl.mp4", poster: "/images/archive/tcl.jpg",
-    href: "https://drive.google.com/drive/folders/1jMGQeDtEEHjjFct-hJTBl5PQHehL795N?usp=drive_link", external: true,
+    href: null, external: false, status: "inactive",
     tags: ["brand", "ai"],
     gallery: [
       { src: "/images/archive/tcl-detail-1.jpg", key: "first" },

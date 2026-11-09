@@ -302,7 +302,7 @@
   font-weight: 600;
   color: #101112;
   isolation: isolate;
-  transition: width 460ms cubic-bezier(0.22, 1, 0.36, 1), right 460ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: width 460ms cubic-bezier(0.22, 1, 0.36, 1), right 460ms cubic-bezier(0.22, 1, 0.36, 1), color 350ms ease;
 }
 
 .cta::before {
@@ -313,22 +313,28 @@
   border-radius: 8px;
   background: #fff;
   box-shadow: 0 1px 5px rgb(24 43 61 / 0.14), inset 0 0 0 1px rgb(24 43 61 / 0.08);
-  transition: inset 460ms cubic-bezier(0.22, 1, 0.36, 1), border-radius 460ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: inset 460ms cubic-bezier(0.22, 1, 0.36, 1), border-radius 460ms cubic-bezier(0.22, 1, 0.36, 1), background 350ms ease, box-shadow 350ms ease;
 }
 
 .cta:hover,
 .cta:active { background: transparent; }
-.cta:hover::before { background: #f3f7fa; }
-.cta:active::before { background: #e5edf2; }
+.cta:focus-visible { color: #f8f8f8; }
+.cta:focus-visible::before { background: #101112; box-shadow: inset 0 0 0 1px rgb(255 255 255 / .25); }
+@media (hover: hover) {
+  .cta:hover { color: #f8f8f8; }
+  .cta:hover::before { background: #101112; box-shadow: inset 0 0 0 1px rgb(255 255 255 / .25); }
+}
+.cta:active::before { background: #303236; }
+.cta:active { color: #fff; }
 .cta > span { transition: opacity 120ms ease; }
 
 .ctaArrow {
   position: absolute;
   inset: 0;
-  width: 14px;
-  height: 10px;
+  width: 18px;
+  height: 18px;
   margin: auto;
-  color: #303033;
+  color: inherit;
   opacity: 0;
   pointer-events: none;
   transition: opacity 120ms ease;
@@ -341,9 +347,9 @@
 }
 
 .navbar[data-expanded="false"] .cta::before {
-  /* Match the 19px logo while preserving the full 44px click target. */
-  inset: calc((100% - 19px) / 2) 6px;
-  border-radius: 5px;
+  /* A visible 32px square inside the full 44px click target. */
+  inset: 6px;
+  border-radius: var(--site-card-radius);
 }
 
 .navbar[data-expanded="false"] .cta > span { opacity: 0; }

@@ -5,8 +5,7 @@ import BrandLogo from "@/components/brand-logo";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { Sun, Moon, Menu } from "lucide-react";
-import { useTheme } from "next-themes";
+import { ArrowRight, Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { trackEvent } from "@/lib/analytics";
 import {
@@ -14,6 +13,7 @@ import {
   DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import styles from "./navbar.module.css";
+import { isFooterDesktopActive } from "@/hooks/use-footer-desktop-active";
 
 interface NavbarProps {
   className?: string;
@@ -30,6 +30,7 @@ const subscribeToScroll = (onChange: () => void) => {
   };
 };
 const getScrolled = () => {
+  if (isFooterDesktopActive()) return false;
   const pinnedStage = document.querySelector<HTMLElement>("[data-navbar-pinned-stage]");
   if (pinnedStage) {
     const stickyTop = parseFloat(getComputedStyle(pinnedStage).top) || 0;
@@ -85,7 +86,6 @@ export default function Navbar({ className, inHero = false }: NavbarProps) {
 
   const isHome = pathname === `/${locale}` || pathname === `/${locale}/`;
 
-  const { setTheme, resolvedTheme } = useTheme();
   const mounted = useSyncExternalStore(
     subscribeToHydration,
     () => true,
@@ -104,18 +104,9 @@ export default function Navbar({ className, inHero = false }: NavbarProps) {
   // markup immediately so the intro timeline can find all reveal targets.
   if (isHome && !inHero) return null;
 
-  const themeLabel =
-    locale === "ko"
-      ? resolvedTheme === "dark"
-        ? "라이트 모드로 전환"
-        : "다크 모드로 전환"
-      : resolvedTheme === "dark"
-        ? "Switch to light mode"
-        : "Switch to dark mode";
   const languageLabel = locale === "ko" ? "Switch to English" : "한국어로 전환";
   const links = [
     { id: "work", label: t("work"), link: `/${locale}/archive` },
-    { id: "about", label: t("about"), link: `/${locale}/vision` },
     { id: "pricing", label: t("pricing"), link: `/${locale}/pricing` },
     { id: "contact", label: t("contact"), link: `/${locale}/connect` },
   ];
@@ -227,17 +218,6 @@ export default function Navbar({ className, inHero = false }: NavbarProps) {
         <button
           type="button"
           disabled={!mounted}
-          aria-label={mounted ? themeLabel : t("Settings.darkMode")}
-          title={mounted ? themeLabel : t("Settings.darkMode")}
-          onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-          className={cn(styles.item, styles.control)}
-        >
-          <Moon size={16} aria-hidden="true" className="dark:hidden" />
-          <Sun size={16} aria-hidden="true" className="hidden dark:block" />
-        </button>
-        <button
-          type="button"
-          disabled={!mounted}
           aria-label={languageLabel}
           title={languageLabel}
           onClick={switchLocale}
@@ -260,17 +240,7 @@ export default function Navbar({ className, inHero = false }: NavbarProps) {
           })}
         >
           <span aria-hidden="true">{t("consultation")}</span>
-          <svg
-            width="14"
-            height="10"
-            viewBox="0 0 14 10"
-            fill="none"
-            aria-hidden="true"
-            focusable="false"
-            className={styles.ctaArrow}
-          >
-            <path d="M1 5H12.5M9 1.5 12.5 5 9 8.5" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+          <ArrowRight size={18} strokeWidth={1.6} aria-hidden="true" className={styles.ctaArrow} />
         </Link>
         <div data-hero-reveal="text" className={styles.mobileMenu}>
           <DropdownMenu open={menuOpen} onOpenChange={setMenuOpen}>
@@ -292,15 +262,6 @@ export default function Navbar({ className, inHero = false }: NavbarProps) {
                 </DropdownMenuItem>
               ))}
               <DropdownMenuSeparator className={styles.menuSeparator} />
-              <DropdownMenuItem
-                disabled={!mounted}
-                onSelect={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-                className="min-h-11 rounded px-3"
-              >
-                <Moon size={16} aria-hidden="true" className="dark:hidden" />
-                <Sun size={16} aria-hidden="true" className="hidden dark:block" />
-                {mounted ? themeLabel : t("Settings.darkMode")}
-              </DropdownMenuItem>
               <DropdownMenuItem
                 disabled={!mounted}
                 onSelect={switchLocale}

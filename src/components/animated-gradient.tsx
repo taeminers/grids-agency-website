@@ -313,26 +313,19 @@ export default function AnimatedGradient({
     };
 
     const resize = () => {
-      const width = container.clientWidth;
-      const height = container.clientHeight;
       const pixelRatio = Math.min(window.devicePixelRatio || 1, MAX_DPR);
-      canvas.width = width * pixelRatio;
-      canvas.height = height * pixelRatio;
-      canvas.style.width = `${width}px`;
-      canvas.style.height = `${height}px`;
-      gl.viewport(0, 0, canvas.width, canvas.height);
+      const width = Math.max(1, Math.round(container.clientWidth * pixelRatio));
+      const height = Math.max(1, Math.round(container.clientHeight * pixelRatio));
+      if (canvas.width === width && canvas.height === height) return false;
+      canvas.width = width;
+      canvas.height = height;
+      gl.viewport(0, 0, width, height);
+      return true;
     };
-
-    resize();
-    const resizeObserver = new ResizeObserver(() => {
-      resize();
-      if (params.speed === 0) animate(performance.now());
-    });
-    resizeObserver.observe(container);
 
     startTimeRef.current = performance.now();
 
-    const animate = (time: number) => {
+    const draw = (time: number) => {
       const elapsed = (time - startTimeRef.current) / 1000;
       const speed = (params.speed / 100) * 5;
 
@@ -361,10 +354,23 @@ export default function AnimatedGradient({
       );
 
       gl.drawArrays(gl.TRIANGLES, 0, 6);
-      if (params.speed > 0) frameIdRef.current = requestAnimationFrame(animate);
     };
 
-    frameIdRef.current = requestAnimationFrame(animate);
+    const animate = (time: number) => {
+      draw(time);
+      frameIdRef.current = requestAnimationFrame(animate);
+    };
+
+    resize();
+    draw(performance.now());
+    // Changing a canvas's dimensions clears its drawing buffer. Redraw in
+    // this same pre-paint callback so a resizing card never exposes a blank
+    // frame. Keep RAF scheduling separate to avoid starting extra loops.
+    const resizeObserver = new ResizeObserver(() => {
+      if (resize()) draw(performance.now());
+    });
+    resizeObserver.observe(container);
+    if (params.speed > 0) frameIdRef.current = requestAnimationFrame(animate);
 
     return () => {
       if (frameIdRef.current !== undefined) {

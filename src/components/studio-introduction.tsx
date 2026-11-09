@@ -13,12 +13,13 @@ const subscribeToPreference = (notify: () => void) => {
 };
 const getStaticPreference = () => window.matchMedia(staticQuery).matches;
 
-export default function StudioIntroduction({ progress, revealAt }: {
+export default function StudioIntroduction({ progress, revealAt, completeAt = 0.94 }: {
   progress: MotionValue<number>;
   revealAt: number;
+  completeAt?: number;
 }) {
   const opacity = useTransform(progress, [revealAt, revealAt + 0.04], [0, 1]);
-  const signatureProgress = useTransform(progress, [revealAt + 0.02, 0.94], [0, 1]);
+  const signatureProgress = useTransform(progress, [revealAt + 0.02, completeAt], [0, 1]);
   const staticPresentation = useSyncExternalStore(subscribeToPreference, getStaticPreference, () => false);
 
   return (

@@ -22,7 +22,7 @@ export default function GrowthPreview() {
   const t = useTranslations("HomeOfferings.growth.visual");
   const reduced = useReducedMotionPreference();
   const visualRef = useRef<HTMLDivElement>(null);
-  const visible = useInView(visualRef);
+  const visible = useInView(visualRef, { once: true, margin: "400px 0px" });
 
   return (
     <div ref={visualRef} className={styles.visual}>
@@ -40,7 +40,7 @@ export default function GrowthPreview() {
           <span className={styles.junction}><Link2 size={15} strokeWidth={1.5} /></span>
           <span className={styles.line} />
           <div className={styles.endpoint}>
-            <FallbackAvatar name="GRIDS Growth" size={28} animated={!reduced} className={styles.avatar} />
+            <FallbackAvatar name="GRIDS Growth" size={28} animated={true} className={styles.avatar} />
           </div>
         </div>
 

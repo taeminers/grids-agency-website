@@ -3,7 +3,7 @@
     "contactPrompt": "Have more questions?",
     "contactLink": "Let’s talk",
     "heading": "Before we begin,\na few answers.",
-    "description": "A few things you might be wondering before turning your idea into a project.",
+    "description": "Questions before getting started?\nFrom our process and pricing to ongoing support,\nhere are the answers to help you plan ahead.",
     "items": {
       "company": {
         "question": "What kind of company is GRIDS?",
@@ -28,8 +28,36 @@
       "support": {
         "question": "What does maintenance cost after launch?",
         "answer": "Costs depend on the size of the service, its operating environment, and the support you need. We distinguish running costs, such as hosting, from maintenance and feature development, then agree on the support that makes sense for your business."
+      },
+      "integration": {
+        "question": "Can you connect to our existing systems?",
+        "answer": "Integration depends on the APIs, permissions and data structures available in your current systems. Tell us which tools you use and the workflows you want to connect. We’ll review what can be integrated and identify any additional work before defining the scope."
+      },
+      "preparation": {
+        "question": "What should we prepare before a consultation?",
+        "answer": "It helps to outline your goals, users, essential features, target timeline and budget. Share reference sites and any systems you already use. We’ll clarify the logo, copy, images and other materials needed as we define the scope."
+      },
+      "timeline": {
+        "question": "How is the project timeline decided?",
+        "answer": "We assess the features, page count, design complexity, integrations and readiness of your materials. Together, we set milestones for planning, design, development and review. If you have a target launch date, we can consider releasing the essential features first."
+      },
+      "communication": {
+        "question": "How do we communicate and review progress?",
+        "answer": "Before starting, we agree on contacts, communication channels and the review process. We review deliverables at key stages and assess how requested changes affect scope and timing before implementing them. Consolidating feedback in one place helps keep reviews clear."
+      },
+      "scopeChanges": {
+        "question": "Can we change features or designs during the project?",
+        "answer": "We first check whether a change falls within the agreed scope. For additions or major design changes, we explain the impact on cost and timing and proceed after agreement. Defining priorities and revision scope at the outset helps reduce unexpected changes."
+      },
+      "externalCosts": {
+        "question": "Are there costs outside the project quote?",
+        "answer": "Third-party costs such as domains, hosting, API usage, payment fees and paid assets are separate. Some depend on usage. We review the services and expected usage your product requires and distinguish these costs from development fees."
       }
-    }
+    },
+    "layoutHeading": "Questions,",
+    "layoutHeadingSecondary": "answered.",
+    "contactCardTitle": "Let’s talk it through.",
+    "contactCardDescription": "Can’t find your answer, or need advice for your project? Tell us about the problem you’d like to solve."
   },
   "ConsultationButton": {
     "label": "Let’s talk",
@@ -50,14 +78,65 @@
     "text": "Great websites and apps, without an in-house development team.\nFrom planning and design to development.\nGRIDS experts work as part of your team at a reasonable cost."
   },
   "HomeOfferings": {
-    "organizations": "Seoul National University, Google, Samsung, LG",
+    "partnership": "GRIDS and your company, together",
+    "yourCompany": "Your company",
     "heading": "GRIDS brings your business",
     "headingSecondary": "two core values.",
     "introduction": "Get discovered by more customers. Open doors to more opportunities.",
     "build": {
       "title": "Websites & Applications",
       "description": "From planning and design to development. We build the websites that express your brand and the applications that power your business.",
-      "cta": "Discuss your project"
+      "cta": "Discuss your project",
+      "hero": {
+        "label": "ROAM travel website preview with a centered headline, a pill button, and a stack of animated artwork cards on a light background.",
+        "headline": "Far from ordinary.\nCloser to yourself.",
+        "scroll": "Scroll to discover",
+        "description": "Beyond the familiar, at your own pace.\nThoughtful journeys shaped around you.",
+        "explore": "Explore journeys",
+        "navigation": "ROAM preview navigation",
+        "journeys": "Trips",
+        "plan": "Plan",
+        "about": "About",
+        "blog": "Blog",
+        "contact": "Contact",
+        "cta": "Plan a trip"
+      },
+      "mobile": {
+        "label": "morrow habit app preview: splash screen, personal rhythm and growth onboarding, then the daily dashboard",
+        "days": "M T W T F S S",
+        "streakDescription": "Find your rhythm with small rituals that feel like you.",
+        "continue": "Continue",
+        "start": "Let’s begin",
+        "greeting": "Good morning, Minseo",
+        "homeTitle": "Make today count.",
+        "currentStreak": "Your current streak",
+        "dayUnit": "days in a row",
+        "streakNote": "You’re making room for yourself this week",
+        "today": "Your daily rituals",
+        "taskCount": "3 habits",
+        "water": "Start with a glass of water",
+        "waterDetail": "Morning ritual · 250ml",
+        "focus": "A moment just for you",
+        "focusDetail": "Mindfulness · 10 min",
+        "walk": "Step outside for a while",
+        "walkDetail": "A gentle walk · 20 min",
+        "reward": "See how you’ve grown this week",
+        "navHome": "Today",
+        "navProgress": "Progress",
+        "navYou": "You",
+        "gardenDescription": "Small steps today. A little more growth tomorrow.",
+        "skip": "Skip"
+      },
+      "visual": {
+        "label": "Development services",
+        "intake": "Consultation & requirements",
+        "delivery": "Quality delivery",
+        "website": "Website",
+        "appStore": "Web & apps",
+        "internal": "CRM & admin",
+        "automation": "Automation",
+        "chatbot": "Chatbot"
+      }
     },
     "growth": {
       "title": "Growth",
@@ -114,7 +193,6 @@
   },
   "Navbar": {
     "work": "Portfolio",
-    "about": "Vision",
     "pricing": "Pricing",
     "team": "Team",
     "contact": "Connect",
@@ -139,19 +217,23 @@
       "feature": "Every brand has a different story. See how we give each one its own expression.",
       "tcl": {
         "title": "The Clear Labs",
-        "description": "An all-in-one online store that captures the brand’s atmosphere and showcases every product detail."
+        "description": "An all-in-one online store that captures the brand’s atmosphere and showcases every product detail.",
+        "category": "E-commerce"
       },
       "aether": {
         "title": "AETHER",
-        "description": "A fragrance brand experience that translates scent into film and the web."
+        "description": "A fragrance brand experience that translates scent into film and the web.",
+        "category": "Brand website"
       },
       "jiam": {
         "title": "JIAM",
-        "description": "An e-learning platform that turns Jeisys Medical’s expertise into a structured learning experience."
+        "description": "An e-learning platform that turns Jeisys Medical’s expertise into a structured learning experience.",
+        "category": "Web application"
       },
       "carouselLabel": "Featured projects by GRIDS",
       "showProject": "Expand {title} project",
-      "learnMore": "Explore more work"
+      "learnMore": "Explore more work",
+      "viewProject": "View project"
     },
     "title": "The premier <highlight>AI agency</highlight> <newline></newline> for elite-tier production.",
     "description": "Scale beyond your competitors, leveraging cutting-edge AI to deliver unmatched production quality and a decisive market advantage.",
@@ -190,7 +272,6 @@
     "start_project": "Start a project",
     "studio_description": "From digital transformation to AI adoption, we work with you every step of the way—from planning and design to development and rollout.",
     "approach_description": "From websites and AI visuals to intelligent automation. We build what comes next for your business.",
-    "explore_vision": "Explore our vision",
     "discover": "Discover more",
     "capabilities": {
       "web": "Web & systems",
@@ -235,7 +316,12 @@
     "contactLabel": "Contact",
     "email": "kyle@gridsagency.com",
     "phone": "telegram @kyle_lee10",
-    "cta": "Start a Project"
+    "cta": "Start a Project",
+    "desktopLabel": "GRIDS desktop · Contact and shortcuts",
+    "kakaoApp": "KakaoTalk",
+    "mailApp": "Mail",
+    "cubeLabel": "Interactive glass cube",
+    "cubeHelp": "Drag to rotate. On touch, swipe sideways to turn and vertically to scroll. Use arrow keys to rotate, Home to reset, and Escape to stop."
   },
   "Intro": {
     "text": "GRIDS AGENCY"
@@ -426,80 +512,24 @@
       "error": "Something went wrong. Please try again."
     }
   },
-  "Vision": {
-    "title": "Our Vision",
-    "Quote": {
-      "role": "FOUNDER & CEO",
-      "textPart1": "Like an",
-      "highlight1": "infinite coordinate system",
-      "textPart2": ", we traverse the complexities of global business to",
-      "highlight2": "reach meaningful destinations",
-      "textPart3": ", engineering a path that",
-      "highlight3": "extends beyond traditional limits",
-      "textPart4": "."
-    },
-    "Phases": {
-      "phase1": {
-        "label": "[ PHASE 01 ]",
-        "title": "The Origin Grid",
-        "description": "Every great design begins on an empty grid. By unfolding a boundless lattice across the XZ plane, we secure an infinite territory where your vision can expand in any direction."
-      },
-      "phase2": {
-        "label": "[ PHASE 02 ]",
-        "title": "Vertical Ascension",
-        "description": "We bestow height (Y) upon ideas once bound to a flat surface. Moving beyond simple expansion, we engineer breakthrough growth that transcends local limits and defines the altitude of your business."
-      },
-      "phase3": {
-        "label": "[ PHASE 03 ]",
-        "title": "Dimensional Integrity",
-        "description": "As the Z-axis aligns, imagination finally becomes a three-dimensional reality. Within the space built by GRIDS, your business transforms into a living ecosystem, revealing its complete presence and volume."
-      }
-    },
-    "Experience": {
-      "label": "Our vision",
-      "navigation": "Explore our vision",
-      "interaction": "Interactive 3D grid. Use arrow keys to rotate and Enter to send a ripple.",
-      "hint": "Drag to rotate · Tap to send a ripple",
-      "scroll": "Scroll to explore",
-      "cta": "Draw what comes next with us",
-      "chapters": {
-        "possibility": {
-          "label": "Draw possibilities",
-          "line1": "One grid.",
-          "line2": "Any possibility.",
-          "description": "A grid has no predetermined answer. The lines we draw give it form. At GRIDS, we take the shape your idea needs—and build what comes next, together.",
-          "scene": "A three-dimensional grid of coordinates forming a flowing surface"
-        },
-        "connection": {
-          "label": "Connect meaning",
-          "line1": "Connect the dots.",
-          "line2": "Reveal the picture.",
-          "description": "Individual points find meaning together. We connect your vision with our technology, people with people, and ideas with action—to create a picture none of us could draw alone.",
-          "scene": "The grid curls into a continuous Möbius strip with a single half-twist"
-        },
-        "infinity": {
-          "label": "Go beyond",
-          "line1": "A next chapter.",
-          "line2": "Without an edge.",
-          "description": "A grid extends without an end. We believe growth should, too. From one project to the next challenge, we expand our coordinates—and the possibilities for our clients.",
-          "scene": "A connected structure unfolds into an open coordinate field extending toward the horizon"
-        }
-      },
-      "fallback": "The same grid. A different perspective.",
-      "retry": "Retry 3D"
-    }
-  },
   "Archive": {
+    "Detail": {
+      "details": "Details",
+      "client": "Client",
+      "services": "Services",
+      "introduction": "Introduction",
+      "inactive": "This project is no longer operating."
+    },
     "Websites": {
-      "title": "Websites",
+      "client": "AETHER",
+      "title": "Film",
       "tags": {
-        "website": "Brand website",
-        "film": "AI visuals"
+        "film": "AI brand film"
       },
       "industryLabel": "Industry",
       "industry": "Fragrance · Lifestyle",
       "scopeLabel": "Scope",
-      "scope": "Web development · AI film",
+      "scope": "AI film production",
       "visit": "Visit website",
       "galleryLabel": "Project images",
       "galleryNote": "STILLS FROM THE BRAND FILM",
@@ -511,7 +541,7 @@
         "rum": "A brand film still capturing the texture of rum"
       },
       "heading": "An invisible scent. A visible experience.",
-      "description": "AETHER’s fragrance and atmosphere, expressed through the web and film. AI visuals capture the product’s details and scent imagery, forming a connected web experience that invites visitors into the brand’s world.",
+      "description": "A film expressing AETHER’s fragrance and atmosphere. AI visuals bring together the details of the perfume bottle and imagery evoking coffee and rum, capturing the character of the brand.",
       "projectTitle": "AETHER",
       "projectLabel": "AETHER FRAGRANCES"
     },
@@ -529,7 +559,7 @@
         "websites": {
           "title": "Websites",
           "eyebrow": "WEBSITES",
-          "example": "AETHER · Brand website",
+          "example": "Brand websites · Online stores",
           "description": "From distinctive brand websites to online stores built for conversion. A considered experience from the first visit to the final click."
         },
         "webApps": {
@@ -638,9 +668,9 @@
           "description": "An advanced e-learning platform developed for Jeisys."
         },
         "web-dev": {
-          "service": "Web Development & AI Video Production",
+          "service": "AI film production",
           "title": "AETHER",
-          "description": "Next-gen e-commerce experience with immersive 3D interactions."
+          "description": "An AETHER brand film exploring fragrance and product detail."
         },
         "ai-video": {
           "service": "AI Video Production",
@@ -667,6 +697,7 @@
       }
     },
     "WebApps": {
+      "client": "Jeisys Medical",
       "industryLabel": "Industry",
       "scopeLabel": "Scope",
       "galleryLabel": "Project images",
@@ -691,6 +722,7 @@
       "description": "JIAM is an e-learning platform built for Jeisys Medical. We brought professional education content to the web, connecting the brand and the learning experience in a single service."
     },
     "AiFilm": {
+      "client": "The Clear Labs",
       "industryLabel": "Industry",
       "scopeLabel": "Scope",
       "galleryLabel": "Project images",
@@ -703,7 +735,7 @@
         "brand": "Brand film",
         "ai": "AI film production"
       },
-      "industry": "Beauty · Lifestyle",
+      "industry": "Cosmetics wholesale · Overseas sales",
       "scope": "AI visuals · Brand film",
       "visit": "View film",
       "images": {
@@ -711,10 +743,11 @@
         "second": "The Clear Labs brand film, scene two",
         "third": "The Clear Labs brand film, scene three"
       },
-      "heading": "A new expression of the brand.",
-      "description": "An AI-powered brand film for The Clear Labs, exploring product details and the atmosphere of the brand. Light, texture, and movement come together to express its visual identity."
+      "heading": "From wholesale cosmetics to overseas sales.",
+      "description": "The Clear Labs purchased cosmetics wholesale and sold them in overseas markets. We created a brand film using AI visuals to express the products’ details and the brand’s atmosphere."
     },
     "AdminTools": {
+      "client": "GRIDS AGENCY",
       "industryLabel": "Industry",
       "scopeLabel": "Scope",
       "galleryLabel": "Project images",
@@ -740,7 +773,9 @@
     },
     "Index": {
       "title": "Our work",
-      "description": "Websites, platforms, and films. A collection of selected projects and website demos.",
+      "headline": "Ideas made real.",
+      "headlineSecondary": "Possibilities realized.",
+      "description": "From websites and platforms to brand films.\nExplore what we’ve brought to life at GRIDS.",
       "filterLabel": "Filter projects",
       "filters": {
         "all": "All work",
@@ -757,8 +792,10 @@
       "detailNavigation": "Archive navigation",
       "projectNavigation": "More projects",
       "note": "Selected public work and website demos. Some client projects remain private, in line with our clients’ wishes and confidentiality agreements.",
-      "disclosureHeadline": "Selected work, shared with permission.",
-      "disclosureDescription": "Projects restricted by client requests or NDAs, and live internal systems, stay private."
+      "disclosurePreview": "Only work we can share publicly.",
+      "disclosureNotice": "A note on confidentiality",
+      "disclosureHeadline": "Some work stays\nbetween us and our clients.",
+      "disclosureDescription": "This is a selection of work we can share. Projects covered by client requests or nondisclosure agreements (NDAs), and internal systems containing live data, remain private.\n\nProtecting our clients’ trust matters as much as showing our work."
     },
     "Demo": {
       "title": "Website",
@@ -813,11 +850,25 @@
       "title": "AI that knows how your company works",
       "description": "Build a custom AI assistant connected to your documents, manuals, and team knowledge. Find what you need with a question, check the sources, and put it to work.",
       "question": "How do we onboard a new client?",
-      "answer": "Confirm the contract, assign an owner, then schedule a kickoff. I can pull together the checklist for each step.",
+      "answer": "New client onboarding follows three steps.\n\n1. Confirm the contract — Check scope, timeline, and payment terms, then add the client to your CRM.\n2. Assign an owner — Name the project lead and client contact. Share a checklist of required files and access permissions.\n3. Run the kickoff — Agree on goals, priorities, and milestones, then send meeting notes and the first action items.\n\nBefore you start, have the contract, requirements, and contact details ready. I can also draft the welcome email for your client.",
       "source": "Onboarding guide · page 3",
       "placeholder": "Ask about your company",
       "thinking": "Checking company documents",
-      "answerLabel": "Based on your company guide"
+      "answerLabel": "Based on your company guide",
+      "gmail": {
+        "prompt": "Shall I ask Minseo Kim, the project lead, to confirm the contract and collect the onboarding materials?",
+        "to": "To",
+        "recipient": "Minseo Kim · Project lead",
+        "subjectLabel": "Subject",
+        "subject": "[Acorn] New client onboarding preparation",
+        "body": "Hi Minseo, please prepare onboarding for the Acorn project.\n\n• Confirm the contract scope, timeline, and payment terms.\n• Add client contacts and requirements to the CRM.\n• List the files and access permissions we need from the client.\n\nOnce confirmed, please share available kickoff dates. Thank you.",
+        "review": "Review draft",
+        "collapse": "Collapse",
+        "send": "Send",
+        "sent": "Sent · Demo",
+        "sentDetail": "The onboarding preparation request has been sent to Minseo.",
+        "previewLabel": "AI chatbot and Gmail integration example"
+      }
     },
     "automation": {
       "title": "Workflow automation, around the clock",
@@ -832,7 +883,7 @@
         "data": "Data sync",
         "notify": "Team alert",
         "report": "Send report",
-        "previewLabel": "Automation connections preview. Hover or focus to show the workflow."
+        "previewLabel": "Workflow automation connecting GRIDS with Naver, Gmail, Google Drive, and Kakao."
       }
     },
     "applications": {
@@ -1058,7 +1109,123 @@
         "information": "When information is missing or scope is unclear, we clarify it before quoting. We do not guess a low fixed price.",
         "custom": "Unlisted features are not assigned the price of a similar feature by assumption. They are assessed separately where needed.",
         "adjustment": "Final amounts may be adjusted for project scale, complexity and proposal terms. Work beyond the initially agreed scope is quoted separately."
+      },
+      "headline": "Clear from the start."
+    },
+    "guidanceLabel": "Pricing guide",
+    "vatNote": "VAT excluded",
+    "examples": {
+      "label": "Examples",
+      "heading": "See what’s possible.",
+      "headingSecondary": "Explore the experience.",
+      "preparing": "Preview coming soon",
+      "previewHint": "A space to explore working examples.",
+      "scenario": "Try a scenario",
+      "workflow": "Workflow preview",
+      "conversation": "Conversation preview",
+      "automationPlaceholder": "Follow a workflow from input to outcome",
+      "chatbotPlaceholder": "A space to ask questions and explore answers",
+      "services": {
+        "homepage": {
+          "title": "Website preview",
+          "description": "Explore our premade websites to find a structure and style that fits your brand.",
+          "placeholder": "Website examples will appear here."
+        },
+        "webApp": {
+          "title": "Web / App preview",
+          "description": "Explore key screens and user journeys to see how a product’s features fit together.",
+          "placeholder": "Web and app examples will appear here."
+        },
+        "crm": {
+          "title": "CRM / Admin preview",
+          "description": "From customer records to daily operations, explore what a connected workspace can look like.",
+          "placeholder": "CRM and admin examples will appear here."
+        },
+        "automation": {
+          "tabs": {
+            "messages": "Automatic replies",
+            "invoices": "AI invoice processor",
+            "briefing": "Daily AI briefing"
+          },
+          "title": "Try AI automation",
+          "description": "Experience how repetitive tasks connect into a workflow through a simple scenario.",
+          "scenario": "When a customer inquiry arrives",
+          "scenarioDescription": "We’re preparing a demo that sorts incoming inquiries and routes them to the right person.",
+          "steps": {
+            "first": "Enter an inquiry",
+            "second": "Classify and assign",
+            "third": "Review the outcome"
+          }
+        },
+        "chatbot": {
+          "title": "Try an AI chatbot",
+          "description": "From a question to an answer and a next step, explore how a chatbot can support everyday work.",
+          "scenario": "Onboarding a new customer",
+          "scenarioDescription": "We’re preparing a chatbot demo that explains the next steps using onboarding materials.",
+          "steps": {
+            "first": "Ask a question",
+            "second": "Explore steps and requirements",
+            "third": "Find the next action"
+          }
+        }
       }
+    },
+    "explorer": {
+      "heading": "The scope that fits.",
+      "customTitle": "Custom build",
+      "customLabel": "Beyond the packages",
+      "customPrice": "Quoted after discovery",
+      "customNote": "We’ll provide a quote after reviewing your requirements and integrations.",
+      "services": {
+        "homepage": {
+          "title": "Website",
+          "caption": "Brands · Company sites",
+          "description": "Choose a template, a custom website, or a premium brand experience."
+        },
+        "webApp": {
+          "title": "Web / App",
+          "caption": "Web services · Mobile apps",
+          "description": "Turn your idea into a working product. We design the user experience and core functionality for web services and mobile apps."
+        },
+        "crm": {
+          "title": "CRM / Admin",
+          "caption": "Customer data · Operations",
+          "heading": "One system for the way your team works.",
+          "description": "Bring customer information and operations together with CRM and admin tools designed around your team’s workflows.",
+          "scope": {
+            "first": "Customer, sales and operational data",
+            "second": "Dashboards, reporting and permissions",
+            "third": "Existing systems and external integrations"
+          }
+        },
+        "automation": {
+          "title": "AI Automation",
+          "caption": "Workflows · Integrations",
+          "heading": "Less repetition. More room for meaningful work.",
+          "description": "We connect AI and your tools to automate repetitive tasks, building around the processes your team already uses.",
+          "scope": {
+            "first": "Document and data classification and processing",
+            "second": "Automated email, notifications and follow-up",
+            "third": "Tool integrations and approval workflows"
+          }
+        },
+        "chatbot": {
+          "title": "AI Chatbot",
+          "caption": "Customer support · Knowledge",
+          "heading": "An AI chatbot that knows your business.",
+          "description": "From product guidance to internal knowledge search, we build chatbots that answer from your documents and data and connect people to the next step.",
+          "scope": {
+            "first": "Document and FAQ-based knowledge retrieval",
+            "second": "Chatbots in your website and workplace tools",
+            "third": "Support handoff, permissions and answer quality"
+          }
+        },
+        "rules": {
+          "title": "Quotation guide",
+          "caption": "Rates · Pricing principles"
+        }
+      },
+      "webAppPricingNote": "These packages cover a web-service MVP. Mobile apps and complex platforms are quoted separately after reviewing requirements."
     }
   }
 }

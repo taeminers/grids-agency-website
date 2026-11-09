@@ -9,6 +9,7 @@ export function ArchiveProjectMedia({
   project,
   title,
   active = true,
+  eager = false,
   showFallbackLabel = true,
   previewViewport = "desktop",
   keepPreviewMounted = false,
@@ -17,6 +18,8 @@ export function ArchiveProjectMedia({
   project: ArchiveProject;
   title: string;
   active?: boolean;
+  /** Detail heroes load immediately so navigation can preserve their video frame. */
+  eager?: boolean;
   showFallbackLabel?: boolean;
   /** Cards use a scaled desktop preview; sheets use their actual viewport. */
   previewViewport?: "desktop" | "responsive";
@@ -26,7 +29,7 @@ export function ArchiveProjectMedia({
 }) {
   const container = useRef<HTMLDivElement>(null);
   const video = useRef<HTMLVideoElement>(null);
-  const [nearby, setNearby] = useState(false);
+  const [nearby, setNearby] = useState(eager);
   const [{ scale, frameWidth, frameHeight }, setFrame] = useState({ scale: 0, frameWidth: 1464, frameHeight: 1000 });
   const [reducedMotion, setReducedMotion] = useState(true);
 
