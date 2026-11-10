@@ -42,10 +42,10 @@ export default function NotFound() {
   const locale = useLocale();
 
   return (
-    <div className="flex flex-col justify-center items-center px-4 min-h-screen bg-background relative z-10">
+    <div className="flex flex-col justify-center items-center site-gutter min-h-screen bg-background relative z-10">
       <AnimatePresence mode="wait">
         <motion.div
-          className="text-center"
+          className="site-container text-center"
           initial="hidden"
           animate="visible"
           exit="hidden"

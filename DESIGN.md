@@ -21,13 +21,30 @@ This is a card standard, not a universal radius reset. Preserve intentionally pi
 
 When adding or editing an outer card or panel on any route, use this token rather than choosing another literal radius or a generic `rounded-xl` / `rounded-2xl` utility. Verify the rendered corners and clipping at desktop and mobile sizes.
 
-## Homepage spacing
+## Content containers
 
-Homepage content sections share tokens in `src/components/home-spacing.module.css`:
+Use `Container` from `src/components/container.tsx` for page sections. It creates an outer `.site-gutter` wrapper and an inner `.site-container` wrapper. The **content cap excludes horizontal padding**: it is 1200px on ordinary screens and grows fluidly to 1440px on wide displays (`clamp(1200px, calc(100vw - 160px), 1440px)`).
 
-- `--home-section-gap: clamp(4rem, 8vw, 8rem)` separates content sections.
-- `--home-heading-gap: clamp(2rem, 4vw, 3.5rem)` separates a section heading from its content.
-- At desktop widths (1024px and above), Featured Work and FAQ use a larger incoming gap of `clamp(8rem, 12vw, 12rem)`. Their mobile spacing stays on the shared base scale.
-- The incoming section owns the top gap. Do not add bottom padding to the preceding section, which doubles the space.
-- The full-height hero, pinned introduction, and footer retain their viewport-based layouts and animation distances.
-- When the FAQ heading stacks above its description, both align left.
+| Viewport | Minimum gutter on each side | Section gap | Heading-to-content gap |
+| --- | --- | --- | --- |
+| Below 640px | 24px | 64px | 32px |
+| 640–1023px | 32px | 80px | 40px |
+| 1024–1439px | 32px | 96px | 48px |
+| 1440px and above | 40px | 120px | 56px |
+
+Source of truth: `--site-content-width`, `--site-gutter`, `--site-section-space`, and `--site-heading-space` in `src/app/globals.css`. Content stops growing at its responsive cap and is centered in the available viewport. Browser scrollbar space is excluded.
+
+- Pass section positioning and vertical spacing through `className`; pass grids, flex layouts, and content styling through `innerClassName`.
+- Use one gutter owner per section. Do not nest Containers or add horizontal padding to a Container's inner wrapper. Card interior padding is independent and remains appropriate.
+- Standard sections, cards, and grids use the default size. `size="headline"` caps at 960px, `size="reading"` at 720px, and `size="showcase"` at 1440px. Use wider showcases only for an intentional visual composition.
+- Full-bleed backgrounds, hero cubes, archive halo painting, and other decorative layers belong outside the content wrapper. Floating navigation keeps its compact island width but respects the shared minimum gutter.
+- Product mockups retain their own internal layouts; their surrounding website sections use Container. The standalone `/dev/coin-preview` scene remains a full-viewport development canvas.
+- CSS-only equivalents are `.site-gutter > .site-container`. Do not combine both classes on one element, because that subtracts gutters from the content cap.
+
+## Section spacing
+
+The incoming section owns the gap above it: use `.site-section` or `padding-block: var(--site-section-space) 0`. Do not also add bottom padding to the preceding standard section. Use `--site-heading-space` between section headings and content.
+
+Homepage aliases in `home-spacing.module.css` build on these global tokens. The incoming gaps for Approach, Featured Work, and FAQ are twice the base section gap (128 / 160 / 192 / 240px across the four breakpoints). Offerings keeps the base gap at the top of the sheet. Heading-to-content spacing stays on the base heading scale. The intro retains its original centered, viewport-height stage and text-to-signature timing. After completion, the following sections form one continuous sheet that scrolls over it. This sheet has a subtle upper edge and 24px top corners as an intentional full-width surface exception; its inner cards still use 8px corners. Reduced motion uses normal document flow.
+
+Keep intentional hero heights, navigation clearance, scroll-animation tracks, and the footer's viewport-based composition. These are layout behaviors, not extra section margins. Internal card spacing and typography remain local. When the FAQ heading stacks above its description, both align left.

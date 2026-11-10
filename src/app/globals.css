@@ -7,6 +7,10 @@
 @source inline("animate-brand-roll");
 
 :root {
+  --site-content-width: clamp(1200px, calc(100vw - 160px), 1440px);
+  --site-gutter: 24px;
+  --site-section-space: 64px;
+  --site-heading-space: 32px;
   /* Stable brand blues shared by the interface and the hero's 3D material. */
   --brand-blue: #277db8;
   --brand-sky: #8bcff0;
@@ -445,3 +449,14 @@ body[data-scroll-locked="1"]:has([data-pricing-service-select]) {
 .text-white\/80 {
   color: rgba(255, 255, 255, 0.8);
 }
+
+/* Site layout: gutters sit outside the maximum content width. */
+@media (min-width: 640px) { :root { --site-gutter: 32px; --site-section-space: 80px; --site-heading-space: 40px; } }
+@media (min-width: 1024px) { :root { --site-gutter: 32px; --site-section-space: 96px; --site-heading-space: 48px; } }
+@media (min-width: 1440px) { :root { --site-gutter: 40px; --site-section-space: 120px; --site-heading-space: 56px; } }
+.site-gutter { width: 100%; padding-inline: var(--site-gutter); }
+.site-container { width: 100%; min-width: 0; max-width: var(--site-content-width); margin-inline: auto; }
+.site-container[data-size="headline"] { max-width: 960px; }
+.site-container[data-size="reading"] { max-width: 720px; }
+.site-container[data-size="showcase"] { max-width: 1440px; }
+.site-section { padding-block: var(--site-section-space) 0; }

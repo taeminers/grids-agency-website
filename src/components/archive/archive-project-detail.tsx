@@ -1,5 +1,6 @@
 "use client";
 
+import Container from "@/components/container";
 import { useLocale, useTranslations } from "next-intl";
 import type { ArchiveProject } from "./archive-project-data";
 import { ArchiveProjectMedia } from "./archive-project-media";
@@ -15,6 +16,7 @@ export function ArchiveProjectDetail({ project }: { project: ArchiveProject }) {
 
   return (
     <article className={styles.page} lang={locale}>
+      <Container>
       <header className={styles.header}>
         <h1 className={styles.title}>{title}</h1>
         {project.status === "inactive" ? (
@@ -48,6 +50,7 @@ export function ArchiveProjectDetail({ project }: { project: ArchiveProject }) {
         </section>
       </div>
 
+      </Container>
     </article>
   );
 }

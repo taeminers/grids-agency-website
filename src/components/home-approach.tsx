@@ -1,9 +1,10 @@
 "use client";
 
+import Container from "@/components/container";
+
 import { useRef, useState, type KeyboardEvent } from "react";
 import { useTranslations } from "next-intl";
-import BrandLogo from "./brand-logo";
-import ApproachCostReply from "./approach-cost-reply";
+import ApproachReply from "./approach-reply";
 import ApproachCostPreview from "./approach-cost-preview";
 import ApproachSpeedPreview from "./approach-speed-preview";
 import ApproachQualityPreview from "./approach-quality-preview";
@@ -31,7 +32,7 @@ export default function HomeApproach() {
 
   return (
     <section id="our-approach" className={styles.section} aria-label={t("label")}>
-      <div className={styles.layout}>
+      <Container innerClassName={styles.layout}>
         <div className={styles.tabs} role="tablist" aria-label={t("label")} aria-orientation="vertical">
           {topics.map((item, index) => (
             <button key={item} ref={node => { tabs.current[index] = node; }}
@@ -52,11 +53,7 @@ export default function HomeApproach() {
               <header className={styles.header}>
                 <h2>{t(`${topic}.title`)}<span>{t(`${topic}.subtitle`)}</span></h2>
               </header>
-              {item === "cost" ? <ApproachCostReply /> : <aside className={styles.note}>
-                <div className={styles.brand}><BrandLogo className={styles.logo} /><span>GRIDS</span></div>
-                <p>{t(`${topic}.description`)}</p>
-                <span className={styles.noteCaption}>{t(`${topic}.principle`)}</span>
-              </aside>}
+              <ApproachReply topic={item} />
               {item !== "quality" ? (
                 <div className={`${styles.visual} ${styles.previewVisual} ${item === "speed" ? styles.speedVisual : styles.costVisual}`}>
                   {item === "cost" ? <ApproachCostPreview /> : <ApproachSpeedPreview />}
@@ -65,7 +62,7 @@ export default function HomeApproach() {
             </>}
           </div>
         ))}
-      </div>
+      </Container>
     </section>
   );
 }

@@ -10,6 +10,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { useReducedMotionPreference } from "./coin-preview/use-reduced-motion";
 import { trackEvent } from "@/lib/analytics";
 import styles from "./hero-content.module.css";
+import Container from "./container";
 import ConsultationLink from "./consultation-link";
 
 const GlassRibbon = dynamic(() => import("./coin-preview/composition-scene"), { ssr: false });
@@ -55,7 +56,7 @@ export default function HeroContent() {
             label={t("ribbon.label")} helpId={helpId} hint={null} onReady={onReady} onUnavailable={onUnavailable} />
         </RibbonBoundary>
       </div>}
-      <div className={styles.title}>
+      <Container className={styles.title} size="headline">
         <h1 id="hero-heading" className={locale === "ko" ? koreanHeroFont.className : undefined}>
           <span>{t("headline_lead")}</span><span>{t("headline_prefix")}</span>
         </h1>
@@ -69,11 +70,11 @@ export default function HeroContent() {
           <ConsultationLink href={`/${locale}/connect`} label={t("start_project")}
             onClick={() => trackEvent("cta_click", { cta_location: "hero", cta_text: t("start_project") })} />
         </div>
-      </div>
+      </Container>
     </div>
-    <div className={styles.content}>
+    <Container className={styles.content} size="reading">
       <p className={styles.description}>{t("studio_description")}</p>
-    </div>
+    </Container>
     <p id={helpId} className="sr-only">{t(reduced ? "ribbon.reducedHelp" : "ribbon.help")}</p>
   </section>;
 }

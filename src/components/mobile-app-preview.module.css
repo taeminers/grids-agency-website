@@ -6,7 +6,7 @@
   height: 100%;
   overflow: hidden;
   padding: 14px;
-  background: radial-gradient(ellipse at 50% 100%, #41403d, #2e3032 65%);
+  background: var(--mobile-preview-surface, radial-gradient(ellipse at 50% 100%, #41403d, #2e3032 65%));
 }
 .phone {
   position: relative;

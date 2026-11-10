@@ -1,5 +1,6 @@
 "use client";
 
+import Container from "@/components/container";
 import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { useReducedMotion } from "framer-motion";
@@ -40,7 +41,7 @@ export default function PricingHeader() {
         <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_45%,var(--background)_100%)]" />
       </div>
 
-      <div className={styles.layout}>
+      <Container innerClassName={styles.layout}>
         <h1 className={styles.title}>
           {t("title").split("\n").map((line, index) => <span key={line} className={index > 0 ? styles.titleSecondary : undefined}>{line}</span>)}
         </h1>
@@ -54,7 +55,7 @@ export default function PricingHeader() {
           <h2 id="pricing-guidance-heading" className={styles.cardTitle}>{t("budgetNote")}</h2>
           <p className={styles.description}>{t("description")}</p>
         </aside>
-      </div>
+      </Container>
     </header>
   );
 }

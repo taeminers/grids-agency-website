@@ -73,7 +73,7 @@ export default function WebsitePreview() {
             ))}
           </div>
         </div>
-        <div className={styles.card}>
+        <div className={styles.card} data-appearance={active === 0 ? "light" : "dark"}>
           {services.map(({ key, Preview }, index) => (
             <div key={key} role="tabpanel" id={`${id}-panel-${key}`}
               aria-labelledby={`${id}-tab-${key}`} hidden={active !== index}

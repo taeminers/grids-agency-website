@@ -119,7 +119,7 @@ export default function ProjectQuestionnaire({ onClose, onSuccess }: { onClose: 
         event.currentTarget.requestSubmit();
       }
     }}
-      className="relative isolate flex min-h-[calc(100svh-112px)] w-full flex-col items-center px-5 pt-12 pb-28 sm:px-8 md:min-h-[calc(100svh-72px)] md:px-10 md:pt-16 md:pb-12"
+      className="relative isolate flex min-h-[calc(100svh-112px)] w-full flex-col items-center pt-12 pb-28 md:min-h-[calc(100svh-72px)] md:pt-16 md:pb-12"
     >
       <div className="flex w-full flex-1 items-center justify-center py-10 md:py-16">
         <motion.div
@@ -149,7 +149,7 @@ export default function ProjectQuestionnaire({ onClose, onSuccess }: { onClose: 
               initial={{ opacity: reduced ? 1 : 0, clipPath: reduced ? "inset(0% 0% 0% 0%)" : "inset(0% 0% 100% 0%)" }}
               animate={{ opacity: 1, clipPath: "inset(0% 0% 0% 0%)" }}
               transition={{ duration: reduced ? 0 : 0.7, delay: reduced ? 0 : 0.18, ease: [0.4, 0, 0.2, 1] }}
-              className="-mx-1 px-1 pb-1"
+              className="px-1 pb-1"
             >
             {status === "success" ? (
               <p className="mx-auto mt-6 max-w-md text-sm leading-relaxed text-foreground/60">{t("successDescription")}</p>

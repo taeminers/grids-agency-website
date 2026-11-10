@@ -1,7 +1,9 @@
+import Container from "@/components/container";
+
 export default function TeamsPage() {
     return (
-        <div>
+        <Container className="site-section">
             <h1>Teams</h1>
-        </div>
+        </Container>
     );
 }

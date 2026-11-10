@@ -37,19 +37,19 @@ const tablet: Placement[] = [
   { ...desktop[10], u: 1.04, v: 0.36, height: 0.38 },
 ];
 
+// Three spacious anchors on phones: an entering tile, a center tile, and an
+// exiting tile. Offscreen loop instances retain this wider cadence as they move.
 const mobile: Placement[] = [
-  { ...desktop[2], u: -0.04, v: 0.6, height: 0.32 },
-  { ...desktop[3], u: 0.23, v: 0.74, height: 0.27 },
-  { ...desktop[5], u: 0.5, v: 0.82, height: 0.23 },
-  { ...desktop[6], u: 0.77, v: 0.73, height: 0.28 },
-  { ...desktop[8], u: 1.04, v: 0.59, height: 0.34 },
+  { ...desktop[2], u: -0.02, v: 0.64, height: 0.26 },
+  { ...desktop[5], u: 0.5, v: 0.79, height: 0.23 },
+  { ...desktop[8], u: 1.02, v: 0.63, height: 0.27 },
 ];
 
-export function getTileArrangement(aspect: number) {
+export function getTileArrangement(aspect: number, mobileViewport = false) {
   const safeAspect = Math.max(0.3, aspect);
   const height = 8;
   const width = height * safeAspect;
-  const layout = safeAspect < 1.1 ? mobile : safeAspect < 1.85 ? tablet : desktop;
+  const layout = mobileViewport || safeAspect < 1.1 ? mobile : safeAspect < 1.85 ? tablet : desktop;
   return {
     width,
     height,
@@ -62,9 +62,9 @@ export function getTileArrangement(aspect: number) {
   };
 }
 
-export function getRibbonArrangement(aspect: number) {
-  const arrangement = getTileArrangement(aspect);
-  const anchors = aspect < 1.1 ? mobile : aspect < 1.85 ? tablet : desktop;
+export function getRibbonArrangement(aspect: number, mobileViewport = false) {
+  const arrangement = getTileArrangement(aspect, mobileViewport);
+  const anchors = mobileViewport || aspect < 1.1 ? mobile : aspect < 1.85 ? tablet : desktop;
   const first = anchors[0];
   const last = anchors.at(-1)!;
   const spacing = (last.u - first.u) / (anchors.length - 1);

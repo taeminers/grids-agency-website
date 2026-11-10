@@ -1,4 +1,4 @@
-.container { max-width: 1920px; margin-inline: auto; padding: 16px var(--pricing-gutter) 100px; }
+.container { padding-block: var(--site-section-space) 0; }
 .serviceGrid { display: flex; align-items: center; gap: 16px; padding: 8px; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; border: 1px solid #e4e5e2; border-radius: var(--site-card-radius); background: #fafbf9; }
 .serviceGrid::-webkit-scrollbar { display: none; }
 .serviceGroup { display: flex; flex: 1; gap: 4px; min-width: max-content; }
@@ -21,10 +21,12 @@
 .detailGrid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: stretch; gap: 20px; }
 .options, .quote { min-width: 0; overflow: hidden; border: 1px solid #e4e5e2; border-radius: var(--site-card-radius); }
 .options { background: #fff; }
-.options:has(.option) { align-self: start; }
-.option + .option { border-top: 1px solid #ededeb; }
+.options:has(.option) { align-self: start; border-color: #dfe5ea; background: #f3f5f7; box-shadow: inset 0 1px 0 rgb(255 255 255 / .8); }
+.option { transition: background-color 240ms ease; }
+.option[data-state="open"] { background: #eaf1f6; }
+.option + .option { border-top: 1px solid #dfe5ea; }
 .option h3 { margin: 0; }
-.optionTrigger { display: flex; align-items: center; gap: 24px; width: 100%; min-height: 72px; padding: 20px 28px; border: 0; background: transparent; color: #272b26; text-align: left; cursor: pointer; font-size: 14px; font-weight: 500; }
+.optionTrigger { display: flex; align-items: center; gap: 24px; width: 100%; min-height: 72px; padding: 20px 28px; border: 0; background: transparent; color: #272b26; text-align: left; cursor: pointer; font-size: 14px; font-weight: 500; transition: background-color 200ms ease; }
 .number { color: #92968e; font-size: 10px; font-weight: 400; font-variant-numeric: tabular-nums; }
 .indicator { width: 7px; height: 7px; flex-shrink: 0; margin-left: auto; border: 1px solid #cbd0c6; border-radius: 50%; transition: background 180ms ease; }
 .indicator[data-active="true"] { border-color: #252b26; background: #252b26; }
@@ -69,7 +71,7 @@
 .noteRow dt { display: flex; align-items: center; gap: 12px; color: #343a32; font-size: 14px; font-weight: 500; line-height: 1.7; word-break: keep-all; }
 .noteRow dt svg { flex-shrink: 0; align-self: flex-start; margin-top: 3px; color: #7b8678; }
 .noteRow dd { margin: 0; color: #72796d; font-size: 13px; line-height: 1.85; word-break: keep-all; }
-@media (hover: hover) { .serviceTile:hover { color: #173c54; } .optionTrigger:hover { background: #fafbf9; } }
+@media (hover: hover) { .serviceTile:hover { color: #173c54; } .optionTrigger:hover { background: rgb(139 207 240 / .12); } }
 @media (max-width: 1199px) {
   .serviceGroup { flex: 0 0 auto; }
   .serviceGrid { gap: 12px; }
@@ -82,7 +84,6 @@
   .optionBody { padding-left: 50px; padding-right: 22px; }
 }
 @media (max-width: 767px) {
-  .container { padding-top: 8px; padding-bottom: 64px; }
   .serviceContent { margin-top: 28px; }
   .sectionHeading { grid-template-columns: minmax(0, 1fr); gap: 20px; margin-bottom: 28px; }
   .sectionHeading > p { justify-self: end; }
@@ -94,7 +95,8 @@
   .noteRow { grid-template-columns: minmax(0, 1fr); gap: 10px; padding-block: 22px; }
   .noteRow dd { padding-left: 30px; }
 }
-@media (prefers-reduced-motion: reduce) { .serviceTile, .indicator { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .serviceTile, .indicator, .option, .optionTrigger { transition: none; } }
+@media (prefers-contrast: more) { .options:has(.option), .option + .option { border-color: #8798a6; } }
 @media (max-width: 599px) {
   .serviceGrid { padding: 6px; }
   .serviceTile { min-height: 44px; padding: 10px 14px; gap: 8px; }

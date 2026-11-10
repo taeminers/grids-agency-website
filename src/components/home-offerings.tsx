@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { X } from "lucide-react";
+import Container from "@/components/container";
+
+import { useEffect, useRef, type ReactNode } from "react";
+import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import BrandLogo from "./brand-logo";
 import FallbackAvatar from "./fallback-avatar";
 import { useLocale, useTranslations } from "next-intl";
@@ -11,12 +12,19 @@ import GrowthPreview from "./growth-preview";
 import WebsitePreview from "./website-preview";
 import styles from "./home-offerings.module.css";
 
+function HeadlineMark({ progress, index, children }: { progress: MotionValue<number>; index: number; children: ReactNode }) {
+  const reveal = useTransform(progress, [index * 0.2, 0.7 + index * 0.2], [0, 1]);
+  const eased = useTransform(reveal, value => value * value * (3 - 2 * value));
+  const y = useTransform(eased, [0, 1], [12, 0]);
+  const scale = useTransform(eased, [0, 1], [0.86, 1]);
+  return <motion.span className={styles.headlineMark} style={{ opacity: eased, y, scale }} aria-hidden="true">{children}</motion.span>;
+}
+
 export default function HomeOfferings() {
   const locale = useLocale();
   const t = useTranslations("HomeOfferings");
-  const partnershipRef = useRef<HTMLDivElement>(null);
+  const partnershipRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: partnershipRef, offset: ["start 0.9", "start 0.65"] });
-  const partnershipOpacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   useEffect(() => {
     const mark = partnershipRef.current;
@@ -27,23 +35,19 @@ export default function HomeOfferings() {
 
   return (
     <section id="offerings" className={styles.section} aria-labelledby="offerings-heading">
-      <div className={styles.inner}>
-        <header className={styles.header}>
-          <motion.div ref={partnershipRef} className={styles.partnership} style={{ opacity: partnershipOpacity }} role="img" aria-label={t("partnership")}>
-            <div className={styles.partner} aria-hidden="true">
-              <span className={styles.partnerMark}><BrandLogo className={styles.partnerLogo} /></span>
-              <span className={styles.partnerLabel}>GRIDS</span>
-            </div>
-            <X className={styles.partnerCross} size={24} strokeWidth={2.5} aria-hidden="true" />
-            <div className={styles.partner} aria-hidden="true">
-              <span className={styles.partnerMark}>
-                <FallbackAvatar name="GRIDS Growth" size={44} animated={true} className={styles.partnerAvatar} />
-              </span>
-              <span className={styles.partnerLabel}>{t("yourCompany")}</span>
-            </div>
-          </motion.div>
+      <Container>
+        <header ref={partnershipRef} className={styles.header}>
           <h2 id="offerings-heading" className={styles.heading}>
-            {t("heading")}{" "}<span>{t("headingSecondary")}</span>
+            {t.rich("heading", {
+              grids: chunks => <span className={styles.headlineName}>
+                <HeadlineMark progress={scrollYProgress} index={0}><BrandLogo className={styles.partnerLogo} /></HeadlineMark>
+                {chunks}
+              </span>,
+              company: chunks => <span className={styles.headlineName}>
+                <HeadlineMark progress={scrollYProgress} index={1}><FallbackAvatar name="GRIDS Growth" size={40} animated={true} className={styles.partnerAvatar} /></HeadlineMark>
+                {chunks}
+              </span>,
+            })}{" "}<span className={styles.headingSecondary}>{t("headingSecondary")}</span>
           </h2>
           <p className={styles.introduction}>{t("introduction")}</p>
         </header>
@@ -62,7 +66,7 @@ export default function HomeOfferings() {
             </article>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

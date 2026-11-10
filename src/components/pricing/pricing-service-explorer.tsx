@@ -215,6 +215,7 @@ export default function PricingServiceExplorer() {
                       <div
                         key={`${selected}-${index}`}
                         className={styles.option}
+                        data-state={open ? "open" : "closed"}
                       >
                         <h3>
                           <button

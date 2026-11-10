@@ -51,13 +51,13 @@
 .scene[data-ready="true"] { opacity: 1; }
 .poster img { object-fit: fill; }
 .poster picture { position: absolute; inset: 0; display: block; }
-.title { position: absolute; z-index: 2; top: 5%; inset-inline: 6%; text-align: center; pointer-events: none; }
+.title { position: absolute; z-index: 2; top: 5%; inset-inline: 0; text-align: center; pointer-events: none; }
 .title h1 { margin: 0; font-size: clamp(2.5rem, 4.6vw, 4.5rem); font-weight: 500; line-height: 1.13; letter-spacing: -0.055em; word-break: keep-all; }
 .title h1 span { display: block; }
 .hero:lang(ko) .title h1 { font-weight: 500; font-synthesis: none; line-height: 1.14; letter-spacing: -0.035em; }
 .hero:lang(en) .title h1 { font-size: clamp(2rem, 4.25vw, 4rem); line-height: 1.08; letter-spacing: -0.045em; }
-.content { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1.5rem 1.5rem 0; }
-.description { max-width: 35rem; margin: 0; color: #6b6b6b; font-size: clamp(0.9375rem, 1.2vw, 1rem); font-weight: 500; line-height: 1.75; word-break: keep-all; text-wrap: pretty; }
+.content { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; text-align: center; padding-top: 1.5rem; }
+.description { max-width: 35rem; margin: 0 auto; color: #6b6b6b; font-size: clamp(0.9375rem, 1.2vw, 1rem); font-weight: 500; line-height: 1.75; word-break: keep-all; text-wrap: pretty; }
 .actions { display: flex; width: fit-content; max-width: 100%; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.75rem; margin: 1.5rem auto 0; pointer-events: auto; }
 .portfolio {
   position: relative;
@@ -107,10 +107,11 @@
 @media (max-width: 767px) {
   .hero { padding-top: 8.5rem; }
   .stage { height: clamp(27rem, 56svh, 32rem); }
-  .title { top: 5%; inset-inline: 1rem; }
+  .title { top: 5%; }
   .title h1 { font-size: clamp(2rem, 7.8vw, 3rem); }
   .hero:lang(en) .title h1 { font-size: clamp(1.75rem, 6.6vw, 2.75rem); }
-  .content { padding-top: 1rem; }
+  .scene, .poster { translate: 0 -24px; }
+  .content { padding-top: 1rem; translate: 0 -24px; }
   .description { max-width: 27rem; }
 }
 @media (prefers-reduced-motion: reduce) {

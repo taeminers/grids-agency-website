@@ -2,10 +2,11 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import { useRef } from "react";
 import { useInView } from "framer-motion";
-import { Link2, Plug, Plus, Search } from "lucide-react";
+import { Plug, Plus, Search } from "lucide-react";
 import { useTranslations } from "next-intl";
 import BrandLogo from "./brand-logo";
 import FallbackAvatar from "./fallback-avatar";
+import { RotatingCross } from "./amicro/rotating-cross";
 import { useReducedMotionPreference } from "./coin-preview/use-reduced-motion";
 import { WebGLGuard } from "./coin-preview/webgl-guard";
 import styles from "./growth-preview.module.css";
@@ -34,17 +35,14 @@ export default function GrowthPreview() {
         )}
       </div>
       <div className={styles.stack}>
+        <div className={styles.card}>
         <div className={styles.connection} aria-hidden="true">
           <div className={styles.endpoint}><BrandLogo className={styles.logo} /></div>
-          <span className={styles.line} />
-          <span className={styles.junction}><Link2 size={15} strokeWidth={1.5} /></span>
-          <span className={styles.line} />
+          <span className={styles.rotatingCross}><RotatingCross /></span>
           <div className={styles.endpoint}>
-            <FallbackAvatar name="GRIDS Growth" size={28} animated={true} className={styles.avatar} />
+            <FallbackAvatar name="GRIDS Growth" size={32} animated={true} className={styles.avatar} />
           </div>
         </div>
-
-        <div className={styles.card}>
           <div className={styles.cardHeading}>
             <Plug size={16} strokeWidth={1.75} aria-hidden="true" />
             <div>

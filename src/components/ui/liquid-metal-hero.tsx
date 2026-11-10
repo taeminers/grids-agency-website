@@ -1,12 +1,17 @@
 "use client";
 
+import Container from '@/components/container';
 import { LiquidMetal, liquidMetalPresets } from '@paper-design/shaders-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
+import { useSyncExternalStore } from 'react';
+
+const subscribeToHydration = () => () => {};
+const clientSnapshot = () => true;
+const serverSnapshot = () => false;
 
 interface LiquidMetalHeroProps {
   badge?: string;
@@ -30,11 +35,7 @@ export default function LiquidMetalHero({
   features = [],
 }: LiquidMetalHeroProps) {
   const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useSyncExternalStore(subscribeToHydration, clientSnapshot, serverSnapshot);
 
   if (!mounted) return null;
   const containerVariants = {
@@ -77,7 +78,7 @@ export default function LiquidMetalHero({
         }}
       />
       
-      <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
+      <Container>
         <motion.div 
           className="text-center space-y-8"
           variants={containerVariants}
@@ -189,7 +190,7 @@ export default function LiquidMetalHero({
             </motion.div>
           )}
         </motion.div>
-      </div>
+      </Container>
     </section>
   );
 }
