@@ -4,6 +4,7 @@
   overflow: hidden;
   min-width: 0;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   place-items: center;
   padding: 20px;
   background: #171819;
@@ -18,37 +19,34 @@
     repeating-linear-gradient(to bottom, transparent 0 8.5%, rgb(15 16 17 / 0.5) 9% 10%),
     radial-gradient(ellipse at 50% 51%, #8a8b8d 0%, #434548 28%, #171819 68%);
 }
-.stack { position: relative; z-index: 1; width: 100%; max-width: 420px; }
+.stack { position: relative; z-index: 1; min-width: 0; width: 100%; max-width: 420px; }
 .connection {
   position: relative;
-  display: flex;
+  display: grid;
+  grid-template-columns: 36px 40px 36px;
+  justify-content: center;
   align-items: center;
-  gap: clamp(10px, 1.5vw, 18px);
-  width: 85%;
-  margin-inline: auto;
-  padding: 10px 16px 20px;
-  border: 1px solid #4a4b4d;
-  border-radius: 17px 17px 0 0;
-  background: #2d2e30;
+  gap: 24px;
+  margin: 0 var(--card-inset) 22px;
+  padding: 2px 4px 0;
 }
-.endpoint { display: grid; place-items: center; flex: 0 0 42px; height: 42px; }
-.logo { width: 19px; height: 19px; background: #f4f5f6; }
+.endpoint { display: grid; place-items: center; flex: 0 0 36px; height: 40px; }
+.logo { width: 24px; height: 24px; background: #f4f5f6; }
 .avatar { display: block; }
-.line { height: 1px; flex: 1; background: #46484b; }
-.junction { display: grid; place-items: center; flex: 0 0 28px; height: 28px; background: #252628; border-radius: 6px; transform: rotate(45deg); color: #b2b6bc; }
-.junction svg { transform: rotate(-45deg); }
-.card { --card-inset: 18px; position: relative; margin-top: -12px; padding: 17px 0 14px; overflow: hidden; border: 1px solid #4b4d50; border-radius: 16px; background: #2e3032; box-shadow: 0 12px 28px -14px rgb(0 0 0 / 0.45), inset 0 1px 0 rgb(255 255 255 / 0.025); }
+.rotatingCross { display: grid; place-items: center; width: 40px; height: 48px; color: #dbe6ed; }
+.rotatingCross > div { scale: .625; }
+.card { composes: surface from "./offering-glass.module.css"; --card-inset: 22px; position: relative; padding: 22px 0 18px; overflow: hidden; border-radius: var(--site-card-radius); }
 .cardHeading { display: flex; gap: 10px; align-items: flex-start; padding: 0 var(--card-inset) 12px; }
 .cardHeading > svg { flex-shrink: 0; margin-top: 3px; color: #ced2d6; }
 .title { margin: 0; font-size: 14px; line-height: 1.5; font-weight: 500; letter-spacing: -0.02em; }
 .subtitle { margin: 3px 0 0; font-size: 11px; line-height: 1.6; color: #b5b9be; word-break: keep-all; }
 .tools { margin: 0; padding: 0; list-style: none; }
-.tool { display: flex; align-items: center; gap: 12px; min-height: 53px; padding: 9px var(--card-inset); border-top: 1px solid #53575c; }
+.tool { display: flex; align-items: center; gap: 12px; min-height: 53px; padding: 9px var(--card-inset); border-top: 1px solid rgb(255 255 255 / .16); }
 .toolIcon { display: grid; flex: 0 0 28px; place-items: center; height: 28px; }
 .toolIcon img { width: 24px; height: 24px; object-fit: contain; }
 .seoIcon { color: #a7d8f4; }
 .toolCopy { min-width: 0; flex: 1; }
-.addIcon { display: grid; place-items: center; flex: 0 0 19px; height: 19px; margin-left: auto; border: 1px solid #626970; border-radius: 50%; background: #454b51; color: #d0d5da; }
+.addIcon { display: grid; place-items: center; flex: 0 0 19px; height: 19px; margin-left: auto; border: 1px solid rgb(255 255 255 / .22); border-radius: 50%; background: rgb(255 255 255 / .1); color: #e0e8ee; }
 .addIcon svg { width: 11px; height: 11px; }
 .more { margin: 12px 0 0; padding-inline: var(--card-inset); color: #b5b9be; font-size: 11px; line-height: 1.6; }
 .toolName { margin: 0; font-size: 13px; line-height: 1.4; font-weight: 400; letter-spacing: -0.015em; }
@@ -56,7 +54,7 @@
 @media (max-width: 380px) {
   .visual { padding: 14px; }
   .card { --card-inset: 14px; }
-  .connection { gap: 10px; padding-inline: 12px; }
+  .connection { gap: 20px; }
 }
 @media (prefers-contrast: more) {
   .card, .connection, .tool, .addIcon { border-color: #9299a1; }

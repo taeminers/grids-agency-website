@@ -7,8 +7,9 @@ import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "@/components/navigation/page-navigation";
 import { Eclipse, Mail } from "lucide-react";
+import Container from "@/components/container";
 import FooterCube from "@/components/footer-cube";
-import FooterContactOrb from "@/components/footer-contact-orb";
+import Dots08 from "@/components/shadcn-space/dots/dots-08";
 import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 import styles from "./footer-section.module.css";
@@ -45,7 +46,7 @@ export default function FooterSection({ className }: FooterSectionProps) {
 
   const trackContact = (label: string) => trackEvent("cta_click", { cta_location: "footer", cta_text: label });
   const apps = [
-    { key: "contact", href: `/${locale}/connect`, label: nav("contact"), icon: <FooterContactOrb /> },
+    { key: "contact", href: `/${locale}/connect`, label: nav("contact"), icon: <Dots08 size={44} paused={!revealed} /> },
     { key: "work", href: `/${locale}/archive`, label: nav("work"), icon: <Eclipse strokeWidth={1.5} /> },
     { key: "pricing", href: `/${locale}/pricing`, label: nav("pricing"), icon:
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
@@ -56,7 +57,7 @@ export default function FooterSection({ className }: FooterSectionProps) {
   return (
     <motion.footer data-footer-desktop data-revealed={revealed} style={{ backgroundColor: background }}
       className={cn(styles.footer, className)} aria-label={t("desktopLabel")}>
-        <div className={styles.screen}>
+        <Container innerClassName={styles.screen}>
           <div className={styles.center}>
             <motion.address {...textReveal} className={styles.address}>{t("location")}</motion.address>
             <div className={styles.cubeArea}><FooterCube background={background} /></div>
@@ -87,7 +88,7 @@ export default function FooterSection({ className }: FooterSectionProps) {
               <span className={styles.appLabel} aria-hidden="true">{t("kakaoApp")}</span>
             </a>
           </motion.nav>
-        </div>
+        </Container>
     </motion.footer>
   );
 }

@@ -39,10 +39,10 @@ const globeVariants: Variants = {
 
 export default function RootNotFound() {
   return (
-    <div className="flex flex-col justify-center items-center px-4 min-h-screen bg-[#09090b] relative z-10 selection:bg-primary/30 antialiased">
+    <div className="flex flex-col justify-center items-center site-gutter min-h-screen bg-[#09090b] relative z-10 selection:bg-primary/30 antialiased">
       <AnimatePresence mode="wait">
         <motion.div
-          className="text-center"
+          className="site-container text-center"
           initial="hidden"
           animate="visible"
           exit="hidden"
@@ -86,7 +86,7 @@ export default function RootNotFound() {
             className="mx-auto mb-10 max-w-md text-base md:text-lg text-zinc-400 font-medium"
             variants={fadeUp}
           >
-            The page you are looking for has been lost in the digital void. Let's get you back to the system.
+            The page you are looking for has been lost in the digital void. Let&apos;s get you back to the system.
           </motion.p>
 
           <motion.div variants={fadeUp}>

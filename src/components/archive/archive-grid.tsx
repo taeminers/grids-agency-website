@@ -1,5 +1,6 @@
 "use client";
 
+import Container from "@/components/container";
 import { useLocale, useTranslations } from "next-intl";
 import { ArrowUpRight } from "lucide-react";
 import { archiveProjects } from "./archive-project-data";
@@ -15,7 +16,7 @@ export function ArchiveGrid() {
   return (
     <section className="text-foreground">
       <ArchiveHeader />
-      <div className="mx-auto max-w-[1920px] px-5 pt-12 pb-[calc(7rem+env(safe-area-inset-bottom))] sm:px-8 md:px-12 md:pt-20 lg:px-16">
+      <Container className="site-section">
         <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:gap-y-12">
           {archiveProjects.map((project) => {
             const title = project.title ?? t(`${project.namespace}.projectTitle`);
@@ -36,7 +37,7 @@ export function ArchiveGrid() {
             );
           })}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

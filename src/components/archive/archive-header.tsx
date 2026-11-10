@@ -1,5 +1,6 @@
 "use client";
 
+import Container from "@/components/container";
 import { useTranslations } from "next-intl";
 import { HaloBands, type HaloPalette } from "@/components/detent/components/halo/HaloBands";
 import { ArchiveDisclosure } from "./archive-disclosure";
@@ -20,8 +21,7 @@ export function ArchiveHeader() {
     <header className={styles.hero}>
       <div className={styles.haloViewport}>
         <HaloBands className={styles.halo} palettes={GLASS_HALOS} pressToChange={true}>
-          <div className={styles.layout}>
-            <div className={styles.content}>
+          <Container className={styles.layout} innerClassName={styles.content} size="headline">
               <ArchiveDisclosure />
             <h1 className={styles.title}>
               <span>{t("Index.headline")}</span>
@@ -29,8 +29,7 @@ export function ArchiveHeader() {
                 {t("Index.headlineSecondary")}
               </span>
             </h1>
-            </div>
-          </div>
+          </Container>
         </HaloBands>
       </div>
     </header>

@@ -1,0 +1,31 @@
+.root { width: 100%; min-width: 0; }
+.carousel { overflow: hidden; cursor: grab; }
+.carousel:active { cursor: grabbing; }
+.track { display: flex; margin-left: -16px; touch-action: pan-y pinch-zoom; }
+.slide { flex: 0 0 72%; min-width: 0; padding-left: 16px; }
+.imageLink { position: relative; display: block; aspect-ratio: 1.6; overflow: hidden; border-radius: var(--site-card-radius); user-select: none; }
+.imageLink :is(img, video) { object-fit: cover; object-position: center; }
+.imageLink:focus-visible { outline-offset: -3px !important; }
+.footer { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 22px 0 8px; }
+.projectLink { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; min-width: 0; color: #26292b; text-decoration: none; font-size: clamp(18px, 1.8vw, 24px); font-weight: 500; letter-spacing: -.035em; }
+.projectLink svg { flex-shrink: 0; color: #6e7478; transition: transform 240ms ease, color 240ms ease; }
+.projectLink:hover svg { transform: translateX(3px); color: #17191b; }
+.projectLink:active { opacity: .65; }
+.controls { display: flex; align-items: center; gap: 2px; flex-shrink: 0; padding: 3px; border-radius: var(--site-card-radius); background: #f2f3f4; }
+.count { display: flex; justify-content: center; gap: 7px; min-width: 58px; font-size: 12px; font-weight: 500; font-variant-numeric: tabular-nums; color: #24292d; }
+.count span { color: #6d7479; }
+.controls button { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 5px; border: 0; background: transparent; color: #30363b; cursor: pointer; transition: background 180ms ease, transform 120ms ease; }
+.controls button:hover { background: #e3e7ea; }
+.controls button:active { transform: scale(.92); background: #d7dee3; }
+.controls button:disabled { opacity: .3; cursor: default; transform: none; background: transparent; }
+.root :focus-visible { outline: 2px solid #4097c1; outline-offset: 4px; }
+.carousel:focus-visible { outline-offset: -2px; }
+@media(max-width: 639px) {
+ .slide { flex-basis: 88%; }
+ .footer { gap: 12px; flex-wrap: wrap; }
+ .projectLink { font-size: 18px; gap: 6px; }
+ .count { min-width: 45px; gap: 4px; font-size: 11px; }
+ .controls { gap: 0; padding: 2px; }
+}
+@media(prefers-reduced-motion: reduce) { .root * { transition: none; } }
+@media(prefers-contrast: more) { .count span, .projectLink svg { color: #343a40; } .controls { outline: 1px solid #41474c; } }

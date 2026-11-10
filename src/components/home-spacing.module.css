@@ -1,12 +1,21 @@
 .page {
-  --home-section-gap: clamp(4rem, 8vw, 8rem);
-  --home-heading-gap: clamp(2rem, 4vw, 3.5rem);
+  --home-section-gap: calc(var(--site-section-space) * 2);
+  --home-heading-gap: var(--site-heading-space);
 }
-/* The incoming section owns the gap; adjoining padding must not add to it. */
+/* The incoming section owns the entire gap; no adjoining bottom padding. */
 .section { padding-block: var(--home-section-gap) 0; }
-.heading { margin-bottom: var(--home-heading-gap); }
+.heading { margin-bottom: var(--site-heading-space); }
 
-@media (min-width: 1024px) {
-  /* Give Featured Work and FAQ more separation on desktop. */
-  .section { padding-top: clamp(8rem, 12vw, 12rem); }
+/* Normal document scrolling lifts one continuous sheet over the completed intro. */
+.contentSheet {
+  position: relative;
+  z-index: 1;
+  display: flow-root;
+  border-radius: 24px 24px 0 0;
+  background: var(--background);
+  box-shadow: 0 -20px 50px -35px rgb(31 48 64 / .22);
+}
+.contentSheet > section:first-child { border-radius: inherit; }
+@media (prefers-reduced-motion: reduce), (prefers-contrast: more) {
+  .contentSheet { border-radius: 0; box-shadow: none; }
 }

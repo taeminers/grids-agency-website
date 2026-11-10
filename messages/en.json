@@ -207,20 +207,13 @@
       "description": "Not everything needs to be built from scratch. We use proven foundations and focus your time and budget on the features your business actually needs.",
       "principle": "A clear scope, from the start.",
       "reply": {
-        "name": "GRIDS AI",
-        "role": "Project guide",
-        "intro": "You don’t need to build every feature from scratch.",
-        "reuseTitle": "Start with proven foundations.",
-        "reuseBody": "Reuse proven foundations for sign-in, notifications, and other common features.",
-        "customTitle": "Focus on what makes your business different.",
-        "customBody": "We tailor the customer-facing design and core features to your business.",
-        "closing": "Keep the quality you need, with less unnecessary development time and cost.",
-        "responding": "Responding…",
-        "messageFrom": "Message from {model}",
-        "complete": "Response complete",
-        "failed": "Response failed",
-        "copy": "Copy message",
-        "copied": "Copied"
+        "name": "LOCUS AI",
+        "role": "GRIDS AI assistant",
+        "closing": "Work with proven professionals as an extension of your team, without the burden of hiring.",
+        "firstTitle": "An efficient way of working makes fair pricing possible.",
+        "firstBody": "We automate repetitive, standardized tasks and focus our people on work that requires expert judgment. This reduces unnecessary costs while maintaining the quality of the result.",
+        "secondTitle": "At the heart of it all is human expertise.",
+        "secondBody": "Experts from Seoul National University’s Department of Computer Science and Engineering, with extensive experience at companies including Samsung and LG, carry out your project directly."
       }
     },
     "speed": {
@@ -228,18 +221,36 @@
       "title": "From idea to launch.",
       "subtitle": "Less time spent waiting.",
       "description": "Planning, design, and development work as one team. AI helps with repetitive tasks, so we can share working results sooner and refine them together.",
-      "principle": "Start small. Learn sooner."
+      "principle": "Start small. Learn sooner.",
+      "reply": {
+        "name": "LOCUS AI",
+        "role": "GRIDS AI assistant",
+        "firstTitle": "Greater efficiency gives us more time to collaborate with you.",
+        "firstBody": "We automate repetitive development and testing to work faster and identify potential issues early. This improves efficiency and reliability throughout the project.",
+        "secondTitle": "We invest the time saved in a better result.",
+        "secondBody": "We share progress transparently, respond promptly to your feedback, and continue reviewing and refining the work together.",
+        "closing": "Our goal goes beyond a shorter timeline: it is to reach the best possible result together with you."
+      }
     },
     "quality": {
       "tab": "Quality by design",
       "title": "Move faster.",
       "subtitle": "Keep the care in every detail.",
       "description": "We put the time saved through automation into usability and detail. Our experts design and review the work to create a product that feels right to use.",
-      "principle": "Fast tools. Thoughtful decisions."
+      "principle": "Fast tools. Thoughtful decisions.",
+      "reply": {
+        "name": "LOCUS AI",
+        "role": "GRIDS AI assistant",
+        "firstTitle": "More important than fair pricing or speed is your trust.",
+        "firstBody": "We do not deliver or deploy work that falls short of the quality standards agreed upfront. Quality and reliability come first in every project.",
+        "secondTitle": "We take clear responsibility for the result.",
+        "secondBody": "If you are not satisfied with the final result, our refund policy offers up to 80% under the conditions agreed in advance.",
+        "closing": "By reducing the burden of getting started and taking greater responsibility for the outcome, we build a partnership you can trust."
+      }
     }
   },
   "FAQ": {
-    "contactPrompt": "Have more questions?",
+    "contactPrompt": "Contact the GRIDS team",
     "contactLink": "Let’s talk",
     "heading": "Before we begin,\na few answers.",
     "description": "Questions before getting started?\nFrom our process and pricing to ongoing support,\nhere are the answers to help you plan ahead.",
@@ -295,8 +306,8 @@
     },
     "layoutHeading": "Questions,",
     "layoutHeadingSecondary": "answered.",
-    "contactCardTitle": "Let’s talk it through.",
-    "contactCardDescription": "Can’t find your answer, or need advice for your project? Tell us about the problem you’d like to solve."
+    "contactCardTitle": "Hi, I’m LOCUS.",
+    "contactCardDescription": "I’m getting ready to launch, so I can give you helpful, accurate answers. Once I’m ready, you’ll be able to ask me anything about GRIDS and our services right here."
   },
   "ConsultationButton": {
     "label": "Let’s talk",
@@ -319,7 +330,7 @@
   "HomeOfferings": {
     "partnership": "GRIDS and your company, together",
     "yourCompany": "Your company",
-    "heading": "GRIDS brings your business",
+    "heading": "<grids>GRIDS</grids> brings <company>you</company>",
     "headingSecondary": "two core values.",
     "introduction": "Get discovered by more customers. Open doors to more opportunities.",
     "build": {
@@ -451,7 +462,7 @@
   "About": {
     "layout": {
       "eyebrow": "Featured work",
-      "heading": "Ideas, brought to life.",
+      "heading": "What can we create?",
       "description": "From websites to brand films. Explore selected projects by GRIDS.",
       "feature": "Every brand has a different story. See how we give each one its own expression.",
       "tcl": {
@@ -470,9 +481,16 @@
         "category": "Web application"
       },
       "carouselLabel": "Featured projects by GRIDS",
+      "archiveLink": "Explore all work",
+      "previousProject": "Previous project",
+      "nextProject": "Next project",
+      "carouselHint": "Drag or use the arrow keys to explore projects",
+      "previewProject": "Preview",
+      "closePreview": "Close preview",
       "showProject": "Expand {title} project",
       "learnMore": "Explore more work",
-      "viewProject": "View project"
+      "viewProject": "View project",
+      "headingSecondary": "See for yourself."
     },
     "title": "The premier <highlight>AI agency</highlight> <newline></newline> for elite-tier production.",
     "description": "Scale beyond your competitors, leveraging cutting-edge AI to deliver unmatched production quality and a decisive market advantage.",
@@ -715,7 +733,8 @@
       "copied": "Email copied",
       "projectTitle": "Tell us what you have in mind.",
       "projectDescription": "Share a little about your project. We’ll review the details and get in touch personally.",
-      "copyFallback": "Contact us by email:"
+      "copyFallback": "Contact us by email:",
+      "locusNoticeMessage": "Still learning. See you soon!"
     },
     "titlePrefix": "We Would Love to Hear",
     "titleHighlight": "from You",

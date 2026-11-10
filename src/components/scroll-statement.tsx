@@ -3,6 +3,7 @@
 import { Fragment, useEffect, useRef, type ReactNode } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
+import Container from "./container";
 import StudioIntroduction from "./studio-introduction";
 import styles from "./scroll-statement.module.css";
 
@@ -85,6 +86,7 @@ export default function ScrollStatement({ text, locale }: { text: string; locale
       aria-labelledby="home-statement-heading" className={styles.section}>
       <div ref={sectionRef} className={styles.readingTrack}>
       <div className={styles.stage}>
+      <Container innerClassName={styles.content}>
         <h2 id="home-statement-heading" className={styles.statement} aria-label={text}>
           <span aria-hidden="true">
             {words.map((word, index) => {
@@ -111,6 +113,7 @@ export default function ScrollStatement({ text, locale }: { text: string; locale
           </span>
         </h2>
         <StudioIntroduction progress={scrollYProgress} revealAt={TEXT_FILL_END} />
+      </Container>
       </div>
       </div>
     </section>

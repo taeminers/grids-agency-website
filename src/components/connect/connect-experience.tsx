@@ -1,5 +1,6 @@
 "use client";
 
+import Container from "@/components/container";
 import { useRef, useState } from "react";
 import {
   motion,
@@ -12,7 +13,8 @@ import ProjectQuestionnaire from "./project-questionnaire";
 import styles from "./connect-experience.module.css";
 import ConsultationLink, { ConsultationAction } from "@/components/consultation-link";
 import buttonStyles from "@/components/consultation-button.module.css";
-import InteractiveDroplets from "@/components/originkit/ui/interactive-droplets";
+import Dots08 from "@/components/shadcn-space/dots/dots-08";
+import { SquareGrid } from "@/components/amicro/square-grid";
 import { trackEvent } from "@/lib/analytics";
 
 const LightRays = dynamic(() => import("@/components/light-rays"), { ssr: false });
@@ -70,10 +72,11 @@ export default function ConnectExperience() {
       )}
       <section
         aria-labelledby={projectOpen ? "question-title" : "connect-title"}
-        className="relative mx-[clamp(20px,4.2vw,72px)] grid min-h-[calc(100svh-112px)] md:min-h-[calc(100svh-72px)]"
+        className="relative"
       >
-        <div aria-hidden="true" className="pointer-events-none absolute -inset-x-[clamp(20px,4.2vw,72px)] inset-y-0 bg-[radial-gradient(ellipse_65%_45%_at_50%_62%,#62b0ed12,transparent_85%)]" />
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_65%_45%_at_50%_62%,#62b0ed12,transparent_85%)]" />
 
+        <Container innerClassName="grid min-h-[calc(100svh-112px)] md:min-h-[calc(100svh-72px)]">
         <div
           className={`${styles.stage} relative z-10 flex min-w-0`}
           data-active={projectOpen}
@@ -93,7 +96,7 @@ export default function ConnectExperience() {
               />}
         </div>
         <div
-          className={`${styles.stage} relative z-10 flex min-w-0 flex-col items-center justify-center px-5 pt-16 pb-24 text-center sm:px-8 md:px-10 md:py-28`}
+          className={`${styles.stage} relative z-10 flex min-w-0 flex-col items-center justify-center pt-16 pb-24 text-center md:py-28`}
           data-active={!projectOpen}
           inert={projectOpen}
           aria-hidden={projectOpen}
@@ -104,23 +107,19 @@ export default function ConnectExperience() {
             }
           }}
         >
+              <motion.div {...reveal(0.24)} className={styles.locusNotice}>
+                <span className={styles.noticeLoader} aria-hidden="true"><SquareGrid size={18} paused={projectOpen} /></span>
+                <p className={styles.noticeTitle}>{t("Experience.locusNoticeMessage")}</p>
+              </motion.div>
               <motion.div
                 {...reveal(0.4)}
                 aria-hidden="true"
                 className="relative mb-6 flex size-40 shrink-0 items-center justify-center sm:mb-8 sm:size-52 md:size-60"
               >
                 <div className="pointer-events-none absolute inset-[18%] rounded-full bg-tertiary/10 blur-3xl" />
-                <InteractiveDroplets
-                  paused={projectOpen}
-                  style={{ minWidth: 0, minHeight: 0 }}
-                  rest={{ x: 50, y: 50, size: 12 }}
-                  sizePercent={125}
-                  dropSize={7}
-                  lag={7}
-                  idle={{ speed: 5, spread: 8 }}
-                  idleOn={!reduced}
-                  shimmer={reduced ? 0 : 12}
-                />
+                <div className={styles.locusAvatar}>
+                  <Dots08 size={240} paused={projectOpen} />
+                </div>
               </motion.div>
               <motion.h1
                 id="connect-title"
@@ -155,6 +154,7 @@ export default function ConnectExperience() {
                 </motion.div>
               </div>
         </div>
+        </Container>
       </section>
     </main>
   );

@@ -20,6 +20,8 @@ Apply its principles of purpose, agency, responsibility, familiarity, flexibilit
 
 - Follow [DESIGN.md](DESIGN.md) for persistent site-wide design standards. Outer cards and panels use `--site-card-radius: 8px` at every breakpoint; do not introduce competing corner radii.
 
+- Use the shared `Container` for page content: a responsive 1200–1440px content cap excluding gutters. Follow the container and section-spacing contract in [DESIGN.md](DESIGN.md); avoid nested gutters and doubled section gaps.
+
 - Make the purpose and next action immediately understandable. The hero should explain what GRIDS offers with a clear headline, concise supporting copy, and an obvious primary action.
 - Aim for a calm, confident presentation through deliberate whitespace, alignment, typography, and contrast. Every element must have a clear role.
 - Establish hierarchy through size, weight, line height, spacing, and grouping together. Avoid adding ornament to compensate for weak content or composition.

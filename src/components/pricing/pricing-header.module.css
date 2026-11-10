@@ -4,9 +4,7 @@
   align-items: center;
   gap: clamp(48px, 6vw, 96px);
   min-height: 600px;
-  max-width: 1920px;
-  margin-inline: auto;
-  padding: 176px var(--pricing-gutter) 96px;
+  padding-block: 176px 0;
 }
 .title {
   margin: 0;
@@ -39,7 +37,7 @@
 .cardTitle { margin: 36px 0 0; font-size: clamp(20px, 1.85vw, 27px); font-weight: 500; line-height: 1.6; letter-spacing: -.035em; white-space: pre-line; word-break: keep-all; }
 .description { margin: 22px 0 0; color: #596670; font-size: 13px; line-height: 1.8; letter-spacing: -.01em; word-break: keep-all; }
 @media (max-width: 767px) {
-  .layout { grid-template-columns: minmax(0, 1fr); min-height: 540px; gap: 36px; padding-block: 136px 72px; }
+  .layout { grid-template-columns: minmax(0, 1fr); min-height: 540px; gap: 36px; padding-block: 136px 0; }
   .title { font-size: clamp(36px, 8vw, 52px); }
   .card { max-width: none; }
   .cardTitle { margin-top: 28px; font-size: clamp(20px, 4.5vw, 25px); }

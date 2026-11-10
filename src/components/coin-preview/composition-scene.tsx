@@ -30,7 +30,7 @@ function TileRibbon({ palette, surface, onReady, ...playback }: RibbonPlayback &
   const size = useThree(state => state.size);
   const get = useThree(state => state.get);
   const invalidate = useThree(state => state.invalidate);
-  const arrangement = useMemo(() => getRibbonArrangement(size.width / Math.max(1, size.height)), [size.width, size.height]);
+  const arrangement = useMemo(() => getRibbonArrangement(size.width / Math.max(1, size.height), size.width < 640), [size.width, size.height]);
   const motion = useRibbonInteraction({ surface, ...playback, period: arrangement.period });
   const group = useRef<Group>(null);
   const warmupFrames = useRef(0);

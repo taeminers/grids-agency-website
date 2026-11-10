@@ -27,6 +27,7 @@ export default function Home() {
         <Navbar inHero />
         <HeroContent />
         <ScrollStatement text={t("text")} locale={locale} />
+        <div className={spacing.contentSheet}>
         <HomeOfferings />
         <HomeApproach />
 
@@ -36,6 +37,7 @@ export default function Home() {
         >
           <AboutSection />
           <FaqSection />
+        </div>
         </div>
       </div>
     </main>

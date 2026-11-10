@@ -100,11 +100,12 @@
 .navbar:focus-within .glassSurface::after { opacity: 1; }
 
 .navbar {
-  --island-expanded-width: min(760px, calc(100vw - 48px));
+  --island-expanded-width: min(760px, calc(100vw - var(--site-gutter) * 2));
   position: fixed;
   z-index: 40;
   inset: 0 0 auto;
   width: var(--island-expanded-width);
+  max-width: calc(100% - var(--site-gutter) * 2);
   margin-inline: auto;
   display: flex;
   align-items: center;
@@ -378,7 +379,7 @@
 
 @media (max-width: 767px) {
   .navbar {
-    --island-expanded-width: calc(100vw - 24px);
+    --island-expanded-width: calc(100vw - var(--site-gutter) * 2);
     width: var(--island-expanded-width);
     height: 56px;
     font-size: 12px;
