@@ -3,6 +3,7 @@
 import { useEffect, useId, useRef } from "react";
 import gsap from "gsap";
 import { useTranslations } from "next-intl";
+import FallbackAvatar from "./fallback-avatar";
 
 const branches = [
   { key: "naver", x: 30, y: 18, path: "M144 132H134Q123 132 123 121V65Q123 54 112 54H102", icon: "naver.svg" },
@@ -24,10 +25,6 @@ export default function AutomationWorkflowPreview() {
     const visibleHeight = Math.max(0, Math.min(bounds.bottom, window.innerHeight) - Math.max(bounds.top, 0));
     let visible = bounds.height > 0 && visibleHeight / bounds.height >= 0.5;
     let sequence: gsap.core.Timeline;
-    let reset: gsap.core.Timeline;
-    let hovered = false;
-    let focused = false;
-    let started = false;
     const context = gsap.context(() => {
       sequence = gsap.timeline({ paused: true, repeat: -1, repeatDelay: 0.6 });
       sequence
@@ -42,39 +39,13 @@ export default function AutomationWorkflowPreview() {
       // Extend only the completed-frame hold by one real-time second.
       sequence.shiftChildren(sequence.timeScale(), false, 7);
       sequence.pause(0);
-      reset = gsap.timeline({ paused: true, onComplete: () => { sequence.pause(0); } })
-        .to("[data-flow-node]", { autoAlpha: 0.65, filter: "grayscale(1) blur(1.25px)", duration: 0.35, ease: "power2.out" }, 0)
-        .to("[data-flow-mask]", { attr: { "stroke-dashoffset": 100 }, duration: 0.35, ease: "power2.out" }, 0);
     }, element);
 
     const syncPlayback = () => {
-      if (!hovered && !focused) {
-        if (!started) return;
-        started = false;
-        sequence.pause();
-        if (media.matches) { reset.pause(); sequence.pause(0); }
-        else reset.invalidate().restart();
-        return;
-      }
-      if (media.matches) {
-        reset.pause();
-        sequence.pause(6);
-        started = true;
-      } else if (visible && !document.hidden) {
-        reset.pause();
-        if (started) sequence.play();
-        else sequence.restart();
-        started = true;
-      } else sequence.pause();
+      if (media.matches) sequence.pause(6);
+      else if (visible && !document.hidden) sequence.play();
+      else sequence.pause();
     };
-    const enter = () => { hovered = true; syncPlayback(); };
-    const leave = () => { hovered = false; syncPlayback(); };
-    const focus = () => { focused = true; syncPlayback(); };
-    const blur = () => { focused = false; syncPlayback(); };
-    element.addEventListener("pointerenter", enter);
-    element.addEventListener("pointerleave", leave);
-    element.addEventListener("focus", focus);
-    element.addEventListener("blur", blur);
     const observer = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting && entry.intersectionRatio >= 0.5;
       syncPlayback();
@@ -85,10 +56,6 @@ export default function AutomationWorkflowPreview() {
     syncPlayback();
     return () => {
       observer.disconnect();
-      element.removeEventListener("pointerenter", enter);
-      element.removeEventListener("pointerleave", leave);
-      element.removeEventListener("focus", focus);
-      element.removeEventListener("blur", blur);
       media.removeEventListener("change", syncPlayback);
       document.removeEventListener("visibilitychange", syncPlayback);
       context.revert();
@@ -96,7 +63,7 @@ export default function AutomationWorkflowPreview() {
   }, []);
 
   return (
-    <div ref={root} data-workflow-preview role="img" aria-label={t("previewLabel")} tabIndex={0} className="pointer-events-auto flex h-full items-center justify-center text-foreground outline-none focus-visible:outline-1 focus-visible:outline-offset-[-4px] focus-visible:outline-foreground/25">
+    <div ref={root} data-workflow-preview role="img" aria-label={t("previewLabel")} className="flex h-full items-center justify-center text-foreground">
       <svg aria-hidden="true" viewBox="0 0 360 264" className="h-full max-h-[280px] w-full max-w-[440px] overflow-visible">
         <defs>
           {branches.map(({ path }, index) => (
@@ -115,9 +82,9 @@ export default function AutomationWorkflowPreview() {
           </g>
         ))}
         <rect x="144" y="96" width="72" height="72" className="fill-background stroke-foreground/15" strokeWidth="1" />
-        {/* Explicit assets avoid SVG image-filter rendering differences in Safari. */}
-        <image href="/logo/grids-black.png" x="164" y="116" width="32" height="32" className="dark:hidden" />
-        <image href="/logo/grids-white.png" x="164" y="116" width="32" height="32" className="hidden dark:block" />
+        <foreignObject x="160" y="112" width="40" height="40">
+          <FallbackAvatar name="GRIDS Growth" size={40} animated={true} className="pointer-events-auto block" />
+        </foreignObject>
       </svg>
     </div>
   );

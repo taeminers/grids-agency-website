@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useId, useState } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { motion, useReducedMotion, useTransform, type MotionValue } from "motion/react";
 import { parse as parseFont } from "opentype.js";
 
 type SignatureGlyph = {
@@ -123,6 +123,23 @@ async function buildSignaturePaths({
   };
 }
 
+function ScrollSignaturePath({ d, index, count, progress, ...appearance }: {
+  d: string;
+  index: number;
+  count: number;
+  progress: MotionValue<number>;
+  stroke: string;
+  strokeWidth: number;
+  strokeLinecap: "round" | "butt";
+  strokeLinejoin: "round";
+}) {
+  const pathLength = useTransform(progress, [index / (count + 2), (index + 3) / (count + 2)], [0, 1]);
+  const opacity = useTransform(pathLength, [0, 0.001], [0, 1]);
+
+  return <motion.path d={d} {...appearance} fill="none" vectorEffect="non-scaling-stroke"
+    style={{ pathLength, opacity }} />;
+}
+
 function renderMotionPaths({
   paths,
   stroke,
@@ -131,6 +148,7 @@ function renderMotionPaths({
   strokeLinejoin,
   duration,
   delay,
+  progress,
 }: {
   paths: string[];
   stroke: string;
@@ -139,7 +157,15 @@ function renderMotionPaths({
   strokeLinejoin: "round";
   duration: number;
   delay: number;
+  progress?: MotionValue<number>;
 }) {
+  if (progress) {
+    return paths.map((d, index) => (
+      <ScrollSignaturePath key={index} d={d} index={index} count={paths.length}
+        progress={progress} stroke={stroke} strokeWidth={strokeWidth}
+        strokeLinecap={strokeLinecap} strokeLinejoin={strokeLinejoin} />
+    ));
+  }
   return paths.map((d, index) => (
     <motion.path
       key={index}
@@ -170,6 +196,8 @@ interface SignatureProps {
   className?: string;
   inView?: boolean;
   once?: boolean;
+  /** Drive the complete handwriting sequence directly with a 0–1 scroll value. */
+  progress?: MotionValue<number>;
 }
 
 export function Signature({
@@ -181,6 +209,7 @@ export function Signature({
   className,
   inView = false,
   once = true,
+  progress,
 }: SignatureProps) {
   const reducedMotion = useReducedMotion();
   const [paths, setPaths] = useState<string[]>([]);
@@ -238,9 +267,9 @@ export function Signature({
       className={className}
       role="img"
       aria-label={text}
-      initial="hidden"
-      whileInView={inView ? "visible" : undefined}
-      animate={inView ? undefined : "visible"}
+      initial={progress ? false : "hidden"}
+      whileInView={!progress && inView ? "visible" : undefined}
+      animate={progress || inView ? undefined : "visible"}
       viewport={{ once }}
     >
       <defs>
@@ -253,6 +282,7 @@ export function Signature({
             strokeLinejoin: "round",
             duration: reducedMotion ? 0 : duration,
             delay,
+            progress,
           })}
         </mask>
       </defs>
@@ -265,6 +295,7 @@ export function Signature({
         strokeLinejoin: "round",
         duration: reducedMotion ? 0 : duration,
         delay,
+        progress,
       })}
 
       <g mask={`url(#${maskId})`}>

@@ -17,12 +17,14 @@
     "prebuild": "npm run pricing:sync",
     "pricing:sync": "node scripts/sync-pricing.mjs",
     "pricing:check": "node scripts/sync-pricing.mjs --check",
-    "pricing:test": "node --test scripts/sync-pricing.test.mjs && node scripts/pricing-data.test.mjs"
+    "pricing:test": "node --test scripts/sync-pricing.test.mjs && node scripts/pricing-data.test.mjs",
+    "automation:test": "node --test scripts/automation-demo.test.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@gsap/react": "^2.1.2",
     "@paper-design/shaders-react": "^0.0.71",
+    "@phosphor-icons/react": "^2.1.10",
     "@radix-ui/react-dialog": "^1.1.15",
     "@radix-ui/react-dropdown-menu": "^2.1.16",
     "@radix-ui/react-slot": "^1.2.4",

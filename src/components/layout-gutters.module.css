@@ -1,0 +1,8 @@
+.bounds {
+  --navbar-gutter: clamp(20px, 4.2vw, 72px);
+  --navbar-content-padding: 1.25rem;
+}
+
+@media (min-width: 48rem) {
+  .bounds { --navbar-content-padding: 2.25rem; }
+}

@@ -1,114 +1,79 @@
 "use client";
 
-import { ArrowRight } from "reicon-react/icons/ArrowRight";
+import { Component, useCallback, useId, useState, type ReactNode } from "react";
+import dynamic from "next/dynamic";
+import localFont from "next/font/local";
+import Image from "next/image";
+import Link from "next/link";
 import { Infinite } from "reicon-react/icons/Infinite";
 import { useLocale, useTranslations } from "next-intl";
-import Link from "next/link";
-// import HeroDemoCarousel from "@/components/hero-demo-carousel";
-import { MetalButton } from "@/components/spectrumui/metal-button";
-import { cn } from "@/lib/utils";
+import { useReducedMotionPreference } from "./coin-preview/use-reduced-motion";
 import { trackEvent } from "@/lib/analytics";
+import styles from "./hero-content.module.css";
+import ConsultationLink from "./consultation-link";
 
-const gridRevealClassName = "group-data-[hero-pending=true]/hero:opacity-0";
-const textRevealClassName =
-  "group-data-[hero-pending=true]/hero:opacity-0 group-data-[hero-pending=true]/hero:blur-[10px]";
-const actionClassName =
-  "relative inline-flex min-h-10 items-center justify-center gap-6 px-5 py-2.5 text-xs font-medium transition-colors duration-[180ms] motion-reduce:transition-none";
+const GlassRibbon = dynamic(() => import("./coin-preview/composition-scene"), { ssr: false });
+const koreanHeroFont = localFont({
+  src: "../../public/fonts/suit/SUIT-Medium.woff2",
+  weight: "500",
+  display: "swap",
+  preload: false,
+  adjustFontFallback: false,
+  fallback: ["Apple SD Gothic Neo", "Malgun Gothic", "sans-serif"],
+});
+
+class RibbonBoundary extends Component<{ children: ReactNode; onUnavailable: () => void }, { failed: boolean }> {
+  state = { failed: false };
+  static getDerivedStateFromError() { return { failed: true }; }
+  componentDidCatch() { this.props.onUnavailable(); }
+  render() { return this.state.failed ? null : this.props.children; }
+}
 
 export default function HeroContent() {
   const t = useTranslations("Hero");
   const navT = useTranslations("Navbar");
   const locale = useLocale();
+  const reduced = useReducedMotionPreference();
+  const [paused, setPaused] = useState(false);
+  const [ready, setReady] = useState(false);
+  const [failed, setFailed] = useState(false);
+  const helpId = useId();
+  const onReady = useCallback(() => setReady(true), []);
+  const onUnavailable = useCallback(() => { setFailed(true); setReady(false); }, []);
 
-  return (
-    <section
-      className="relative z-10 mx-[clamp(20px,4.2vw,72px)] flex min-h-svh flex-col justify-center pt-40 pb-20 text-foreground [&_a:focus-visible]:outline-2 [&_a:focus-visible]:outline-offset-[5px] [&_a:focus-visible]:outline-tertiary"
-      aria-labelledby="hero-heading"
-    >
-      <span
-        data-hero-reveal="grid"
-        aria-hidden="true"
-        className={cn(
-          gridRevealClassName,
-          "pointer-events-none absolute inset-y-0 -inset-x-px border-x border-foreground/12",
-        )}
-      />
-      <div className="flex flex-none flex-col gap-6 px-5 pb-6 sm:px-8 md:gap-10 md:px-10 md:pb-8">
-        <div className="max-w-2xl">
-          <h1
-            id="hero-heading"
-            className="text-[clamp(34px,6vw,76px)] leading-[1.13] font-[450] tracking-[-0.055em] [word-break:keep-all]"
-          >
-            <span
-              data-hero-reveal="text"
-              className={cn(textRevealClassName, "block")}
-            >
-              {t("headline_lead")}
+  return <section id="home-hero" className={styles.hero} aria-labelledby="hero-heading" lang={locale}>
+    <div className={styles.stage}>
+      {failed && <div className={styles.poster} aria-hidden="true">
+        <picture>
+          <source media="(max-width: 767px)" srcSet="/images/hero/glass-ribbon-mobile.webp" />
+          <Image src="/images/hero/glass-ribbon.webp" alt="" fill sizes="100vw" />
+        </picture>
+      </div>}
+      {!failed && <div className={styles.scene} data-ready={ready} inert={!ready}>
+        <RibbonBoundary onUnavailable={onUnavailable}>
+          <GlassRibbon paused={paused} reduced={reduced} resetRequest={0} onPauseChange={setPaused}
+            label={t("ribbon.label")} helpId={helpId} hint={null} onReady={onReady} onUnavailable={onUnavailable} />
+        </RibbonBoundary>
+      </div>}
+      <div className={styles.title}>
+        <h1 id="hero-heading" className={locale === "ko" ? koreanHeroFont.className : undefined}>
+          <span>{t("headline_lead")}</span><span>{t("headline_prefix")}</span>
+        </h1>
+        <div className={styles.actions}>
+          <Link href={`/${locale}/archive`} className={styles.portfolio}>
+            <span aria-hidden="true" className={styles.portfolioCorners}>
+              <span /><span /><span /><span />
             </span>
-            <span
-              data-hero-reveal="text"
-              className={cn(textRevealClassName, "block")}
-            >
-              {t("headline_prefix")}
-            </span>
-          </h1>
-          <div className="mt-6 max-w-xl text-sm leading-[1.8] [word-break:keep-all] md:text-base">
-            <p
-              data-hero-reveal="text"
-              className={cn(textRevealClassName, "font-medium")}
-            >
-              {t("studio_description")}
-            </p>
-          </div>
-          <div className="mt-7 flex flex-wrap gap-3">
-            <Link
-              data-hero-reveal="text"
-              href={`/${locale}/archive`}
-              className={cn(
-                textRevealClassName,
-                actionClassName,
-                "hover:text-tertiary",
-              )}
-            >
-              <span
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0"
-              >
-                <span className="absolute top-0 left-0 size-3 border-t border-l border-current" />
-                <span className="absolute top-0 right-0 size-3 border-t border-r border-current" />
-                <span className="absolute bottom-0 left-0 size-3 border-b border-l border-current" />
-                <span className="absolute right-0 bottom-0 size-3 border-r border-b border-current" />
-              </span>
-              {navT("work")} <Infinite size={16} aria-hidden="true" />
-            </Link>
-            <div
-              data-hero-reveal="text"
-              className={cn(textRevealClassName, "inline-flex")}
-            >
-              <MetalButton
-                asChild
-                className="h-10 gap-6 rounded-none px-5 text-xs"
-                wrapperClassName="rounded-none"
-              >
-                <Link
-                  href={`/${locale}/connect`}
-                  onClick={() =>
-                    trackEvent("cta_click", {
-                      cta_location: "hero",
-                      cta_text: t("start_project"),
-                    })
-                  }
-                >
-                  {t("start_project")}{" "}
-                  <ArrowRight size={16} aria-hidden="true" />
-                </Link>
-              </MetalButton>
-            </div>
-          </div>
+            {navT("work")}<Infinite size={16} aria-hidden="true" />
+          </Link>
+          <ConsultationLink href={`/${locale}/connect`} label={t("start_project")}
+            onClick={() => trackEvent("cta_click", { cta_location: "hero", cta_text: t("start_project") })} />
         </div>
       </div>
-      {/* Temporarily disabled while the demo showcase is being updated. */}
-      {/* <HeroDemoCarousel /> */}
-    </section>
-  );
+    </div>
+    <div className={styles.content}>
+      <p className={styles.description}>{t("studio_description")}</p>
+    </div>
+    <p id={helpId} className="sr-only">{t(reduced ? "ribbon.reducedHelp" : "ribbon.help")}</p>
+  </section>;
 }

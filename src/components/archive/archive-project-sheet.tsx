@@ -34,7 +34,7 @@ export function ArchiveProjectSheet({
             event.preventDefault();
             document.querySelector<HTMLElement>(`[data-archive-project="${project.slug}"]`)?.focus({ preventScroll: true });
           }}
-          className="fixed inset-x-0 bottom-0 z-[70] mx-auto flex h-[calc(100dvh-20px)] max-w-[1800px] flex-col overflow-hidden rounded-t-2xl border border-b-0 border-white/15 bg-[#141614] text-[#f5f3ec] shadow-2xl outline-none data-[state=open]:animate-in data-[state=open]:slide-in-from-bottom-full data-[state=open]:duration-500 data-[state=open]:ease-out data-[state=closed]:animate-out data-[state=closed]:slide-out-to-bottom-full data-[state=closed]:duration-200 motion-reduce:animate-none md:inset-x-5 md:h-[calc(100dvh-40px)] md:rounded-t-3xl"
+          className="fixed inset-x-0 bottom-0 z-[70] mx-auto flex h-[calc(100dvh-20px)] max-w-[1800px] flex-col overflow-hidden rounded-t-[var(--site-card-radius)] border border-b-0 border-white/15 bg-[#141614] text-[#f5f3ec] shadow-2xl outline-none data-[state=open]:animate-in data-[state=open]:slide-in-from-bottom-full data-[state=open]:duration-500 data-[state=open]:ease-out data-[state=closed]:animate-out data-[state=closed]:slide-out-to-bottom-full data-[state=closed]:duration-200 motion-reduce:animate-none md:inset-x-5 md:h-[calc(100dvh-40px)]"
         >
           <Dialog.Title className="sr-only">{title}</Dialog.Title>
           <div className="relative flex h-9 shrink-0 items-center justify-end border-b border-white/10 px-2 sm:px-3">

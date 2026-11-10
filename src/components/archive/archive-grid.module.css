@@ -1,0 +1,70 @@
+/* The same opaque material and concave shoulders as the unscrolled navbar. */
+.notch {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: max-content;
+  max-width: calc(100% - 48px);
+  min-height: 44px;
+  padding: 10px 20px 12px;
+  border-radius: 0 0 var(--site-card-radius) var(--site-card-radius);
+  background: #101112;
+  color: #f8f8f8;
+  box-shadow: 0 8px 24px -12px rgb(0 0 0 / .25);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.notch::before,
+.notch::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  background: #101112;
+}
+.notch::before { right: 100%; mask-image: radial-gradient(circle at 0 100%, transparent 12px, #000 12.5px); }
+.notch::after { left: 100%; mask-image: radial-gradient(circle at 100% 100%, transparent 12px, #000 12.5px); }
+.projectName { min-width: 0; margin: 0; font-size: 14px; font-weight: 600; line-height: 1.4; letter-spacing: -.025em; overflow-wrap: anywhere; }
+.separator { width: 1px; height: 12px; flex-shrink: 0; background: #ffffff2b; }
+.category { flex-shrink: 0; margin: 0; color: #bcbec0; font-size: 11px; font-weight: 450; line-height: 1.5; white-space: nowrap; }
+@media (max-width: 1023px) {
+  .notch { gap: 9px; min-height: 40px; padding: 9px 14px 11px; }
+  .projectName { font-size: 12px; }
+  .category { font-size: 10px; }
+}
+@media (prefers-contrast: more) { .category { color: #fff; } .separator { background: #ffffff80; } }
+
+.openProject {
+  position: absolute;
+  z-index: 1;
+  right: 12px;
+  bottom: 12px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgb(255 255 255 / .18);
+  border-radius: var(--site-card-radius);
+  background: #101112;
+  color: #f8f8f8;
+  box-shadow: 0 2px 8px rgb(0 0 0 / .12);
+  transition: background 300ms ease, color 300ms ease, transform 150ms ease;
+}
+.openProject svg { transition: transform 350ms cubic-bezier(.22, 1, .36, 1); }
+.projectLink:focus-visible .openProject { background: #f8f8f8; color: #101112; }
+.projectLink:focus-visible .openProject svg { transform: translate(2px, -2px); }
+.projectLink:active .openProject { transform: scale(.95); }
+@media (hover: hover) {
+  .projectLink:hover .openProject { background: #f8f8f8; color: #101112; }
+  .projectLink:hover .openProject svg { transform: translate(2px, -2px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .openProject, .openProject svg { transition: none; }
+  .projectLink:active .openProject, .projectLink:hover .openProject svg, .projectLink:focus-visible .openProject svg { transform: none; }
+}

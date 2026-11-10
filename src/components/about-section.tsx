@@ -2,8 +2,9 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import FeaturedWorkCarousel from "@/components/featured-work-carousel";
+import FeaturedWorkList from "@/components/featured-work-list";
 import { cn } from "@/lib/utils";
+import spacing from "./home-spacing.module.css";
 
 interface AboutSectionProps {
   className?: string;
@@ -44,7 +45,8 @@ export default function AboutSection({ className }: AboutSectionProps) {
       id="about-details"
       aria-labelledby="about-heading"
       className={cn(
-        "@container relative w-full scroll-mt-24 bg-background px-[clamp(20px,4.2vw,72px)] py-section text-foreground",
+        "@container relative w-full scroll-mt-24 bg-background px-[clamp(20px,4.2vw,72px)] text-foreground",
+        spacing.section,
         className,
       )}
     >
@@ -55,7 +57,7 @@ export default function AboutSection({ className }: AboutSectionProps) {
         aria-label="FEATURED WORK"
         onMouseEnter={() => animateBrand(true)}
         onMouseLeave={() => animateBrand(false)}
-        className="mb-8 cursor-default text-center text-[11cqw] leading-[0.8] font-black tracking-tighter whitespace-nowrap text-foreground/80 select-none md:mb-16"
+        className={`${spacing.heading} cursor-default text-center text-[11cqw] leading-[0.8] font-black tracking-tighter whitespace-nowrap text-foreground/80 select-none`}
       >
         <span aria-hidden="true">
           {"FEATURED WORK".split("").map((letter, index) => (
@@ -95,7 +97,7 @@ export default function AboutSection({ className }: AboutSectionProps) {
             </div>
           </div>
         </div> */}
-        <FeaturedWorkCarousel />
+        <FeaturedWorkList />
       </div>
     </section>
   );

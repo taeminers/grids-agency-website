@@ -1,39 +1,37 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
-import { useReducedMotion } from "framer-motion";
-import { useSurfaceTheme } from "@/components/spectrumui/use-surface-theme";
+import { HaloBands, type HaloPalette } from "@/components/detent/components/halo/HaloBands";
+import { ArchiveDisclosure } from "./archive-disclosure";
+import styles from "./archive-header.module.css";
 
-const MosaicLens = dynamic(() => import("@/components/originkit/ui/mosaic-lens"), { ssr: false });
-const sceneStyle = { minWidth: 0, minHeight: 0 };
+// Start with the hero glass colors, then cycle through distinct color families.
+const GLASS_HALOS: HaloPalette[] = [
+  { name: "GRIDS glass", core: "#f5e5de", mid: "#8bcff0", edge: "#b299ef" },
+  { name: "Rose", core: "#ffe0ed", mid: "#e591b7", edge: "#bba2e7" },
+  { name: "Jade", core: "#e7f3aa", mid: "#6acdb4", edge: "#98dcdf" },
+  { name: "Sunset", core: "#fff0b5", mid: "#eeb47f", edge: "#e49db8" },
+];
 
 export function ArchiveHeader() {
   const t = useTranslations("Archive");
-  const theme = useSurfaceTheme();
-  const reducedMotion = useReducedMotion();
 
   return (
-    <header className="relative isolate overflow-hidden">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-background">
-        <MosaicLens
-          background={theme === "dark" ? "#141414" : "#ffffff"}
-          color1="#277db8"
-          color2="#62b0ed"
-          paused={Boolean(reducedMotion)}
-          hover={reducedMotion ? 0 : 88}
-          style={sceneStyle}
-        />
-        <div className="absolute inset-0 bg-linear-to-r from-background/35 via-background/15 to-background/45" />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_65%,var(--background)_100%)]" />
-      </div>
-
-      <div className="mx-auto grid min-h-[540px] max-w-[1920px] items-center gap-10 px-5 pt-36 pb-20 sm:px-8 md:min-h-[600px] md:grid-cols-[1.15fr_1fr] md:gap-14 md:px-12 md:pt-44 md:pb-24 lg:gap-24 lg:px-16">
-        <h1 className="whitespace-pre-line text-[clamp(36px,5.5vw,68px)] leading-[1.12] font-medium tracking-[-0.055em]">{t("Index.title")}</h1>
-        <div className="max-w-md [word-break:keep-all] md:justify-self-end">
-          <p className="text-xl leading-[1.65] font-medium tracking-[-0.025em] lg:text-[22px]">{t("Index.disclosureHeadline")}</p>
-          <p className="mt-5 whitespace-pre-line text-base leading-8 text-foreground/75 sm:text-lg">{t("Index.disclosureDescription")}</p>
-        </div>
+    <header className={styles.hero}>
+      <div className={styles.haloViewport}>
+        <HaloBands className={styles.halo} palettes={GLASS_HALOS} pressToChange={true}>
+          <div className={styles.layout}>
+            <div className={styles.content}>
+              <ArchiveDisclosure />
+            <h1 className={styles.title}>
+              <span>{t("Index.headline")}</span>
+              <span className={styles.titleSecondary}>
+                {t("Index.headlineSecondary")}
+              </span>
+            </h1>
+            </div>
+          </div>
+        </HaloBands>
       </div>
     </header>
   );

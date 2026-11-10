@@ -1,0 +1,121 @@
+.consultation {
+  --slide: 0%;
+  --label-shift: 0px;
+  --label-hover: 0;
+  --button-fill: #101112;
+  --button-ink: #f8f8f8;
+  --tile-fill: #fff;
+  --tile-ink: #101112;
+  --slide-duration: 690ms;
+  --slide-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 6px 20px 6px 52px;
+  border-radius: 8px;
+  background: var(--button-fill);
+  color: var(--button-ink);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  box-shadow:
+    inset 0 0 0 1px rgb(16 17 18 / 0.12),
+    0 2px 4px rgb(16 17 18 / 0.08);
+  transition:
+    background-color var(--slide-duration) var(--slide-ease),
+    color var(--slide-duration) var(--slide-ease),
+    transform 120ms ease-out;
+}
+.consultationLabel {
+  transform: translateX(var(--label-shift));
+  transition: transform var(--slide-duration) var(--slide-ease);
+}
+.labelSwap { display: inline-grid; }
+.defaultLabel, .hoverLabel {
+  grid-area: 1 / 1;
+  text-align: center;
+  transition: opacity var(--slide-duration) var(--slide-ease), transform var(--slide-duration) var(--slide-ease);
+}
+.defaultLabel { opacity: calc(1 - var(--label-hover)); transform: translateY(calc(-4px * var(--label-hover))); }
+.hoverLabel { opacity: var(--label-hover); transform: translateY(calc(4px * (1 - var(--label-hover)))); }
+.consultationTrack {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  top: 50%;
+  inset-inline: 6px;
+  height: 32px;
+  margin-top: -16px;
+  pointer-events: none;
+  transform: translateX(var(--slide));
+  transition: transform var(--slide-duration) var(--slide-ease);
+}
+.consultationArrow {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 5px;
+  background: var(--tile-fill);
+  color: var(--tile-ink);
+  /* Track width minus tile width gives the exact travel for either locale. */
+  transform: translateX(calc(-1 * var(--slide)));
+  transition:
+    transform var(--slide-duration) var(--slide-ease),
+    background-color var(--slide-duration) var(--slide-ease),
+    color var(--slide-duration) var(--slide-ease);
+}
+.consultation:not(:disabled):is(:focus-visible, :active) {
+  --label-hover: 1;
+  --slide: 100%;
+  --label-shift: -32px;
+  --button-fill: #fff;
+  --button-ink: #101112;
+  --tile-fill: #101112;
+  --tile-ink: #fff;
+}
+.consultation:focus-visible {
+  outline: 2px solid var(--brand-blue);
+  outline-offset: 4px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .consultation:not(:disabled):hover {
+    --label-hover: 1;
+    --slide: 100%;
+    --label-shift: -32px;
+    --button-fill: #fff;
+    --button-ink: #101112;
+    --tile-fill: #101112;
+    --tile-ink: #fff;
+  }
+}
+.consultation:not(:disabled):active {
+  transform: scale(0.98);
+}
+@media (prefers-reduced-motion: reduce) {
+  .consultation,
+  .consultationLabel,
+  .defaultLabel,
+  .hoverLabel,
+  .consultationTrack,
+  .consultationArrow {
+    transition: none;
+  }
+  .consultation:active,
+  .consultationLabel,
+  .defaultLabel,
+  .hoverLabel,
+  .consultationTrack,
+  .consultationArrow {
+    transform: none;
+  }
+}
+
+.consultation:disabled { opacity: .45; cursor: not-allowed; box-shadow: none; }

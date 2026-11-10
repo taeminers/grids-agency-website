@@ -20,9 +20,10 @@ export function ArchiveProjectPanel({
 }) {
   const t = useTranslations(`Archive.${project.namespace}`);
   const locale = useLocale();
+  const common = useTranslations("Archive.Detail");
   const gallery = project.gallery;
   const title = project.title ?? t("projectTitle");
-  const href = project.external ? project.href : `/${locale}${project.href}`;
+  const href = project.href ? (project.external ? project.href : `/${locale}${project.href}`) : null;
   const triggerRef = useRef<HTMLButtonElement>(null);
   const [selected, setSelected] = useState<number | null>(null);
   const drag = useRef<{
@@ -45,7 +46,7 @@ export function ArchiveProjectPanel({
           className="absolute inset-0"
         />
         <div className="absolute right-5 bottom-5 z-10 sm:right-8 sm:bottom-6">
-          <ArchiveOutlink href={href} external={project.external} label={t("visit")} />
+          {project.status === "inactive" ? <p className="text-sm opacity-70">{common("inactive")}</p> : href ? <ArchiveOutlink href={href} external={project.external} label={t("visit")} /> : null}
         </div>
       </div>
     );
@@ -92,7 +93,7 @@ export function ArchiveProjectPanel({
             <dd>{t("scope")}</dd>
           </dl>
           <div className={fitToSheet ? "mt-4" : "mt-7"}>
-            <ArchiveOutlink href={href} external={project.external} label={t("visit")} />
+            {project.status === "inactive" ? <p className="text-sm opacity-70">{common("inactive")}</p> : href ? <ArchiveOutlink href={href} external={project.external} label={t("visit")} /> : null}
           </div>
         </div>
 

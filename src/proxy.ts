@@ -9,6 +9,11 @@ const handleI18nRouting = createMiddleware({
 });
 
 export default function proxy(request: NextRequest) {
+  // Keep the standalone local scene preview outside the localized site shell.
+  if (request.nextUrl.pathname === "/dev/coin-preview") {
+    return NextResponse.next();
+  }
+
   // Reset actual document loads to Korean. An absent RSC header does not
   // necessarily mean a document request, so do not redirect client navigation.
   const isDocumentRequest =

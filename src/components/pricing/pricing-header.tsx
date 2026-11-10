@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { useReducedMotion } from "framer-motion";
 import { useSurfaceTheme } from "@/components/spectrumui/use-surface-theme";
+import styles from "./pricing-header.module.css";
 
 const CloudSky = dynamic(() => import("@/components/originkit/ui/cloud-sky"), { ssr: false });
 
@@ -39,13 +40,20 @@ export default function PricingHeader() {
         <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_45%,var(--background)_100%)]" />
       </div>
 
-      <div className="mx-auto grid min-h-[540px] max-w-[1920px] items-center gap-10 px-(--pricing-gutter) pt-36 pb-20 md:min-h-[600px] md:grid-cols-[1.15fr_1fr] md:gap-14 md:pt-44 md:pb-24 lg:gap-24">
-        <h1 className="whitespace-pre-line text-[clamp(36px,5.5vw,68px)] leading-[1.12] font-medium tracking-[-0.055em]">{t("title")}</h1>
-        <div className="max-w-md [word-break:keep-all] md:justify-self-end">
-          <p className="max-w-[30ch] text-base leading-8 text-foreground/75 sm:text-lg">{t("description")}</p>
-          <p className="mt-5 whitespace-pre-line text-xl leading-[1.65] font-medium tracking-[-0.025em] lg:text-[22px]">{t("budgetNote")}</p>
-          <p className="mt-6 text-xs leading-6 text-foreground/65">{t("currencyNote")}</p>
-        </div>
+      <div className={styles.layout}>
+        <h1 className={styles.title}>
+          {t("title").split("\n").map((line, index) => <span key={line} className={index > 0 ? styles.titleSecondary : undefined}>{line}</span>)}
+        </h1>
+        <aside className={styles.card} aria-labelledby="pricing-guidance-heading">
+          <div className={styles.cardHeader}>
+            <p className={styles.eyebrow}>{t("guidanceLabel")}</p>
+            <p className={styles.currency}>
+              <span>KRW</span><span className={styles.currencyDivider} aria-hidden="true" /><span>{t("vatNote")}</span>
+            </p>
+          </div>
+          <h2 id="pricing-guidance-heading" className={styles.cardTitle}>{t("budgetNote")}</h2>
+          <p className={styles.description}>{t("description")}</p>
+        </aside>
       </div>
     </header>
   );

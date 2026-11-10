@@ -1,200 +1,93 @@
 "use client";
 
-import { useRef } from "react";
-import { useScrollReveals } from "@/hooks/use-scroll-reveals";
+import { useEffect } from "react";
+import { animate, motion, useMotionValue } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import Link from "next/link";
-import { ArrowRight } from "reicon-react/icons/ArrowRight";
-import BrandLogo from "@/components/brand-logo";
-import { FooterAurora } from "@/components/footer-graphics";
-import { MetalButton } from "@/components/spectrumui/metal-button";
-import { cn } from "@/lib/utils";
+import Image from "next/image";
+import Link from "@/components/navigation/page-navigation";
+import { Eclipse, Mail } from "lucide-react";
+import FooterCube from "@/components/footer-cube";
+import FooterContactOrb from "@/components/footer-contact-orb";
 import { trackEvent } from "@/lib/analytics";
+import { cn } from "@/lib/utils";
+import styles from "./footer-section.module.css";
+import { useFooterDesktopActive } from "@/hooks/use-footer-desktop-active";
+import { useReducedMotionPreference } from "./coin-preview/use-reduced-motion";
 
 interface FooterSectionProps {
   className?: string;
 }
 
-const footerLink =
-  "transition-colors hover:text-tertiary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tertiary";
-
-function FooterContent({ className }: FooterSectionProps) {
+export default function FooterSection({ className }: FooterSectionProps) {
+  const pathname = usePathname();
+  const locale = useLocale();
   const t = useTranslations("Footer");
   const nav = useTranslations("Navbar");
-  const locale = useLocale();
-  const pathname = usePathname();
-  const root = useRef<HTMLElement>(null);
-  useScrollReveals(
-    root,
-    pathname === `/${locale}` || pathname === `/${locale}/`,
-  );
+  const revealed = useFooterDesktopActive();
+  const reduced = useReducedMotionPreference();
+  const background = useMotionValue("#ffffff");
+  useEffect(() => {
+    const animation = animate(background, revealed ? "#f1f4f6" : "#ffffff", {
+      duration: reduced ? 0 : .85, ease: [.22, 1, .36, 1],
+    });
+    return () => animation.stop();
+  }, [background, revealed, reduced]);
+  if (pathname?.includes("/connect")) return null;
+
+  const textReveal = {
+    initial: false as const,
+    animate: { opacity: revealed ? 1 : 0, y: revealed || reduced ? 0 : 8 },
+    transition: { duration: reduced ? 0 : .55, delay: revealed && !reduced ? .1 : 0 },
+    inert: !revealed,
+    "aria-hidden": !revealed,
+  };
+
+  const trackContact = (label: string) => trackEvent("cta_click", { cta_location: "footer", cta_text: label });
+  const apps = [
+    { key: "contact", href: `/${locale}/connect`, label: nav("contact"), icon: <FooterContactOrb /> },
+    { key: "work", href: `/${locale}/archive`, label: nav("work"), icon: <Eclipse strokeWidth={1.5} /> },
+    { key: "pricing", href: `/${locale}/pricing`, label: nav("pricing"), icon:
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+        <path d="m4 5 4 14 4-14 4 14 4-14M2 10h20M2 14h20" />
+      </svg> },
+  ];
 
   return (
-    <footer
-      ref={root}
-      className={cn(
-        "relative isolate z-10 mt-section overflow-hidden bg-background text-foreground",
-        className,
-      )}
-      aria-labelledby="footer-heading"
-    >
-      <FooterAurora />
-      <div className="relative px-[clamp(20px,4.2vw,72px)]">
-        <div className="flex flex-col items-center py-section text-center">
-          <h2
-            data-scroll-reveal="text"
-            id="footer-heading"
-            className="max-w-4xl text-[clamp(38px,6.2vw,92px)] leading-[1.15] font-bold tracking-[-0.055em] [word-break:keep-all]"
-          >
-            <span className="block">{t("headline")}</span>
-            <span className="block">{t("headlineEnd")}</span>
-          </h2>
-          <p
-            data-scroll-reveal="text"
-            className="mt-6 max-w-sm text-sm leading-7 [text-wrap:balance] [word-break:keep-all]"
-          >
-            {t("closing")}
-          </p>
-          <div data-scroll-reveal="text">
-            <MetalButton
-              asChild
-              size="md"
-              className="gap-6 rounded-none text-sm"
-              wrapperClassName="mt-8 rounded-none"
-            >
-              <Link
-                href={`/${locale}/connect`}
-                onClick={() =>
-                  trackEvent("cta_click", {
-                    cta_location: "footer",
-                    cta_text: t("cta"),
-                  })
-                }
-              >
-                {t("cta")}
-                <ArrowRight size={16} aria-hidden="true" />
+    <motion.footer data-footer-desktop data-revealed={revealed} style={{ backgroundColor: background }}
+      className={cn(styles.footer, className)} aria-label={t("desktopLabel")}>
+        <div className={styles.screen}>
+          <div className={styles.center}>
+            <motion.address {...textReveal} className={styles.address}>{t("location")}</motion.address>
+            <div className={styles.cubeArea}><FooterCube background={background} /></div>
+            <motion.p {...textReveal} className={styles.copyright}>{t("copyright")}</motion.p>
+          </div>
+          <motion.nav className={styles.dock} aria-label={t("navigationLabel")}
+            initial={false} inert={!revealed} aria-hidden={!revealed}
+            animate={{ opacity: revealed ? 1 : 0, y: revealed || reduced ? 0 : 18, scale: revealed || reduced ? 1 : .97 }}
+            transition={{ type: "spring", bounce: 0, duration: reduced ? 0 : .65, delay: revealed && !reduced ? .08 : 0 }}>
+            {apps.map(({ key, href, label, icon }) => (
+              <Link key={key} className={styles.app} href={href} aria-label={label}
+                onClick={() => { if (key === "contact") trackContact(label); }}>
+                <span className={`${styles.icon} ${styles[key]}`} aria-hidden="true">{icon}</span>
+                <span className={styles.appLabel} aria-hidden="true">{label}</span>
               </Link>
-            </MetalButton>
-          </div>
-        </div>
-
-        <div
-          data-scroll-reveal="fade"
-          className="grid grid-cols-2 gap-x-8 gap-y-10 border-t border-foreground/10 py-10 md:py-12 lg:grid-cols-[1.6fr_0.8fr_1fr] lg:gap-x-16"
-        >
-          <div data-scroll-reveal="text" className="col-span-2 lg:col-span-1">
-            <Link
-              href={`/${locale}`}
-              aria-label={t("home")}
-              className={cn("inline-flex items-center gap-3", footerLink)}
-            >
-              <BrandLogo className="size-6" />
-              <span className="text-sm font-semibold tracking-[0.04em]">
-                GRIDS AGENCY
+            ))}
+            <span className={styles.separator} aria-hidden="true" />
+            <a className={styles.app} href={`mailto:${t("email")}`} aria-label={`${t("mailApp")} — ${t("email")}`}
+              onClick={() => trackContact(t("email"))}>
+              <span className={`${styles.icon} ${styles.mail}`} aria-hidden="true"><Mail strokeWidth={1.5} /></span>
+              <span className={styles.appLabel} aria-hidden="true">{t("mailApp")}</span>
+            </a>
+            <a className={styles.app} href="https://pf.kakao.com/_FGQrX" target="_blank" rel="noopener noreferrer"
+              aria-label={t("kakaoApp")} onClick={() => trackContact("KakaoTalk ↗")}>
+              <span className={`${styles.icon} ${styles.kakao}`} aria-hidden="true">
+                <Image src="/icons/integrations/kakao.svg" width={64} height={64} alt="" />
               </span>
-            </Link>
-            <p
-              data-scroll-reveal="text"
-              className="mt-4 max-w-72 text-xs leading-6 text-muted-foreground [word-break:keep-all]"
-            >
-              {t("location")}
-            </p>
-          </div>
-
-          <nav data-scroll-reveal="text" aria-label={t("navigationLabel")}>
-            <h3 className="mb-6 text-xs font-medium">{t("navigationLabel")}</h3>
-            <ul className="space-y-4 text-sm text-muted-foreground">
-              {[
-                { href: `/${locale}`, label: t("home") },
-                { href: `/${locale}/archive`, label: nav("work") },
-                { href: `/${locale}/pricing`, label: nav("pricing") },
-                { href: `/${locale}/connect`, label: nav("contact") },
-              ].map((item) => (
-                <li key={item.href}>
-                  <Link href={item.href} className={footerLink}>
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <div data-scroll-reveal="text">
-            <h3 className="mb-6 text-xs font-medium">{t("contactLabel")}</h3>
-            <ul className="space-y-4 text-sm text-muted-foreground">
-              <li>
-                <a
-                  href={`mailto:${t("email")}`}
-                  onClick={() =>
-                    trackEvent("cta_click", {
-                      cta_location: "footer",
-                      cta_text: t("email"),
-                    })
-                  }
-                  className={cn("break-words", footerLink)}
-                >
-                  {t("email")}
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://pf.kakao.com/_FGQrX"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() =>
-                    trackEvent("cta_click", {
-                      cta_location: "footer",
-                      cta_text: "KakaoTalk ↗",
-                    })
-                  }
-                  className={footerLink}
-                >
-                  KakaoTalk ↗
-                </a>
-              </li>
-            </ul>
-          </div>
+              <span className={styles.appLabel} aria-hidden="true">{t("kakaoApp")}</span>
+            </a>
+          </motion.nav>
         </div>
-
-        <div
-          data-scroll-reveal="fade"
-          className="flex flex-wrap items-center justify-between gap-5 border-t border-foreground/10 pt-5 pb-24 md:pb-8"
-        >
-          <p
-            data-scroll-reveal="text"
-            className="text-[10px] leading-5 text-muted-foreground"
-          >
-            {t("copyright")}
-          </p>
-          <button
-            data-scroll-reveal="text"
-            type="button"
-            onClick={() =>
-              window.scrollTo({
-                top: 0,
-                behavior: window.matchMedia("(prefers-reduced-motion: reduce)")
-                  .matches
-                  ? "instant"
-                  : "smooth",
-              })
-            }
-            className={cn(
-              "flex cursor-pointer items-center gap-3 text-xs text-muted-foreground",
-              footerLink,
-            )}
-          >
-            {t("backToTop")}
-            <ArrowRight size={14} className="-rotate-90" aria-hidden="true" />
-          </button>
-        </div>
-      </div>
-    </footer>
+    </motion.footer>
   );
-}
-
-export default function FooterSection(props: FooterSectionProps) {
-  const pathname = usePathname();
-  if (pathname?.includes("/connect")) return null;
-  return <FooterContent {...props} />;
 }

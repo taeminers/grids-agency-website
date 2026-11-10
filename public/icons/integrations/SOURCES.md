@@ -8,3 +8,9 @@
 - `app-store.svg`: https://cdn.simpleicons.org/appstore/2088FF — Simple Icons; downloaded September 21, 2026.
 
 Downloaded September 18, 2026. The gilbarbara/logos distribution license is included in `LOGOS-LICENSE.txt`. Simple Icons distributes its icons under CC0: https://github.com/simple-icons/simple-icons/blob/develop/LICENSE.md.
+
+Growth card assets (November 6, 2026):
+- `google-analytics.svg`: https://raw.githubusercontent.com/gilbarbara/logos/main/logos/google-analytics.svg
+- `google-ads.svg`: https://raw.githubusercontent.com/gilbarbara/logos/main/logos/google-ads.svg
+
+- `google-play.svg`: https://raw.githubusercontent.com/gilbarbara/logos/main/logos/google-play-icon.svg — downloaded November 6, 2026.

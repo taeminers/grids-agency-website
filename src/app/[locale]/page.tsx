@@ -1,51 +1,43 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
-import Intro from "@/components/intro";
-import HomePricingSection from "@/components/home-pricing-section";
-import StudioIntroduction from "@/components/studio-introduction";
+import { useRef } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import AboutSection from "@/components/about-section";
 import HeroContent from "@/components/hero-content";
-import HeroGridBackground from "@/components/hero-grid-background";
 import Navbar from "@/components/navbar";
-import ManifestoSection from "@/components/manifesto-section";
 import FaqSection from "@/components/faq-section";
 import { useScrollReveals } from "@/hooks/use-scroll-reveals";
+import ScrollStatement from "@/components/scroll-statement";
+import HomeOfferings from "@/components/home-offerings";
+import HomeApproach from "@/components/home-approach";
+import spacing from "@/components/home-spacing.module.css";
 
 export default function Home() {
-  const [revealed, setRevealed] = useState(false);
+  const locale = useLocale();
+  const t = useTranslations("HomeStatement");
   const heroRef = useRef<HTMLDivElement>(null);
   useScrollReveals(heroRef);
-  const revealContent = useCallback(() => setRevealed(true), []);
 
   return (
-    <main className="min-h-screen bg-background text-foreground relative selection:bg-primary selection:text-primary-foreground">
+    <main className={`${spacing.page} min-h-screen bg-background text-foreground relative selection:bg-primary selection:text-primary-foreground`}>
       <div
         ref={heroRef}
-        data-hero-pending={!revealed}
-        className="group/hero relative flow-root"
+        className="relative flow-root"
       >
-        {/* Keep the fixed navbar outside the hero's sticky stacking context. */}
         <Navbar inHero />
-        {/* The introduction and About scroll over the stationary hero. */}
-        <div className="sticky top-0 min-h-screen bg-background pb-section motion-reduce:relative">
-          <HeroGridBackground />
-          <HeroContent />
-        </div>
+        <HeroContent />
+        <ScrollStatement text={t("text")} locale={locale} />
+        <HomeOfferings />
+        <HomeApproach />
 
         <div
           id="about"
           className="relative z-10 flex flex-col scroll-mt-6 bg-background"
         >
-          <HomePricingSection />
-          <StudioIntroduction />
           <AboutSection />
-          <ManifestoSection />
           <FaqSection />
         </div>
       </div>
-      {/* Attach the hero ref before Intro's layout effect reads it. */}
-      <Intro contentRef={heroRef} onReveal={revealContent} />
     </main>
   );
 }
