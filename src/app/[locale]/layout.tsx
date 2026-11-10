@@ -2,6 +2,7 @@ import "../globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import ScrollToTop from "@/components/scroll-to-top";
 import SiteVisitTracker from "@/components/site-visit-tracker";
+import { PageNavigation } from "@/components/navigation/page-navigation";
 import Navbar from "@/components/navbar";
 import FooterSection from "@/components/footer-section";
 import ConsultationButton from "@/components/consultation-button";
@@ -40,10 +41,12 @@ export default async function LocaleLayout({
         enableSystem={false}
         disableTransitionOnChange
       >
-        <Navbar />
-        {children}
-        <FooterSection />
-        <ConsultationButton />
+        <PageNavigation>
+          <Navbar />
+          {children}
+          <FooterSection />
+          <ConsultationButton />
+        </PageNavigation>
       </ThemeProvider>
     </NextIntlClientProvider>
   );

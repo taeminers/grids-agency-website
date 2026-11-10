@@ -1,4 +1,243 @@
 {
+  "HomeApproach": {
+    "qualityVisual": {
+      "title": "Quality review",
+      "subtitle": "Pre-launch checklist",
+      "target": "Goal 100%",
+      "caption": "24 of 25 checks complete",
+      "example": "Preview",
+      "evaluation": {
+        "title": "Validation results",
+        "count": "{count} checks",
+        "filter": "Filter checks",
+        "cases": "Validation checks",
+        "running": "{count} of {total} running",
+        "finished": "{passed} of {total} passed",
+        "filters": {
+          "all": "All",
+          "failed": "Review",
+          "regressed": "Regressed",
+          "improved": "Improved"
+        },
+        "statuses": {
+          "pending": "Pending",
+          "running": "Running",
+          "pass": "Passed",
+          "fail": "Review",
+          "regressed": "Regressed",
+          "improved": "Improved"
+        },
+        "input": "Context",
+        "expected": "Expected",
+        "actual": "Result",
+        "score": "Score",
+        "contexts": [
+          "Core user journeys",
+          "Contact and input screens",
+          "Accessibility review",
+          "Performance and release",
+          "Mobile and tablet layouts"
+        ],
+        "checks": [
+          [
+            "Navigation",
+            "Every menu opens the correct page"
+          ],
+          [
+            "Back navigation",
+            "Previous page and position are restored"
+          ],
+          [
+            "External links",
+            "External links open in a new tab"
+          ],
+          [
+            "Language switching",
+            "Equivalent Korean and English content"
+          ],
+          [
+            "Error pages",
+            "Unknown URLs offer a clear next step"
+          ],
+          [
+            "Required fields",
+            "Missing required fields show guidance"
+          ],
+          [
+            "Email validation",
+            "Invalid addresses show a useful error"
+          ],
+          [
+            "Duplicate submissions",
+            "Pending requests cannot be sent twice"
+          ],
+          [
+            "Success feedback",
+            "Submission results are clearly confirmed"
+          ],
+          [
+            "Form persistence",
+            "Values remain when changing steps"
+          ],
+          [
+            "Keyboard access",
+            "Core actions work with the keyboard"
+          ],
+          [
+            "Focus visibility",
+            "The focused control is clearly visible"
+          ],
+          [
+            "Screen reader labels",
+            "Buttons and fields have accessible names"
+          ],
+          [
+            "Color contrast",
+            "Text and controls remain easy to read"
+          ],
+          [
+            "Reduced motion",
+            "Motion follows the user preference"
+          ],
+          [
+            "Image optimization",
+            "Images match the display size"
+          ],
+          [
+            "Lazy loading",
+            "Below-fold content loads when needed"
+          ],
+          [
+            "Error recovery",
+            "Failed requests offer a recovery path"
+          ],
+          [
+            "Page metadata",
+            "Each page has a title and description"
+          ],
+          [
+            "Release check",
+            "Core routes respond after deployment"
+          ],
+          [
+            "Touch targets",
+            "Primary controls have enough touch area"
+          ],
+          [
+            "Screen rotation",
+            "Layout holds in both orientations"
+          ],
+          [
+            "Tablet layout",
+            "Content adapts to the available width"
+          ],
+          [
+            "Input zoom",
+            "Fields stay readable when zoomed"
+          ],
+          [
+            "Small-screen wrapping",
+            "Button text stays on one line at 320px"
+          ]
+        ],
+        "passed": "Matches the expected result",
+        "improved": "Updated and verified again",
+        "needsReview": "Button text wraps onto two lines",
+        "reason": "Adjust the label length and button padding, then verify again."
+      }
+    },
+    "costVisual": {
+      "agent": "AI scope planner",
+      "analysis": "Request analyzed",
+      "listen": "Understand",
+      "scope": "Define scope",
+      "estimate": "Estimate",
+      "title": "Your tailored quote is ready",
+      "description": "Only what you need, with a clearly defined scope.",
+      "footer": "No unnecessary development",
+      "status": "Scope-based quote",
+      "coverage": "Reviewed together",
+      "coverageDetail": "Planning · Design · Build"
+    },
+    "speedVisual": {
+      "timeline": {
+        "title": "Time to launch",
+        "example": "Illustrative timeline",
+        "days": "{count}d",
+        "done": "Live",
+        "plan": "Plan",
+        "design": "Design",
+        "build": "Build",
+        "connect": "Connect",
+        "review": "Review",
+        "launch": "Launch"
+      },
+      "scope": "Project scope",
+      "feature": "Feature",
+      "approach": "Approach",
+      "design": "Brand experience",
+      "core": "Core features",
+      "repeat": "Login & notifications",
+      "designMethod": "Custom design",
+      "coreMethod": "Focused development",
+      "reuse": "Proven modules",
+      "owner": "Owner",
+      "status": "Status",
+      "designTeam": "Design team",
+      "devTeam": "Engineering",
+      "aiTeam": "AI · Engineering",
+      "completed": "Complete",
+      "inProgress": "In progress",
+      "table": {
+        "filter": "Search project scope",
+        "clear": "Clear search",
+        "copy": "Copy table",
+        "copied": "Table copied",
+        "empty": "No matching items",
+        "emptyDescription": "Try a different search.",
+        "rows": "{count} items"
+      }
+    },
+    "label": "The GRIDS approach",
+    "visualPlaceholder": "Space for a service process visual",
+    "cost": {
+      "tab": "Reasonable cost",
+      "title": "A smarter budget.",
+      "subtitle": "More focus on what matters.",
+      "description": "Not everything needs to be built from scratch. We use proven foundations and focus your time and budget on the features your business actually needs.",
+      "principle": "A clear scope, from the start.",
+      "reply": {
+        "name": "GRIDS AI",
+        "role": "Project guide",
+        "intro": "You don’t need to build every feature from scratch.",
+        "reuseTitle": "Start with proven foundations.",
+        "reuseBody": "Reuse proven foundations for sign-in, notifications, and other common features.",
+        "customTitle": "Focus on what makes your business different.",
+        "customBody": "We tailor the customer-facing design and core features to your business.",
+        "closing": "Keep the quality you need, with less unnecessary development time and cost.",
+        "responding": "Responding…",
+        "messageFrom": "Message from {model}",
+        "complete": "Response complete",
+        "failed": "Response failed",
+        "copy": "Copy message",
+        "copied": "Copied"
+      }
+    },
+    "speed": {
+      "tab": "Faster delivery",
+      "title": "From idea to launch.",
+      "subtitle": "Less time spent waiting.",
+      "description": "Planning, design, and development work as one team. AI helps with repetitive tasks, so we can share working results sooner and refine them together.",
+      "principle": "Start small. Learn sooner."
+    },
+    "quality": {
+      "tab": "Quality by design",
+      "title": "Move faster.",
+      "subtitle": "Keep the care in every detail.",
+      "description": "We put the time saved through automation into usability and detail. Our experts design and review the work to create a product that feels right to use.",
+      "principle": "Fast tools. Thoughtful decisions."
+    }
+  },
   "FAQ": {
     "contactPrompt": "Have more questions?",
     "contactLink": "Let’s talk",
@@ -407,7 +646,6 @@
       "nameRequired": "Please enter your name.",
       "emailRequired": "Please enter your email address.",
       "emailInvalid": "Please enter a valid email address (e.g. hello@company.com).",
-      "consentRequired": "Please agree to the terms and privacy policy before sending.",
       "name": {
         "title": "Who is the mind behind it?",
         "placeholder": "Your name"
@@ -432,7 +670,7 @@
         "hint": "Timeline · References · Features",
         "count": "{count} of 5,000 characters",
         "title": "Anything else you’d like us to know?",
-        "placeholder": "Ideas, timelines, references. We’re all ears. (Optional)"
+        "placeholder": "Share your ideas, timeline, or links you have in mind."
       },
       "services": {
         "website": "Website · E-commerce",
@@ -449,7 +687,9 @@
         "large": "Under ₩30 million",
         "enterprise": "Under ₩50 million",
         "scale": "Under ₩100 million",
-        "discuss": "Let’s discuss it together"
+        "discuss": "Let’s discuss it together",
+        "flexible": "No fixed budget",
+        "business": "Business project · Custom quote"
       },
       "multiple": "Select everything you have in mind.",
       "required": "Please enter an answer or select an option.",
@@ -1114,6 +1354,104 @@
     },
     "guidanceLabel": "Pricing guide",
     "vatNote": "VAT excluded",
+    "automationDemo": {
+      "sources": {
+        "title": "Connected sources",
+        "demo": "Simulation",
+        "note": "Files, appointment times and prices below are fictional demo records. No live systems are queried.",
+        "done": "Checked",
+        "loading": "Reading",
+        "waiting": "Queued",
+        "replyBasedOn": "Sample sources used in this reply",
+        "loadingAnnouncement": "Reading sample data from {source}."
+      },
+      "demoLabel": "GRIDS AUTOMATION · DEMO",
+      "headline": "From a customer inquiry to organized work.",
+      "description": "Choose an industry and process an inquiry. See it become a customer record, a reply draft and follow-up tasks.",
+      "chooseIndustry": "Choose a business type",
+      "disclosure": "This simulation uses fictional customers and sample data. It does not send messages, book appointments or create tasks in external systems.",
+      "inbox": "Customer inbox",
+      "organized": "Organized",
+      "newInquiry": "Unprocessed",
+      "inputMode": "Inquiry input mode",
+      "sample": "Sample inquiry",
+      "custom": "Write your own",
+      "chooseSample": "Choose an inquiry",
+      "customCustomer": "Sample customer",
+      "customChannel": "Demo input",
+      "messageLabel": "Write a sample customer inquiry",
+      "messagePlaceholder": "For example: Can I book a consultation this Saturday? I’d also like to know the fee.",
+      "customNote": "Custom input uses keyword rules and a fixed reply template, not live AI. Your text stays in this demo. Please use fictional details instead of personal information.",
+      "processing": "Processing",
+      "runAgain": "Run again",
+      "run": "Process with AI",
+      "reset": "Start over",
+      "results": "Organized results",
+      "progress": "Automation progress",
+      "inspectResults": "Inspect workflow results",
+      "steps": {
+        "analysis": "Analysis",
+        "record": "Record",
+        "reply": "Reply",
+        "tasks": "Tasks"
+      },
+      "error": "We couldn’t complete the demo. Please try again.",
+      "retry": "Try again",
+      "completeAnnouncement": "Simulation complete. The example reply, customer record and follow-up tasks are ready.",
+      "processingStage": "Processing: {stage}.",
+      "ready": "Review the inquiry, then start the automation.",
+      "understanding": "Organizing the inquiry",
+      "understandingDescription": "Separating customer requests from information that needs confirmation.",
+      "emptyTitle": "One inquiry. A clear next step.",
+      "emptyDescription": "Start processing in the inbox. Inspect each result as the workflow completes.",
+      "customResult": "Custom input · Keyword-based simulation",
+      "analysisLabel": "Inquiry analysis",
+      "needsConfirmation": "Staff confirmation required",
+      "recordLabel": "Customer record · Demo",
+      "reviewPending": "Awaiting review",
+      "industry": "Industry",
+      "channel": "Channel",
+      "owner": "Assigned to",
+      "category": "Category",
+      "recordLocal": "This record exists only in the demo. Nothing has been added to an actual CRM.",
+      "replyTo": "To {name}",
+      "draft": "Draft reply",
+      "replyReview": "Not sent. A staff member must verify business information and review this draft.",
+      "tasksLabel": "Follow-up tasks · Demo",
+      "tasksTitle": "{count} tasks for staff review",
+      "todo": "To do",
+      "tasksLocal": "These are simulated tasks. No appointments or external tasks have been created.",
+      "outcomeTitle": "From information lookup to reply and follow-up",
+      "outcomeDescription": "Customer details and follow-up tasks are organized, with reply delivery simulated.",
+      "ctaTitle": "Bring this workflow to your business.",
+      "ctaDescription": "Customer support, appointment requests or estimates. Let’s start with your repetitive work.",
+      "cta": "Could this work for our team?",
+      "workflow": {
+        "title": "From information to a useful reply",
+        "collected": "Collected information",
+        "processing": "GRIDS AUTOMATION",
+        "output": "Reply to the customer",
+        "inputWaiting": "Relevant details collect here as the inquiry is analyzed.",
+        "outputWaiting": "A personalized reply takes shape from the information collected.",
+        "recordWaiting": "Inquiry details will become a customer record.",
+        "taskWaiting": "Follow-up work will be assigned to the right person.",
+        "customer": "Customer",
+        "skip": "Show results now",
+        "sent": "Sent · simulation",
+        "sending": "Sending · simulation",
+        "simulatedOnly": "Simulated delivery only. No real message is sent and no external records are created.",
+        "composing": "Bringing the verified inputs into the reply.",
+        "inquiryInput": "Customer inquiry · requirements",
+        "stages": {
+          "0": "Understand the inquiry",
+          "1": "Retrieve supporting information",
+          "2": "Organize customer details",
+          "3": "Compose from the collected inputs",
+          "4": "Deliver the customer reply",
+          "5": "Workflow complete"
+        }
+      }
+    },
     "examples": {
       "label": "Examples",
       "heading": "See what’s possible.",

@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { useId, useState } from "react";
 import { ArrowRight, Building2, Globe2, MessageCircle, MessageSquareReply, ReceiptText, RefreshCw, Smartphone, Sunrise } from "lucide-react";
 import styles from "./pricing-examples.module.css";
+import InquiryAutomation from "./automation-demo/inquiry-automation";
 
 const serviceIcons = { homepage: Globe2, webApp: Smartphone, crm: Building2, automation: RefreshCw, chatbot: MessageCircle };
 type ExampleService = keyof typeof serviceIcons;
@@ -20,6 +21,7 @@ export default function PricingExamples({ service }: { service: ExampleService }
   const [automationIndex, setAutomationIndex] = useState(0);
   const tabsId = useId();
   const automationTitle = t(`services.automation.tabs.${automationExamples[automationIndex].id}`);
+  const liveDemo = service === "automation" && automationIndex === 0;
 
   return (
     <section className={styles.section} aria-labelledby="pricing-examples-heading">
@@ -35,7 +37,7 @@ export default function PricingExamples({ service }: { service: ExampleService }
           <div className={styles.frameTitle}><Icon size={18} strokeWidth={1.6} aria-hidden="true" /><h3>{t(`services.${service}.title`)}</h3></div>
         </div>
         {interactive ? (
-          <div className={styles.demoLayout}>
+          <div className={styles.demoLayout} data-live={liveDemo}>
             <aside className={styles.scenario}>
               {service === "automation" ? (
                 <div className={styles.automationTabs} role="tablist" aria-label={t("services.automation.title")} aria-orientation="vertical">
@@ -67,10 +69,11 @@ export default function PricingExamples({ service }: { service: ExampleService }
               </div>
               </>}
             </aside>
-            <div className={styles.demoStage} role={service === "automation" ? "tabpanel" : undefined}
+            <div className={`${styles.demoStage} ${liveDemo ? styles.liveDemo : ""}`} role={service === "automation" ? "tabpanel" : undefined}
               id={service === "automation" ? `${tabsId}-panel` : undefined}
               aria-labelledby={service === "automation" ? `${tabsId}-${automationExamples[automationIndex].id}` : undefined}
               tabIndex={service === "automation" ? 0 : undefined}>
+              {liveDemo ? <InquiryAutomation /> : <>
               <div className={styles.stageHeading}><span>{service === "automation" ? automationTitle : t("conversation")}</span><span className={styles.stageDot} aria-hidden="true" /></div>
               <div className={styles.placeholder}>
                 <div className={styles.demoMotif} aria-hidden="true">
@@ -78,6 +81,7 @@ export default function PricingExamples({ service }: { service: ExampleService }
                 </div>
                 <p>{t(service === "automation" ? "automationPlaceholder" : "chatbotPlaceholder")}</p>
               </div>
+              </>}
             </div>
           </div>
         ) : (

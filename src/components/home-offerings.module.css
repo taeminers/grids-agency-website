@@ -3,12 +3,12 @@
   position: relative;
   background: #fff;
   color: #20211f;
-  padding: clamp(4rem, 7vw, 7rem) var(--navbar-gutter) clamp(5rem, 8vw, 8rem);
+  padding: var(--home-section-gap) var(--navbar-gutter) 0;
   scroll-margin-top: 6rem;
 }
 
 .inner { max-width: 1440px; margin-inline: auto; }
-.header { text-align: center; margin-bottom: clamp(2.5rem, 4vw, 4rem); }
+.header { text-align: center; margin-bottom: var(--home-heading-gap); }
 .partnership {
   display: flex;
   align-items: flex-start;

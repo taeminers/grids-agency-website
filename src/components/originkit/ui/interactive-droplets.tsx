@@ -226,6 +226,7 @@ class DropletScene {
     private frameId = 0
     private lastT = 0
     private disposed = false
+    private paused = false
 
     constructor(container: HTMLElement, cfg: Config) {
         this.container = container
@@ -282,7 +283,7 @@ class DropletScene {
     }
 
     private onPointerMove = (e: PointerEvent) => {
-        if (this.disposed) return
+        if (this.disposed || this.paused) return
         const r = this.container.getBoundingClientRect()
         if (r.width <= 0 || r.height <= 0) return
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
@@ -310,6 +311,13 @@ class DropletScene {
             this.step()
         }
         this.frameId = requestAnimationFrame(loop)
+    }
+
+    setPaused(paused: boolean) {
+        if (this.disposed || this.paused === paused) return
+        this.paused = paused
+        cancelAnimationFrame(this.frameId)
+        if (!paused) this.start()
     }
 
     setSize(width: number, height: number) {
@@ -387,6 +395,7 @@ class DropletScene {
 }
 
 export interface InteractiveDropletsProps {
+    paused?: boolean
     droplet?: string
     sheen?: string
     trail?: number
@@ -406,6 +415,7 @@ export interface InteractiveDropletsProps {
 
 export default function InteractiveDroplets(props: InteractiveDropletsProps) {
     const {
+        paused = false,
         droplet = DEFAULTS.droplet,
         sheen = DEFAULTS.sheen,
         trail = DEFAULTS.trail,
@@ -469,6 +479,10 @@ export default function InteractiveDroplets(props: InteractiveDropletsProps) {
             sceneRef.current = null
         }
     }, [])
+
+    useEffect(() => {
+        sceneRef.current?.setPaused(paused)
+    }, [paused])
 
     return (
         <div

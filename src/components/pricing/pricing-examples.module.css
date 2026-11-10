@@ -15,6 +15,8 @@
 .placeholder p { margin: 0; color: #68756e; font-size: 15px; line-height: 1.7; word-break: keep-all; }
 .placeholder > span { color: #979e95; font-size: 12px; line-height: 1.8; word-break: keep-all; }
 .demoLayout { display: grid; grid-template-columns: minmax(240px, .7fr) minmax(0, 2fr); min-height: 480px; }
+.demoLayout[data-live="true"] { grid-template-columns: minmax(220px, .55fr) minmax(0, 2fr); }
+.demoStage.liveDemo { min-width: 0; margin: 0; border: 0; border-radius: 0; background: #f8faf7; }
 .scenario { padding: 32px; border-right: 1px solid #e8eae5; }
 .automationTabs { display: grid; gap: 8px; }
 .automationTabs button { display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 14px 12px; border: 1px solid transparent; border-radius: var(--site-card-radius); background: transparent; color: #747e70; font-size: 14px; line-height: 1.6; font-weight: 500; text-align: left; word-break: keep-all; cursor: pointer; transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease; }
@@ -46,6 +48,7 @@
   .previewStage { padding: 12px; }
   .previewCanvas { min-height: 340px; }
   .demoLayout { grid-template-columns: minmax(0, 1fr); }
+  .demoLayout[data-live="true"] { grid-template-columns: minmax(0, 1fr); }
   .scenario { padding: 24px; border-right: 0; border-bottom: 1px solid #e8eae5; }
   .steps { margin-top: 24px; gap: 14px; }
   .demoStage { min-height: 300px; margin: 12px; }

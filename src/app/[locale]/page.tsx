@@ -9,6 +9,8 @@ import FaqSection from "@/components/faq-section";
 import { useScrollReveals } from "@/hooks/use-scroll-reveals";
 import ScrollStatement from "@/components/scroll-statement";
 import HomeOfferings from "@/components/home-offerings";
+import HomeApproach from "@/components/home-approach";
+import spacing from "@/components/home-spacing.module.css";
 
 export default function Home() {
   const locale = useLocale();
@@ -17,7 +19,7 @@ export default function Home() {
   useScrollReveals(heroRef);
 
   return (
-    <main className="min-h-screen bg-background text-foreground relative selection:bg-primary selection:text-primary-foreground">
+    <main className={`${spacing.page} min-h-screen bg-background text-foreground relative selection:bg-primary selection:text-primary-foreground`}>
       <div
         ref={heroRef}
         className="relative flow-root"
@@ -26,6 +28,7 @@ export default function Home() {
         <HeroContent />
         <ScrollStatement text={t("text")} locale={locale} />
         <HomeOfferings />
+        <HomeApproach />
 
         <div
           id="about"

@@ -2,20 +2,16 @@
 
 import { useRef, useState, type FormEvent } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Check } from "lucide-react";
+import { Check } from "lucide-react";
 import { useTranslations } from "next-intl";
 import emailjs from "@emailjs/browser";
-import { MetalButton } from "@/components/spectrumui/metal-button";
+import styles from "./project-questionnaire.module.css";
 import { trackEvent } from "@/lib/analytics";
 
 const steps = ["name", "company", "build", "budget", "email", "notes"] as const;
 const services = ["website", "app", "admin", "automation", "ai", "unsure", "other"] as const;
-const budgets = ["small", "medium", "large", "enterprise", "scale", "discuss"] as const;
+const budgets = ["small", "medium", "large", "enterprise", "scale", "discuss", "flexible", "business"] as const;
 const inputClass = "w-full rounded-none border-0 border-b border-foreground/25 bg-transparent px-0 py-3 text-base text-foreground outline-none transition-colors placeholder:text-foreground/30 focus:border-tertiary md:text-lg";
-const buttonStyle = {
-  className: "h-11 gap-3 rounded-none px-5 text-xs cursor-pointer",
-  wrapperClassName: "rounded-none",
-} as const;
 
 export default function ProjectQuestionnaire({ onClose, onSuccess }: { onClose: () => void; onSuccess: () => void }) {
   const t = useTranslations("Connect.Questionnaire");
@@ -24,7 +20,6 @@ export default function ProjectQuestionnaire({ onClose, onSuccess }: { onClose: 
   const [closing, setClosing] = useState(false);
   const [step, setStep] = useState(0);
   const [draft, setDraft] = useState({ name: "", company: "", email: "", notes: "", budget: "", other: "", build: [] as string[] });
-  const [consent, setConsent] = useState(false);
   const [error, setError] = useState("");
   const [touched, setTouched] = useState(false);
   const [status, setStatus] = useState<"idle" | "sending" | "success">("idle");
@@ -42,7 +37,6 @@ export default function ProjectQuestionnaire({ onClose, onSuccess }: { onClose: 
       if (!draft.email.trim()) return t("emailRequired");
       if (!/^[^\s@]+@[^\s@.]+(?:\.[^\s@.]+)+$/.test(draft.email.trim())) return t("emailInvalid");
     }
-    if (final && !consent) return t("consentRequired");
     return "";
   })();
   const feedback = touched && validation ? validation : error;
@@ -98,7 +92,7 @@ export default function ProjectQuestionnaire({ onClose, onSuccess }: { onClose: 
         from_name: draft.name.trim(),
         subject: `${t("emailSubject")} — ${draft.name.trim()}`,
         firstName: draft.name.trim(), lastName: "", email: draft.email.trim(), phone: "",
-        company: draft.company.trim(), message: summary(), terms: consent ? "on" : "",
+        company: draft.company.trim(), message: summary(),
       }, { publicKey });
       trackEvent("generate_lead", { form_name: "project_inquiry" });
       setStatus("success");
@@ -178,8 +172,8 @@ export default function ProjectQuestionnaire({ onClose, onSuccess }: { onClose: 
                 {current === "build" && (
                   <>
                     <p className="mb-5 text-xs text-foreground/50">{t("multiple")}</p>
-                    <div className="grid grid-cols-2 gap-3">
-                      {services.map((value, index) => <motion.button initial={{ opacity: reduced ? 1 : 0, scale: reduced ? 1 : 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0.26 + index * 0.06, ease: [0.4, 0, 0.2, 1] }} key={value} type="button" aria-pressed={draft.build.includes(value)} onClick={() => { setDraft({ ...draft, build: draft.build.includes(value) ? draft.build.filter(item => item !== value) : [...draft.build, value] }); setError(""); }} className="flex min-h-14 cursor-pointer items-center justify-between last:col-span-2 gap-2 border border-foreground/15 bg-background/50 px-4 py-3 text-left text-sm transition-colors hover:border-foreground/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tertiary aria-pressed:border-foreground aria-pressed:bg-foreground aria-pressed:text-background">{t(`services.${value}`)}{draft.build.includes(value) && <Check size={14} className="shrink-0" aria-hidden="true" />}</motion.button>)}
+                    <div className={styles.choiceGrid}>
+                      {services.map((value, index) => <motion.button initial={{ opacity: reduced ? 1 : 0, scale: reduced ? 1 : 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0.26 + index * 0.06, ease: [0.4, 0, 0.2, 1] }} key={value} type="button" aria-pressed={draft.build.includes(value)} onClick={() => { setDraft({ ...draft, build: draft.build.includes(value) ? draft.build.filter(item => item !== value) : [...draft.build, value] }); setError(""); }} className={`${styles.choiceCard} ${styles.serviceOption}`}><span>{t(`services.${value}`)}</span><span className={styles.selectionMark} aria-hidden="true"><Check size={12} /></span></motion.button>)}
                     </div>
                     <AnimatePresence initial={false}>
                       {draft.build.includes("other") && (
@@ -192,30 +186,27 @@ export default function ProjectQuestionnaire({ onClose, onSuccess }: { onClose: 
                   </>
                 )}
                 {current === "budget" && (
-                  <div className="grid gap-2 sm:grid-cols-2">
-                    {budgets.map((value, index) => <motion.label initial={{ opacity: reduced ? 1 : 0, scale: reduced ? 1 : 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0.26 + index * 0.06, ease: [0.4, 0, 0.2, 1] }} key={value} className="flex min-h-14 cursor-pointer items-center gap-3 border border-foreground/15 bg-background/50 px-4 py-3 text-left text-sm transition-colors hover:border-foreground/50 has-checked:border-foreground has-checked:bg-foreground has-checked:text-background has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-tertiary"><input type="radio" name="budget" value={value} required checked={draft.budget === value} onChange={() => { setDraft({ ...draft, budget: value }); setError(""); }} className="size-3.5 accent-current" />{t(`budgets.${value}`)}</motion.label>)}
+                  <div className={styles.choiceGrid}>
+                    {budgets.map((value, index) => <motion.label initial={{ opacity: reduced ? 1 : 0, scale: reduced ? 1 : 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0.26 + index * 0.06, ease: [0.4, 0, 0.2, 1] }} key={value} className={styles.choiceCard}><input type="radio" name="budget" value={value} required checked={draft.budget === value} onChange={() => { setDraft({ ...draft, budget: value }); setError(""); }} className={styles.radio} /><span>{t(`budgets.${value}`)}</span></motion.label>)}
                   </div>
                 )}
                 {current === "notes" && (
                   <>
-                    <div className="group/note relative p-2 text-left">
-                      <div aria-hidden="true" className="pointer-events-none absolute inset-0 text-foreground/25 transition-colors duration-500 group-focus-within/note:text-foreground/70">
-                        <span className="absolute top-0 left-0 size-5 border-t border-l" />
-                        <span className="absolute top-0 right-0 size-5 border-t border-r" />
-                        <span className="absolute bottom-0 left-0 size-5 border-b border-l" />
-                        <span className="absolute right-0 bottom-0 size-5 border-r border-b" />
-                      </div>
-                      <div className="relative border border-foreground/10 bg-background/70 shadow-[inset_0_1px_0_#ffffff08] backdrop-blur-sm transition-[border-color,background-color] duration-500 group-focus-within/note:border-foreground/25 group-focus-within/note:bg-background/90">
-                        <textarea
-                          id="project-notes" aria-labelledby="question-title"
-                          name="notes" rows={5} maxLength={5000} value={draft.notes}
-                          onChange={event => setDraft({ ...draft, notes: event.target.value })}
-                          placeholder={t("notes.placeholder")}
-                          className="block max-h-96 min-h-48 w-full resize-y rounded-none border-0 bg-transparent px-5 py-5 text-left text-base leading-[1.9] text-foreground caret-tertiary outline-none placeholder:text-foreground/30 sm:px-6"
-                        />
+                    <div className={styles.noteField}>
+                      <label htmlFor="project-notes" className="sr-only">{t("notes.label")}</label>
+                      <textarea
+                        id="project-notes"
+                        aria-describedby="project-notes-meta"
+                        name="notes" rows={6} maxLength={5000} value={draft.notes}
+                        onChange={event => setDraft({ ...draft, notes: event.target.value })}
+                        placeholder={t("notes.placeholder")}
+                        className={styles.noteInput}
+                      />
+                      <div id="project-notes-meta" className={styles.noteMeta}>
+                        <span>{t("notes.optional")}</span>
+                        {draft.notes.length > 0 && <span aria-label={t("notes.count", { count: draft.notes.length })}>{draft.notes.length.toLocaleString()} / 5,000</span>}
                       </div>
                     </div>
-                    <label className="mt-6 flex cursor-pointer items-start gap-3 text-left text-xs leading-relaxed text-foreground/60"><input type="checkbox" required checked={consent} onChange={event => setConsent(event.target.checked)} className="mt-0.5 size-4 shrink-0 accent-current" />{contact("Form.terms")}</label>
                   </>
                 )}
               </fieldset>
@@ -240,11 +231,22 @@ export default function ProjectQuestionnaire({ onClose, onSuccess }: { onClose: 
             )}
           </AnimatePresence>
         </div>
-        {status === "success" ? <MetalButton {...buttonStyle} disabled={closing} onClick={() => { setClosing(true); onClose(); }}>{t("done")}</MetalButton> : (
-          <nav aria-label={t("navigation")} className="flex items-center justify-center gap-3">
-            <MetalButton {...buttonStyle} disabled={status === "sending"} onClick={() => { setError(""); setTouched(false); if (step === 0) onClose(); else setStep(step - 1); }}><ArrowLeft size={14} aria-hidden="true" />{t("back")}</MetalButton>
-            <span aria-live="polite" aria-atomic="true" className="min-w-16 font-mono text-xs tabular-nums text-foreground/50">{step + 1} / {steps.length}</span>
-            <MetalButton {...buttonStyle} type="submit" aria-describedby="question-error" disabled={status === "sending" || Boolean(validation)}>{t(status === "sending" ? "sending" : final ? "send" : "next")}<ArrowRight size={14} aria-hidden="true" /></MetalButton>
+        {status === "success" ? <button type="button" className={styles.button} disabled={closing} onClick={() => { setClosing(true); onClose(); }}>{t("done")}</button> : (
+          <nav aria-label={t("navigation")} className={styles.navigation}>
+            <button
+              type="button"
+              className={styles.button}
+              disabled={status === "sending"}
+              onClick={() => { setError(""); setTouched(false); if (step === 0) onClose(); else setStep(step - 1); }}
+            >{t("back")}</button>
+            <span aria-live="polite" aria-atomic="true" className={styles.progress}>{step + 1} / {steps.length}</span>
+            <button
+              className={styles.button}
+              type="submit"
+              aria-describedby="question-error"
+              aria-busy={status === "sending"}
+              disabled={status === "sending" || Boolean(validation)}
+            >{t(status === "sending" ? "sending" : final ? "send" : "next")}</button>
           </nav>
         )}
       </div>

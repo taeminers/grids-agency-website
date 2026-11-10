@@ -47,10 +47,10 @@
   .stage::before, .stage::after { background: rgb(243 246 247 / 0.85); }
 }
 .scene, .poster { position: absolute; inset: 0; }
-.scene:not([data-ready="true"]) { visibility: hidden; }
+.scene { opacity: 0; transition: opacity 450ms cubic-bezier(.22, 1, .36, 1); }
+.scene[data-ready="true"] { opacity: 1; }
 .poster img { object-fit: fill; }
 .poster picture { position: absolute; inset: 0; display: block; }
-.poster[data-ready="true"] { visibility: hidden; }
 .title { position: absolute; z-index: 2; top: 5%; inset-inline: 6%; text-align: center; pointer-events: none; }
 .title h1 { margin: 0; font-size: clamp(2.5rem, 4.6vw, 4.5rem); font-weight: 500; line-height: 1.13; letter-spacing: -0.055em; word-break: keep-all; }
 .title h1 span { display: block; }
@@ -114,6 +114,6 @@
   .description { max-width: 27rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .portfolio, .portfolioCorners { transition: none; }
+  .portfolio, .portfolioCorners, .scene { transition: none; }
   .portfolio:active { transform: none; }
 }

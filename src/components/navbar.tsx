@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useId, useRef, useState, useSyncExternalStore } from "react";
 import BrandLogo from "@/components/brand-logo";
-import Link from "next/link";
+import Link from "@/components/navigation/page-navigation";
 import { useRouter, usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { ArrowRight, Menu } from "lucide-react";
@@ -117,6 +117,7 @@ export default function Navbar({ className, inHero = false }: NavbarProps) {
   return (
     <nav
       ref={navRef}
+      data-site-navigation
       data-scrolled={scrolled}
       data-expanded={expanded}
       onPointerMove={(event) => {

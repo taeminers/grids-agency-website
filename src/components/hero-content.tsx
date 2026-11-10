@@ -43,12 +43,12 @@ export default function HeroContent() {
 
   return <section id="home-hero" className={styles.hero} aria-labelledby="hero-heading" lang={locale}>
     <div className={styles.stage}>
-      <div className={styles.poster} aria-hidden="true" data-ready={ready}>
+      {failed && <div className={styles.poster} aria-hidden="true">
         <picture>
           <source media="(max-width: 767px)" srcSet="/images/hero/glass-ribbon-mobile.webp" />
-          <Image src="/images/hero/glass-ribbon.webp" alt="" fill priority sizes="100vw" />
+          <Image src="/images/hero/glass-ribbon.webp" alt="" fill sizes="100vw" />
         </picture>
-      </div>
+      </div>}
       {!failed && <div className={styles.scene} data-ready={ready} inert={!ready}>
         <RibbonBoundary onUnavailable={onUnavailable}>
           <GlassRibbon paused={paused} reduced={reduced} resetRequest={0} onPauseChange={setPaused}

@@ -8,6 +8,7 @@ import { useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "motion/react";
 import BrandLogo from "@/components/brand-logo";
 import styles from "./faq-section.module.css";
+import spacing from "./home-spacing.module.css";
 import { trackEvent } from "@/lib/analytics";
 import { useReducedMotionPreference } from "./coin-preview/use-reduced-motion";
 
@@ -68,7 +69,7 @@ export default function FaqSection() {
     <section
       id="faq"
       aria-labelledby="faq-heading"
-      className="relative scroll-mt-24 bg-background px-[clamp(20px,4.2vw,72px)] py-section text-foreground"
+      className={`${spacing.section} relative scroll-mt-24 bg-background px-[clamp(20px,4.2vw,72px)] text-foreground`}
     >
       <header className={styles.heading}>
         <h2 id="faq-heading">{t("layoutHeading")}<span>{t("layoutHeadingSecondary")}</span></h2>

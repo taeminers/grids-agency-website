@@ -1,0 +1,12 @@
+.page {
+  --home-section-gap: clamp(4rem, 8vw, 8rem);
+  --home-heading-gap: clamp(2rem, 4vw, 3.5rem);
+}
+/* The incoming section owns the gap; adjoining padding must not add to it. */
+.section { padding-block: var(--home-section-gap) 0; }
+.heading { margin-bottom: var(--home-heading-gap); }
+
+@media (min-width: 1024px) {
+  /* Give Featured Work and FAQ more separation on desktop. */
+  .section { padding-top: clamp(8rem, 12vw, 12rem); }
+}

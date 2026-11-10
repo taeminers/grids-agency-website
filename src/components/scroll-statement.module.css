@@ -42,9 +42,8 @@
 .organization { position: relative; display: grid; place-items: center; width: 40px; height: 40px; flex-shrink: 0; border: 1px solid #e1e3e6; border-radius: 50%; background: #fff; box-shadow: 0 2px 5px rgb(0 0 0 / 0.06); }
 .organization + .organization { margin-left: -8px; }
 .organization:nth-child(1) { translate: 0 -2px; rotate: -12deg; }
-.organization:nth-child(2) { translate: 0 -10px; rotate: -4deg; }
-.organization:nth-child(3) { translate: 0 -10px; rotate: 4deg; }
-.organization:nth-child(4) { translate: 0 -2px; rotate: 12deg; }
+.organization:nth-child(2) { translate: 0 -10px; rotate: 0deg; }
+.organization:nth-child(3) { translate: 0 -2px; rotate: 12deg; }
 .organization img { object-fit: contain; }
 .snuMark { position: relative; display: block; width: 24px; height: 28px; overflow: hidden; }
 .snuMark img { position: absolute; top: 0; left: 0; width: auto; max-width: none; height: 28px; }

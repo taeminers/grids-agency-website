@@ -42,9 +42,8 @@ function ExpertLogos({ progress, start, end }: {
           <Image src="/images/organizations/snu.png" alt="" width={542} height={240} />
         </span>
       </ExpertBadge>
-      <ExpertBadge {...timing} index={1}><Image src="/images/organizations/google.svg" alt="" width={22} height={23} /></ExpertBadge>
-      <ExpertBadge {...timing} index={2}><Image src="/images/organizations/samsung.svg" alt="" width={30} height={30} /></ExpertBadge>
-      <ExpertBadge {...timing} index={3}><Image src="/images/organizations/lg.svg" alt="" width={24} height={24} /></ExpertBadge>
+      <ExpertBadge {...timing} index={1}><Image src="/images/organizations/samsung.svg" alt="" width={30} height={30} /></ExpertBadge>
+      <ExpertBadge {...timing} index={2}><Image src="/images/organizations/lg.svg" alt="" width={24} height={24} /></ExpertBadge>
     </span>
   );
 }

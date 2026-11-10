@@ -5,7 +5,7 @@ import { animate, motion, useMotionValue } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/navigation/page-navigation";
 import { Eclipse, Mail } from "lucide-react";
 import FooterCube from "@/components/footer-cube";
 import FooterContactOrb from "@/components/footer-contact-orb";

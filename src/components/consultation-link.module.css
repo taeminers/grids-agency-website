@@ -72,7 +72,7 @@
     background-color var(--slide-duration) var(--slide-ease),
     color var(--slide-duration) var(--slide-ease);
 }
-.consultation:is(:focus-visible, :active) {
+.consultation:not(:disabled):is(:focus-visible, :active) {
   --label-hover: 1;
   --slide: 100%;
   --label-shift: -32px;
@@ -86,7 +86,7 @@
   outline-offset: 4px;
 }
 @media (hover: hover) and (pointer: fine) {
-  .consultation:hover {
+  .consultation:not(:disabled):hover {
     --label-hover: 1;
     --slide: 100%;
     --label-shift: -32px;
@@ -96,7 +96,7 @@
     --tile-ink: #fff;
   }
 }
-.consultation:active {
+.consultation:not(:disabled):active {
   transform: scale(0.98);
 }
 @media (prefers-reduced-motion: reduce) {
@@ -117,3 +117,5 @@
     transform: none;
   }
 }
+
+.consultation:disabled { opacity: .45; cursor: not-allowed; box-shadow: none; }
