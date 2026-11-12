@@ -1,0 +1,83 @@
+.demo {
+  --background: #0b0b0d;
+  --foreground: #eeeef2;
+  --muted-foreground: #8a8a95;
+  --surface: #151518;
+  --surface-inset: #0f0f12;
+  --surface-raised: #25252b;
+  --brand: #b8b9c4;
+  --brand-foreground: #111114;
+  --positive: #30bf98;
+  --negative: #eb6d7f;
+  --warning: #bd985b;
+  --tuff-surface: var(--surface);
+  --tuff-surface-inset: var(--surface-inset);
+  --tuff-surface-raised: var(--surface-raised);
+  --tuff-brand: var(--brand);
+  --tuff-positive: var(--positive);
+  --tuff-negative: var(--negative);
+  --tuff-warning: var(--warning);
+  width: 100%; min-width: 0; height: clamp(46rem, 78svh, 56rem); overflow: hidden; color-scheme: dark;
+  word-break: keep-all; overflow-wrap: anywhere;
+}
+.demo button:focus-visible, .demo [role="region"]:focus-visible { outline: 2px solid var(--brand-blue); outline-offset: -2px; }
+.settings { padding: 0; border-radius: 0; background: transparent; }
+.settings > h3 { display: none; }
+.settings > p { max-width: 660px; margin: 0 0 24px; color: var(--muted-foreground); font-size: 13px; line-height: 1.8; }
+.connection { display: flex; align-items: center; gap: 14px; padding: 20px 0; border-top: 1px solid var(--surface); }
+.connection > svg, .connection > img { flex-shrink: 0; color: var(--muted-foreground); }
+.connection > div { flex: 1; min-width: 0; }
+.connection strong { font-size: 13px; font-weight: 550; }
+.connection p { margin: 4px 0 0; color: var(--muted-foreground); font-size: 11px; line-height: 1.7; }
+.connection button { flex-shrink: 0; width: 36px; height: 22px; padding: 3px; border-radius: 20px; background: var(--surface-raised); cursor: pointer; transition: background 200ms; }
+.connection button[aria-checked="true"] { background: var(--brand); }
+.connection button > span { display: block; width: 16px; height: 16px; border-radius: 50%; background: white; box-shadow: 0 1px 2px #0002; transition: transform 200ms; }
+.connection button[aria-checked="true"] > span { transform: translateX(14px); }
+.demo[data-device="mobile"] { height: 46rem; }
+@media (max-width: 639px) { .demo { height: 46rem; } .settings { padding: 0; } }
+@media (prefers-reduced-motion: reduce) { .connection button, .connection button > span { transition: none; } }
+@media (prefers-contrast: more) { .demo { --muted-foreground: #b4b4bf; --surface-raised: #383840; } }
+
+.demo :global([data-console-sidebar]) { padding: 22px 12px 16px; border-right: 1px solid #28282c; background: #111113; }
+.demo :global([data-console-sidebar]) > div:first-child { margin-bottom: 12px; }
+.demo :global([data-console-header]) { height: 76px; max-width: none; margin: 0; padding: 18px 28px; gap: 12px; }
+.demo :global([data-console-header]) > h2 { font-size: 19px; font-weight: 550; letter-spacing: -.025em; }
+.demo :global([data-console-content]) { max-width: none; padding: 0 28px 28px; }
+.demo :global(nav button) { border-radius: 6px; }
+.demo :global(button[class*="linear-gradient"]) { background-image: none; background-color: #29292f; border-color: #3b3b44; color: #f0f0f3; }
+.demo :global(button[class*="linear-gradient"]):hover { background-color: #36363e; }
+.brand { display: inline-flex; align-items: center; gap: 10px; color: #dbdbe1; font-size: 14px; font-weight: 550; letter-spacing: -.025em; }
+.workspace { display: flex; align-items: center; gap: 10px; padding: 12px 10px; margin-top: 2px; border: 1px solid #303035; border-radius: 7px; background: #1a1a1d; }
+.workspace > span { display: grid; gap: 4px; min-width: 0; }
+.workspace strong { color: #d0d0d8; font-size: 11px; font-weight: 500; }
+.workspace > span > span { color: #85858f; font-size: 9px; }
+.platform { margin: 5px 10px -5px; color: #85858f; font-size: 10px; }
+.headerActions { display: flex; align-items: center; gap: 7px; margin-left: auto; }
+.dateRange, .customize > summary { display: inline-flex; align-items: center; gap: 7px; min-height: 31px; border: 1px solid #303035; border-radius: 6px; background: #17171a; color: #b6b6c0; font-size: 10px; white-space: nowrap; }
+.dateRange { padding: 6px 10px; }
+.customize { position: relative; }
+.customize > summary { padding: 6px 10px; list-style: none; cursor: pointer; }
+.customize > summary::-webkit-details-marker { display: none; }
+.customize > div { position: absolute; z-index: 10; top: calc(100% + 8px); right: 0; display: grid; gap: 14px; width: 180px; padding: 16px; border: 1px solid #38383f; border-radius: 8px; background: #1b1b20; box-shadow: 0 10px 24px #0006; }
+.customize label { display: flex; align-items: center; gap: 8px; color: #bfc0cb; font-size: 11px; cursor: pointer; }
+.customize input { accent-color: #c3c4d0; }
+.connection button[aria-checked="true"] > span { background: #141417; }
+@container (max-width: 1000px) { .dateRange { display: none; } }
+@container (max-width: 639px) {
+  .demo :global([data-console-header]) { height: auto; min-height: 65px; padding: 14px 12px; gap: 7px; }
+  .demo :global([data-console-header]) > h2 { font-size: 15px; }
+  .demo :global([data-console-content]) { padding: 0 16px 24px; }
+  .customize > summary > span { display: none; }
+  .customize > summary { padding: 7px; }
+  .headerActions { gap: 5px; }
+}
+
+.periodTrigger { width: auto; min-width: 86px; height: 31px; padding: 5px 9px; gap: 7px; border: 1px solid #303035; border-radius: 6px; background: #17171a; color: #b6b6c0; font-size: 10px; box-shadow: none; }
+.periodTrigger > svg { width: 12px; height: 12px; color: #b6b6c0; }
+.periodTrigger:focus-visible { border-color: #858591; outline: 1px solid #858591; outline-offset: 2px; box-shadow: none; }
+.periodMenu { z-index: 100; min-width: 140px; border: 1px solid #393940; border-radius: 6px; background: #1b1b20; color: #d2d2db; box-shadow: 0 12px 28px #0007; color-scheme: dark; }
+.periodOption { min-height: 32px; border-radius: 4px; font-size: 11px; cursor: pointer; }
+.periodOption:focus, .periodOption[data-highlighted] { background: #303038; color: #fff; }
+.periodOption svg { color: #c1c2d0; }
+@container (max-width: 639px) { .periodTrigger { min-width: 75px; height: 31px; padding: 5px 7px; gap: 4px; font-size: 9px; } .periodTrigger > svg { width: 10px; height: 10px; } }
+@media (prefers-reduced-motion: reduce) { .periodMenu { animation: none !important; } }

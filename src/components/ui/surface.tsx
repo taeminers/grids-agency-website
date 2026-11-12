@@ -14,6 +14,7 @@ type DivProps = React.ComponentProps<"div">;
 export function Shell({ className, ...props }: React.ComponentProps<"section">) {
   return (
     <section
+      data-slot="surface-shell"
       className={cn("@container w-full rounded-[var(--site-card-radius)] bg-[var(--tuff-surface,#f1f2f3)] p-1.5", className)}
       {...props}
     />
@@ -22,12 +23,12 @@ export function Shell({ className, ...props }: React.ComponentProps<"section">) 
 
 /** Main content area inside a shell. */
 export function Panel({ className, ...props }: DivProps) {
-  return <div className={cn("rounded-[var(--site-card-radius)] bg-[var(--tuff-surface-inset,#ffffff)]", className)} {...props} />;
+  return <div data-slot="surface-panel" className={cn("rounded-[var(--site-card-radius)] bg-[var(--tuff-surface-inset,#ffffff)]", className)} {...props} />;
 }
 
 /** One level deeper: code, payloads, details inside a panel. */
 export function Inset({ className, ...props }: DivProps) {
-  return <div className={cn("rounded-xl bg-foreground/[0.04]", className)} {...props} />;
+  return <div data-slot="surface-inset" className={cn("rounded-xl bg-foreground/[0.04]", className)} {...props} />;
 }
 
 /** Icon in a tinted square. Pass a Phosphor icon, or children for anything else. */
@@ -39,6 +40,7 @@ export function IconTile({
 }: DivProps & { icon?: Icon }) {
   return (
     <div
+      data-slot="surface-icon"
       aria-hidden="true"
       className={cn(
         "flex size-9 shrink-0 items-center justify-center rounded-xl bg-foreground/[0.06] text-muted-foreground",
@@ -76,6 +78,7 @@ export function ShellHeader({
 }: ShellHeaderProps) {
   return (
     <div
+      data-slot="surface-header"
       className={cn("flex items-center gap-3 pt-1.5 pr-3.5 pb-3 pl-1.5", className)}
       {...props}
     >

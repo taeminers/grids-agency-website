@@ -1,4 +1,4 @@
-.scene { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; container-type: inline-size; overflow: hidden; border-radius: inherit; background: radial-gradient(ellipse at 70% 45%, #e6f2fa, transparent 70%), #f3f6f8; isolation: isolate; }
+.scene { composes: purple from "./grainy-surface.module.css"; position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; container-type: inline-size; overflow: hidden; border-radius: inherit; isolation: isolate; }
 .scopeSlot { position: relative; flex-shrink: 0; width: 84%; }
 .scope {
   position: relative; width: 100%; max-width: none; padding: 10px;

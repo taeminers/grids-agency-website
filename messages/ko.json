@@ -306,8 +306,7 @@
     },
     "layoutHeading": "궁금하셨죠?",
     "layoutHeadingSecondary": "하나씩 답해드릴게요.",
-    "contactCardTitle": "안녕하세요, LOCUS예요.",
-    "contactCardDescription": "더 정확한 답변을 드리기 위해 정식 서비스를 준비하고 있어요. 준비가 끝나면 이곳에서 GRIDS와 서비스에 대해 무엇이든 물어보세요."
+    "contactMessage": "<highlight>안녕하세요, LOCUS예요.</highlight> 더 정확한 답변을 준비하고 있어요. 곧 GRIDS에 대해 무엇이든 물어보세요."
   },
   "ConsultationButton": {
     "label": "카톡 상담",
@@ -1328,16 +1327,18 @@
       "cta": "프로젝트 상담",
       "notes": {
         "scope": {
-          "title": "합의한 범위 안에서 정액으로",
-          "body": "페이지 수, 기능, 수정 범위를 먼저 정합니다. 이후 범위를 벗어난 요청은 별도로 견적합니다."
+          "message": "<highlight>합의한 범위는 정액으로.</highlight> 추가 요청은 별도 견적합니다."
         },
         "costs": {
-          "title": "외부 비용은 별도로",
-          "body": "도메인, 호스팅, API 사용료, 결제 수수료, 유료 에셋 등은 포함하지 않습니다."
+          "message": "도메인·호스팅·API 등 <highlight>외부 비용은 별도입니다.</highlight>",
+          "visual": {
+            "domain": "도메인",
+            "hosting": "호스팅",
+            "api": "API"
+          }
         },
         "translation": {
-          "title": "자료와 번역문 제공",
-          "body": "브랜드 자료와 콘텐츠는 상담 시 확인합니다. 다국어 구성의 번역문은 고객 제공 기준입니다."
+          "message": "브랜드 자료는 함께 확인하고, <highlight>번역문은 고객이 준비합니다.</highlight>"
         }
       }
     },
@@ -1482,6 +1483,208 @@
       "conversation": "대화 화면",
       "automationPlaceholder": "입력부터 결과까지, 업무 흐름을 확인하는 공간",
       "chatbotPlaceholder": "질문하고 답변을 확인하는 공간",
+      "chat": {
+        "agent": "LOCUS AI",
+        "user": "나",
+        "ui": {
+          "hideSidebar": "사이드바 닫기",
+          "showSidebar": "사이드바 열기",
+          "history": "대화 기록",
+          "openHistory": "대화 기록 열기",
+          "closeHistory": "대화 기록 닫기",
+          "close": "닫기",
+          "newChat": "새 대화",
+          "share": "대화 공유",
+          "starterHeading": "어떤 도움이 필요하신가요?",
+          "placeholder": "궁금한 내용을 입력해 보세요",
+          "replyPlaceholder": "메시지를 입력하세요",
+          "message": "메시지",
+          "followupPlaceholder": "이어서 궁금한 점을 입력하세요",
+          "working": "답변 작성 중",
+          "stop": "중지",
+          "queue": "대기 목록에 추가",
+          "send": "전송",
+          "pinned": "고정한 대화",
+          "today": "오늘",
+          "yesterday": "어제",
+          "previousWeek": "지난 7일",
+          "older": "이전 대화",
+          "recent": "최근 대화",
+          "searchChats": "대화 검색",
+          "noChatsFound": "검색 결과가 없어요",
+          "noChats": "아직 대화가 없어요",
+          "trySearch": "다른 검색어를 입력해 보세요.",
+          "conversation": "대화 내용",
+          "unread": "읽지 않은 메시지",
+          "jumpLatest": "최신 메시지로",
+          "newMessages": "새 메시지 {count}개",
+          "attachFile": "파일 첨부",
+          "removeFile": "{name} 첨부 삭제",
+          "attachments": "첨부 파일",
+          "tokens": "토큰",
+          "tokenUsage": "예상 사용 토큰",
+          "tokenValue": "{limit} 토큰 중 {used} 사용",
+          "attachedFiles": "첨부 파일"
+        },
+        "fallback": "아직 회사 자료나 외부 서비스가 연결되어 있지 않아, 지금은 입력하신 질문에 맞는 답변을 드릴 수 없어요.\n\n여기에 귀사의 상품 정보, 업무 매뉴얼, 자주 묻는 질문이 연결된다면 어떨까요? 고객의 가격 문의부터 팀의 업무 절차 안내까지, 필요한 정보를 찾아 답변하는 AI 비서로 구성할 수 있어요.\n\n고객은 기다림을 줄이고, 팀은 반복 설명에 쓰던 시간을 줄일 수 있습니다. 귀사의 자료를 바탕으로 답하는 LOCUS, 어떤 업무부터 맡겨보고 싶으신가요?",
+        "topics": {
+          "quote": {
+            "title": "계약 이력을 반영한 견적",
+            "hint": "Drive 단가표 × CRM 계약 이력",
+            "question": "한빛리빙 CRM 구축 견적을 내줘. 데이터 이관도 포함하고, 기존 고객 할인 조건까지 확인해줘.",
+            "answer": "한빛리빙의 기존 계약과 서비스 단가표를 함께 확인했어요.\n\nCRM 구축 800만 원 + 데이터 이관 120만 원 − 기존 고객 할인 80만 원으로, 총 840만 원입니다. VAT는 별도예요.\n\n할인은 CRM 구축비의 10%에 적용되며, 데이터 이관에는 적용되지 않습니다. 착수금과 잔금은 각각 420만 원이에요.\n\n사용한 단가와 할인 조건은 위의 원본 자료에서 직접 확인하실 수 있어요.",
+            "steps": [
+              {
+                "title": "Google Drive에서 단가표 찾기",
+                "detail": "영업팀 / 견적 자료 / 2026 서비스 단가표.xlsx"
+              },
+              {
+                "title": "CRM에서 기존 계약 조건 확인",
+                "detail": "한빛리빙 · 기존 고객 할인 및 결제 조건"
+              },
+              {
+                "title": "견적 기준과 할인 적용 범위 대조",
+                "detail": "구축비와 이관비를 구분해 최종 금액 계산"
+              }
+            ],
+            "sources": [
+              {
+                "id": "prices",
+                "provider": "drive",
+                "title": "2026 서비스 단가표.xlsx",
+                "location": "Google Drive · 영업팀 / 견적 자료",
+                "excerpt": "시트: CRM·어드민\nCRM 구축 기본형: 8,000,000원\n데이터 이관: 1,200,000원\nVAT 별도 · 단가 기준: 2026년 11월"
+              },
+              {
+                "id": "client",
+                "provider": "crm",
+                "title": "한빛리빙 · 계약 이력",
+                "location": "CRM · 고객 HB-032",
+                "excerpt": "고객 상태: 기존 고객\n합의 할인: CRM 구축비의 10%\n제외 항목: 데이터 이관, 외부 사용료\n결제 조건: 착수 50% / 납품 50%"
+              },
+              {
+                "id": "rules",
+                "provider": "drive",
+                "title": "견적 및 할인 적용 기준.pdf",
+                "location": "Google Drive · 영업팀 / 운영 기준",
+                "excerpt": "기존 고객 할인은 기본 구축비에만 적용합니다.\n데이터 이관 등 추가 서비스는 할인 대상에서 제외합니다.\n최종 금액 = 기본 구축비 + 추가 서비스 − 적용 할인\n모든 견적 금액은 VAT 별도로 안내합니다."
+              }
+            ]
+          },
+          "onboarding": {
+            "title": "계약서로 착수 메일 준비",
+            "hint": "서명 계약서 × 담당자 정보 × Gmail",
+            "question": "온유컴퍼니 계약이 끝났어. 계약서와 온보딩 가이드를 확인해서 담당자에게 착수 안내 메일을 준비해줘.",
+            "answer": "서명된 계약서, 고객 담당자 정보, 온보딩 가이드를 확인해 김민지 담당자님께 보낼 메일을 준비했어요.\n\n계약 금액은 450만 원, 착수금은 225만 원입니다. 입금과 자료 수령이 확인되면 영업일 3일 이내에 킥오프 일정을 협의합니다.\n\n메일에는 로고 원본, 서비스 소개 문구, 참고 사이트 요청을 담고, 준비자료 체크리스트를 첨부했어요. 수신자와 본문을 검토한 뒤 아래에서 예시 전송을 체험해 보세요.",
+            "steps": [
+              {
+                "title": "Google Drive에서 서명 계약서 확인",
+                "detail": "온유컴퍼니 / 계약 / 서명 완료 계약서.pdf"
+              },
+              {
+                "title": "CRM에서 계약 담당자 조회",
+                "detail": "김민지 · 프로젝트 소통 담당자"
+              },
+              {
+                "title": "온보딩 가이드로 착수 메일 구성",
+                "detail": "착수 조건, 요청 자료, 체크리스트 반영"
+              }
+            ],
+            "sources": [
+              {
+                "id": "contract",
+                "provider": "drive",
+                "title": "온유컴퍼니_서명완료_계약서.pdf",
+                "location": "Google Drive · 고객사 / 온유컴퍼니 / 계약",
+                "excerpt": "제작 범위: 브랜드 웹사이트\n계약 금액: 4,500,000원 (VAT 별도)\n착수금: 2,250,000원\n착수 조건: 입금 및 필수 자료 수령 확인"
+              },
+              {
+                "id": "contact",
+                "provider": "crm",
+                "title": "온유컴퍼니 · 김민지",
+                "location": "CRM · 계약 담당자",
+                "excerpt": "이름: 김민지\n역할: 프로젝트 소통 담당자\n이메일: minji@onyu.example\n계약 상태: 서명 완료"
+              },
+              {
+                "id": "guide",
+                "provider": "drive",
+                "title": "고객 온보딩 가이드.docx",
+                "location": "Google Drive · 운영팀 / 프로젝트 시작",
+                "excerpt": "입금과 자료 확인 후 영업일 3일 이내 킥오프 일정 협의\n요청 자료: 로고 원본 / 서비스 소개 문구 / 참고 사이트\n메일 첨부: 프로젝트_준비자료_체크리스트.pdf"
+              }
+            ],
+            "email": {
+              "to": "김민지 <minji@onyu.example>",
+              "subject": "[GRIDS] 온유컴퍼니 웹사이트 프로젝트 착수 안내",
+              "body": "김민지 담당자님, 안녕하세요. GRIDS입니다.\n\n온유컴퍼니 웹사이트 제작 계약이 완료되어 다음 단계를 안내드립니다. 계약 금액은 450만 원(VAT 별도)이며, 착수금은 225만 원입니다.\n\n프로젝트 시작을 위해 아래 자료를 부탁드립니다.\n• 로고 원본 파일\n• 서비스 소개 문구\n• 참고 사이트\n\n착수금 입금과 자료 수령을 확인하면 영업일 3일 이내에 킥오프 일정을 함께 정하겠습니다. 자세한 준비 항목은 첨부한 체크리스트를 확인해 주세요.\n\n감사합니다.\nGRIDS 프로젝트팀",
+              "attachment": "프로젝트_준비자료_체크리스트.pdf"
+            }
+          },
+          "delivery": {
+            "title": "주문 조회로 배송 문의 해결",
+            "hint": "주문 시스템 × 배송 정책 × 고객 문의",
+            "question": "한빛리빙 주문 HB-1042가 일부만 도착했대. 출고 기록과 배송 정책을 확인해서 남은 수량과 추가 배송비를 알려줘.",
+            "answer": "주문 시스템과 배송 정책, 접수된 고객 문의를 함께 확인했어요.\n\n주문 수량은 총 12개이며, 그중 10개는 출고 완료됐습니다. 남은 2개는 물류센터에서 검수 중이고, 현재 기록상 영업일 2일 이내 출고 예정입니다.\n\n회사 사유로 나뉘어 배송되는 경우 추가 배송비가 없다는 정책에 따라, 고객이 부담할 비용은 없어요.\n\n문의 CS-208에 안내할 내용은 “남은 2개는 검수 후 별도 출고되며, 추가 배송비는 없습니다”입니다. 실제 도착일은 출고 후 운송장으로 다시 확인해야 해요.",
+            "steps": [
+              {
+                "title": "주문 시스템에서 출고 기록 조회",
+                "detail": "주문 HB-1042 · 품목별 수량과 처리 상태"
+              },
+              {
+                "title": "Google Drive에서 분할 배송 정책 확인",
+                "detail": "운영팀 / 고객 안내 / 배송 및 교환 정책.pdf"
+              },
+              {
+                "title": "고객 문의 내용과 주문 기록 대조",
+                "detail": "CS-208 · 일부 수량 미수령 문의"
+              }
+            ],
+            "sources": [
+              {
+                "id": "order",
+                "provider": "orders",
+                "title": "주문 HB-1042 · 출고 내역",
+                "location": "주문 시스템 · 주문 조회 API",
+                "excerpt": "고객: 한빛리빙\n주문 수량: 12개\n출고 완료: 10개\n검수 중: 2개\n잔여 수량 출고 예정: 영업일 2일 이내\n도착일: 운송장 등록 후 확인 가능"
+              },
+              {
+                "id": "shipping",
+                "provider": "drive",
+                "title": "배송 및 교환 정책.pdf",
+                "location": "Google Drive · 운영팀 / 고객 안내",
+                "excerpt": "제3항 · 분할 배송\n회사 또는 물류센터 사유로 분할 배송되는 경우 추가 배송비는 회사가 부담합니다.\n출고 예정일과 실제 도착일은 구분하여 안내합니다."
+              },
+              {
+                "id": "ticket",
+                "provider": "crm",
+                "title": "고객 문의 CS-208",
+                "location": "CRM · 한빛리빙 / 고객 지원",
+                "excerpt": "문의: 주문 12개 중 10개만 도착했습니다.\n확인 요청: 잔여 수량, 예상 출고 시점, 추가 배송비\n연결 주문: HB-1042\n처리 상태: 안내 대기"
+              }
+            ]
+          }
+        },
+        "workflow": {
+          "exampleConnections": "회사 업무 연동 예시",
+          "lookupSteps": "자료 확인 과정",
+          "found": "확인 완료",
+          "checking": "확인 중",
+          "waiting": "대기",
+          "paused": "중지됨",
+          "sources": "답변에 사용한 자료 · 눌러서 확인",
+          "recordPreview": "예시 자료 미리보기",
+          "emailDraft": "착수 안내 메일 초안",
+          "emailSent": "착수 안내 메일",
+          "simulation": "전송 시뮬레이션",
+          "recipient": "받는 분",
+          "subject": "제목",
+          "reviewDraft": "메일 검토하기",
+          "hideDraft": "본문 접기",
+          "sendExample": "예시 전송하기",
+          "sentTitle": "예시 전송 완료",
+          "sentDetail": "{to}에게 보낼 안내와 첨부 자료를 확인했어요."
+        }
+      },
       "services": {
         "homepage": {
           "title": "웹사이트 미리보기",
@@ -1491,7 +1694,7 @@
         "webApp": {
           "title": "웹·앱 미리보기",
           "description": "서비스의 주요 화면과 사용자 흐름을 살펴보세요. 필요한 기능이 어떻게 연결되는지 확인할 수 있습니다.",
-          "placeholder": "웹·앱 예시가 이곳에 표시됩니다."
+          "placeholder": "아직 준비 중이에요. 조금만 기다려주세요."
         },
         "crm": {
           "title": "CRM·어드민 미리보기",
@@ -1505,7 +1708,7 @@
             "briefing": "데일리 AI 브리핑"
           },
           "title": "AI 자동화 체험",
-          "description": "반복 업무가 하나의 흐름으로 연결되는 과정을, 간단한 시나리오로 경험해 보세요.",
+          "description": "회사 자료와 도구를 연결해, 견적 산출부터 메일 준비까지 이어지는 업무 자동화를 경험해 보세요.",
           "scenario": "고객 문의를 접수하면",
           "scenarioDescription": "문의 내용을 분류하고 담당자에게 전달하는 자동화 흐름을 준비하고 있습니다.",
           "steps": {
@@ -1516,7 +1719,7 @@
         },
         "chatbot": {
           "title": "AI 챗봇 체험",
-          "description": "질문이 답변으로, 답변이 다음 행동으로. 업무에 도움을 주는 챗봇의 대화 흐름을 경험해 보세요.",
+          "description": "웹사이트의 상담창에서 질문하고, 예약 조회와 안내, 상담원 연결 흐름을 경험해 보세요.",
           "scenario": "새로운 고객의 온보딩",
           "scenarioDescription": "안내 자료를 바탕으로 필요한 절차를 설명하는 챗봇 체험을 준비하고 있습니다.",
           "steps": {
@@ -1525,12 +1728,680 @@
             "third": "다음 단계 확인"
           }
         }
+      },
+      "previewControls": {
+        "viewport": "미리보기 화면 크기",
+        "desktop": "데스크톱",
+        "tablet": "태블릿",
+        "mobile": "모바일",
+        "reset": "초기화",
+        "resetLabel": "챗봇 체험 초기화",
+        "resetAutomation": "자동화 체험 초기화",
+        "resetWebsite": "웹사이트 미리보기 새로고침",
+        "resetCrm": "CRM·어드민 체험 초기화"
+      },
+      "console": {
+        "title": "GRIDS Operations",
+        "environment": "예시 워크스페이스",
+        "ui": {
+          "console": "운영 콘솔",
+          "consoleNavigation": "콘솔 메뉴",
+          "agents": "업무 에이전트",
+          "runs": "실행 기록",
+          "evals": "품질 점검",
+          "usage": "사용량",
+          "settings": "연동 설정",
+          "team": "나의 에이전트",
+          "expandSidebar": "사이드바 펼치기",
+          "collapseSidebar": "사이드바 접기",
+          "openNavigation": "콘솔 메뉴 열기",
+          "closeNavigation": "콘솔 메뉴 닫기",
+          "close": "닫기",
+          "needsAttention": "검토 필요",
+          "acknowledge": "확인했어요",
+          "workspace": "콘솔 작업 공간",
+          "traceFor": "{name} · 실행 과정",
+          "complete": "작업 완료",
+          "emailApproved": "예시 메일 승인 완료",
+          "emailHeld": "담당자 검토를 위해 보류",
+          "approvalToast": "예시 요청을 승인했어요. 실제 외부 작업은 실행되지 않습니다.",
+          "denialToast": "예시 요청을 보류했어요.",
+          "evalFilter": "점검 결과 필터",
+          "evalCases": "점검 항목",
+          "caseCount": "{count}개 항목",
+          "evalRunning": "{total}개 중 {count}개 점검 중",
+          "evalFinished": "{total}개 중 {passed}개 통과",
+          "all": "전체",
+          "failed": "보완 필요",
+          "regressed": "재점검",
+          "improved": "개선",
+          "pass": "통과",
+          "input": "입력",
+          "expected": "기대 결과",
+          "actual": "확인 결과",
+          "score": "점수",
+          "backgroundAgents": "백그라운드 업무",
+          "review": "검토하기",
+          "pauseAgent": "{name} 일시 정지",
+          "resumeAgent": "{name} 다시 시작",
+          "openAgent": "{name} 실행 기록 보기",
+          "cancelAgent": "{name} 취소",
+          "permissionRequests": "승인이 필요한 업무",
+          "waitingOnYou": "건 승인 대기",
+          "allClear": "검토 완료",
+          "selected": "개 선택",
+          "clear": "선택 해제",
+          "deny": "보류",
+          "approve": "승인",
+          "nothingToReview": "대기 중인 요청이 없어요",
+          "newRequests": "새로운 요청이 생기면 이곳에 표시됩니다.",
+          "requests": "요청",
+          "grantFor": "승인 범위",
+          "approveScope": "{scope} 승인",
+          "resolved": "처리 완료",
+          "approvedScope": "{scope} 승인됨",
+          "denied": "보류됨",
+          "undo": "되돌리기",
+          "rateLimits": "처리 여유",
+          "healthy": "원활",
+          "throttled": "대기 중",
+          "perMinute": "/ 분",
+          "remaining": "{total} 중 {remaining} 남음",
+          "full": "전체 여유",
+          "resetsIn": "{time} 후 갱신",
+          "capacityBack": "처리 여유가 생겼어요",
+          "retryNow": "다시 시도",
+          "usageTitle": "사용량",
+          "lastDays": "최근 {count}일",
+          "tokens": "토큰",
+          "up": "증가",
+          "down": "감소",
+          "previous": "이전 기간 대비",
+          "dailyCost": "날짜별 사용량. 방향키로 이동할 수 있습니다.",
+          "overBudget": "예산 초과",
+          "nearBudget": "예산에 가까워요",
+          "monthlyBudget": "월간 예산",
+          "budgetUsed": "사용한 예산",
+          "zoomPath": "실행 과정 탐색",
+          "wholeRun": "전체 실행",
+          "metric": "확인 지표",
+          "time": "시간",
+          "cost": "비용",
+          "agentExcluded": "상위 에이전트 시간은 하위 작업과 중복되어 제외합니다.",
+          "waitingSpans": "실행 기록을 기다리고 있어요.",
+          "runTrace": "실행 과정",
+          "recording": "기록 중",
+          "finishedIn": "완료 시간",
+          "spans": "단계",
+          "notifications": "알림",
+          "dismiss": "알림 닫기",
+          "contextTitle": "참조 정보",
+          "contextOf": "중",
+          "contextFull": "사용",
+          "contextRemaining": "{count} 토큰 남음",
+          "contextTail": "우측 셀은 여유 용량의 마지막 {percent}%입니다.",
+          "compact": "정보 정리",
+          "compacting": "정리 중",
+          "nearLimit": "용량에 가까워요",
+          "pinned": "유지할 정보",
+          "status": {
+            "queued": "대기",
+            "running": "진행 중",
+            "waiting": "승인 대기",
+            "paused": "일시 정지",
+            "done": "완료",
+            "failed": "실패",
+            "cancelled": "취소됨"
+          },
+          "scopes": {
+            "once": "이번 한 번",
+            "session": "이번 세션",
+            "always": "항상"
+          },
+          "risks": {
+            "high": "높음",
+            "medium": "외부 작업",
+            "low": "낮음"
+          },
+          "zoomHint": "단계를 눌러 자세히 보고, Esc로 전체 실행으로 돌아갑니다.",
+          "baselineDelta": "p · 이전 대비",
+          "baseline": "이전 기준",
+          "candidate": "현재 결과",
+          "better": "개선",
+          "worse": "저하",
+          "noChange": "변화 없음",
+          "regressedCases": "재점검 항목",
+          "noRegressions": "재점검이 필요한 항목이 없습니다.",
+          "dashboard": "대시보드"
+        },
+        "settingsDescription": "예시 데이터로 각 에이전트가 접근할 수 있는 업무 범위를 살펴보세요.",
+        "connections": {
+          "drive": {
+            "name": "Google Drive",
+            "description": "단가표, 계약서, 운영 가이드 참조"
+          },
+          "crm": {
+            "name": "CRM · 고객 정보",
+            "description": "고객 이력과 주문 상태 조회"
+          },
+          "gmail": {
+            "name": "Gmail",
+            "description": "담당자 승인 후 이메일 발송 · 예시"
+          }
+        },
+        "stats": {
+          "completed": "오늘 처리한 업무",
+          "saved": "줄어든 반복 업무 시간",
+          "savedValue": "6.8시간",
+          "approvals": "담당자 승인 대기",
+          "quality": "답변 품질 통과율",
+          "today": "오늘 누적",
+          "estimated": "예시 추정치",
+          "review": "담당자 확인 후 실행",
+          "week": "최근 7일"
+        },
+        "agents": [
+          {
+            "id": "support",
+            "name": "고객 응대",
+            "task": "한빛리빙 배송 문의 안내",
+            "status": "waiting",
+            "progress": 0.85,
+            "action": "고객에게 보낼 메일 승인 대기",
+            "elapsedMs": 8400
+          },
+          {
+            "id": "quotes",
+            "name": "견적 정리",
+            "task": "온유컴퍼니 서비스 견적서 작성",
+            "status": "running",
+            "progress": 0.42,
+            "action": "Drive 단가표와 계약 이력 비교",
+            "elapsedMs": 4200
+          },
+          {
+            "id": "report",
+            "name": "주간 리포트",
+            "task": "이번 주 고객 문의 요약",
+            "status": "done",
+            "progress": 1,
+            "action": "리포트 작성 및 분류 완료",
+            "elapsedMs": 9600
+          }
+        ],
+        "approvals": [
+          {
+            "id": "email-review",
+            "tool": "gmail.send",
+            "title": "한빛리빙 배송 안내 메일 · 예시",
+            "risk": "medium",
+            "agent": "고객 응대",
+            "payload": {
+              "kind": "email",
+              "to": "minji@hanbit.example",
+              "subject": "[고객 안내] 주문 HB-1042 잔여 수량 출고 안내",
+              "body": "안녕하세요. 주문하신 12개 중 10개는 출고 완료되었으며, 남은 2개는 검수 후 영업일 2일 이내 출고 예정입니다. 추가 배송비는 없습니다."
+            }
+          }
+        ],
+        "usage": {
+          "assistant": "업무 답변",
+          "routing": "문의 분류",
+          "budget": "예시 월간 예산",
+          "workspace": "워크스페이스 처리 여유",
+          "requests": "요청",
+          "tokens": "입력 토큰"
+        },
+        "context": {
+          "rules": "회사 운영 기준",
+          "documents": "참조 문서 3개",
+          "history": "고객 상담 이력"
+        },
+        "traces": {
+          "support": [
+            {
+              "id": "support-0",
+              "name": "배송 문의 처리",
+              "kind": "agent",
+              "startMs": 0,
+              "endMs": 9600,
+              "status": "ok"
+            },
+            {
+              "id": "support-1",
+              "name": "주문 HB-1042 조회",
+              "kind": "tool",
+              "startMs": 150,
+              "endMs": 1900,
+              "status": "ok",
+              "parentId": "support-0"
+            },
+            {
+              "id": "support-2",
+              "name": "배송 정책 참조",
+              "kind": "retrieval",
+              "startMs": 200,
+              "endMs": 2800,
+              "status": "ok",
+              "parentId": "support-0"
+            },
+            {
+              "id": "support-3",
+              "name": "고객 안내 초안 생성",
+              "kind": "llm",
+              "startMs": 2900,
+              "endMs": 8100,
+              "status": "ok",
+              "parentId": "support-0",
+              "tokens": {
+                "input": 3200,
+                "output": 480
+              },
+              "costUsd": 0.024
+            },
+            {
+              "id": "support-4",
+              "name": "담당자 승인 요청",
+              "kind": "tool",
+              "startMs": 8200,
+              "endMs": 9600,
+              "status": "ok",
+              "parentId": "support-0"
+            }
+          ],
+          "quotes": [
+            {
+              "id": "quotes-0",
+              "name": "맞춤 견적 구성",
+              "kind": "agent",
+              "startMs": 0,
+              "endMs": 9600,
+              "status": "ok"
+            },
+            {
+              "id": "quotes-1",
+              "name": "고객 계약 조건 조회",
+              "kind": "tool",
+              "startMs": 150,
+              "endMs": 1800,
+              "status": "ok",
+              "parentId": "quotes-0"
+            },
+            {
+              "id": "quotes-2",
+              "name": "서비스 단가표 참조",
+              "kind": "retrieval",
+              "startMs": 200,
+              "endMs": 3100,
+              "status": "ok",
+              "parentId": "quotes-0"
+            },
+            {
+              "id": "quotes-3",
+              "name": "할인 조건 적용",
+              "kind": "llm",
+              "startMs": 3200,
+              "endMs": 8500,
+              "status": "ok",
+              "parentId": "quotes-0",
+              "tokens": {
+                "input": 3200,
+                "output": 480
+              },
+              "costUsd": 0.024
+            },
+            {
+              "id": "quotes-4",
+              "name": "견적 초안 저장",
+              "kind": "tool",
+              "startMs": 8600,
+              "endMs": 9600,
+              "status": "ok",
+              "parentId": "quotes-0"
+            }
+          ],
+          "report": [
+            {
+              "id": "report-0",
+              "name": "주간 문의 리포트",
+              "kind": "agent",
+              "startMs": 0,
+              "endMs": 9600,
+              "status": "ok"
+            },
+            {
+              "id": "report-1",
+              "name": "CRM 문의 내역 조회",
+              "kind": "tool",
+              "startMs": 100,
+              "endMs": 2300,
+              "status": "ok",
+              "parentId": "report-0"
+            },
+            {
+              "id": "report-2",
+              "name": "문의 유형 분류",
+              "kind": "llm",
+              "startMs": 2400,
+              "endMs": 6500,
+              "status": "ok",
+              "parentId": "report-0",
+              "tokens": {
+                "input": 3200,
+                "output": 480
+              },
+              "costUsd": 0.024
+            },
+            {
+              "id": "report-3",
+              "name": "반복 이슈 요약",
+              "kind": "llm",
+              "startMs": 6600,
+              "endMs": 8800,
+              "status": "ok",
+              "parentId": "report-0",
+              "tokens": {
+                "input": 3200,
+                "output": 480
+              },
+              "costUsd": 0.024
+            },
+            {
+              "id": "report-4",
+              "name": "리포트 정리",
+              "kind": "tool",
+              "startMs": 8900,
+              "endMs": 9600,
+              "status": "ok",
+              "parentId": "report-0"
+            }
+          ]
+        },
+        "evals": {
+          "suite": "회사 업무 응대 시나리오",
+          "label": "운영 전 점검 · 예시",
+          "cases": [
+            {
+              "id": "case-0",
+              "name": "답변과 원본 단가 일치",
+              "status": "pass",
+              "score": 0.98,
+              "input": "고객의 배송 일정 문의",
+              "expected": "출고 예정일과 도착일을 구분하여 안내",
+              "actual": "회사 정책과 참조 자료에 맞게 답변",
+              "reason": "문서 근거와 일치 여부 확인"
+            },
+            {
+              "id": "case-1",
+              "name": "계약 할인 조건 반영",
+              "status": "pass",
+              "score": 0.98,
+              "input": "고객의 배송 일정 문의",
+              "expected": "출고 예정일과 도착일을 구분하여 안내",
+              "actual": "회사 정책과 참조 자료에 맞게 답변",
+              "reason": "문서 근거와 일치 여부 확인"
+            },
+            {
+              "id": "case-2",
+              "name": "고객 개인정보 분리",
+              "status": "pass",
+              "score": 0.98,
+              "input": "고객의 배송 일정 문의",
+              "expected": "출고 예정일과 도착일을 구분하여 안내",
+              "actual": "회사 정책과 참조 자료에 맞게 답변",
+              "reason": "문서 근거와 일치 여부 확인"
+            },
+            {
+              "id": "case-3",
+              "name": "존재하지 않는 정보 거절",
+              "status": "pass",
+              "score": 0.98,
+              "input": "고객의 배송 일정 문의",
+              "expected": "출고 예정일과 도착일을 구분하여 안내",
+              "actual": "회사 정책과 참조 자료에 맞게 답변",
+              "reason": "문서 근거와 일치 여부 확인"
+            },
+            {
+              "id": "case-4",
+              "name": "메일 수신자 일치",
+              "status": "pass",
+              "score": 0.98,
+              "input": "고객의 배송 일정 문의",
+              "expected": "출고 예정일과 도착일을 구분하여 안내",
+              "actual": "회사 정책과 참조 자료에 맞게 답변",
+              "reason": "문서 근거와 일치 여부 확인"
+            },
+            {
+              "id": "case-5",
+              "name": "출고와 도착일 구분",
+              "status": "regressed",
+              "score": 0.72,
+              "input": "고객의 배송 일정 문의",
+              "expected": "출고 예정일과 도착일을 구분하여 안내",
+              "actual": "배송 시점 표현의 추가 검토 필요",
+              "reason": "문서 근거와 일치 여부 확인"
+            },
+            {
+              "id": "case-6",
+              "name": "문서 출처 포함",
+              "status": "pass",
+              "score": 0.98,
+              "input": "고객의 배송 일정 문의",
+              "expected": "출고 예정일과 도착일을 구분하여 안내",
+              "actual": "회사 정책과 참조 자료에 맞게 답변",
+              "reason": "문서 근거와 일치 여부 확인"
+            },
+            {
+              "id": "case-7",
+              "name": "권한 없는 문서 차단",
+              "status": "pass",
+              "score": 0.98,
+              "input": "고객의 배송 일정 문의",
+              "expected": "출고 예정일과 도착일을 구분하여 안내",
+              "actual": "회사 정책과 참조 자료에 맞게 답변",
+              "reason": "문서 근거와 일치 여부 확인"
+            },
+            {
+              "id": "case-8",
+              "name": "다국어 문의 처리",
+              "status": "pass",
+              "score": 0.98,
+              "input": "고객의 배송 일정 문의",
+              "expected": "출고 예정일과 도착일을 구분하여 안내",
+              "actual": "회사 정책과 참조 자료에 맞게 답변",
+              "reason": "문서 근거와 일치 여부 확인"
+            },
+            {
+              "id": "case-9",
+              "name": "중복 안내 방지",
+              "status": "pass",
+              "score": 0.98,
+              "input": "고객의 배송 일정 문의",
+              "expected": "출고 예정일과 도착일을 구분하여 안내",
+              "actual": "회사 정책과 참조 자료에 맞게 답변",
+              "reason": "문서 근거와 일치 여부 확인"
+            },
+            {
+              "id": "case-10",
+              "name": "최신 계약 내용 우선",
+              "status": "pass",
+              "score": 0.98,
+              "input": "고객의 배송 일정 문의",
+              "expected": "출고 예정일과 도착일을 구분하여 안내",
+              "actual": "회사 정책과 참조 자료에 맞게 답변",
+              "reason": "문서 근거와 일치 여부 확인"
+            },
+            {
+              "id": "case-11",
+              "name": "담당자 승인 유지",
+              "status": "pass",
+              "score": 0.98,
+              "input": "고객의 배송 일정 문의",
+              "expected": "출고 예정일과 도착일을 구분하여 안내",
+              "actual": "회사 정책과 참조 자료에 맞게 답변",
+              "reason": "문서 근거와 일치 여부 확인"
+            }
+          ],
+          "baselinePassRate": 0.83,
+          "metrics": [
+            {
+              "id": "accuracy",
+              "label": "근거 일치율",
+              "baseline": 0.91,
+              "candidate": 0.98,
+              "better": "higher"
+            },
+            {
+              "id": "approval",
+              "label": "승인 절차 준수",
+              "baseline": 0.94,
+              "candidate": 1,
+              "better": "higher"
+            }
+          ]
+        },
+        "dashboard": {
+          "greeting": "비즈니스 운영 현황",
+          "platform": "워크스페이스",
+          "period": "대시보드 조회 기간",
+          "days": "최근 {count}일",
+          "customize": "보기 설정",
+          "repeatRate": "재구매율",
+          "orders": "주문",
+          "orderValue": "평균 주문 금액",
+          "priorPeriod": "이전 기간 대비",
+          "revenue": "기간 매출",
+          "chartLabel": "매출 추이. 방향키로 날짜를 확인하세요.",
+          "chartDescription": "기간 동안 상승하는 매출 추이",
+          "insights": "AI 인사이트",
+          "insightText": "기존 고객의 재구매가 <strong>매출의 38.4%</strong>를 만들고 있어요.",
+          "viewOperations": "운영 기록 보기",
+          "pipeline": "업무 처리 현황",
+          "tasks": "건 처리",
+          "completed": "완료",
+          "inProgress": "진행 중",
+          "waiting": "대기",
+          "activity": "최근 활동",
+          "today": "오늘",
+          "businessSummary": "비즈니스 요약",
+          "revenueGauge": "누적 매출 중 구독과 서비스 매출 구성",
+          "totalRevenue": "누적 매출",
+          "subscriptions": "정기 계약",
+          "services": "프로젝트 · 서비스",
+          "viewDetails": "상세 보기",
+          "activeCustomers": "활성 고객",
+          "paidShare": "고객의 78%가 유료 고객입니다.",
+          "paid": "유료 고객",
+          "free": "체험 고객",
+          "latestPayment": "최근 결제",
+          "customer": "고객사",
+          "paymentCompany": "온유컴퍼니",
+          "amount": "금액",
+          "method": "결제 수단",
+          "status": "상태",
+          "paidComplete": "결제 완료",
+          "events": {
+            "quote": {
+              "name": "한빛리빙",
+              "description": "맞춤 견적 검토 요청"
+            },
+            "payment": {
+              "name": "온유컴퍼니",
+              "description": "웹사이트 프로젝트 착수금 결제"
+            },
+            "report": {
+              "name": "GRIDS 운영팀",
+              "description": "주간 고객 문의 리포트 정리"
+            }
+          }
+        },
+        "views": {
+          "runsDescription": "실행 중인 업무와 담당자 검토가 필요한 요청을 확인합니다. 각 업무를 선택하면 상세 실행 과정이 표시됩니다.",
+          "evalsDescription": "회사 자료와 답변이 일치하는지, 운영 기준을 지키는지 확인합니다. 보완이 필요한 항목을 선택해 근거를 살펴보세요.",
+          "usageDescription": "기간별 사용량과 처리 여유를 한곳에서 확인합니다. 날짜별 막대를 선택하면 업무 유형별 사용 내역을 볼 수 있습니다.",
+          "settingsDescription": "연동 설정",
+          "agentCount": "{count}개 업무",
+          "traceHint": "단계를 눌러 자세히 보기"
+        }
+      },
+      "support": {
+        "welcome": "안녕하세요, ROAM의 여행 도우미 LOCUS예요.\n예약 확인부터 여행 전 궁금한 점까지, 무엇을 도와드릴까요?",
+        "botRole": "ROAM 여행 도우미 · 체험",
+        "visitor": "나",
+        "launcherHint": "여행 전 궁금한 점, 여기서 물어보세요.",
+        "ui": {
+          "typing": "{name} 답변 작성 중",
+          "writing": "답변을 작성하고 있어요",
+          "waiting": "상담팀 연결 준비 중",
+          "chatWith": "{name} 상담창",
+          "instant": "바로 답변해 드려요",
+          "supportTeam": "상담팀",
+          "minimize": "상담창 접기",
+          "endChat": "대화 종료",
+          "message": "메시지",
+          "waitingPlaceholder": "추가로 궁금한 점을 남겨주세요",
+          "placeholder": "궁금한 점을 입력하세요",
+          "send": "전송",
+          "hideChat": "상담창 접기",
+          "openChat": "ROAM 상담 열기",
+          "unread": "읽지 않은 메시지"
+        },
+        "questions": {
+          "booking": "내 예약 확인하기",
+          "policy": "취소·환불 규정이 궁금해요",
+          "human": "상담원 연결 체험하기"
+        },
+        "replies": {
+          "booking": "예약 번호로 일정을 확인해 드릴게요.\n아래에 예시 예약번호 RM-2048을 입력해 보세요.",
+          "reservation": "예약을 찾았어요. 12월 4일부터 6일까지, 성인 두 분의 제주 여행이 예약되어 있습니다.\n\n예약 번호와 일정을 아래에 정리했어요. 여행 전 준비사항이나 취소 규정도 이어서 확인하실 수 있어요.",
+          "policy": "이 예시 상품은 체크인 7일 전까지 무료로 취소할 수 있어요. 그 이후의 환불 금액은 예약 조건에 따라 달라집니다.\n\n예약 전에 확인할 내용을 아래 안내에 정리했어요.",
+          "handoff": "상담원에게 연결하는 과정을 보여드릴게요. 지금까지의 대화와 확인한 예약 정보를 함께 전달하면, 같은 내용을 다시 설명하지 않아도 됩니다.",
+          "human": "ROAM 상담팀 연결 예시입니다.\n\n실제 서비스에서는 담당자가 이전 대화와 예약 정보를 확인한 뒤 상담을 이어갑니다. AI가 해결하기 어려운 문의도 자연스럽게 사람에게 연결할 수 있어요."
+        },
+        "human": {
+          "name": "ROAM 상담팀",
+          "role": "상담 연결 체험",
+          "wait": "연결 예시"
+        },
+        "lookup": {
+          "label": "예약번호",
+          "find": "조회",
+          "hint": "체험용 예약번호: RM-2048",
+          "error": "체험용 예약번호 RM-2048을 입력해 주세요.",
+          "userMessage": "예약번호 RM-2048을 확인해 주세요."
+        },
+        "reservation": {
+          "title": "예약 확인 · 예시",
+          "confirmed": "예약 확정",
+          "trip": "제주, 느리게 머무는 3일",
+          "destination": "프라이빗 스테이 · 제주",
+          "number": "예약번호",
+          "dates": "여행 일정",
+          "guests": "여행 인원",
+          "guestValue": "성인 2명"
+        },
+        "policy": {
+          "title": "취소 및 환불 안내 · 예시",
+          "body": "체험 상품 기준\n• 체크인 7일 전까지: 무료 취소\n• 이후 취소: 개별 예약 조건에 따라 안내\n• 최종 환불 조건은 예약 확인서에서 확인\n\n실제 서비스에서는 귀사의 안내 문서를 바탕으로 답변하도록 구성합니다."
+        },
+        "fallback": "지금은 고객사 자료가 연결되지 않은 체험 화면이라 입력하신 질문에 맞춰 답변해 드릴 수 없어요.\n\n아래 추천 질문으로 예약 조회, 취소 규정 안내, 상담원 연결 흐름을 둘러보세요. 실제 서비스에서는 귀사의 안내 문서와 예약 정보를 바탕으로 고객에게 답변하도록 구성할 수 있습니다.",
+        "host": {
+          "navLabel": "여행에 필요한 여유",
+          "help": "여행 문의",
+          "eyebrow": "A little further, a little slower.",
+          "title": "당신의 다음\n쉼표를 찾아서.",
+          "description": "바쁜 일상에서 한 걸음 멀리. 나만의 속도로 머무는 여행을 ROAM과 함께 만나보세요.",
+          "cta": "나에게 맞는 여행 찾기",
+          "footnote": "천천히 발견하는 새로운 풍경",
+          "imageAlt": "바다와 모래 해변 사이로 펼쳐진 해안 풍경"
+        }
       }
     },
     "explorer": {
       "heading": "필요한 범위에 맞게.",
       "customTitle": "맞춤 제작",
       "customLabel": "정해진 틀 없이",
+      "approximateMinimum": "약 {price}부터",
       "customPrice": "상담 후 산정",
       "customNote": "요구사항과 연동 범위를 확인한 뒤 견적을 안내합니다.",
       "services": {

@@ -7,17 +7,15 @@
   grid-template-columns: minmax(0, 1fr);
   place-items: center;
   padding: 20px;
-  background: #171819;
-  color: #f2f2f3;
+  background: #e2ebf3;
+  color: #293f52;
 }
 .backdrop {
+  composes: pearl from "./grainy-surface.module.css";
   position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background:
-    repeating-linear-gradient(to bottom, transparent 0 8.5%, rgb(15 16 17 / 0.5) 9% 10%),
-    radial-gradient(ellipse at 50% 51%, #8a8b8d 0%, #434548 28%, #171819 68%);
 }
 .stack { position: relative; z-index: 1; min-width: 0; width: 100%; max-width: 420px; }
 .connection {
@@ -31,32 +29,32 @@
   padding: 2px 4px 0;
 }
 .endpoint { display: grid; place-items: center; flex: 0 0 36px; height: 40px; }
-.logo { width: 24px; height: 24px; background: #f4f5f6; }
+.logo { width: 24px; height: 24px; background: #2a465c; }
 .avatar { display: block; }
-.rotatingCross { display: grid; place-items: center; width: 40px; height: 48px; color: #dbe6ed; }
+.rotatingCross { display: grid; place-items: center; width: 40px; height: 48px; color: #607d93; }
 .rotatingCross > div { scale: .625; }
 .card { composes: surface from "./offering-glass.module.css"; --card-inset: 22px; position: relative; padding: 22px 0 18px; overflow: hidden; border-radius: var(--site-card-radius); }
 .cardHeading { display: flex; gap: 10px; align-items: flex-start; padding: 0 var(--card-inset) 12px; }
-.cardHeading > svg { flex-shrink: 0; margin-top: 3px; color: #ced2d6; }
-.title { margin: 0; font-size: 14px; line-height: 1.5; font-weight: 500; letter-spacing: -0.02em; }
-.subtitle { margin: 3px 0 0; font-size: 11px; line-height: 1.6; color: #b5b9be; word-break: keep-all; }
+.cardHeading > svg { flex-shrink: 0; margin-top: 3px; color: #617e94; }
+.title { margin: 0; font-size: 14px; line-height: 1.5; font-weight: 600; letter-spacing: -0.02em; }
+.subtitle { margin: 3px 0 0; font-size: 11px; line-height: 1.6; color: #5c7285; word-break: keep-all; }
 .tools { margin: 0; padding: 0; list-style: none; }
-.tool { display: flex; align-items: center; gap: 12px; min-height: 53px; padding: 9px var(--card-inset); border-top: 1px solid rgb(255 255 255 / .16); }
+.tool { display: flex; align-items: center; gap: 12px; min-height: 53px; padding: 9px var(--card-inset); border-top: 1px solid rgb(79 112 139 / .13); }
 .toolIcon { display: grid; flex: 0 0 28px; place-items: center; height: 28px; }
 .toolIcon img { width: 24px; height: 24px; object-fit: contain; }
-.seoIcon { color: #a7d8f4; }
+.seoIcon { color: #497fa5; }
 .toolCopy { min-width: 0; flex: 1; }
-.addIcon { display: grid; place-items: center; flex: 0 0 19px; height: 19px; margin-left: auto; border: 1px solid rgb(255 255 255 / .22); border-radius: 50%; background: rgb(255 255 255 / .1); color: #e0e8ee; }
+.addIcon { display: grid; place-items: center; flex: 0 0 19px; height: 19px; margin-left: auto; border: 1px solid rgb(72 108 136 / .18); border-radius: 50%; background: rgb(95 139 174 / .1); color: #56768e; }
 .addIcon svg { width: 11px; height: 11px; }
-.more { margin: 12px 0 0; padding-inline: var(--card-inset); color: #b5b9be; font-size: 11px; line-height: 1.6; }
+.more { margin: 12px 0 0; padding-inline: var(--card-inset); color: #5c7285; font-size: 11px; line-height: 1.6; }
 .toolName { margin: 0; font-size: 13px; line-height: 1.4; font-weight: 400; letter-spacing: -0.015em; }
-.toolDescription { margin: 2px 0 0; color: #a5abb2; font-size: 10px; line-height: 1.5; }
+.toolDescription { margin: 2px 0 0; color: #607587; font-size: 10px; line-height: 1.5; }
 @media (max-width: 380px) {
   .visual { padding: 14px; }
   .card { --card-inset: 14px; }
   .connection { gap: 20px; }
 }
 @media (prefers-contrast: more) {
-  .card, .connection, .tool, .addIcon { border-color: #9299a1; }
-  .subtitle, .toolDescription, .more { color: #d3d6da; }
+  .card, .connection, .tool, .addIcon { border-color: #758a9a; }
+  .subtitle, .toolDescription, .more { color: #405b70; }
 }

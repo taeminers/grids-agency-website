@@ -48,7 +48,9 @@ export type EvalLabels = {
   filters: Record<EvalFilter, string>;
   statuses: Record<EvalStatus, string>;
   input: string; expected: string; actual: string; score: string;
+  compare?: { up: string; down: string; baselineDelta: string; baseline: string; candidate: string; better: string; worse: string; noChange: string; regressed: string; noRegressions: string };
 };
+const defaultCompareLabels: NonNullable<EvalLabels["compare"]> = { up: "Up", down: "Down", baselineDelta: "pts vs baseline", baseline: "Baseline", candidate: "Candidate", better: "Better", worse: "Worse", noChange: "No change", regressed: "Regressed cases", noRegressions: "Nothing regressed." };
 const defaultLabels: EvalLabels = {
   results: "Eval results", filter: "Filter cases", cases: "Cases",
   count: (count) => `${count} cases`, running: (count, total) => `${count} of ${total} running`,
@@ -261,9 +263,8 @@ export function EvalResults({
                   ) : (
                     <ArrowDown weight="bold" className="size-3" aria-hidden="true" />
                   )}
-                  <span className="sr-only">{delta >= 0 ? "Up" : "Down"}</span>
-                  <RollingNumber value={Math.abs(delta * 100).toFixed(1)} /> pts vs
-                  baseline
+                  <span className="sr-only">{delta >= 0 ? (labels.compare?.up ?? "Up") : (labels.compare?.down ?? "Down")}</span>
+                  <RollingNumber value={Math.abs(delta * 100).toFixed(1)} /> {labels.compare?.baselineDelta ?? "pts vs baseline"}
                 </span>
               )}
             </div>
@@ -345,6 +346,7 @@ export function EvalResults({
             </>
           ) : (
             <Compare
+              labels={{ ...defaultCompareLabels, ...labels.compare }}
               metrics={data.metrics ?? []}
               regressed={regressed}
               onSelect={(c, kb) => select(c, kb)}
@@ -430,16 +432,18 @@ export function EvalResults({
 }
 
 function Compare({
+  labels,
   metrics,
   regressed,
   onSelect,
 }: {
+  labels: NonNullable<EvalLabels["compare"]>;
   metrics: EvalMetric[];
   regressed: EvalCase[];
   onSelect: (c: EvalCase, viaKeyboard: boolean) => void;
 }) {
   return (
-    <div>
+    <div data-slot="eval-comparison">
       <ul className="space-y-3">
         {metrics.map((m) => {
           const max = Math.max(m.baseline, m.candidate, Number.EPSILON);
@@ -457,14 +461,14 @@ function Compare({
                   className="text-xs"
                 >
                   {same
-                    ? "No change"
-                    : `${improved ? "Better" : "Worse"} · ${fmt(Math.abs(diff))}`}
+                    ? labels.noChange
+                    : `${improved ? labels.better : labels.worse} · ${fmt(Math.abs(diff))}`}
                 </StatusPill>
               </div>
               {(
                 [
-                  ["Baseline", m.baseline, "neutral"],
-                  ["Candidate", m.candidate, "brand"],
+                  [labels.baseline, m.baseline, "neutral"],
+                  [labels.candidate, m.candidate, "brand"],
                 ] as const
               ).map(([label, value, color]) => (
                 <div key={label} className="flex items-center gap-2 py-0.5">
@@ -491,10 +495,10 @@ function Compare({
         })}
       </ul>
       <h4 className="mt-4 mb-1 text-[0.8125rem] text-muted-foreground">
-        Regressed cases · {regressed.length}
+        {labels.regressed} · {regressed.length}
       </h4>
       {regressed.length === 0 ? (
-        <p className="py-2 text-[0.8125rem] text-muted-foreground">Nothing regressed.</p>
+        <p className="py-2 text-[0.8125rem] text-muted-foreground">{labels.noRegressions}</p>
       ) : (
         <ul>
           {regressed.map((c) => (

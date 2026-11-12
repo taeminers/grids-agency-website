@@ -47,7 +47,7 @@ export default function Navbar({ className, inHero = false }: NavbarProps) {
   const router = useRouter();
   const pathname = usePathname();
   const navRef = useRef<HTMLElement>(null);
-  const brandRef = useRef<HTMLButtonElement>(null);
+  const brandRef = useRef<HTMLAnchorElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const detailsId = useId();
   const [hovered, setHovered] = useState(false);
@@ -164,26 +164,15 @@ export default function Navbar({ className, inHero = false }: NavbarProps) {
         </Link>
       <div className={styles.brand}>
         {scrolled ? (
-          <button
+          <Link
             ref={brandRef}
-            type="button"
-            className={cn(styles.item, styles.brandButton)}
-            aria-expanded={expanded}
-            aria-controls={detailsId}
-            aria-label={locale === "ko" ? "GRIDS AGENCY 메뉴" : "GRIDS AGENCY menu"}
-            onClick={() => {
-              if (pinnedPath === pathname) {
-                setPinnedPath(null);
-                setHovered(false);
-                setFocused(false);
-              } else {
-                setPinnedPath(pathname);
-              }
-            }}
+            href={`/${locale}`}
+            className={cn(styles.item, styles.brandLink)}
+            aria-label={locale === "ko" ? "그리즈 홈" : "Grids home"}
           >
             <BrandLogo className="size-[19px] bg-current" />
             <span>GRIDS AGENCY</span>
-          </button>
+          </Link>
         ) : (<>
         <Link
           data-hero-reveal="text"

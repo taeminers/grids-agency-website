@@ -1,0 +1,26 @@
+.toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 64px; padding: 12px 20px; border-bottom: 1px solid #e8edf1; background: #fff; }
+.deviceSwitch { display: flex; align-items: center; gap: 3px; padding: 3px; border-radius: var(--site-card-radius); background: #f1f4f6; }
+.deviceSwitch button, .reset { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 34px; padding: 7px 11px; border-radius: 5px; color: #788590; font-size: 12px; line-height: 1.4; font-weight: 500; white-space: nowrap; cursor: pointer; transition: background-color 180ms, color 180ms, box-shadow 180ms, transform 100ms; }
+.deviceSwitch button[aria-pressed="true"] { color: #2a3e51; background: #fff; box-shadow: 0 1px 3px #23394c12, 0 0 0 1px #23394c04; }
+.deviceSwitch button:not([aria-pressed="true"]):hover { color: #2a3e51; background: #e6edf2; }
+.reset { flex-shrink: 0; color: #63788b; }
+.reset:hover { color: #2a3e51; background: #f1f4f6; }
+.toolbar button:active { transform: scale(.96); }
+.toolbar button:focus-visible { outline: 2px solid var(--brand-blue); outline-offset: 2px; }
+.stage { display: flex; justify-content: center; min-width: 0; padding: 20px; background: #f0f3f6; transition: background-color 250ms, padding 300ms; }
+.viewport { flex: 0 0 auto; min-width: 0; max-width: 100%; overflow: hidden; border-radius: var(--site-card-radius); box-shadow: 0 0 0 1px #243e5610, 0 8px 30px -20px #243e5640; }
+.stage[data-preview-device="desktop"] { padding: 0; background: #fbfcfe; }
+.stage[data-preview-device="desktop"] .viewport { border-radius: 0; box-shadow: none; }
+@media (min-width: 640px) and (max-width: 1023px) {
+  .deviceSwitch button[data-device-option="desktop"] { display: none; }
+}
+@media (max-width: 639px) {
+  .toolbar { justify-content: flex-end; min-height: 60px; padding: 10px 12px; gap: 8px; }
+  .deviceSwitch { display: none; }
+  .deviceSwitch button, .reset { min-width: 38px; min-height: 36px; padding: 8px; }
+  .deviceSwitch button > span, .reset > span { display: none; }
+  .stage { padding: 0; }
+  .viewport { border-radius: 0; box-shadow: none; }
+}
+@media (prefers-reduced-motion: reduce) { .stage, .toolbar button { transition: none; } }
+@media (prefers-contrast: more) { .deviceSwitch button, .reset { color: #344d62; } .deviceSwitch button[aria-pressed="true"] { box-shadow: 0 0 0 1px #63788b; } }

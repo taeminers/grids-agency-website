@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { usePathname } from "next/navigation";
 import ConsultationLink from "./consultation-link";
 import { trackEvent } from "@/lib/analytics";
 import styles from "./consultation-button.module.css";
@@ -9,6 +10,9 @@ import { useFooterVisible } from "@/hooks/use-footer-desktop-active";
 export default function ConsultationButton() {
   const t = useTranslations("ConsultationButton");
   const inFooter = useFooterVisible();
+  const pathname = usePathname();
+
+  if (pathname.replace(/\/$/, "").endsWith("/connect")) return null;
 
   return (
     <div inert={inFooter} aria-hidden={inFooter} data-hidden={inFooter}

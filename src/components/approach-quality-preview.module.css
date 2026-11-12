@@ -1,4 +1,6 @@
 .scene {
+  composes: orange from "./grainy-surface.module.css";
+  isolation: isolate;
   position: absolute;
   inset: 0;
   display: grid;
@@ -9,12 +11,9 @@
   padding: 24px;
   overflow: hidden;
   border-radius: inherit;
-  background:
-    radial-gradient(ellipse at 18% 12%, #fff, transparent 60%),
-    radial-gradient(ellipse at 85% 85%, #c4d7e547, transparent 65%),
-    linear-gradient(145deg, #f8f9fa, #e4e8ec);
+
 }
-.cardSlot { width: 100%; min-width: 0; max-width: 300px; }
+.cardSlot { position: relative; width: 100%; min-width: 0; max-width: 300px; }
 .resultsSlot { max-width: 430px; }
 .card {
   --tuff-brand: #65aeda;

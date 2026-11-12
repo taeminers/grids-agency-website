@@ -1,9 +1,8 @@
 "use client";
 
 import { useId, useRef, useState } from "react";
-import dynamic from "next/dynamic";
 import { useLocale, useTranslations } from "next-intl";
-import { AnimatePresence, LayoutGroup, motion, useInView } from "framer-motion";
+import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 import {
   Globe2,
   Smartphone,
@@ -12,40 +11,13 @@ import {
   MessageCircle,
   ReceiptText,
   Check,
-  ListChecks,
-  Languages,
 } from "lucide-react";
 import PricingRules from "./pricing-rules";
-import PricingExamples from "./pricing-examples";
-import ConsultationLink from "@/components/consultation-link";
-import { WebGLGuard } from "@/components/coin-preview/webgl-guard";
+import PricingNotes from "./pricing-notes";
 import { useReducedMotionPreference } from "@/components/coin-preview/use-reduced-motion";
-import {
-  getRate,
-  getPackageBaseRate,
-  packageAmount,
-  packageMinimumAdjustment,
-  packageServices,
-  type Copy,
-} from "./pricing-data";
+import { packageAmount, packageServices, type Copy } from "./pricing-data";
 import styles from "./pricing-service-explorer.module.css";
-
-const SilkCurrent = dynamic(() => import("./silk-current"), { ssr: false });
-
-function QuoteBackdrop() {
-  const ref = useRef<HTMLDivElement>(null);
-  const visible = useInView(ref, { once: true, margin: "400px 0px" });
-
-  return (
-    <div ref={ref} className={styles.quoteBackdrop} aria-hidden="true">
-      {visible && (
-        <WebGLGuard>
-          <SilkCurrent />
-        </WebGLGuard>
-      )}
-    </div>
-  );
-}
+import PricingExamples from "./pricing-examples";
 
 const services = [
   { id: "homepage", icon: Globe2 },
@@ -56,12 +28,6 @@ const services = [
   { id: "rules", icon: ReceiptText },
 ] as const;
 const tierNames = ["Basic", "Plus", "Pro"];
-const pricingNotes = [
-  { id: "scope", icon: ListChecks },
-  { id: "costs", icon: ReceiptText },
-  { id: "translation", icon: Languages },
-] as const;
-
 export default function PricingServiceExplorer() {
   const t = useTranslations("Pricing");
   const locale = useLocale();
@@ -78,23 +44,6 @@ export default function PricingServiceExplorer() {
   const [tierIndex, setTierIndex] = useState(0);
   const selectorId = useId();
   const selectorRef = useRef<HTMLDivElement>(null);
-  const revealOption = (button: HTMLButtonElement) => {
-    const container = selectorRef.current;
-    if (!container) return;
-    const bounds = container.getBoundingClientRect();
-    const target = button.getBoundingClientRect();
-    const offset =
-      target.left < bounds.left + 8
-        ? target.left - bounds.left - 8
-        : target.right > bounds.right - 8
-          ? target.right - bounds.right + 8
-          : 0;
-    if (offset)
-      container.scrollBy({
-        left: offset,
-        behavior: reduced ? "instant" : "smooth",
-      });
-  };
   const renderService = (
     { id, icon: Icon }: (typeof services)[number],
     index: number,
@@ -109,11 +58,9 @@ export default function PricingServiceExplorer() {
       aria-selected={selected === id}
       tabIndex={selected === id ? 0 : -1}
       aria-controls="pricing-service-content"
-      onFocus={(event) => revealOption(event.currentTarget)}
-      onClick={(event) => {
+      onClick={() => {
         setSelected(id);
         setTierIndex(0);
-        revealOption(event.currentTarget);
       }}
       onKeyDown={(event) => {
         const next =
@@ -166,12 +113,12 @@ export default function PricingServiceExplorer() {
       ? copy(tier.title)
       : tierNames[tierIndex]
     : t("explorer.customTitle");
+  const packagePrice = service && tier ? money(packageAmount(service, tier)) : null;
 
   return (
     <section aria-label={t("packages.serviceLabel")}>
       <LayoutGroup id={selectorId}>
         <motion.div
-          layoutScroll
           ref={selectorRef}
           className={styles.serviceGrid}
           role="tablist"
@@ -204,9 +151,40 @@ export default function PricingServiceExplorer() {
                   {t("explorer.heading")}
                 </span>
               </h2>
-              <p>{t(`explorer.services.${selected}.description`)}</p>
             </div>
             <div className={styles.detailGrid}>
+              <div className={styles.quote}>
+                <motion.div
+                  key={`${selected}-${tierIndex}`}
+                  initial={reduced ? false : { opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: reduced ? 0 : 0.25 }}
+                  className={styles.quoteInner}
+                >
+                  <div className={styles.quoteHeader}>
+                    <h3>{tierTitle}</h3>
+                    <span>{t("vatNote")}</span>
+                  </div>
+                  <div className={styles.priceStage}>
+                    <p className="sr-only">
+                      {t(
+                        service?.id === "homepage"
+                          ? "packages.packagePrice"
+                          : "packages.proposedPrice",
+                      )}
+                    </p>
+                    <p
+                      className={styles.price}
+                      data-custom={!service || !tier}
+                      aria-label={packagePrice ? t("explorer.approximateMinimum", { price: packagePrice }) : undefined}
+                      aria-live="polite"
+                      aria-atomic="true"
+                    >
+                      {packagePrice ? `~ ${packagePrice}+` : t("explorer.customPrice")}
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
               <div className={styles.options}>
                 {service ? (
                   service.tiers.map((option, index) => {
@@ -223,9 +201,10 @@ export default function PricingServiceExplorer() {
                             className={styles.optionTrigger}
                             aria-expanded={open}
                             aria-controls={`pricing-tier-${selected}-${index}`}
-                            onClick={() => setTierIndex(index)}
+                            onClick={() => {
+                              setTierIndex(index);
+                            }}
                           >
-                            <span className={styles.number}>0{index + 1}</span>
                             <span>
                               {option.title
                                 ? copy(option.title)
@@ -289,98 +268,9 @@ export default function PricingServiceExplorer() {
                   </div>
                 )}
               </div>
-              <div className={styles.quote}>
-                <QuoteBackdrop />
-                <div className={styles.quoteSurface}>
-                  <motion.div
-                    key={`${selected}-${tierIndex}`}
-                    initial={reduced ? false : { opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: reduced ? 0 : 0.25 }}
-                    className={styles.quoteInner}
-                  >
-                    <div className={styles.quoteHeader}>
-                      <span>{t(`explorer.services.${selected}.title`)}</span>
-                      <span>{t("vatNote")}</span>
-                    </div>
-                    <h3>{tierTitle}</h3>
-                    <p className={styles.priceLabel}>
-                      {t(
-                        service?.id === "homepage"
-                          ? "packages.packagePrice"
-                          : "packages.proposedPrice",
-                      )}
-                    </p>
-                    <p className={styles.price}>
-                      {service && tier
-                        ? money(packageAmount(service, tier))
-                        : t("explorer.customPrice")}
-                    </p>
-                    {service && tier && (
-                      <dl className={styles.breakdown}>
-                        <div>
-                          <dt>{t("packages.base")}</dt>
-                          <dd>
-                            {money(getPackageBaseRate(service, tier).amount!)}
-                          </dd>
-                        </div>
-                        {tier.extras.map((item) => (
-                          <div key={item.id}>
-                            <dt>
-                              {copy(getRate(item.id).label)}
-                              {item.quantity > 1 ? ` × ${item.quantity}` : ""}
-                            </dt>
-                            <dd>
-                              {money(getRate(item.id).amount! * item.quantity)}
-                            </dd>
-                          </div>
-                        ))}
-                        {packageMinimumAdjustment(service, tier) > 0 && (
-                          <div>
-                            <dt>{t("packages.minimumAdjustment")}</dt>
-                            <dd>
-                              {money(packageMinimumAdjustment(service, tier))}
-                            </dd>
-                          </div>
-                        )}
-                      </dl>
-                    )}
-                    {selected === "webApp" && (
-                      <p className={styles.quoteNote}>
-                        {t("explorer.webAppPricingNote")}
-                      </p>
-                    )}
-                    <p className={styles.quoteNote}>
-                      {t(
-                        service
-                          ? service.id === "homepage"
-                            ? "packages.homepageNote"
-                            : "packages.draftNote"
-                          : "explorer.customNote",
-                      )}
-                    </p>
-                    <div className={styles.quoteAction}>
-                      <ConsultationLink
-                        href={`/${locale}/connect`}
-                        label={t("packages.cta")}
-                      />
-                    </div>
-                  </motion.div>
-                </div>
-              </div>
             </div>
-            <dl className={styles.notes}>
-              {pricingNotes.map(({ id, icon: Icon }) => (
-                <div key={id} className={styles.noteRow}>
-                  <dt>
-                    <Icon size={18} strokeWidth={1.5} aria-hidden="true" />
-                    <span>{t(`packages.notes.${id}.title`)}</span>
-                  </dt>
-                  <dd>{t(`packages.notes.${id}.body`)}</dd>
-                </div>
-              ))}
-            </dl>
-            {/* <PricingExamples service={selected} /> */}
+            <PricingNotes />
+            <PricingExamples service={selected} />
           </>
         )}
       </div>
