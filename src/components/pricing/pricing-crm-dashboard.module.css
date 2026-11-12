@@ -1,0 +1,114 @@
+.dashboard { container: crm-dashboard / inline-size; color: #eeeeF1; }
+.layout { display: grid; grid-template-columns: minmax(0, 1fr) 250px; }
+.mainColumn { min-width: 0; padding-right: 26px; }
+.metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 18px 0 28px; border-bottom: 1px solid #242428; }
+.metrics > div { min-width: 0; padding: 0 20px; border-right: 1px solid #242428; }
+.metrics > div:first-child { padding-left: 0; }
+.metrics > div:last-child { border: 0; padding-right: 0; }
+.metrics p { margin: 0 0 14px; color: #919199; font-size: 11px; line-height: 1.5; }
+.metrics strong { display: block; font-size: clamp(19px, 1.8vw, 27px); font-weight: 550; line-height: 1.2; letter-spacing: -.04em; overflow-wrap: anywhere; }
+.metrics > div > span { display: flex; align-items: center; flex-wrap: wrap; gap: 3px; margin-top: 12px; font-size: 10px; line-height: 1.5; }
+.positive { color: #30bf98; }
+.negative { color: #eb6d7f; }
+.positive > span, .negative > span { margin-left: 3px; color: #85858f; font-size: 10px; }
+.revenue { padding: 24px 0 22px; border-bottom: 1px solid #242428; }
+.revenue > header { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.revenue header strong { font-size: 29px; line-height: 1.2; letter-spacing: -.035em; font-weight: 550; }
+.revenue header p { margin: 7px 0 0; color: #87878f; font-size: 11px; }
+.revenue header > span { display: flex; align-items: center; flex-wrap: wrap; gap: 2px; font-size: 11px; }
+.chart { position: relative; margin-top: 24px; }
+.chart > svg { display: block; width: 100%; height: auto; min-height: 190px; overflow: visible; touch-action: pan-y; }
+.chart:focus-visible { outline: 1px solid #8c8e9a; outline-offset: 6px; border-radius: 4px; }
+.chartDates { display: flex; justify-content: space-between; padding-left: 6.7%; color: #86868f; font-size: 9px; font-variant-numeric: tabular-nums; }
+.chartTooltip { position: absolute; display: grid; gap: 4px; padding: 9px 12px; border: 1px solid #33343b; border-radius: 6px; background: #1c1c21; pointer-events: none; transform: translateX(-50%); box-shadow: 0 8px 24px #0005; font-size: 10px; white-space: nowrap; }
+.chartTooltip > span { color: #9798a1; }
+.chartTooltip strong { font-weight: 500; }
+.lowerGrid { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid #242428; }
+.lowerGrid > section { padding: 24px 0; min-width: 0; }
+.lowerGrid > section + section { padding-left: 24px; margin-left: 24px; border-left: 1px solid #242428; }
+.dashboard h3 { margin: 0; color: #b6b6bf; font-size: 11px; font-weight: 500; }
+.insight h3 { display: flex; align-items: center; gap: 7px; }
+.insight > p { margin: 19px 0 15px; max-width: 330px; color: #85858f; font-size: 20px; line-height: 1.5; letter-spacing: -.025em; }
+.insight p strong { color: #e1e1e7; font-weight: 500; }
+.insight > button { display: inline-flex; align-items: center; gap: 7px; color: #a5a5af; font-size: 10px; cursor: pointer; }
+.insight > button:hover { color: #fff; }
+.pipeline > strong { display: block; margin-top: 17px; font-size: 24px; font-weight: 500; letter-spacing: -.03em; }
+.pipeline > strong > span { color: #74747e; font-size: 10px; font-weight: 400; }
+.pipelineBar { display: flex; gap: 4px; margin-top: 36px; }
+.pipelineBar > span { position: relative; height: 14px; border-radius: 12px; background: #8c8d96; }
+.pipelineBar > span:nth-child(2) { background: #55565e; }
+.pipelineBar > span:nth-child(3) { background: #303138; }
+.pipelineBar > span > span { position: absolute; top: -23px; color: #8f8f98; font-size: 10px; }
+.pipeline ul, .legend { display: flex; flex-wrap: wrap; gap: 12px; margin: 13px 0 0; padding: 0; list-style: none; color: #878791; font-size: 9px; }
+.pipeline li, .legend li { display: flex; align-items: center; gap: 5px; }
+.pipeline i, .legend i { width: 5px; height: 5px; border-radius: 50%; background: #9b9ca5; }
+.legend li + li i { background: #37383f; }
+.summary { min-width: 0; padding-left: 24px; border-left: 1px solid #242428; }
+.revenueSummary { padding: 16px 0 24px; }
+.gauge { position: relative; max-width: 250px; margin: 0 auto; }
+.gauge > svg { display: block; width: 100%; }
+.gaugeCenter { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding-top: 10px; }
+.gaugeCenter > span { display: grid; place-items: center; width: 33px; height: 33px; margin-bottom: 12px; border-radius: 50%; background: #232328; color: #b1b1bb; }
+.gaugeCenter p { margin: 0 0 5px; color: #888891; font-size: 11px; }
+.gaugeCenter strong { font-size: 17px; font-weight: 500; letter-spacing: -.025em; }
+.revenueSummary > .legend { justify-content: center; margin-top: -7px; }
+.detailButton { display: flex; width: 100%; align-items: center; justify-content: center; gap: 6px; min-height: 32px; margin-top: 20px; border: 1px solid #303035; border-radius: 5px; background: #202024; color: #ddddE3; font-size: 10px; cursor: pointer; transition: background 150ms; }
+.detailButton:hover { background: #2c2c32; }
+.detailButton > svg { transition: transform 200ms; }
+.breakdown { display: grid; gap: 9px; margin: 16px 0 0; font-size: 10px; }
+.breakdown > div { display: flex; justify-content: space-between; gap: 10px; }
+.breakdown dt { color: #888891; }
+.breakdown dd { margin: 0; font-variant-numeric: tabular-nums; }
+.customers { position: relative; padding: 24px 0; border-top: 1px solid #242428; }
+.customers > strong { display: block; margin-top: 12px; font-size: 28px; line-height: 1.2; letter-spacing: -.035em; font-weight: 550; }
+.customerRate { position: absolute; top: 64px; right: 21%; color: #bfc0c8; font-size: 10px; }
+.customerBars { display: flex; gap: 3px; margin-top: 28px; height: 21px; }
+.customerBars > span { flex: 1; min-width: 0; border-radius: 2px; background: #292a30; }
+.customerBars > span[data-filled="true"] { background: #888993; }
+.payment { padding: 24px 0; border-top: 1px solid #242428; }
+.payment dl { display: grid; gap: 17px; margin: 22px 0 0; font-size: 10px; }
+.payment dl > div { display: flex; justify-content: space-between; gap: 12px; }
+.payment dt { color: #85858e; }
+.payment dd { min-width: 0; margin: 0; text-align: right; font-variant-numeric: tabular-nums; }
+.payment dd > span { display: inline-block; padding: 3px 10px; border-radius: 12px; background: #242429; color: #c6c6cf; font-size: 9px; }
+.activity { padding: 22px 0 8px; }
+.activity > header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; }
+.activity header > span { color: #85858f; font-size: 9px; }
+.activity [role="row"] { display: flex; align-items: center; gap: 10px; padding: 12px 0; border-top: 1px solid #1e1e23; }
+.activityDot { width: 6px; height: 6px; border-radius: 2px; background: #858590; }
+.activity [role="row"] > div { display: grid; gap: 4px; flex: 1; min-width: 0; }
+.activity [role="cell"] strong { font-size: 10px; font-weight: 500; }
+.activity [role="cell"] > span { color: #777781; font-size: 9px; }
+.activity .eventStatus { color: #aaaab4; font-size: 9px; }
+.activity time { margin-left: 9px; color: #85858f; font-size: 9px; }
+@container crm-dashboard (max-width: 760px) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  .mainColumn { padding-right: 0; }
+  .summary { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); padding: 0; border: 0; border-top: 1px solid #242428; }
+  .revenueSummary { grid-row: span 2; padding-right: 24px; }
+  .customers, .payment { border-left: 1px solid #242428; padding-left: 24px; }
+  .customers { border-top: 0; }
+}
+@container crm-dashboard (max-width: 430px) {
+  .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 0; padding-top: 12px; }
+  .metrics > div { padding: 0 12px; }
+  .metrics > div:nth-child(2) { border: 0; padding-right: 0; }
+  .metrics > div:last-child { padding: 0; }
+  .metrics strong { font-size: 24px; }
+  .metrics > div > span > span { display: none; }
+  .revenue header strong { font-size: 25px; }
+  .revenue header > span { font-size: 10px; }
+  .revenue header > span > span { display: none; }
+  .chart > svg { height: 190px; min-height: 0; }
+  .chart > svg text { display: none; }
+  .chartDates { font-size: 8px; }
+  .chartDates > span:nth-child(even) { display: none; }
+  .lowerGrid { grid-template-columns: minmax(0,1fr); }
+  .lowerGrid > section + section { padding-left: 0; margin-left: 0; border-left: 0; border-top: 1px solid #242428; }
+  .summary { display: block; }
+  .revenueSummary { padding-right: 0; }
+  .customers, .payment { padding-left: 0; border-left: 0; border-top: 1px solid #242428; }
+  .activity .eventStatus { display: none; }
+  .insight > p { font-size: 22px; }
+}
+@media (prefers-reduced-motion: reduce) { .dashboard * { transition: none !important; } }

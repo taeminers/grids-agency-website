@@ -1,0 +1,61 @@
+.scenario { min-width: 0; word-break: keep-all; overflow-wrap: anywhere; }
+.scenario + span { display: none; }
+.workflow { border-radius: var(--site-card-radius); padding: 12px 14px; background: var(--surface); }
+.workflowLabel { margin: 0 0 12px; color: var(--muted-foreground); font-size: 10px; font-weight: 500; letter-spacing: .02em; }
+.workflow ol { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
+.workflow li { display: flex; align-items: flex-start; gap: 9px; transition: opacity 220ms; }
+.workflow li[data-state="pending"] { opacity: .5; }
+.stepIcon { display: flex; align-items: center; justify-content: center; flex: 0 0 18px; height: 18px; border-radius: 50%; color: var(--brand); background: color-mix(in srgb, var(--brand) 10%, transparent); }
+.stepIcon > span { width: 4px; height: 4px; border-radius: 50%; background: var(--muted-foreground); }
+.workflow li > span:nth-child(2) { flex: 1; min-width: 0; }
+.workflow li strong { display: block; font-size: 12px; font-weight: 550; line-height: 1.5; }
+.workflow li > span:nth-child(2) > span { display: block; margin-top: 2px; color: var(--muted-foreground); font-size: 10px; line-height: 1.6; overflow-wrap: anywhere; }
+.stepStatus { flex-shrink: 0; padding-top: 1px; color: var(--muted-foreground); font-size: 10px; line-height: 1.8; }
+.spinner { animation: spin 1.3s linear infinite; }
+.sources { display: grid; gap: 6px; margin: 16px 0; }
+.sources > p { display: flex; align-items: center; gap: 4px; margin: 0 0 2px; color: var(--muted-foreground); font-size: 10px; }
+.source { min-width: 0; overflow: hidden; border: 1px solid color-mix(in srgb, var(--foreground) 9%, transparent); border-radius: var(--site-card-radius); background: var(--surface-inset); }
+.source > button { display: flex; width: 100%; align-items: center; gap: 10px; padding: 10px; text-align: left; cursor: pointer; transition: background 150ms; }
+.source > button:hover { background: var(--surface); }
+.provider { display: flex; flex-shrink: 0; align-items: center; justify-content: center; width: 24px; height: 24px; color: var(--muted-foreground); }
+.sourceName { display: grid; flex: 1; min-width: 0; gap: 2px; }
+.sourceName strong { font-size: 11px; font-weight: 500; overflow-wrap: anywhere; }
+.sourceName > span { color: var(--muted-foreground); font-size: 9px; overflow-wrap: anywhere; }
+.source > button > svg { flex-shrink: 0; color: var(--muted-foreground); transition: transform 250ms; }
+.flipped { transform: rotate(180deg); }
+.sourcePreview { overflow: hidden; }
+.sourcePreview > p { margin: 0; padding: 0 14px 14px; white-space: pre-line; overflow-wrap: anywhere; font-size: 11px; line-height: 1.8; }
+.sourcePreview > .previewLabel { padding-bottom: 5px; color: var(--muted-foreground); font-size: 10px; }
+.answer { margin-top: 18px; }
+.replyCursor { display: inline-block; width: 2px; height: 1.1em; margin-left: 3px; vertical-align: -.15em; background: var(--brand); animation: cursor-blink 1s ease-in-out infinite; }
+@keyframes cursor-blink { 50% { opacity: .25; } }
+.emailReveal { overflow: hidden; }
+.email { overflow: hidden; margin-top: 18px; border: 1px solid color-mix(in srgb, var(--foreground) 9%, transparent); border-radius: var(--site-card-radius); background: var(--surface-inset); }
+.email header { display: flex; align-items: center; gap: 8px; padding: 12px 14px; border-bottom: 1px solid var(--surface); }
+.email header strong { font-size: 11px; font-weight: 550; }
+.email header > span { margin-left: auto; color: var(--muted-foreground); font-size: 9px; }
+.email dl { display: grid; gap: 9px; margin: 0; padding: 14px; font-size: 11px; }
+.email dl > div { display: flex; gap: 12px; }
+.email dt { flex: 0 0 40px; color: var(--muted-foreground); }
+.email dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.emailBody { overflow: hidden; }
+.emailBody > p { margin: 0; padding: 0 14px 14px; white-space: pre-line; font-size: 12px; line-height: 1.85; overflow-wrap: anywhere; }
+.attachment { display: inline-flex; align-items: center; gap: 6px; margin: 0 14px 14px; padding: 6px 8px; border-radius: 5px; background: var(--surface); font-size: 10px; overflow-wrap: anywhere; }
+.email footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 12px; background: color-mix(in srgb, var(--surface) 60%, white); }
+.email button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 32px; padding: 5px 8px; border-radius: 6px; font-size: 11px; font-weight: 500; cursor: pointer; transition: background 150ms, transform 100ms; }
+.email button:active { transform: scale(.97); }
+.email .review:hover { background: var(--surface); }
+.email .send { background: var(--foreground); color: white; }
+.sent { display: flex; gap: 10px; padding: 18px 14px; color: var(--positive); }
+.sent strong { font-size: 12px; font-weight: 550; }
+.sent p { margin: 4px 0 0; color: var(--muted-foreground); font-size: 11px; overflow-wrap: anywhere; }
+.scenario button:focus-visible { outline: 2px solid var(--brand); outline-offset: -2px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@container chat (max-width: 380px) {
+  .workflow { padding: 10px; }
+  .stepStatus { display: none; }
+  .source > button { gap: 6px; padding: 8px; }
+  .email header { flex-wrap: wrap; }
+}
+@media (prefers-reduced-motion: reduce) { .scenario *, .scenario *::before { animation: none !important; transition: none !important; } }
+@media (prefers-contrast: more) { .source, .email { border-color: var(--muted-foreground); } .workflow li[data-state="pending"] { opacity: .8; } }

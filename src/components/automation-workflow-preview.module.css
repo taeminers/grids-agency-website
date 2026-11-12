@@ -1,0 +1,25 @@
+/* Match the SVG's painted viewBox, including its previous 280px height cap. */
+.diagram {
+  position: relative;
+  width: 100%;
+  max-width: calc(280px * 360 / 264);
+  aspect-ratio: 360 / 264;
+  flex: none;
+}
+
+/* Keep the transformed canvas outside foreignObject: WebKit can paint it
+   outside the SVG's coordinate system. Both layers share this HTML frame. */
+.avatar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(100% * 40 / 360);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+}
+
+.avatarCanvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}

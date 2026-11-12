@@ -1,0 +1,64 @@
+.surface {
+  background:
+    radial-gradient(ellipse at 2% 35%, var(--grain-glow-left, rgb(216 239 255 / .92)), transparent 47%),
+    radial-gradient(ellipse at 100% 32%, var(--grain-glow-right, rgb(139 207 240 / .92)), transparent 49%),
+    radial-gradient(ellipse at 51% 70%, var(--grain-depth, #298bcd), transparent 62%),
+    radial-gradient(ellipse at 100% 100%, var(--grain-edge, #8395b7), transparent 52%),
+    linear-gradient(165deg, var(--grain-top, #abb9cc) 0%, var(--grain-mid, #81b9df) 35%, var(--grain-lower, #2387c9) 67%, var(--grain-bottom, #547eac) 100%);
+}
+.surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: url("/textures/fine-grain.svg") repeat;
+  background-size: 180px 180px;
+  opacity: .55;
+  mix-blend-mode: soft-light;
+}
+
+.purple {
+  composes: surface;
+  --grain-glow-left: rgb(242 225 255 / .92);
+  --grain-glow-right: rgb(207 186 246 / .92);
+  --grain-depth: #9570c8;
+  --grain-edge: #a094bb;
+  --grain-top: #beb2cb;
+  --grain-mid: #b69bdb;
+  --grain-lower: #9568c6;
+  --grain-bottom: #8572a6;
+}
+.orange {
+  composes: surface;
+  --grain-glow-left: rgb(255 239 213 / .92);
+  --grain-glow-right: rgb(255 206 171 / .92);
+  --grain-depth: #e9a166;
+  --grain-edge: #b59a8f;
+  --grain-top: #cebaae;
+  --grain-mid: #e9b68e;
+  --grain-lower: #df925c;
+  --grain-bottom: #b88c73;
+}
+
+/* Pearl and ice-blue material for the offering showcases. */
+.pearl {
+  background:
+    radial-gradient(ellipse at 5% 0%, #ffffffe6, transparent 65%),
+    radial-gradient(ellipse at 5% 95%, #b9dcedb3, transparent 70%),
+    radial-gradient(ellipse at 100% 15%, #c9d6ee99, transparent 65%),
+    linear-gradient(145deg, #edf2f7, #d4e5f0);
+}
+.pearl::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: url("/textures/film-grain.svg") repeat;
+  background-size: 192px;
+  opacity: .085;
+  mix-blend-mode: multiply;
+}
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  .pearl { background: #e2ebf3; }
+  .pearl::before { display: none; }
+}

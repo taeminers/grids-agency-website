@@ -1,11 +1,9 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { useId, useRef, useState, type KeyboardEvent } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useReducedMotionPreference } from "./coin-preview/use-reduced-motion";
-import { WebGLGuard } from "./coin-preview/webgl-guard";
 import WebsiteHeroPreview from "./website-hero-preview";
 import MobileAppPreview from "./mobile-app-preview";
 import CrmDashboardPreview from "./crm-dashboard-preview";
@@ -13,7 +11,6 @@ import AutomationWorkflowPreview from "./automation-workflow-preview";
 import AiChatPreview from "./ai-chat-preview";
 import styles from "./website-preview.module.css";
 
-const CobaltLouvre = dynamic(() => import("./originkit/ui/cobalt-louvre"), { ssr: false });
 
 const services = [
   { key: "commerce", label: "website", Preview: WebsiteHeroPreview },
@@ -26,10 +23,8 @@ const services = [
 export default function WebsitePreview() {
   const t = useTranslations("HomeOfferings.build.visual");
   const id = useId();
-  const host = useRef<HTMLDivElement>(null);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
   const [active, setActive] = useState(0);
-  const backgroundReady = useInView(host, { once: true, margin: "400px 0px" });
   const reduced = useReducedMotionPreference();
 
   function navigate(event: KeyboardEvent<HTMLButtonElement>, index: number) {
@@ -48,15 +43,8 @@ export default function WebsitePreview() {
   }
 
   return (
-    <div ref={host} className={styles.visual}>
-      <div className={styles.backdrop} aria-hidden="true">
-        {backgroundReady && !reduced && (
-          <WebGLGuard>
-            <CobaltLouvre background="#171819" glowColor="#ffffff"
-              orientation="vertical" glass={{ slats: 18 }} pointerReactive={false} />
-          </WebGLGuard>
-        )}
-      </div>
+    <div className={styles.visual}>
+      <div className={styles.backdrop} aria-hidden="true" />
       <motion.div className={styles.stack} initial={false}
         animate={{ maxWidth: active === 0 ? 640 : 480 }}
         transition={reduced ? { duration: 0 } : { type: "spring", bounce: 0, duration: 0.55 }}>
@@ -73,13 +61,13 @@ export default function WebsitePreview() {
             ))}
           </div>
         </div>
-        <div className={styles.card} data-appearance={active === 0 ? "light" : "dark"}>
+        <div className={styles.card}>
           {services.map(({ key, Preview }, index) => (
             <div key={key} role="tabpanel" id={`${id}-panel-${key}`}
               aria-labelledby={`${id}-tab-${key}`} hidden={active !== index}
               tabIndex={0} className={styles.panel}>
               {active === index && (
-                <div className={`dark ${styles.preview}`} data-service={key}>
+                <div className={styles.preview} data-service={key}>
                   <Preview />
                 </div>
               )}

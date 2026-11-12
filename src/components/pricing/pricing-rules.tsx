@@ -23,7 +23,6 @@ export default function PricingRules() {
     <section aria-labelledby="pricing-rules-title">
       <div className={rulesGrid.heading}>
         <h2 id="pricing-rules-title">{t("tabs.rules")}<span>{t("rules.headline")}</span></h2>
-        <p>{t("rules.description")}</p>
       </div>
       <div className={rulesGrid.grid}>
         <RulesNavigation label={t("rules.contents")} items={[

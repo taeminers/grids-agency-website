@@ -1,17 +1,11 @@
 import Image from "next/image";
-import dynamic from "next/dynamic";
-import { useRef } from "react";
-import { useInView } from "framer-motion";
 import { Plug, Plus, Search } from "lucide-react";
 import { useTranslations } from "next-intl";
 import BrandLogo from "./brand-logo";
 import FallbackAvatar from "./fallback-avatar";
 import { RotatingCross } from "./amicro/rotating-cross";
-import { useReducedMotionPreference } from "./coin-preview/use-reduced-motion";
-import { WebGLGuard } from "./coin-preview/webgl-guard";
 import styles from "./growth-preview.module.css";
 
-const CobaltLouvre = dynamic(() => import("./originkit/ui/cobalt-louvre"), { ssr: false });
 
 const tools = [
   { key: "analytics", name: "Google Analytics", icon: "/icons/integrations/google-analytics.svg" },
@@ -21,19 +15,10 @@ const tools = [
 
 export default function GrowthPreview() {
   const t = useTranslations("HomeOfferings.growth.visual");
-  const reduced = useReducedMotionPreference();
-  const visualRef = useRef<HTMLDivElement>(null);
-  const visible = useInView(visualRef, { once: true, margin: "400px 0px" });
 
   return (
-    <div ref={visualRef} className={styles.visual}>
-      <div className={styles.backdrop} aria-hidden="true">
-        {visible && !reduced && (
-          <WebGLGuard>
-            <CobaltLouvre background="#171819" glowColor="#ffffff" pointerReactive={false} />
-          </WebGLGuard>
-        )}
-      </div>
+    <div className={styles.visual}>
+      <div className={styles.backdrop} aria-hidden="true" />
       <div className={styles.stack}>
         <div className={styles.card}>
         <div className={styles.connection} aria-hidden="true">

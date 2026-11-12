@@ -4,6 +4,7 @@ import { useEffect, useId, useRef } from "react";
 import gsap from "gsap";
 import { useTranslations } from "next-intl";
 import FallbackAvatar from "./fallback-avatar";
+import styles from "./automation-workflow-preview.module.css";
 
 const branches = [
   { key: "naver", x: 30, y: 18, path: "M144 132H134Q123 132 123 121V65Q123 54 112 54H102", icon: "naver.svg" },
@@ -64,28 +65,30 @@ export default function AutomationWorkflowPreview() {
 
   return (
     <div ref={root} data-workflow-preview role="img" aria-label={t("previewLabel")} className="flex h-full items-center justify-center text-foreground">
-      <svg aria-hidden="true" viewBox="0 0 360 264" className="h-full max-h-[280px] w-full max-w-[440px] overflow-visible">
-        <defs>
-          {branches.map(({ path }, index) => (
-            <mask key={index} id={`${id}-branch-${index}`} maskUnits="userSpaceOnUse" x="0" y="0" width="360" height="264">
-              <path data-flow-mask={index} d={path} pathLength="100" fill="none" stroke="white" strokeWidth="6" strokeDasharray="100" strokeDashoffset="100" />
-            </mask>
-          ))}
-        </defs>
-        <g data-flow-connections>
-          {branches.map(({ path }, index) => <path key={index} d={path} mask={`url(#${id}-branch-${index})`} fill="none" stroke="currentColor" className="text-foreground/35" strokeWidth="1.5" strokeDasharray="1 5" strokeLinecap="round" />)}
-        </g>
-        {branches.map(({ key, x, y, icon }, index) => (
-          <g key={key} data-flow-node={index} opacity="0.65" className="opacity-65 [filter:grayscale(1)_blur(1.25px)]">
-            <rect x={x} y={y} width="72" height="72" className="fill-background stroke-foreground/15" strokeWidth="1" />
-            <image href={`/icons/integrations/${icon}`} x={x + 20} y={y + 20} width="32" height="32" />
+      <div className={styles.diagram}>
+        <svg aria-hidden="true" viewBox="0 0 360 264" className="block size-full overflow-visible">
+          <defs>
+            {branches.map(({ path }, index) => (
+              <mask key={index} id={`${id}-branch-${index}`} maskUnits="userSpaceOnUse" x="0" y="0" width="360" height="264">
+                <path data-flow-mask={index} d={path} pathLength="100" fill="none" stroke="white" strokeWidth="6" strokeDasharray="100" strokeDashoffset="100" />
+              </mask>
+            ))}
+          </defs>
+          <g data-flow-connections>
+            {branches.map(({ path }, index) => <path key={index} d={path} mask={`url(#${id}-branch-${index})`} fill="none" stroke="currentColor" className="text-foreground/35" strokeWidth="1.5" strokeDasharray="1 5" strokeLinecap="round" />)}
           </g>
-        ))}
-        <rect x="144" y="96" width="72" height="72" className="fill-background stroke-foreground/15" strokeWidth="1" />
-        <foreignObject x="160" y="112" width="40" height="40">
-          <FallbackAvatar name="GRIDS Growth" size={40} animated={true} className="pointer-events-auto block" />
-        </foreignObject>
-      </svg>
+          {branches.map(({ key, x, y, icon }, index) => (
+            <g key={key} data-flow-node={index} opacity="0.65" className="opacity-65 [filter:grayscale(1)_blur(1.25px)]">
+              <rect x={x} y={y} width="72" height="72" className="fill-background stroke-foreground/15" strokeWidth="1" />
+              <image href={`/icons/integrations/${icon}`} x={x + 20} y={y + 20} width="32" height="32" />
+            </g>
+          ))}
+          <rect data-flow-hub x="144" y="96" width="72" height="72" className="fill-background stroke-foreground/15" strokeWidth="1" />
+        </svg>
+        <div className={styles.avatar} aria-hidden="true">
+          <FallbackAvatar name="GRIDS Growth" size={40} animated={true} className={styles.avatarCanvas} />
+        </div>
+      </div>
     </div>
   );
 }

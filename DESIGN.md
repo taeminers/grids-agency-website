@@ -48,3 +48,17 @@ The incoming section owns the gap above it: use `.site-section` or `padding-bloc
 Homepage aliases in `home-spacing.module.css` build on these global tokens. The incoming gaps for Approach, Featured Work, and FAQ are twice the base section gap (128 / 160 / 192 / 240px across the four breakpoints). Offerings keeps the base gap at the top of the sheet. Heading-to-content spacing stays on the base heading scale. The intro retains its original centered, viewport-height stage and text-to-signature timing. After completion, the following sections form one continuous sheet that scrolls over it. This sheet has a subtle upper edge and 24px top corners as an intentional full-width surface exception; its inner cards still use 8px corners. Reduced motion uses normal document flow.
 
 Keep intentional hero heights, navigation clearance, scroll-animation tracks, and the footer's viewport-based composition. These are layout behaviors, not extra section margins. Internal card spacing and typography remain local. When the FAQ heading stacks above its description, both align left.
+
+## Spacing within sections
+
+Home and Pricing share these internal spacing tokens. Keep them separate from the existing section-spacing contract above.
+
+- `--site-heading-space`: heading to primary content (existing responsive 32–56px scale).
+- `--site-heading-column-gap`: space between a heading and its adjacent description (1.5–3rem).
+- `--site-card-gap`: sibling cards and carousel slides (1.5rem).
+- `--site-stack-gap`: separate content groups, such as service tabs to their panel or pricing cards to scope notes (2–3rem).
+- `--site-card-padding`: standard card interiors (1.25–2rem).
+- `--site-copy-gap`: heading/body/action groups inside cards (1.5rem).
+- `--site-detail-gap`: closely related details and list items (.75rem).
+
+Use `rem`-based tokens for structural content spacing. `em` remains appropriate for text-relative inline logos and optical offsets. Preserve compact control geometry, accordion label alignment, product demo internals, hero clearance, and scroll-animation tracks; they do not need the same spacing as standalone cards. Do not increase section gaps to compensate for cramped card interiors.

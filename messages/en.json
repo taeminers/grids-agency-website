@@ -306,8 +306,7 @@
     },
     "layoutHeading": "Questions,",
     "layoutHeadingSecondary": "answered.",
-    "contactCardTitle": "Hi, I’m LOCUS.",
-    "contactCardDescription": "I’m getting ready to launch, so I can give you helpful, accurate answers. Once I’m ready, you’ll be able to ask me anything about GRIDS and our services right here."
+    "contactMessage": "<highlight>Hi, I’m LOCUS.</highlight> I’m preparing better answers. Soon, you can ask me anything about GRIDS and our services."
   },
   "ConsultationButton": {
     "label": "Let’s talk",
@@ -1328,16 +1327,18 @@
       "cta": "Discuss a project",
       "notes": {
         "scope": {
-          "title": "A fixed fee for an agreed scope",
-          "body": "Pages, features and revisions are agreed first. Requests outside that scope receive a separate quote."
+          "message": "<highlight>A fixed fee for the agreed scope.</highlight> Additional requests are quoted separately."
         },
         "costs": {
-          "title": "Third-party costs are separate",
-          "body": "Domains, hosting, API usage, payment fees and paid assets are excluded."
+          "message": "Domains, hosting, APIs and other <highlight>third-party costs are separate.</highlight>",
+          "visual": {
+            "domain": "Domain",
+            "hosting": "Hosting",
+            "api": "API"
+          }
         },
         "translation": {
-          "title": "Content and translations",
-          "body": "We review your brand materials and content during consultation. Multilingual packages assume client-supplied translations."
+          "message": "We review your brand materials together. <highlight>You provide the translations.</highlight>"
         }
       }
     },
@@ -1482,6 +1483,208 @@
       "conversation": "Conversation preview",
       "automationPlaceholder": "Follow a workflow from input to outcome",
       "chatbotPlaceholder": "A space to ask questions and explore answers",
+      "chat": {
+        "agent": "LOCUS AI",
+        "user": "You",
+        "ui": {
+          "hideSidebar": "Hide sidebar",
+          "showSidebar": "Show sidebar",
+          "history": "Chat history",
+          "openHistory": "Open chat history",
+          "closeHistory": "Close chat history",
+          "close": "Close",
+          "newChat": "New chat",
+          "share": "Share chat",
+          "starterHeading": "What can I help you with?",
+          "placeholder": "Ask a question",
+          "replyPlaceholder": "Write a message",
+          "message": "Message",
+          "followupPlaceholder": "Add a follow-up question",
+          "working": "Writing a reply",
+          "stop": "Stop",
+          "queue": "Queue",
+          "send": "Send",
+          "pinned": "Pinned",
+          "today": "Today",
+          "yesterday": "Yesterday",
+          "previousWeek": "Previous 7 days",
+          "older": "Older",
+          "recent": "Recent",
+          "searchChats": "Search chats",
+          "noChatsFound": "No chats found",
+          "noChats": "No chats yet",
+          "trySearch": "Try a different search.",
+          "conversation": "Conversation",
+          "unread": "Unread",
+          "jumpLatest": "Jump to latest",
+          "newMessages": "{count} new",
+          "attachFile": "Attach files",
+          "removeFile": "Remove attachment {name}",
+          "attachments": "Attachments",
+          "tokens": "tokens",
+          "tokenUsage": "Estimated token usage",
+          "tokenValue": "{used} of {limit} tokens used",
+          "attachedFiles": "Attached files"
+        },
+        "fallback": "No company resources or external services are connected yet, so I can’t answer your specific question here just yet.\n\nImagine connecting your product information, internal guides and FAQs. LOCUS could be configured to find relevant information and answer questions, from customer pricing inquiries to your team’s everyday procedures.\n\nLess waiting for customers. Less repetitive explaining for your team. An AI assistant that answers from your company’s own resources—what would you like LOCUS to help with first?",
+        "topics": {
+          "quote": {
+            "title": "A quote grounded in contract history",
+            "hint": "Drive price list × CRM contract terms",
+            "question": "Quote a CRM build for Hanbit Living, including data migration. Check their existing-customer discount too.",
+            "answer": "I checked the service price list against Hanbit Living’s existing contract.\n\nKRW 8,000,000 for the CRM build + KRW 1,200,000 for migration − KRW 800,000 discount = KRW 8,400,000, excluding VAT.\n\nThe 10% discount applies to the build only, not migration. The deposit and final payment are KRW 4,200,000 each.\n\nOpen the source records above to check the prices and discount terms behind this quote.",
+            "steps": [
+              {
+                "title": "Find the price list in Google Drive",
+                "detail": "Sales / Quotes / 2026 service prices.xlsx"
+              },
+              {
+                "title": "Check existing terms in the CRM",
+                "detail": "Hanbit Living · discount and payment terms"
+              },
+              {
+                "title": "Cross-check which charges qualify",
+                "detail": "Separate build and migration costs before calculating"
+              }
+            ],
+            "sources": [
+              {
+                "id": "prices",
+                "provider": "drive",
+                "title": "2026 service prices.xlsx",
+                "location": "Google Drive · Sales / Quotes",
+                "excerpt": "Sheet: CRM & Admin\nCRM build: KRW 8,000,000\nData migration: KRW 1,200,000\nExcluding VAT · Prices as of November 2026"
+              },
+              {
+                "id": "client",
+                "provider": "crm",
+                "title": "Hanbit Living · contract history",
+                "location": "CRM · Customer HB-032",
+                "excerpt": "Customer status: existing customer\nAgreed discount: 10% of CRM build costs\nExclusions: migration and third-party fees\nPayment: 50% deposit / 50% on delivery"
+              },
+              {
+                "id": "rules",
+                "provider": "drive",
+                "title": "Quoting and discount policy.pdf",
+                "location": "Google Drive · Sales / Policies",
+                "excerpt": "Existing-customer discounts apply to the base build only.\nAdditional services, including migration, are excluded.\nTotal = base build + additional services − applicable discount.\nAll quotes exclude VAT."
+              }
+            ]
+          },
+          "onboarding": {
+            "title": "Turn a signed contract into a kickoff email",
+            "hint": "Signed contract × customer record × Gmail",
+            "question": "Onyu Company signed their contract. Check it and the onboarding guide, then prepare a kickoff email to their contact.",
+            "answer": "I checked the signed contract, customer contact and onboarding guide, then prepared an email for Minji Kim.\n\nThe contract is KRW 4,500,000, with a KRW 2,250,000 deposit. Kickoff scheduling begins within three business days after the deposit and required materials are confirmed.\n\nThe draft requests original logo files, service copy and reference websites, and includes the preparation checklist. Review the recipient and body below, then try the simulated send.",
+            "steps": [
+              {
+                "title": "Read the signed contract in Google Drive",
+                "detail": "Onyu Company / Contracts / Signed agreement.pdf"
+              },
+              {
+                "title": "Look up the project contact in the CRM",
+                "detail": "Minji Kim · primary project contact"
+              },
+              {
+                "title": "Prepare the email from the onboarding guide",
+                "detail": "Include kickoff conditions, required files and checklist"
+              }
+            ],
+            "sources": [
+              {
+                "id": "contract",
+                "provider": "drive",
+                "title": "Onyu_signed_agreement.pdf",
+                "location": "Google Drive · Clients / Onyu Company / Contracts",
+                "excerpt": "Scope: brand website\nContract: KRW 4,500,000, excluding VAT\nDeposit: KRW 2,250,000\nStart condition: deposit and required materials confirmed"
+              },
+              {
+                "id": "contact",
+                "provider": "crm",
+                "title": "Onyu Company · Minji Kim",
+                "location": "CRM · Contract contact",
+                "excerpt": "Name: Minji Kim\nRole: primary project contact\nEmail: minji@onyu.example\nContract status: signed"
+              },
+              {
+                "id": "guide",
+                "provider": "drive",
+                "title": "Customer onboarding guide.docx",
+                "location": "Google Drive · Operations / Project kickoff",
+                "excerpt": "Arrange kickoff within three business days of confirming deposit and materials.\nRequest: original logo files, service copy, reference websites.\nAttach: Project_preparation_checklist.pdf"
+              }
+            ],
+            "email": {
+              "to": "Minji Kim <minji@onyu.example>",
+              "subject": "[GRIDS] Onyu Company website project kickoff",
+              "body": "Hi Minji,\n\nThank you for signing the Onyu Company website agreement. The contract is KRW 4,500,000 excluding VAT, with a KRW 2,250,000 deposit.\n\nPlease share the following to help us get started:\n• Original logo files\n• Service introduction copy\n• Reference websites\n\nOnce the deposit and required materials are confirmed, we will arrange kickoff within three business days. The attached checklist covers the preparation items in more detail.\n\nThank you,\nThe GRIDS project team",
+              "attachment": "Project_preparation_checklist.pdf"
+            }
+          },
+          "delivery": {
+            "title": "Resolve a delivery question from order records",
+            "hint": "Order system × shipping policy × support ticket",
+            "question": "Hanbit Living received only part of order HB-1042. Check dispatch records and policy for the remaining quantity and any extra shipping charge.",
+            "answer": "I checked the order system, shipping policy and customer support ticket.\n\nThe order contains 12 units. Ten have shipped; two are still being inspected at the warehouse. The current record estimates dispatch within two business days.\n\nThe company covers additional shipping when an order is split for operational reasons, so the customer has no extra shipping charge.\n\nFor ticket CS-208, the answer is: “The remaining two units will ship separately after inspection, at no additional shipping cost.” The actual arrival date needs to be checked once tracking is available.",
+            "steps": [
+              {
+                "title": "Look up dispatch records in the order system",
+                "detail": "Order HB-1042 · quantities and item status"
+              },
+              {
+                "title": "Read the split-shipment policy in Google Drive",
+                "detail": "Operations / Customer support / Shipping policy.pdf"
+              },
+              {
+                "title": "Match the support ticket to the order",
+                "detail": "CS-208 · partial delivery inquiry"
+              }
+            ],
+            "sources": [
+              {
+                "id": "order",
+                "provider": "orders",
+                "title": "Order HB-1042 · dispatch record",
+                "location": "Order system · Order lookup API",
+                "excerpt": "Customer: Hanbit Living\nOrdered: 12 units\nDispatched: 10 units\nIn inspection: 2 units\nRemaining dispatch estimate: within two business days\nArrival date: check when tracking is available"
+              },
+              {
+                "id": "shipping",
+                "provider": "drive",
+                "title": "Shipping and returns policy.pdf",
+                "location": "Google Drive · Operations / Customer support",
+                "excerpt": "Section 3 · Split shipments\nThe company covers additional shipping for orders split for company or warehouse reasons.\nClearly distinguish estimated dispatch from actual arrival dates."
+              },
+              {
+                "id": "ticket",
+                "provider": "crm",
+                "title": "Support ticket CS-208",
+                "location": "CRM · Hanbit Living / Customer support",
+                "excerpt": "Inquiry: only 10 of 12 units arrived.\nRequested details: remaining quantity, dispatch estimate and extra charges.\nLinked order: HB-1042\nStatus: awaiting customer update"
+              }
+            ]
+          }
+        },
+        "workflow": {
+          "exampleConnections": "Company workflow example",
+          "lookupSteps": "Source lookup steps",
+          "found": "Checked",
+          "checking": "Checking",
+          "waiting": "Waiting",
+          "paused": "Stopped",
+          "sources": "Sources used · open to review",
+          "recordPreview": "Example record preview",
+          "emailDraft": "Kickoff email draft",
+          "emailSent": "Kickoff email",
+          "simulation": "Simulated send",
+          "recipient": "To",
+          "subject": "Subject",
+          "reviewDraft": "Review email",
+          "hideDraft": "Hide body",
+          "sendExample": "Simulate send",
+          "sentTitle": "Simulated send complete",
+          "sentDetail": "Reviewed the message and attachment for {to}."
+        }
+      },
       "services": {
         "homepage": {
           "title": "Website preview",
@@ -1491,7 +1694,7 @@
         "webApp": {
           "title": "Web / App preview",
           "description": "Explore key screens and user journeys to see how a product’s features fit together.",
-          "placeholder": "Web and app examples will appear here."
+          "placeholder": "We’re getting this ready. Please check back soon."
         },
         "crm": {
           "title": "CRM / Admin preview",
@@ -1505,7 +1708,7 @@
             "briefing": "Daily AI briefing"
           },
           "title": "Try AI automation",
-          "description": "Experience how repetitive tasks connect into a workflow through a simple scenario.",
+          "description": "Connect company resources and tools in a workflow, from preparing a quote to drafting an email.",
           "scenario": "When a customer inquiry arrives",
           "scenarioDescription": "We’re preparing a demo that sorts incoming inquiries and routes them to the right person.",
           "steps": {
@@ -1516,7 +1719,7 @@
         },
         "chatbot": {
           "title": "Try an AI chatbot",
-          "description": "From a question to an answer and a next step, explore how a chatbot can support everyday work.",
+          "description": "Ask a website support assistant a question, look up a reservation, explore guidance and try a team handoff.",
           "scenario": "Onboarding a new customer",
           "scenarioDescription": "We’re preparing a chatbot demo that explains the next steps using onboarding materials.",
           "steps": {
@@ -1525,12 +1728,680 @@
             "third": "Find the next action"
           }
         }
+      },
+      "previewControls": {
+        "viewport": "Preview viewport size",
+        "desktop": "Desktop",
+        "tablet": "Tablet",
+        "mobile": "Mobile",
+        "reset": "Reset",
+        "resetLabel": "Reset chatbot demo",
+        "resetAutomation": "Reset automation demo",
+        "resetWebsite": "Reload website preview",
+        "resetCrm": "Reset CRM / Admin demo"
+      },
+      "console": {
+        "title": "GRIDS Operations",
+        "environment": "Demo workspace",
+        "ui": {
+          "console": "Console",
+          "consoleNavigation": "Console navigation",
+          "agents": "Agents",
+          "runs": "Runs",
+          "evals": "Evaluations",
+          "usage": "Usage",
+          "settings": "Connections",
+          "team": "Your agents",
+          "expandSidebar": "Expand sidebar",
+          "collapseSidebar": "Collapse sidebar",
+          "openNavigation": "Open console navigation",
+          "closeNavigation": "Close console navigation",
+          "close": "Close",
+          "needsAttention": "Needs review",
+          "acknowledge": "Acknowledge",
+          "workspace": "Console workspace",
+          "traceFor": "{name} · Run trace",
+          "complete": "Complete",
+          "emailApproved": "Example email approved",
+          "emailHeld": "Held for review",
+          "approvalToast": "Example approved. No external action was performed.",
+          "denialToast": "Example request held.",
+          "evalFilter": "Evaluation filter",
+          "evalCases": "Test cases",
+          "caseCount": "{count} cases",
+          "evalRunning": "Checking {count} of {total} cases",
+          "evalFinished": "{passed} of {total} cases passed",
+          "all": "All",
+          "failed": "Failed",
+          "regressed": "Regressed",
+          "improved": "Improved",
+          "pass": "Pass",
+          "input": "Input",
+          "expected": "Expected",
+          "actual": "Actual",
+          "score": "Score",
+          "backgroundAgents": "Background agents",
+          "review": "Review",
+          "pauseAgent": "Pause {name}",
+          "resumeAgent": "Resume {name}",
+          "openAgent": "Open {name}",
+          "cancelAgent": "Cancel {name}",
+          "permissionRequests": "Approval requests",
+          "waitingOnYou": "awaiting review",
+          "allClear": "All clear",
+          "selected": "selected",
+          "clear": "Clear",
+          "deny": "Hold",
+          "approve": "Approve",
+          "nothingToReview": "Nothing to review",
+          "newRequests": "New requests appear here.",
+          "requests": "Requests",
+          "grantFor": "Grant for",
+          "approveScope": "Approve {scope}",
+          "resolved": "Resolved",
+          "approvedScope": "Approved {scope}",
+          "denied": "Held",
+          "undo": "Undo",
+          "rateLimits": "Rate limits",
+          "healthy": "Healthy",
+          "throttled": "Throttled",
+          "perMinute": "/ min",
+          "remaining": "{remaining} of {total} left",
+          "full": "Full capacity",
+          "resetsIn": "Resets in {time}",
+          "capacityBack": "Capacity is available again",
+          "retryNow": "Retry now",
+          "usageTitle": "Usage",
+          "lastDays": "Last {count} days",
+          "tokens": "tokens",
+          "up": "Up",
+          "down": "Down",
+          "previous": "vs previous period",
+          "dailyCost": "Daily usage. Use arrow keys to move between days.",
+          "overBudget": "Over budget",
+          "nearBudget": "Close to the budget",
+          "monthlyBudget": "Monthly budget",
+          "budgetUsed": "Budget used",
+          "zoomPath": "Zoom path",
+          "wholeRun": "Whole run",
+          "metric": "Metric",
+          "time": "Time",
+          "cost": "Cost",
+          "agentExcluded": "Parent agent time is excluded to avoid double counting.",
+          "waitingSpans": "Waiting for run records…",
+          "runTrace": "Run trace",
+          "recording": "Recording",
+          "finishedIn": "Finished in",
+          "spans": "steps",
+          "notifications": "Notifications",
+          "dismiss": "Dismiss notification",
+          "contextTitle": "Context",
+          "contextOf": "of",
+          "contextFull": "full",
+          "contextRemaining": "{count} tokens left",
+          "contextTail": "The final {percent}% marks the reserve zone.",
+          "compact": "Compact",
+          "compacting": "Compacting…",
+          "nearLimit": "Near context limit",
+          "pinned": "Pinned",
+          "status": {
+            "queued": "Queued",
+            "running": "Running",
+            "waiting": "Needs review",
+            "paused": "Paused",
+            "done": "Done",
+            "failed": "Failed",
+            "cancelled": "Cancelled"
+          },
+          "scopes": {
+            "once": "once",
+            "session": "this session",
+            "always": "always"
+          },
+          "risks": {
+            "high": "High risk",
+            "medium": "External action",
+            "low": "Low risk"
+          },
+          "zoomHint": "Click a step to zoom in; press Esc to return.",
+          "baselineDelta": "pts vs baseline",
+          "baseline": "Baseline",
+          "candidate": "Current",
+          "better": "Better",
+          "worse": "Worse",
+          "noChange": "No change",
+          "regressedCases": "Regressed cases",
+          "noRegressions": "No regressions.",
+          "dashboard": "Dashboard"
+        },
+        "settingsDescription": "Explore which company resources each agent can access using example data.",
+        "connections": {
+          "drive": {
+            "name": "Google Drive",
+            "description": "Read price lists, contracts and operating guides"
+          },
+          "crm": {
+            "name": "CRM · Customer records",
+            "description": "Look up customer history and order status"
+          },
+          "gmail": {
+            "name": "Gmail",
+            "description": "Send email after review · simulated"
+          }
+        },
+        "stats": {
+          "completed": "Tasks completed today",
+          "saved": "Repetitive work saved",
+          "savedValue": "6.8h",
+          "approvals": "Awaiting approval",
+          "quality": "Response quality pass rate",
+          "today": "Today",
+          "estimated": "Example estimate",
+          "review": "Runs after review",
+          "week": "Last 7 days"
+        },
+        "agents": [
+          {
+            "id": "support",
+            "name": "Customer support",
+            "task": "Hanbit Living delivery update",
+            "status": "waiting",
+            "progress": 0.85,
+            "action": "Awaiting email approval",
+            "elapsedMs": 8400
+          },
+          {
+            "id": "quotes",
+            "name": "Quote preparation",
+            "task": "Prepare Onyu Company service quote",
+            "status": "running",
+            "progress": 0.42,
+            "action": "Compare Drive pricing with contract history",
+            "elapsedMs": 4200
+          },
+          {
+            "id": "report",
+            "name": "Weekly reporting",
+            "task": "Summarize this week’s customer inquiries",
+            "status": "done",
+            "progress": 1,
+            "action": "Report and classification complete",
+            "elapsedMs": 9600
+          }
+        ],
+        "approvals": [
+          {
+            "id": "email-review",
+            "tool": "gmail.send",
+            "title": "Hanbit Living shipping email · example",
+            "risk": "medium",
+            "agent": "Customer support",
+            "payload": {
+              "kind": "email",
+              "to": "minji@hanbit.example",
+              "subject": "[Order update] Remaining items for HB-1042",
+              "body": "Hello, 10 of your 12 items have shipped. The remaining two are being inspected and are estimated to dispatch within two business days. There is no additional shipping charge."
+            }
+          }
+        ],
+        "usage": {
+          "assistant": "Workplace responses",
+          "routing": "Inquiry routing",
+          "budget": "Example monthly budget",
+          "workspace": "Workspace capacity",
+          "requests": "Requests",
+          "tokens": "Input tokens"
+        },
+        "context": {
+          "rules": "Company policies",
+          "documents": "3 source documents",
+          "history": "Customer history"
+        },
+        "traces": {
+          "support": [
+            {
+              "id": "support-0",
+              "name": "Handle delivery inquiry",
+              "kind": "agent",
+              "startMs": 0,
+              "endMs": 9600,
+              "status": "ok"
+            },
+            {
+              "id": "support-1",
+              "name": "Look up order HB-1042",
+              "kind": "tool",
+              "startMs": 150,
+              "endMs": 1900,
+              "status": "ok",
+              "parentId": "support-0"
+            },
+            {
+              "id": "support-2",
+              "name": "Retrieve shipping policy",
+              "kind": "retrieval",
+              "startMs": 200,
+              "endMs": 2800,
+              "status": "ok",
+              "parentId": "support-0"
+            },
+            {
+              "id": "support-3",
+              "name": "Draft customer update",
+              "kind": "llm",
+              "startMs": 2900,
+              "endMs": 8100,
+              "status": "ok",
+              "parentId": "support-0",
+              "tokens": {
+                "input": 3200,
+                "output": 480
+              },
+              "costUsd": 0.024
+            },
+            {
+              "id": "support-4",
+              "name": "Request human approval",
+              "kind": "tool",
+              "startMs": 8200,
+              "endMs": 9600,
+              "status": "ok",
+              "parentId": "support-0"
+            }
+          ],
+          "quotes": [
+            {
+              "id": "quotes-0",
+              "name": "Prepare custom quote",
+              "kind": "agent",
+              "startMs": 0,
+              "endMs": 9600,
+              "status": "ok"
+            },
+            {
+              "id": "quotes-1",
+              "name": "Read contract terms",
+              "kind": "tool",
+              "startMs": 150,
+              "endMs": 1800,
+              "status": "ok",
+              "parentId": "quotes-0"
+            },
+            {
+              "id": "quotes-2",
+              "name": "Retrieve service price list",
+              "kind": "retrieval",
+              "startMs": 200,
+              "endMs": 3100,
+              "status": "ok",
+              "parentId": "quotes-0"
+            },
+            {
+              "id": "quotes-3",
+              "name": "Apply eligible discounts",
+              "kind": "llm",
+              "startMs": 3200,
+              "endMs": 8500,
+              "status": "ok",
+              "parentId": "quotes-0",
+              "tokens": {
+                "input": 3200,
+                "output": 480
+              },
+              "costUsd": 0.024
+            },
+            {
+              "id": "quotes-4",
+              "name": "Save quote draft",
+              "kind": "tool",
+              "startMs": 8600,
+              "endMs": 9600,
+              "status": "ok",
+              "parentId": "quotes-0"
+            }
+          ],
+          "report": [
+            {
+              "id": "report-0",
+              "name": "Weekly inquiry report",
+              "kind": "agent",
+              "startMs": 0,
+              "endMs": 9600,
+              "status": "ok"
+            },
+            {
+              "id": "report-1",
+              "name": "Load CRM inquiries",
+              "kind": "tool",
+              "startMs": 100,
+              "endMs": 2300,
+              "status": "ok",
+              "parentId": "report-0"
+            },
+            {
+              "id": "report-2",
+              "name": "Classify inquiries",
+              "kind": "llm",
+              "startMs": 2400,
+              "endMs": 6500,
+              "status": "ok",
+              "parentId": "report-0",
+              "tokens": {
+                "input": 3200,
+                "output": 480
+              },
+              "costUsd": 0.024
+            },
+            {
+              "id": "report-3",
+              "name": "Summarize recurring issues",
+              "kind": "llm",
+              "startMs": 6600,
+              "endMs": 8800,
+              "status": "ok",
+              "parentId": "report-0",
+              "tokens": {
+                "input": 3200,
+                "output": 480
+              },
+              "costUsd": 0.024
+            },
+            {
+              "id": "report-4",
+              "name": "Finalize report",
+              "kind": "tool",
+              "startMs": 8900,
+              "endMs": 9600,
+              "status": "ok",
+              "parentId": "report-0"
+            }
+          ]
+        },
+        "evals": {
+          "suite": "Company workflow scenarios",
+          "label": "Pre-release checks · example",
+          "cases": [
+            {
+              "id": "case-0",
+              "name": "Answer matches source pricing",
+              "status": "pass",
+              "score": 0.98,
+              "input": "Customer asks about delivery timing",
+              "expected": "Distinguish dispatch estimate from arrival date",
+              "actual": "Response aligns with company policy and sources",
+              "reason": "Checked against supporting documents"
+            },
+            {
+              "id": "case-1",
+              "name": "Contract discount applied",
+              "status": "pass",
+              "score": 0.98,
+              "input": "Customer asks about delivery timing",
+              "expected": "Distinguish dispatch estimate from arrival date",
+              "actual": "Response aligns with company policy and sources",
+              "reason": "Checked against supporting documents"
+            },
+            {
+              "id": "case-2",
+              "name": "Customer data isolation",
+              "status": "pass",
+              "score": 0.98,
+              "input": "Customer asks about delivery timing",
+              "expected": "Distinguish dispatch estimate from arrival date",
+              "actual": "Response aligns with company policy and sources",
+              "reason": "Checked against supporting documents"
+            },
+            {
+              "id": "case-3",
+              "name": "Unknown information refused",
+              "status": "pass",
+              "score": 0.98,
+              "input": "Customer asks about delivery timing",
+              "expected": "Distinguish dispatch estimate from arrival date",
+              "actual": "Response aligns with company policy and sources",
+              "reason": "Checked against supporting documents"
+            },
+            {
+              "id": "case-4",
+              "name": "Correct email recipient",
+              "status": "pass",
+              "score": 0.98,
+              "input": "Customer asks about delivery timing",
+              "expected": "Distinguish dispatch estimate from arrival date",
+              "actual": "Response aligns with company policy and sources",
+              "reason": "Checked against supporting documents"
+            },
+            {
+              "id": "case-5",
+              "name": "Dispatch distinguished from arrival",
+              "status": "regressed",
+              "score": 0.72,
+              "input": "Customer asks about delivery timing",
+              "expected": "Distinguish dispatch estimate from arrival date",
+              "actual": "Delivery wording needs review",
+              "reason": "Checked against supporting documents"
+            },
+            {
+              "id": "case-6",
+              "name": "Sources included",
+              "status": "pass",
+              "score": 0.98,
+              "input": "Customer asks about delivery timing",
+              "expected": "Distinguish dispatch estimate from arrival date",
+              "actual": "Response aligns with company policy and sources",
+              "reason": "Checked against supporting documents"
+            },
+            {
+              "id": "case-7",
+              "name": "Unauthorized documents blocked",
+              "status": "pass",
+              "score": 0.98,
+              "input": "Customer asks about delivery timing",
+              "expected": "Distinguish dispatch estimate from arrival date",
+              "actual": "Response aligns with company policy and sources",
+              "reason": "Checked against supporting documents"
+            },
+            {
+              "id": "case-8",
+              "name": "Multilingual request handled",
+              "status": "pass",
+              "score": 0.98,
+              "input": "Customer asks about delivery timing",
+              "expected": "Distinguish dispatch estimate from arrival date",
+              "actual": "Response aligns with company policy and sources",
+              "reason": "Checked against supporting documents"
+            },
+            {
+              "id": "case-9",
+              "name": "Duplicate messages prevented",
+              "status": "pass",
+              "score": 0.98,
+              "input": "Customer asks about delivery timing",
+              "expected": "Distinguish dispatch estimate from arrival date",
+              "actual": "Response aligns with company policy and sources",
+              "reason": "Checked against supporting documents"
+            },
+            {
+              "id": "case-10",
+              "name": "Latest contract prioritized",
+              "status": "pass",
+              "score": 0.98,
+              "input": "Customer asks about delivery timing",
+              "expected": "Distinguish dispatch estimate from arrival date",
+              "actual": "Response aligns with company policy and sources",
+              "reason": "Checked against supporting documents"
+            },
+            {
+              "id": "case-11",
+              "name": "Human approval respected",
+              "status": "pass",
+              "score": 0.98,
+              "input": "Customer asks about delivery timing",
+              "expected": "Distinguish dispatch estimate from arrival date",
+              "actual": "Response aligns with company policy and sources",
+              "reason": "Checked against supporting documents"
+            }
+          ],
+          "baselinePassRate": 0.83,
+          "metrics": [
+            {
+              "id": "accuracy",
+              "label": "Source accuracy",
+              "baseline": 0.91,
+              "candidate": 0.98,
+              "better": "higher"
+            },
+            {
+              "id": "approval",
+              "label": "Approval compliance",
+              "baseline": 0.94,
+              "candidate": 1,
+              "better": "higher"
+            }
+          ]
+        },
+        "dashboard": {
+          "greeting": "Business overview",
+          "platform": "Workspace",
+          "period": "Dashboard period",
+          "days": "Last {count} days",
+          "customize": "Customize",
+          "repeatRate": "Repeat purchase rate",
+          "orders": "Orders",
+          "orderValue": "Average order value",
+          "priorPeriod": "vs prior period",
+          "revenue": "Revenue for the period",
+          "chartLabel": "Revenue chart. Use arrow keys to explore dates.",
+          "chartDescription": "Revenue increases across the selected period",
+          "insights": "AI insights",
+          "insightText": "Returning customers generated <strong>38.4% of your revenue.</strong>",
+          "viewOperations": "View operations",
+          "pipeline": "Workflow progress",
+          "tasks": "tasks handled",
+          "completed": "Completed",
+          "inProgress": "In progress",
+          "waiting": "Waiting",
+          "activity": "Recent activity",
+          "today": "Today",
+          "businessSummary": "Business summary",
+          "revenueGauge": "Total revenue split between subscriptions and services",
+          "totalRevenue": "Total revenue",
+          "subscriptions": "Subscriptions",
+          "services": "Projects & services",
+          "viewDetails": "View detail",
+          "activeCustomers": "Active customers",
+          "paidShare": "78% of customers are paying customers.",
+          "paid": "Paid",
+          "free": "Free",
+          "latestPayment": "Latest payment",
+          "customer": "Customer",
+          "paymentCompany": "Onyu Company",
+          "amount": "Amount",
+          "method": "Payment method",
+          "status": "Status",
+          "paidComplete": "Completed",
+          "events": {
+            "quote": {
+              "name": "Hanbit Living",
+              "description": "Custom quote submitted for review"
+            },
+            "payment": {
+              "name": "Onyu Company",
+              "description": "Website project deposit received"
+            },
+            "report": {
+              "name": "GRIDS Operations",
+              "description": "Weekly customer report completed"
+            }
+          }
+        },
+        "views": {
+          "runsDescription": "Monitor active workflows and requests awaiting review. Select a workflow to inspect its execution trace.",
+          "evalsDescription": "Compare responses against company sources and operating rules. Open a flagged case to review the evidence.",
+          "usageDescription": "Review usage and remaining capacity. Select a date to inspect the breakdown by workflow type.",
+          "settingsDescription": "Connections",
+          "agentCount": "{count} workflows",
+          "traceHint": "Select a step to inspect"
+        }
+      },
+      "support": {
+        "welcome": "Hi, I’m LOCUS, your ROAM travel assistant.\nFrom checking a reservation to preparing for your trip, how can I help?",
+        "botRole": "ROAM travel assistant · Demo",
+        "visitor": "You",
+        "launcherHint": "A question before your trip? Ask here.",
+        "ui": {
+          "typing": "{name} is writing a reply",
+          "writing": "Writing a reply…",
+          "waiting": "Preparing a support handoff",
+          "chatWith": "Chat with {name}",
+          "instant": "Here to help",
+          "supportTeam": "Support team",
+          "minimize": "Minimize chat",
+          "endChat": "End conversation",
+          "message": "Message",
+          "waitingPlaceholder": "Add anything else you’d like us to know",
+          "placeholder": "Ask a question",
+          "send": "Send",
+          "hideChat": "Hide support chat",
+          "openChat": "Open ROAM support",
+          "unread": "unread messages"
+        },
+        "questions": {
+          "booking": "Check my reservation",
+          "policy": "What is the cancellation policy?",
+          "human": "Try a support handoff"
+        },
+        "replies": {
+          "booking": "I can check your itinerary using a reservation number.\nEnter the sample number RM-2048 below to try it.",
+          "reservation": "I found the reservation: a Jeju stay for two adults, December 4–6.\n\nYour reservation number and dates are below. You can also explore pre-trip information or the cancellation policy.",
+          "policy": "This sample stay allows free cancellation until seven days before check-in. Refunds after that depend on the reservation terms.\n\nOpen the guide below to see what to check before booking.",
+          "handoff": "Let’s try handing this conversation to a support team. Sharing the conversation and reservation details means the customer won’t need to explain everything again.",
+          "human": "This is a preview of the ROAM support handoff.\n\nIn a connected service, a team member can review the conversation and reservation before continuing. Questions the AI cannot resolve can move naturally to a person."
+        },
+        "human": {
+          "name": "ROAM support team",
+          "role": "Support handoff demo",
+          "wait": "Simulated connection"
+        },
+        "lookup": {
+          "label": "Reservation number",
+          "find": "Find",
+          "hint": "Sample reservation: RM-2048",
+          "error": "Please use the sample reservation RM-2048.",
+          "userMessage": "Please check reservation RM-2048."
+        },
+        "reservation": {
+          "title": "Sample reservation",
+          "confirmed": "Confirmed",
+          "trip": "Three slow days in Jeju",
+          "destination": "Private stay · Jeju",
+          "number": "Reservation",
+          "dates": "Travel dates",
+          "guests": "Guests",
+          "guestValue": "2 adults"
+        },
+        "policy": {
+          "title": "Cancellation guide · Example",
+          "body": "Sample stay terms\n• Until seven days before check-in: free cancellation\n• Later cancellations: subject to reservation terms\n• Check the reservation confirmation for final conditions\n\nIn a connected service, answers can be grounded in your company’s own guides."
+        },
+        "fallback": "No company resources are connected to this preview yet, so I can’t answer your specific question here.\n\nTry the suggested questions to explore a reservation lookup, cancellation guidance and a support handoff. A connected version can answer customers using your company’s own guides and reservation records.",
+        "host": {
+          "navLabel": "Room for a different pace",
+          "help": "Travel support",
+          "eyebrow": "A little further, a little slower.",
+          "title": "Find your\nnext pause.",
+          "description": "A step away from the everyday. Discover places to stay, explore and travel at your own pace with ROAM.",
+          "cta": "Find my next getaway",
+          "footnote": "New perspectives, at a slower pace",
+          "imageAlt": "Rocky coastline surrounded by the sea and a sandy beach"
+        }
       }
     },
     "explorer": {
       "heading": "The scope that fits.",
       "customTitle": "Custom build",
       "customLabel": "Beyond the packages",
+      "approximateMinimum": "Starting at approximately {price}",
       "customPrice": "Quoted after discovery",
       "customNote": "We’ll provide a quote after reviewing your requirements and integrations.",
       "services": {

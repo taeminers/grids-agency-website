@@ -1,13 +1,11 @@
 .scene {
+  composes: surface from "./grainy-surface.module.css";
+  isolation: isolate;
   position: absolute; inset: 0; display: grid; place-items: center;
   overflow: hidden; border-radius: inherit; container-type: inline-size;
-  background:
-    radial-gradient(ellipse at 18% 12%, #fff 0%, rgb(255 255 255 / 0) 58%),
-    radial-gradient(ellipse at 88% 85%, rgb(185 207 225 / .28), transparent 62%),
-    linear-gradient(145deg, #f8f9fa 5%, #e1e4e8 65%, #f1f3f5);
   color: #303942;
 }
-.flow { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "analysis" "steps" "coverage" "estimate" "quote"; align-items: center; justify-items: center; gap: 12px; width: min(86%, 520px); }
+.flow { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "analysis" "steps" "coverage" "estimate" "quote"; align-items: center; justify-items: center; gap: 12px; width: min(86%, 520px); }
 .analysis { grid-area: analysis; display: flex; align-items: center; gap: 20px; min-width: 0; width: 90%; padding: 14px 16px; border-radius: var(--site-card-radius); }
 .status { flex-shrink: 0; display: flex; align-items: center; gap: 6px; color: #327ba8; font-size: 11px; }
 .status i { width: 5px; height: 5px; border-radius: 50%; background: #55a8db; }

@@ -11,6 +11,13 @@
   --site-gutter: 24px;
   --site-section-space: 64px;
   --site-heading-space: 32px;
+  /* Internal layout rhythm; independent of spacing between sections. */
+  --site-card-gap: 1.5rem;
+  --site-stack-gap: clamp(2rem, 3vw, 3rem);
+  --site-card-padding: clamp(1.25rem, 2.2vw, 2rem);
+  --site-copy-gap: 1.5rem;
+  --site-detail-gap: .75rem;
+  --site-heading-column-gap: clamp(1.5rem, 4vw, 3rem);
   /* Stable brand blues shared by the interface and the hero's 3D material. */
   --brand-blue: #277db8;
   --brand-sky: #8bcff0;
@@ -275,6 +282,14 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+  --color-warning: var(--warning);
+  --color-negative: var(--negative);
+  --color-positive: var(--positive);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand: var(--brand);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-inset: var(--surface-inset);
+  --color-surface: var(--surface);
 }
 
 @utility text-stroke {

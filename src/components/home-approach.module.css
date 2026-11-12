@@ -8,7 +8,7 @@
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 2fr);
   grid-template-areas: "tabs heading" "note visual";
-  column-gap: clamp(1rem, 1.6vw, 1.5rem);
+  column-gap: var(--site-card-gap);
   row-gap: var(--site-heading-space);
   align-items: start;
 }
@@ -50,7 +50,7 @@
 .note { grid-area: note; padding: clamp(24px, 2.2vw, 34px); border-radius: var(--site-card-radius); background: #f5f6f7; }
 .replyCard {
   composes: note;
-  --reply-inset: clamp(22px, 2.2vw, 30px);
+  --reply-inset: var(--site-card-padding);
   padding: 0;
   overflow: hidden;
   background: linear-gradient(145deg, rgb(255 255 255 / .72), rgb(255 255 255 / .22) 48%, rgb(224 234 242 / .28)), rgb(235 240 245 / .48);
@@ -70,7 +70,7 @@
 .replyAvatar { flex-shrink: 0; }
 .replyName { display: block; color: #303942; font-size: 14px; font-weight: 600; line-height: 1.5; letter-spacing: -.02em; }
 .replyRole { display: block; margin-top: 1px; color: #87909a; font-size: 11px; line-height: 1.5; }
-.replyBody { display: grid; padding: 24px var(--reply-inset) var(--reply-inset); }
+.replyBody { display: grid; padding: var(--site-copy-gap) var(--reply-inset) var(--reply-inset); }
 .replyCard .replyBody p { grid-area: 1 / 1; margin: 0; color: #58636e; font-size: clamp(13px, 1.05vw, 14px); line-height: 1.85; letter-spacing: -.015em; word-break: keep-all; white-space: pre-line; }
 .replySizer { visibility: hidden; pointer-events: none; user-select: none; }
 .replyBody strong { font-weight: 600; color: #394650; }
@@ -105,7 +105,7 @@
 }
 
 @media (max-width: 639px) {
-  .layout { grid-template-columns: minmax(0, 1fr); grid-template-areas: "tabs" "heading" "visual" "note"; row-gap: 28px; }
+  .layout { grid-template-columns: minmax(0, 1fr); grid-template-areas: "tabs" "heading" "visual" "note"; row-gap: var(--site-stack-gap); }
   .header { min-height: 0; }
   .header h2 { font-size: clamp(26px, 6.9vw, 34px); }
   .visual { min-height: 0; aspect-ratio: 1.2; }

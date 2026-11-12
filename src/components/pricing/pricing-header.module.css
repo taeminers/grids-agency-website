@@ -21,7 +21,7 @@
   max-width: 510px;
   min-width: 0;
   justify-self: end;
-  padding: clamp(24px, 2.8vw, 40px);
+  padding: var(--site-card-padding);
   border: 1px solid rgb(255 255 255 / .75);
   border-radius: var(--site-card-radius);
   background: linear-gradient(145deg, rgb(255 255 255 / .56), rgb(244 250 255 / .28));
@@ -34,14 +34,13 @@
 .eyebrow { margin: 0; font-size: 12px; font-weight: 600; line-height: 1.5; letter-spacing: .01em; }
 .currency { display: flex; align-items: center; gap: 10px; margin: 0 0 0 auto; color: #586773; font-size: 11px; font-weight: 500; line-height: 1.5; }
 .currencyDivider { width: 1px; height: 10px; background: rgb(66 83 97 / .24); }
-.cardTitle { margin: 36px 0 0; font-size: clamp(20px, 1.85vw, 27px); font-weight: 500; line-height: 1.6; letter-spacing: -.035em; white-space: pre-line; word-break: keep-all; }
-.description { margin: 22px 0 0; color: #596670; font-size: 13px; line-height: 1.8; letter-spacing: -.01em; word-break: keep-all; }
+.cardTitle { margin: var(--site-stack-gap) 0 0; font-size: clamp(20px, 1.85vw, 27px); font-weight: 500; line-height: 1.6; letter-spacing: -.035em; white-space: pre-line; word-break: keep-all; }
+.description { margin: var(--site-copy-gap) 0 0; color: #596670; font-size: 13px; line-height: 1.8; letter-spacing: -.01em; word-break: keep-all; }
 @media (max-width: 767px) {
-  .layout { grid-template-columns: minmax(0, 1fr); min-height: 540px; gap: 36px; padding-block: 136px 0; }
+  .layout { grid-template-columns: minmax(0, 1fr); min-height: 540px; gap: var(--site-stack-gap); padding-block: 136px 0; }
   .title { font-size: clamp(36px, 8vw, 52px); }
   .card { max-width: none; }
-  .cardTitle { margin-top: 28px; font-size: clamp(20px, 4.5vw, 25px); }
-  .description { margin-top: 18px; }
+  .cardTitle { font-size: clamp(20px, 4.5vw, 25px); }
 }
 @supports not (backdrop-filter: blur(1px)) { .card { background: #f2f7fb; } }
 @media (prefers-reduced-transparency: reduce) { .card { background: #f2f7fb; -webkit-backdrop-filter: none; backdrop-filter: none; } }
