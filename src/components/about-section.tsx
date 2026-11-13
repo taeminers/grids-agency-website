@@ -31,7 +31,7 @@ export default function AboutSection({ className }: AboutSectionProps) {
       <div className={`${styles.header} ${spacing.heading}`}>
         <h2 id="about-heading" data-scroll-reveal="text" className={styles.heading}>
           {t("heading")}
-          <span>{t("headingSecondary")}</span>
+          <span className={styles.headingSecondary}>{t("headingSecondary")}</span>
         </h2>
         <ConsultationLink href={`/${locale}/archive`} label={t("archiveLink")} className={styles.archiveLink} />
       </div>

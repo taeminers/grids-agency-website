@@ -11,8 +11,7 @@ const replyFields = ["firstTitle", "firstBody", "secondTitle", "secondBody", "cl
 function renderReply(blocks: string[], streaming = false) {
   return blocks.map((block, index) => {
     const Tag = index % 2 === 0 ? "strong" : "span";
-    const text = `${index ? "\n\n" : ""}${block}`;
-    return <Tag key={index}>{Array.from(text).map((letter, letterIndex) => (
+    return <Tag key={index} className={styles.replyBlock}>{Array.from(block).map((letter, letterIndex) => (
       <span key={letterIndex} data-reply-letter={streaming || undefined} className={streaming ? styles.replyLetter : undefined}>{letter}</span>
     ))}</Tag>;
   });

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="640" viewBox="0 0 720 640" fill="none">
+  <defs>
+    <linearGradient id="deep" x1="360" y1="310" x2="360" y2="680" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#174958"/>
+      <stop offset=".4" stop-color="#092a36"/>
+      <stop offset="1" stop-color="#02080d"/>
+    </linearGradient>
+    <linearGradient id="ember" x1="70" y1="440" x2="560" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8c311e" stop-opacity=".3"/>
+      <stop offset=".5" stop-color="#d83e0b"/>
+      <stop offset=".77" stop-color="#ff7b09"/>
+      <stop offset="1" stop-color="#c22f0a" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="rim" x1="-50" y1="550" x2="780" y2="330" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9e361a" stop-opacity=".4"/>
+      <stop offset=".35" stop-color="#ff5a04"/>
+      <stop offset=".7" stop-color="#ff9d27"/>
+      <stop offset="1" stop-color="#ff5900"/>
+    </linearGradient>
+    <radialGradient id="warm" cx="0" cy="0" r="1" gradientTransform="translate(100 170) rotate(42) scale(520 350)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#260905"/>
+      <stop offset="1" stop-color="#050505"/>
+    </radialGradient>
+    <filter id="wide" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="18"/></filter>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="4"/></filter>
+  </defs>
+  <path fill="#030505" d="M0 0h720v640H0z"/>
+  <path d="M-100-100H570C526 157 344 329-100 470Z" fill="url(#warm)"/>
+  <path d="M-100 470C344 329 526 157 570-100" stroke="url(#ember)" stroke-width="44" filter="url(#wide)"/>
+  <path d="M-100 470C344 329 526 157 570-100" stroke="url(#ember)" stroke-width="15" filter="url(#soft)"/>
+  <path d="M-100 477C347 336 533 160 577-100" stroke="#70b3c8" stroke-opacity=".35" stroke-width="3" filter="url(#soft)"/>
+  <path d="M-100 580C170 399 490 318 820 330V740H-100Z" fill="url(#deep)"/>
+  <path d="M-100 578C170 397 490 316 820 328" stroke="url(#rim)" stroke-width="16" filter="url(#wide)"/>
+  <path d="M-100 578C170 397 490 316 820 328" stroke="url(#rim)" stroke-width="7" filter="url(#soft)"/>
+  <path d="M-100 578C170 397 490 316 820 328" stroke="url(#rim)" stroke-width="2"/>
+</svg>

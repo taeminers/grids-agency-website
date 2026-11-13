@@ -21,6 +21,21 @@ This is a card standard, not a universal radius reset. Preserve intentionally pi
 
 When adding or editing an outer card or panel on any route, use this token rather than choosing another literal radius or a generic `rounded-xl` / `rounded-2xl` utility. Verify the rendered corners and clipping at desktop and mobile sizes.
 
+## Homepage section typography
+
+Use `src/components/home-typography.module.css` for main section headings. The
+Offerings heading is the reference: responsive 28–44px (`clamp(1.75rem, 3vw,
+2.75rem)`), weight 600, line-height 1.34 and tracking -.04em. Secondary lines use
+weight 550, color #707c85 and a .2em gap above. Supporting copy uses 16–18px,
+weight 500 and line-height 1.75.
+
+Offerings, all Approach tabs, Featured Work and FAQ share this treatment. The
+blog introduction shares the size, line-height and tracking while retaining its
+white, weight-700 text over the dark artwork. Preserve the hero and scroll-filled
+intro's display scale, and keep card/product headings on their smaller scales.
+Section alignments, content widths and spacing remain local; do not add global h2
+rules or change other routes to match this homepage system.
+
 ## Action icons
 
 Forward-action buttons and CTAs use Lucide `ChevronRight` with `strokeWidth={3.5}`.

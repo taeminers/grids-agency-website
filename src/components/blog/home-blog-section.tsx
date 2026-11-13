@@ -2,6 +2,7 @@ import "server-only";
 
 import { getTranslations } from "next-intl/server";
 import Container from "@/components/container";
+import BrandLogo from "@/components/brand-logo";
 import ConsultationLink from "@/components/consultation-link";
 import Link from "@/components/navigation/page-navigation";
 import { getPublishedBlogPosts } from "@/content/blog/posts";
@@ -19,10 +20,11 @@ export default async function HomeBlogSection({ locale }: { locale: string }) {
   return <section id="blog" aria-labelledby="home-blog-heading" className={spacing.section}>
     <Container innerClassName={styles.layout}>
       <header className={styles.intro} data-scroll-reveal="surface">
-        <p className={styles.eyebrow}>{t("index.title")}</p>
-        <h2 id="home-blog-heading">{t("home.heading")}<span>{t("home.headingSecondary")}</span></h2>
-        <ConsultationLink href={`/${locale}/blog`} label={t("home.allPosts")} className={styles.allPosts} />
-        {locale === "en" && <p className={styles.languageNote}>{t("index.koreanNote")}</p>}
+        <h2 id="home-blog-heading" className={styles.title}>{t("home.heading")}<span>{t("home.headingSecondary")}</span></h2>
+        <div className={styles.introFooter}>
+          {locale === "en" && <p className={styles.languageNote}>{t("index.koreanNote")}</p>}
+          <ConsultationLink href={`/${locale}/blog`} label={t("home.allPosts")} className={styles.allPosts} />
+        </div>
       </header>
       <ul className={styles.articles} data-blog-grid="home">
         {posts.map(post => <li key={post.slug} data-scroll-reveal="surface">
@@ -30,7 +32,10 @@ export default async function HomeBlogSection({ locale }: { locale: string }) {
             <div className={styles.copy}>
               <p className={styles.category} lang={post.locale}>{post.category}</p>
               <h3 lang={post.locale}>{post.title}</h3>
-              <div className={styles.author}><span className={styles.avatar} aria-hidden="true" /><span>{post.author.name}</span></div>
+              <div className={styles.author}>
+                <span className={styles.authorBadge} aria-hidden="true"><BrandLogo className={styles.authorMark} /></span>
+                <span>{post.author.name}</span>
+              </div>
             </div>
             <div className={styles.image}>
               <BlogPostCover post={post} sizes="(max-width: 767px) 35vw, (max-width: 1599px) 24vw, 340px" />

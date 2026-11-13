@@ -67,9 +67,9 @@ export default function FaqSection() {
     >
       <Container>
         <header className={styles.heading}>
-          <h2 id="faq-heading">
+          <h2 id="faq-heading" className={styles.title}>
             {t("layoutHeading")}
-            <span>{t("layoutHeadingSecondary")}</span>
+            <span className={styles.titleSecondary}>{t("layoutHeadingSecondary")}</span>
           </h2>
         </header>
         <div className={styles.layout}>

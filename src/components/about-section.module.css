@@ -1,6 +1,5 @@
-.heading { margin-top: 0; color: #20211f; font-size: clamp(36px, 4vw, 56px); font-weight: 500; line-height: 1.16; letter-spacing: -.05em; text-align: left; word-break: keep-all; }
-.heading span { display: block; color: #969b94; }
-@media (prefers-contrast: more) { .heading span { color: #60665d; } }
+.heading { composes: sectionTitle from "./home-typography.module.css"; text-align: left; }
+.headingSecondary { composes: secondary from "./home-typography.module.css"; }
 .header { display: flex; justify-content: space-between; align-items: flex-end; gap: var(--site-stack-gap); }
 .header .heading { margin-bottom: 0; }
 .archiveLink { flex-shrink: 0; align-self: flex-end; }

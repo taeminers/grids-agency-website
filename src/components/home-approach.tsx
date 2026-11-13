@@ -51,7 +51,7 @@ export default function HomeApproach() {
             className={styles.panel}>
             {selected === index && <>
               <header className={styles.header}>
-                <h2>{t(`${topic}.title`)}<span>{t(`${topic}.subtitle`)}</span></h2>
+                <h2 className={styles.heading}>{t(`${topic}.title`)}<span className={styles.headingSecondary}>{t(`${topic}.subtitle`)}</span></h2>
               </header>
               <ApproachReply topic={item} />
               {item !== "quality" ? (
