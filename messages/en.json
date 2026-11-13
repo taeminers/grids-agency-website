@@ -335,7 +335,7 @@
     "build": {
       "title": "Websites & Applications",
       "description": "From planning and design to development. We build the websites that express your brand and the applications that power your business.",
-      "cta": "Discuss your project",
+      "cta": "Try the examples",
       "hero": {
         "label": "ROAM travel website preview with a centered headline, a pill button, and a stack of animated artwork cards on a light background.",
         "headline": "Far from ordinary.\nCloser to yourself.",
@@ -441,6 +441,7 @@
     "name": "GRIDS AGENCY"
   },
   "Navbar": {
+    "blog": "Blog",
     "work": "Portfolio",
     "pricing": "Pricing",
     "team": "Team",
@@ -557,6 +558,7 @@
     }
   },
   "Footer": {
+    "privacy": "Privacy policy",
     "eyebrow": "Let’s build what’s next",
     "headline": "You don’t need to know tech",
     "headlineEnd": "to explore what’s possible.",
@@ -720,10 +722,13 @@
       "sendError": "Your inquiry could not be sent. Please try again or email your answers.",
       "emailFallback": "Email these answers",
       "emailSubject": "GRIDS project inquiry",
+      "privacyNotice": "Your information is delivered through EmailJS for inquiry and quote handling, and retained for one year after the inquiry closes.",
+      "privacyLink": "Privacy policy",
       "successTitle": "The start of something new. Thank you.",
       "successDescription": "Your inquiry has been delivered. We’ll read through your ideas and get back to you by email."
     },
     "Experience": {
+      "privacy": "Privacy policy",
       "title": "What brings you here today?",
       "description": "A clear plan or the spark of an idea. Let’s start there.",
       "project": "Start a project",
@@ -1083,9 +1088,10 @@
   },
   "NotFound": {
     "title": "404",
-    "subtitle": "COORDINATE NOT FOUND",
-    "description": "The page you are looking for has been lost in the digital void. Let's get you back to the system.",
-    "cta": "Back to Home"
+    "subtitle": "A little out of place.",
+    "description": "This page may have moved or is no longer available.",
+    "cta": "Back to Home",
+    "subtitleSecondary": "Let’s head back."
   },
   "Possibilities": {
     "heading": "Whatever you need,\nwe can build it.",
@@ -2402,6 +2408,8 @@
       "customTitle": "Custom build",
       "customLabel": "Beyond the packages",
       "approximateMinimum": "Starting at approximately {price}",
+      "priceApproximate": "Approximately",
+      "priceStartingFrom": "Starting from",
       "customPrice": "Quoted after discovery",
       "customNote": "We’ll provide a quote after reviewing your requirements and integrations.",
       "services": {
@@ -2455,5 +2463,45 @@
       },
       "webAppPricingNote": "These packages cover a web-service MVP. Mobile apps and complex platforms are quoted separately after reviewing requirements."
     }
+  },
+  "Blog": {
+    "home": {
+      "heading": "Ideas for your business.",
+      "headingSecondary": "Lessons worth sharing.",
+      "allPosts": "View all articles"
+    },
+    "cards": {
+      "illustration": "Illustration placeholder",
+      "placeholder": "Article placeholder"
+    },
+    "index": {
+      "title": "Blog",
+      "description": "Ideas and experience connecting websites, applications and AI to your business.",
+      "koreanNote": "Articles are currently available in Korean.",
+      "emptyTitle": "Our first article is on its way.",
+      "emptyDescription": "Practical ideas for your business will be here soon.",
+      "heading": "Ideas for business.",
+      "headingSecondary": "Shared with you.",
+      "postCount": "{count, plural, one {# article} other {# articles}}",
+      "emptyTopicTitle": "More on this topic soon.",
+      "emptyTopicDescription": "We’re putting together useful ideas for your business."
+    },
+    "draft": {
+      "label": "Draft · local preview",
+      "description": "An example article in progress. Visible only in development; it is not published on the public website.",
+      "unpublished": "Not yet published"
+    },
+    "author": "By",
+    "published": "Published",
+    "updated": "Updated",
+    "status": "Status",
+    "topics": {
+      "label": "Blog topics",
+      "all": "All articles",
+      "business": "Business",
+      "web-app": "Websites & apps",
+      "ai": "AI & automation"
+    },
+    "readingTime": "{minutes} min read"
   }
 }

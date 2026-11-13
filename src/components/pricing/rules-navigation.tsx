@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { ArrowRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import styles from "./rules-grid.module.css";
 
 type SectionLink = { id: string; label: string };
@@ -53,7 +53,7 @@ export default function RulesNavigation({ label, items }: { label: string; items
                   className={styles.navigationLink}
                 >
                   <span className={styles.navigationLabel}>{item.label}</span>
-                  <ArrowRight size={14} aria-hidden="true" className={styles.navigationArrow} />
+                  <ChevronRight strokeWidth={3.5} size={14} aria-hidden="true" className={styles.navigationArrow} />
                 </a>
               </li>
             );

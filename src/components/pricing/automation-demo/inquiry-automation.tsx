@@ -3,7 +3,7 @@
 import { useId, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, CheckCheck, Inbox, LoaderCircle, RotateCcw, WandSparkles } from "lucide-react";
+import { ChevronRight, CheckCheck, Inbox, LoaderCircle, RotateCcw, WandSparkles } from "lucide-react";
 import ConsultationLink from "@/components/consultation-link";
 import { trackEvent } from "@/lib/analytics";
 import { industries, type Locale } from "./scenarios";
@@ -86,7 +86,7 @@ function InquiryExperience({ locale }: { locale: Locale }) {
                 onClick={start}>
                 {simulation.running ? <LoaderCircle className={styles.spinner} size={17} aria-hidden="true" /> : <WandSparkles size={17} aria-hidden="true" />}
                 {simulation.running ? t("processing") : complete ? t("runAgain") : t("run")}
-                {!simulation.running && <ArrowRight size={16} aria-hidden="true" />}
+                {!simulation.running && <ChevronRight strokeWidth={3.5} size={16} aria-hidden="true" />}
               </button>
               {(simulation.running || simulation.result || simulation.error) && <button className={styles.resetButton} type="button" onClick={simulation.reset}><RotateCcw size={14} aria-hidden="true" />{t("reset")}</button>}
             </div>

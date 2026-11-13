@@ -21,6 +21,11 @@ This is a card standard, not a universal radius reset. Preserve intentionally pi
 
 When adding or editing an outer card or panel on any route, use this token rather than choosing another literal radius or a generic `rounded-xl` / `rounded-2xl` utility. Verify the rendered corners and clipping at desktop and mobile sizes.
 
+## Action icons
+
+Forward-action buttons and CTAs use Lucide `ChevronRight` with `strokeWidth={3.5}`.
+Keep existing icon sizes, button geometry and interaction timing when applying it.
+
 ## Content containers
 
 Use `Container` from `src/components/container.tsx` for page sections. It creates an outer `.site-gutter` wrapper and an inner `.site-container` wrapper. The **content cap excludes horizontal padding**: it is 1200px on ordinary screens and grows fluidly to 1440px on wide displays (`clamp(1200px, calc(100vw - 160px), 1440px)`).

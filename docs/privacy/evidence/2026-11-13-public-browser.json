@@ -1,0 +1,1073 @@
+{
+  "capturedAt": "2026-11-13T03:45:59.700Z",
+  "scope": "Anonymous browser, no account logins, no actual form submissions, no ad clicks",
+  "redaction": "No cookie values, client IDs, email contents, credentials, or visitor log records are included. Browser sessions were created for this audit.",
+  "pages": [
+    {
+      "path": "/ko",
+      "url": "https://www.gridsagency.com/ko",
+      "cookies": [
+        {
+          "name": "_ga_4TFWB7JM6W",
+          "domain": ".gridsagency.com",
+          "path": "/",
+          "expiresAt": "2027-12-18T03:46:03.596Z",
+          "remainingDays": 400,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "_ga",
+          "domain": ".gridsagency.com",
+          "path": "/",
+          "expiresAt": "2027-12-18T03:46:03.596Z",
+          "remainingDays": 400,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        }
+      ],
+      "localStorageKeys": [
+        "theme"
+      ],
+      "sessionStorageKeys": [],
+      "consent": {
+        "active": false,
+        "entries": {
+          "ad_storage": {
+            "implicit": true
+          },
+          "analytics_storage": {
+            "implicit": true
+          },
+          "ad_user_data": {
+            "implicit": true
+          },
+          "ad_personalization": {
+            "implicit": true
+          }
+        }
+      },
+      "thirdPartyRequests": [
+        {
+          "origin": "https://www.googletagmanager.com",
+          "path": "/gtm.js",
+          "queryKeys": [
+            "id"
+          ],
+          "postKeys": [],
+          "resourceType": "script",
+          "method": "GET",
+          "googleTagId": "GTM-P24CXJTJ",
+          "consentSignals": {}
+        },
+        {
+          "origin": "https://www.googletagmanager.com",
+          "path": "/gtag/js",
+          "queryKeys": [
+            "id",
+            "cx",
+            "gtm"
+          ],
+          "postKeys": [],
+          "resourceType": "script",
+          "method": "GET",
+          "googleTagId": "G-4TFWB7JM6W",
+          "consentSignals": {}
+        },
+        {
+          "origin": "https://analytics.google.com",
+          "path": "/g/collect",
+          "queryKeys": [
+            "v",
+            "tid",
+            "gtm",
+            "_p",
+            "_gaz",
+            "gcd",
+            "npa",
+            "dma",
+            "_eu",
+            "cid",
+            "frm",
+            "ibt",
+            "ngs",
+            "pscdl",
+            "rcb",
+            "sr",
+            "uaa",
+            "uab",
+            "uafvl",
+            "uam",
+            "uamb",
+            "uap",
+            "uapv",
+            "uaw",
+            "ul",
+            "_s",
+            "tag_exp",
+            "sid",
+            "sct",
+            "seg",
+            "dl",
+            "dt",
+            "en",
+            "_fv",
+            "_nsi",
+            "_ss",
+            "tfd"
+          ],
+          "postKeys": [],
+          "resourceType": "fetch",
+          "method": "POST",
+          "googleTagId": "G-4TFWB7JM6W",
+          "consentSignals": {
+            "gcd": "13l3l3l3l1l1",
+            "npa": "0",
+            "dma": "0"
+          },
+          "event": "page_view"
+        },
+        {
+          "origin": "https://stats.g.doubleclick.net",
+          "path": "/g/collect",
+          "queryKeys": [
+            "v",
+            "ngs",
+            "ibt",
+            "tid",
+            "cid",
+            "gtm",
+            "rcb",
+            "aip",
+            "dma",
+            "gcd",
+            "npa",
+            "frm",
+            "tag_exp"
+          ],
+          "postKeys": [],
+          "resourceType": "ping",
+          "method": "POST",
+          "googleTagId": "G-4TFWB7JM6W",
+          "consentSignals": {
+            "gcd": "13l3l3l3l1l1",
+            "npa": "0",
+            "dma": "0"
+          }
+        },
+        {
+          "origin": "https://www.google.co.kr",
+          "path": "/ads/ga-audiences",
+          "queryKeys": [
+            "v",
+            "t",
+            "slf_rd",
+            "_r",
+            "ngs",
+            "ibt",
+            "tid",
+            "cid",
+            "gtm",
+            "rcb",
+            "aip",
+            "dma",
+            "gcd",
+            "npa",
+            "frm",
+            "tag_exp",
+            "z"
+          ],
+          "postKeys": [],
+          "resourceType": "image",
+          "method": "GET",
+          "googleTagId": "G-4TFWB7JM6W",
+          "consentSignals": {
+            "gcd": "13l3l3l3l1l1",
+            "npa": "0",
+            "dma": "0"
+          }
+        }
+      ],
+      "iframes": [],
+      "privacyLinks": [],
+      "pageErrors": []
+    },
+    {
+      "path": "/ko/connect",
+      "url": "https://www.gridsagency.com/ko/connect",
+      "cookies": [
+        {
+          "name": "_ga",
+          "domain": ".gridsagency.com",
+          "path": "/",
+          "expiresAt": "2027-12-18T03:46:12.791Z",
+          "remainingDays": 400,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "_ga_4TFWB7JM6W",
+          "domain": ".gridsagency.com",
+          "path": "/",
+          "expiresAt": "2027-12-18T03:46:12.796Z",
+          "remainingDays": 400,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        }
+      ],
+      "localStorageKeys": [
+        "theme"
+      ],
+      "sessionStorageKeys": [
+        "grids:site-visited"
+      ],
+      "consent": {
+        "active": false,
+        "entries": {
+          "ad_storage": {
+            "implicit": true
+          },
+          "analytics_storage": {
+            "implicit": true
+          },
+          "ad_user_data": {
+            "implicit": true
+          },
+          "ad_personalization": {
+            "implicit": true
+          }
+        }
+      },
+      "thirdPartyRequests": [
+        {
+          "origin": "https://www.googletagmanager.com",
+          "path": "/gtm.js",
+          "queryKeys": [
+            "id"
+          ],
+          "postKeys": [],
+          "resourceType": "script",
+          "method": "GET",
+          "googleTagId": "GTM-P24CXJTJ",
+          "consentSignals": {}
+        },
+        {
+          "origin": "https://www.googletagmanager.com",
+          "path": "/gtag/js",
+          "queryKeys": [
+            "id",
+            "cx",
+            "gtm"
+          ],
+          "postKeys": [],
+          "resourceType": "script",
+          "method": "GET",
+          "googleTagId": "G-4TFWB7JM6W",
+          "consentSignals": {}
+        },
+        {
+          "origin": "https://analytics.google.com",
+          "path": "/g/collect",
+          "queryKeys": [
+            "v",
+            "tid",
+            "gtm",
+            "_p",
+            "_gaz",
+            "gcd",
+            "npa",
+            "dma",
+            "_eu",
+            "cid",
+            "frm",
+            "ibt",
+            "ngs",
+            "pscdl",
+            "rcb",
+            "sr",
+            "uaa",
+            "uab",
+            "uafvl",
+            "uam",
+            "uamb",
+            "uap",
+            "uapv",
+            "uaw",
+            "ul",
+            "_s",
+            "tag_exp",
+            "sid",
+            "sct",
+            "seg",
+            "dl",
+            "dt",
+            "en",
+            "_fv",
+            "_nsi",
+            "_ss",
+            "tfd"
+          ],
+          "postKeys": [],
+          "resourceType": "fetch",
+          "method": "POST",
+          "googleTagId": "G-4TFWB7JM6W",
+          "consentSignals": {
+            "gcd": "13l3l3l3l1l1",
+            "npa": "0",
+            "dma": "0"
+          },
+          "event": "page_view"
+        },
+        {
+          "origin": "https://stats.g.doubleclick.net",
+          "path": "/g/collect",
+          "queryKeys": [
+            "v",
+            "ngs",
+            "ibt",
+            "tid",
+            "cid",
+            "gtm",
+            "rcb",
+            "aip",
+            "dma",
+            "gcd",
+            "npa",
+            "frm",
+            "tag_exp"
+          ],
+          "postKeys": [],
+          "resourceType": "ping",
+          "method": "POST",
+          "googleTagId": "G-4TFWB7JM6W",
+          "consentSignals": {
+            "gcd": "13l3l3l3l1l1",
+            "npa": "0",
+            "dma": "0"
+          }
+        },
+        {
+          "origin": "https://www.google.co.kr",
+          "path": "/ads/ga-audiences",
+          "queryKeys": [
+            "v",
+            "t",
+            "slf_rd",
+            "_r",
+            "ngs",
+            "ibt",
+            "tid",
+            "cid",
+            "gtm",
+            "rcb",
+            "aip",
+            "dma",
+            "gcd",
+            "npa",
+            "frm",
+            "tag_exp",
+            "z"
+          ],
+          "postKeys": [],
+          "resourceType": "image",
+          "method": "GET",
+          "googleTagId": "G-4TFWB7JM6W",
+          "consentSignals": {
+            "gcd": "13l3l3l3l1l1",
+            "npa": "0",
+            "dma": "0"
+          }
+        },
+        {
+          "origin": "https://analytics.google.com",
+          "path": "/g/collect",
+          "queryKeys": [
+            "v",
+            "tid",
+            "gtm",
+            "_p",
+            "gcd",
+            "npa",
+            "dma",
+            "_eu",
+            "ae",
+            "cid",
+            "frm",
+            "ibt",
+            "ngs",
+            "pscdl",
+            "rcb",
+            "sr",
+            "uaa",
+            "uab",
+            "uafvl",
+            "uam",
+            "uamb",
+            "uap",
+            "uapv",
+            "uaw",
+            "ul",
+            "_s",
+            "tag_exp",
+            "sid",
+            "sct",
+            "seg",
+            "dl",
+            "dt",
+            "en",
+            "epn.percent_scrolled",
+            "_et",
+            "tfd"
+          ],
+          "postKeys": [],
+          "resourceType": "fetch",
+          "method": "POST",
+          "googleTagId": "G-4TFWB7JM6W",
+          "consentSignals": {
+            "gcd": "13l3l3l3l1l1",
+            "npa": "0",
+            "dma": "0"
+          },
+          "event": "scroll"
+        }
+      ],
+      "iframes": [],
+      "privacyLinks": [],
+      "pageErrors": []
+    },
+    {
+      "path": "/ko/archive",
+      "url": "https://www.gridsagency.com/ko/archive",
+      "cookies": [
+        {
+          "name": "_ga_4TFWB7JM6W",
+          "domain": ".gridsagency.com",
+          "path": "/",
+          "expiresAt": "2027-12-18T03:46:21.858Z",
+          "remainingDays": 400,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "_ga",
+          "domain": ".gridsagency.com",
+          "path": "/",
+          "expiresAt": "2027-12-18T03:46:21.858Z",
+          "remainingDays": 400,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        }
+      ],
+      "localStorageKeys": [
+        "theme"
+      ],
+      "sessionStorageKeys": [
+        "grids:site-visited"
+      ],
+      "consent": {
+        "active": false,
+        "entries": {
+          "ad_storage": {
+            "implicit": true
+          },
+          "analytics_storage": {
+            "implicit": true
+          },
+          "ad_user_data": {
+            "implicit": true
+          },
+          "ad_personalization": {
+            "implicit": true
+          }
+        }
+      },
+      "thirdPartyRequests": [
+        {
+          "origin": "https://www.googletagmanager.com",
+          "path": "/gtm.js",
+          "queryKeys": [
+            "id"
+          ],
+          "postKeys": [],
+          "resourceType": "script",
+          "method": "GET",
+          "googleTagId": "GTM-P24CXJTJ",
+          "consentSignals": {}
+        },
+        {
+          "origin": "https://www.googletagmanager.com",
+          "path": "/gtag/js",
+          "queryKeys": [
+            "id",
+            "cx",
+            "gtm"
+          ],
+          "postKeys": [],
+          "resourceType": "script",
+          "method": "GET",
+          "googleTagId": "G-4TFWB7JM6W",
+          "consentSignals": {}
+        },
+        {
+          "origin": "https://www.googletagmanager.com",
+          "path": "/gtm.js",
+          "queryKeys": [
+            "id",
+            "is_td",
+            "v",
+            "t",
+            "pid",
+            "gtm",
+            "seq",
+            "exp",
+            "dl",
+            "tdp",
+            "frm",
+            "rtg",
+            "slo",
+            "hlo",
+            "lst",
+            "bt",
+            "ct",
+            "mde",
+            "z"
+          ],
+          "postKeys": [],
+          "resourceType": "script",
+          "method": "GET",
+          "googleTagId": "GTM-P24CXJTJ",
+          "consentSignals": {}
+        },
+        {
+          "origin": "https://www.googletagmanager.com",
+          "path": "/td",
+          "queryKeys": [
+            "id",
+            "v",
+            "t",
+            "pid",
+            "gtm",
+            "seq",
+            "exp",
+            "dl",
+            "tdp",
+            "frm",
+            "rtg",
+            "slo",
+            "hlo",
+            "lst",
+            "bt",
+            "ct",
+            "mde",
+            "z"
+          ],
+          "postKeys": [],
+          "resourceType": "image",
+          "method": "GET",
+          "googleTagId": "GTM-P24CXJTJ",
+          "consentSignals": {}
+        },
+        {
+          "origin": "https://analytics.google.com",
+          "path": "/g/collect",
+          "queryKeys": [
+            "v",
+            "tid",
+            "gtm",
+            "_p",
+            "_gaz",
+            "gcd",
+            "npa",
+            "dma",
+            "_eu",
+            "cid",
+            "frm",
+            "ibt",
+            "ngs",
+            "pscdl",
+            "rcb",
+            "sr",
+            "uaa",
+            "uab",
+            "uafvl",
+            "uam",
+            "uamb",
+            "uap",
+            "uapv",
+            "uaw",
+            "ul",
+            "_s",
+            "tag_exp",
+            "sid",
+            "sct",
+            "seg",
+            "dl",
+            "dt",
+            "en",
+            "_fv",
+            "_nsi",
+            "_ss",
+            "tfd"
+          ],
+          "postKeys": [],
+          "resourceType": "fetch",
+          "method": "POST",
+          "googleTagId": "G-4TFWB7JM6W",
+          "consentSignals": {
+            "gcd": "13l3l3l3l1l1",
+            "npa": "0",
+            "dma": "0"
+          },
+          "event": "page_view"
+        },
+        {
+          "origin": "https://stats.g.doubleclick.net",
+          "path": "/g/collect",
+          "queryKeys": [
+            "v",
+            "ngs",
+            "ibt",
+            "tid",
+            "cid",
+            "gtm",
+            "rcb",
+            "aip",
+            "dma",
+            "gcd",
+            "npa",
+            "frm",
+            "tag_exp"
+          ],
+          "postKeys": [],
+          "resourceType": "ping",
+          "method": "POST",
+          "googleTagId": "G-4TFWB7JM6W",
+          "consentSignals": {
+            "gcd": "13l3l3l3l1l1",
+            "npa": "0",
+            "dma": "0"
+          }
+        },
+        {
+          "origin": "https://www.google.co.kr",
+          "path": "/ads/ga-audiences",
+          "queryKeys": [
+            "v",
+            "t",
+            "slf_rd",
+            "_r",
+            "ngs",
+            "ibt",
+            "tid",
+            "cid",
+            "gtm",
+            "rcb",
+            "aip",
+            "dma",
+            "gcd",
+            "npa",
+            "frm",
+            "tag_exp",
+            "z"
+          ],
+          "postKeys": [],
+          "resourceType": "image",
+          "method": "GET",
+          "googleTagId": "G-4TFWB7JM6W",
+          "consentSignals": {
+            "gcd": "13l3l3l3l1l1",
+            "npa": "0",
+            "dma": "0"
+          }
+        }
+      ],
+      "iframes": [],
+      "privacyLinks": [],
+      "pageErrors": []
+    },
+    {
+      "path": "/ko/pricing",
+      "url": "https://www.gridsagency.com/ko/pricing",
+      "cookies": [
+        {
+          "name": "_ga_4TFWB7JM6W",
+          "domain": ".gridsagency.com",
+          "path": "/",
+          "expiresAt": "2027-12-18T03:46:31.572Z",
+          "remainingDays": 400,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        },
+        {
+          "name": "_ga",
+          "domain": ".gridsagency.com",
+          "path": "/",
+          "expiresAt": "2027-12-18T03:46:31.573Z",
+          "remainingDays": 400,
+          "httpOnly": false,
+          "secure": false,
+          "sameSite": "Lax"
+        }
+      ],
+      "localStorageKeys": [
+        "theme"
+      ],
+      "sessionStorageKeys": [
+        "grids:site-visited"
+      ],
+      "consent": {
+        "active": false,
+        "entries": {
+          "ad_storage": {
+            "implicit": true
+          },
+          "analytics_storage": {
+            "implicit": true
+          },
+          "ad_user_data": {
+            "implicit": true
+          },
+          "ad_personalization": {
+            "implicit": true
+          }
+        }
+      },
+      "thirdPartyRequests": [
+        {
+          "origin": "https://demo001c.gridsagency.com",
+          "path": "/",
+          "queryKeys": [],
+          "postKeys": [],
+          "resourceType": "document",
+          "method": "GET",
+          "consentSignals": {}
+        },
+        {
+          "origin": "https://www.googletagmanager.com",
+          "path": "/gtm.js",
+          "queryKeys": [
+            "id"
+          ],
+          "postKeys": [],
+          "resourceType": "script",
+          "method": "GET",
+          "googleTagId": "GTM-P24CXJTJ",
+          "consentSignals": {}
+        },
+        {
+          "origin": "https://demo001c.gridsagency.com",
+          "path": "/_astro/Switzer-Regular.BxEtgLLb.woff2",
+          "queryKeys": [],
+          "postKeys": [],
+          "resourceType": "font",
+          "method": "GET",
+          "consentSignals": {}
+        },
+        {
+          "origin": "https://demo001c.gridsagency.com",
+          "path": "/_astro/Switzer-Medium.A29GCmfN.woff2",
+          "queryKeys": [],
+          "postKeys": [],
+          "resourceType": "font",
+          "method": "GET",
+          "consentSignals": {}
+        },
+        {
+          "origin": "https://demo001c.gridsagency.com",
+          "path": "/_astro/PretendardVariable.CJuje-Rk.woff2",
+          "queryKeys": [],
+          "postKeys": [],
+          "resourceType": "font",
+          "method": "GET",
+          "consentSignals": {}
+        },
+        {
+          "origin": "https://demo001c.gridsagency.com",
+          "path": "/_astro/SectionHeader.CUuXerk7.css",
+          "queryKeys": [],
+          "postKeys": [],
+          "resourceType": "stylesheet",
+          "method": "GET",
+          "consentSignals": {}
+        },
+        {
+          "origin": "https://demo001c.gridsagency.com",
+          "path": "/_astro/index.CUehWzrQ.css",
+          "queryKeys": [],
+          "postKeys": [],
+          "resourceType": "stylesheet",
+          "method": "GET",
+          "consentSignals": {}
+        },
+        {
+          "origin": "https://demo001c.gridsagency.com",
+          "path": "/_astro/Navigation.astro_astro_type_script_index_0_lang.DUQdXSLy.js",
+          "queryKeys": [],
+          "postKeys": [],
+          "resourceType": "script",
+          "method": "GET",
+          "consentSignals": {}
+        },
+        {
+          "origin": "https://demo001c.gridsagency.com",
+          "path": "/_astro/1104-poster.CHCZBXmM_Z1iS3hT.webp",
+          "queryKeys": [],
+          "postKeys": [],
+          "resourceType": "image",
+          "method": "GET",
+          "consentSignals": {}
+        },
+        {
+          "origin": "https://demo001c.gridsagency.com",
+          "path": "/_astro/ClinicMap.astro_astro_type_script_index_0_lang.bvb4gNue.js",
+          "queryKeys": [],
+          "postKeys": [],
+          "resourceType": "script",
+          "method": "GET",
+          "consentSignals": {}
+        },
+        {
+          "origin": "https://demo001c.gridsagency.com",
+          "path": "/_astro/serum-contact-beige.BSrnwKr8_1Mbjue.webp",
+          "queryKeys": [],
+          "postKeys": [],
+          "resourceType": "image",
+          "method": "GET",
+          "consentSignals": {}
+        },
+        {
+          "origin": "https://demo001c.gridsagency.com",
+          "path": "/_astro/FloatingContact.astro_astro_type_script_index_0_lang.hxqKk-rb.js",
+          "queryKeys": [],
+          "postKeys": [],
+          "resourceType": "script",
+          "method": "GET",
+          "consentSignals": {}
+        },
+        {
+          "origin": "https://demo001c.gridsagency.com",
+          "path": "/_astro/runtime.Bk1dmGaJ.js",
+          "queryKeys": [],
+          "postKeys": [],
+          "resourceType": "script",
+          "method": "GET",
+          "consentSignals": {}
+        },
+        {
+          "origin": "https://demo001c.gridsagency.com",
+          "path": "/_astro/ConsultationDialog.DwgIo5t0.js",
+          "queryKeys": [],
+          "postKeys": [],
+          "resourceType": "script",
+          "method": "GET",
+          "consentSignals": {}
+        },
+        {
+          "origin": "https://demo001c.gridsagency.com",
+          "path": "/_astro/client.DuTvz4xp.js",
+          "queryKeys": [],
+          "postKeys": [],
+          "resourceType": "script",
+          "method": "GET",
+          "consentSignals": {}
+        },
+        {
+          "origin": "https://demo001c.gridsagency.com",
+          "path": "/_astro/jsx-runtime.u17CrQMm.js",
+          "queryKeys": [],
+          "postKeys": [],
+          "resourceType": "script",
+          "method": "GET",
+          "consentSignals": {}
+        },
+        {
+          "origin": "https://demo001c.gridsagency.com",
+          "path": "/_astro/index.BInc2KrN.js",
+          "queryKeys": [],
+          "postKeys": [],
+          "resourceType": "script",
+          "method": "GET",
+          "consentSignals": {}
+        },
+        {
+          "origin": "https://demo001c.gridsagency.com",
+          "path": "/_astro/Text.CLO8bcj5.js",
+          "queryKeys": [],
+          "postKeys": [],
+          "resourceType": "script",
+          "method": "GET",
+          "consentSignals": {}
+        },
+        {
+          "origin": "https://demo001c.gridsagency.com",
+          "path": "/_astro/ConsultationJourney.D4Zv4Wxj.js",
+          "queryKeys": [],
+          "postKeys": [],
+          "resourceType": "script",
+          "method": "GET",
+          "consentSignals": {}
+        },
+        {
+          "origin": "https://demo001c.gridsagency.com",
+          "path": "/_astro/index.DvBq5P-5.js",
+          "queryKeys": [],
+          "postKeys": [],
+          "resourceType": "script",
+          "method": "GET",
+          "consentSignals": {}
+        },
+        {
+          "origin": "https://demo001c.gridsagency.com",
+          "path": "/_astro/index.GYN7ikXe.js",
+          "queryKeys": [],
+          "postKeys": [],
+          "resourceType": "script",
+          "method": "GET",
+          "consentSignals": {}
+        },
+        {
+          "origin": "https://www.googletagmanager.com",
+          "path": "/gtag/js",
+          "queryKeys": [
+            "id",
+            "cx",
+            "gtm"
+          ],
+          "postKeys": [],
+          "resourceType": "script",
+          "method": "GET",
+          "googleTagId": "G-4TFWB7JM6W",
+          "consentSignals": {}
+        },
+        {
+          "origin": "https://analytics.google.com",
+          "path": "/g/collect",
+          "queryKeys": [
+            "v",
+            "tid",
+            "gtm",
+            "_p",
+            "_gaz",
+            "gcd",
+            "npa",
+            "dma",
+            "_eu",
+            "cid",
+            "frm",
+            "ibt",
+            "ngs",
+            "pscdl",
+            "rcb",
+            "sr",
+            "uaa",
+            "uab",
+            "uafvl",
+            "uam",
+            "uamb",
+            "uap",
+            "uapv",
+            "uaw",
+            "ul",
+            "_s",
+            "tag_exp",
+            "sid",
+            "sct",
+            "seg",
+            "dl",
+            "dt",
+            "en",
+            "_fv",
+            "_nsi",
+            "_ss",
+            "tfd"
+          ],
+          "postKeys": [],
+          "resourceType": "fetch",
+          "method": "POST",
+          "googleTagId": "G-4TFWB7JM6W",
+          "consentSignals": {
+            "gcd": "13l3l3l3l1l1",
+            "npa": "0",
+            "dma": "0"
+          },
+          "event": "page_view"
+        },
+        {
+          "origin": "https://stats.g.doubleclick.net",
+          "path": "/g/collect",
+          "queryKeys": [
+            "v",
+            "ngs",
+            "ibt",
+            "tid",
+            "cid",
+            "gtm",
+            "rcb",
+            "aip",
+            "dma",
+            "gcd",
+            "npa",
+            "frm",
+            "tag_exp"
+          ],
+          "postKeys": [],
+          "resourceType": "ping",
+          "method": "POST",
+          "googleTagId": "G-4TFWB7JM6W",
+          "consentSignals": {
+            "gcd": "13l3l3l3l1l1",
+            "npa": "0",
+            "dma": "0"
+          }
+        },
+        {
+          "origin": "https://www.google.co.kr",
+          "path": "/ads/ga-audiences",
+          "queryKeys": [
+            "v",
+            "t",
+            "slf_rd",
+            "_r",
+            "ngs",
+            "ibt",
+            "tid",
+            "cid",
+            "gtm",
+            "rcb",
+            "aip",
+            "dma",
+            "gcd",
+            "npa",
+            "frm",
+            "tag_exp",
+            "z"
+          ],
+          "postKeys": [],
+          "resourceType": "image",
+          "method": "GET",
+          "googleTagId": "G-4TFWB7JM6W",
+          "consentSignals": {
+            "gcd": "13l3l3l3l1l1",
+            "npa": "0",
+            "dma": "0"
+          }
+        }
+      ],
+      "iframes": [
+        {
+          "title": "웹사이트 미리보기",
+          "src": "https://demo001c.gridsagency.com/"
+        }
+      ],
+      "privacyLinks": [],
+      "pageErrors": []
+    }
+  ]
+}

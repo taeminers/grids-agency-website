@@ -58,11 +58,11 @@
 }
 .openProject svg { transition: transform 350ms cubic-bezier(.22, 1, .36, 1); }
 .projectLink:focus-visible .openProject { background: #f8f8f8; color: #101112; }
-.projectLink:focus-visible .openProject svg { transform: translate(2px, -2px); }
+.projectLink:focus-visible .openProject svg { transform: translateX(2px); }
 .projectLink:active .openProject { transform: scale(.95); }
 @media (hover: hover) {
   .projectLink:hover .openProject { background: #f8f8f8; color: #101112; }
-  .projectLink:hover .openProject svg { transform: translate(2px, -2px); }
+  .projectLink:hover .openProject svg { transform: translateX(2px); }
 }
 @media (prefers-reduced-motion: reduce) {
   .openProject, .openProject svg { transition: none; }

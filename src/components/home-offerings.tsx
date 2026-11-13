@@ -61,7 +61,7 @@ export default function HomeOfferings() {
               <div className={styles.copy}>
                 <h3 id={`offering-${offering}`}>{t(`${offering}.title`)}</h3>
                 <p>{t(`${offering}.description`)}</p>
-                <ConsultationLink href={`/${locale}/connect`} label={t(`${offering}.cta`)} />
+                <ConsultationLink href={offering === "build" ? `/${locale}/pricing#pricing-examples` : `/${locale}/connect`} label={t(`${offering}.cta`)} />
               </div>
             </article>
           ))}

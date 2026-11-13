@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { ArrowRight, BookOpen, CalendarCheck, ChevronDown, MapPin } from "lucide-react";
+import { ChevronRight, BookOpen, CalendarCheck, ChevronDown, MapPin } from "lucide-react";
 import { Airplane, ChatsCircle, Ticket } from "@phosphor-icons/react";
 import { SupportWidget, type SupportWidgetData } from "@/components/support-widget";
 import FallbackAvatar from "@/components/fallback-avatar";
@@ -22,7 +22,7 @@ function ReservationLookup({ disabled, onFind }: { disabled: boolean; onFind: ()
   const id = useId();
   return <form className={styles.lookup} onSubmit={(event) => { event.preventDefault(); if (disabled) return; if (value.trim().toUpperCase() !== "RM-2048") { setError(true); return; } setError(false); onFind(); }}>
     <label htmlFor={id}>{t("label")}</label>
-    <div><input id={id} aria-describedby={`${id}-help`} aria-invalid={error || undefined} value={value} placeholder="RM-2048" maxLength={30} disabled={disabled} onChange={(event) => { setValue(event.target.value); setError(false); }} /><button type="submit" disabled={disabled || !value.trim()}>{t("find")}<ArrowRight size={12} aria-hidden="true" /></button></div>
+    <div><input id={id} aria-describedby={`${id}-help`} aria-invalid={error || undefined} value={value} placeholder="RM-2048" maxLength={30} disabled={disabled} onChange={(event) => { setValue(event.target.value); setError(false); }} /><button type="submit" disabled={disabled || !value.trim()}>{t("find")}<ChevronRight strokeWidth={3.5} size={12} aria-hidden="true" /></button></div>
     <p id={`${id}-help`} role={error ? "alert" : undefined}>{t(error ? "error" : "hint")}</p>
   </form>;
 }

@@ -46,6 +46,7 @@
 .quoteHeader h3 { margin: 0; color: #153e59; font-size: 1.125rem; font-weight: 600; line-height: 1.5; letter-spacing: -.025em; word-break: keep-all; }
 .quoteHeader > span { flex-shrink: 0; color: #335d77; font-size: .6875rem; line-height: 1.6; }
 .priceStage { display: flex; flex: 1; flex-direction: column; align-items: center; justify-content: center; padding-block: 3rem; text-align: center; }
+.priceQualifier { margin-block: .75rem; color: #436781; font-size: clamp(.8125rem, 2.5cqi, .9375rem); font-weight: 500; line-height: 1.5; letter-spacing: -.02em; }
 .price { margin: 0; color: #153e59; font-size: clamp(2rem, 10cqi, 4.5rem); font-weight: 600; line-height: 1.1; letter-spacing: -.065em; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .price[data-custom="true"] { max-width: 13ch; font-size: clamp(1.5rem, 6.5cqi, 2.75rem); line-height: 1.3; letter-spacing: -.045em; white-space: normal; word-break: keep-all; text-wrap: balance; }
 .customOptions { padding: var(--site-card-padding); }

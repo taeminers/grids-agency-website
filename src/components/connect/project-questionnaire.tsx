@@ -3,10 +3,12 @@
 import { useRef, useState, type FormEvent } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Check } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import Link from "next/link";
 import emailjs from "@emailjs/browser";
 import styles from "./project-questionnaire.module.css";
 import { trackEvent } from "@/lib/analytics";
+import { showPrivacyLinks } from "@/lib/privacy-publication";
 
 const steps = ["name", "company", "build", "budget", "email", "notes"] as const;
 const services = ["website", "app", "admin", "automation", "ai", "unsure", "other"] as const;
@@ -15,6 +17,7 @@ const inputClass = "w-full rounded-none border-0 border-b border-foreground/25 b
 
 export default function ProjectQuestionnaire({ onClose, onSuccess }: { onClose: () => void; onSuccess: () => void }) {
   const t = useTranslations("Connect.Questionnaire");
+  const locale = useLocale();
   const contact = useTranslations("Connect");
   const reduced = useReducedMotion();
   const [closing, setClosing] = useState(false);
@@ -215,6 +218,7 @@ export default function ProjectQuestionnaire({ onClose, onSuccess }: { onClose: 
         </motion.div>
       </div>
       <div className="w-full max-w-lg text-center">
+        {showPrivacyLinks && status !== "success" && <p className={styles.privacyNotice}>{t("privacyNotice")} <Link href={`/${locale}/privacy`}>{t("privacyLink")}</Link></p>}
         <div id="question-error" role="alert" className="mb-5 min-h-5 text-xs text-foreground/70">
           <AnimatePresence mode="wait" initial={false}>
             {feedback && (

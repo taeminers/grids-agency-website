@@ -173,6 +173,7 @@ export default function PricingServiceExplorer() {
                           : "packages.proposedPrice",
                       )}
                     </p>
+                    {packagePrice && <span className={styles.priceQualifier} aria-hidden="true">{t("explorer.priceApproximate")}</span>}
                     <p
                       className={styles.price}
                       data-custom={!service || !tier}
@@ -180,8 +181,9 @@ export default function PricingServiceExplorer() {
                       aria-live="polite"
                       aria-atomic="true"
                     >
-                      {packagePrice ? `~ ${packagePrice}+` : t("explorer.customPrice")}
+                      {packagePrice ?? t("explorer.customPrice")}
                     </p>
+                    {packagePrice && <span className={styles.priceQualifier} aria-hidden="true">{t("explorer.priceStartingFrom")}</span>}
                   </div>
                 </motion.div>
               </div>

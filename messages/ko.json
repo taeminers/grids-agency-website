@@ -335,7 +335,7 @@
     "build": {
       "title": "Websites & Applications",
       "description": "기획부터 디자인, 개발까지. 브랜드를 보여주는 웹사이트부터 비즈니스를 움직이는 애플리케이션까지, 필요한 제품을 함께 만듭니다.",
-      "cta": "프로젝트 상담하기",
+      "cta": "체험해보기",
       "hero": {
         "label": "ROAM 여행 웹사이트 예시. 밝은 배경의 중앙 헤드라인과 여행 시작 버튼 아래로 애니메이션 카드가 펼쳐지는 디자인.",
         "headline": "일상에서 멀리,\n나에게 더 가까이.",
@@ -441,6 +441,7 @@
     "name": "GRIDS AGENCY"
   },
   "Navbar": {
+    "blog": "블로그",
     "work": "작업",
     "pricing": "요금 안내",
     "team": "Team",
@@ -557,6 +558,7 @@
     }
   },
   "Footer": {
+    "privacy": "개인정보 처리방침",
     "eyebrow": "Let’s build what’s next",
     "headline": "기술을 몰라도,",
     "headlineEnd": "가능성은 놓치지 않도록.",
@@ -720,10 +722,13 @@
       "sendError": "전송하지 못했습니다. 다시 시도하거나 이메일로 보내주세요.",
       "emailFallback": "작성한 내용으로 이메일 보내기",
       "emailSubject": "GRIDS 프로젝트 문의",
+      "privacyNotice": "입력하신 정보는 상담과 견적 안내를 위해 EmailJS를 통해 전달되며, 문의 종료 후 1년간 보관합니다.",
+      "privacyLink": "개인정보 처리방침",
       "successTitle": "새로운 가능성의 시작, 감사합니다.",
       "successDescription": "문의가 전달되었습니다. 남겨주신 내용을 확인한 뒤 이메일로 연락드리겠습니다."
     },
     "Experience": {
+      "privacy": "개인정보 처리방침",
       "title": "어떻게 오셨나요?",
       "description": "구체적인 계획도, 아직은 작은 아이디어도 좋습니다.",
       "project": "함께 일해보고 싶어요",
@@ -1083,9 +1088,10 @@
   },
   "NotFound": {
     "title": "404",
-    "subtitle": "좌표를 찾을 수 없습니다",
-    "description": "찾으시는 페이지가 디지털 공간 어딘가로 사라졌습니다. 처음으로 돌아가 볼까요?",
-    "cta": "홈으로 돌아가기"
+    "subtitle": "찾으시는 페이지가",
+    "description": "주소가 바뀌었거나, 더 이상 제공되지 않는 페이지입니다.",
+    "cta": "홈으로 돌아가기",
+    "subtitleSecondary": "여기에는 없어요."
   },
   "Possibilities": {
     "heading": "필요한 건 무엇이든\n 만들어드립니다.",
@@ -2402,6 +2408,8 @@
       "customTitle": "맞춤 제작",
       "customLabel": "정해진 틀 없이",
       "approximateMinimum": "약 {price}부터",
+      "priceApproximate": "대략",
+      "priceStartingFrom": "부터 시작",
       "customPrice": "상담 후 산정",
       "customNote": "요구사항과 연동 범위를 확인한 뒤 견적을 안내합니다.",
       "services": {
@@ -2455,5 +2463,45 @@
       },
       "webAppPricingNote": "아래 금액은 웹서비스 MVP 제작 기준입니다. 모바일 앱과 복잡한 플랫폼은 요구사항을 확인한 뒤 별도로 산정합니다."
     }
+  },
+  "Blog": {
+    "home": {
+      "heading": "비즈니스를 위한 생각,",
+      "headingSecondary": "경험을 나눕니다.",
+      "allPosts": "전체 글 보기"
+    },
+    "cards": {
+      "illustration": "일러스트레이션 자리",
+      "placeholder": "아티클 자리"
+    },
+    "index": {
+      "title": "블로그",
+      "description": "웹·앱과 AI를 비즈니스에 연결하는 생각과 경험을 나눕니다.",
+      "koreanNote": "현재 블로그는 한국어로 제공됩니다.",
+      "emptyTitle": "첫 번째 글을 준비하고 있어요.",
+      "emptyDescription": "비즈니스에 도움이 되는 이야기로 곧 찾아뵙겠습니다.",
+      "heading": "비즈니스의 다음,",
+      "headingSecondary": "함께 생각합니다.",
+      "postCount": "{count}개의 글",
+      "emptyTopicTitle": "이 주제의 글을 준비하고 있어요.",
+      "emptyTopicDescription": "비즈니스에 도움이 되는 이야기를 정리하고 있습니다."
+    },
+    "draft": {
+      "label": "초안 · 로컬 미리보기",
+      "description": "작성 중인 예시 글입니다. 개발 환경에서만 표시되며, 공개 사이트에는 발행되지 않습니다.",
+      "unpublished": "발행 전"
+    },
+    "author": "작성",
+    "published": "발행",
+    "updated": "수정",
+    "status": "상태",
+    "topics": {
+      "label": "블로그 주제",
+      "all": "전체 글",
+      "business": "비즈니스",
+      "web-app": "웹사이트 · 앱",
+      "ai": "AI · 자동화"
+    },
+    "readingTime": "{minutes}분 소요"
   }
 }

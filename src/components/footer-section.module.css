@@ -13,7 +13,11 @@
 .cubeArea { display: grid; place-items: center; min-width: 0; }
 .address, .copyright { margin: 0; max-width: 100%; color: #687984; font-size: clamp(12px, 1vw, 14px); font-weight: 450; font-style: normal; line-height: 1.8; white-space: nowrap; }
 .address { justify-self: end; }
-.copyright { justify-self: start; }
+.copyrightGroup { position: relative; display: grid; justify-items: start; align-content: center; justify-self: start; min-width: 0; max-width: 100%; }
+.legalLinks { position: absolute; top: 100%; left: 0; width: max-content; color: #617582; font-size: .6875rem; line-height: 1.8; }
+.legalLinks a { display: inline-flex; align-items: center; min-height: 44px; text-underline-offset: .25em; }
+.legalLinks a:hover { text-decoration: underline; }
+.legalLinks a:focus-visible { outline: 2px solid var(--brand-blue); outline-offset: 4px; }
 /* One shared glass plane behind the apps. The icon artwork stays opaque. */
 .dock {
   position: relative;
@@ -68,14 +72,16 @@
   .cubeArea { grid-column: 1; grid-row: 1; margin-bottom: 8px; }
   .address, .copyright { justify-self: center; overflow-x: auto; scrollbar-width: none; }
   .address { grid-row: 2; }
-  .copyright { grid-row: 3; }
+  .copyrightGroup { grid-row: 3; justify-self: center; justify-items: center; }
+  .legalLinks { left: 50%; transform: translateX(-50%); }
 }
 @container (max-width: 1400px) {
   .center:lang(en) { grid-template-columns: minmax(0, 1fr); align-content: center; gap: 8px; }
   .center:lang(en) .cubeArea { grid-column: 1; grid-row: 1; margin-bottom: 8px; }
   .center:lang(en) .address, .center:lang(en) .copyright { justify-self: center; overflow-x: auto; scrollbar-width: none; }
   .center:lang(en) .address { grid-row: 2; }
-  .center:lang(en) .copyright { grid-row: 3; }
+  .center:lang(en) .copyrightGroup { grid-row: 3; justify-self: center; justify-items: center; }
+  .center:lang(en) .legalLinks { left: 50%; transform: translateX(-50%); }
 }
 @media (max-width: 767px) {
   .screen { padding-block: 64px max(12px, env(safe-area-inset-bottom)); }

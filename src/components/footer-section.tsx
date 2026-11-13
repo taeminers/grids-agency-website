@@ -15,6 +15,7 @@ import { cn } from "@/lib/utils";
 import styles from "./footer-section.module.css";
 import { useFooterDesktopActive } from "@/hooks/use-footer-desktop-active";
 import { useReducedMotionPreference } from "./coin-preview/use-reduced-motion";
+import { showPrivacyLinks } from "@/lib/privacy-publication";
 
 interface FooterSectionProps {
   className?: string;
@@ -34,6 +35,19 @@ export default function FooterSection({ className }: FooterSectionProps) {
     });
     return () => animation.stop();
   }, [background, revealed, reduced]);
+  useEffect(() => {
+    if (pathname?.includes("/connect")) return;
+    // Safari's scroll bounce exposes the document canvas below the footer.
+    // Follow the same motion value so the canvas also matches mid-transition.
+    const root = document.documentElement;
+    const updateCanvas = (color: string) => root.style.setProperty("--site-canvas-background", color);
+    updateCanvas(background.get());
+    const unsubscribe = background.on("change", updateCanvas);
+    return () => {
+      unsubscribe();
+      root.style.removeProperty("--site-canvas-background");
+    };
+  }, [background, pathname]);
   if (pathname?.includes("/connect")) return null;
 
   const textReveal = {
@@ -61,7 +75,10 @@ export default function FooterSection({ className }: FooterSectionProps) {
           <div className={styles.center}>
             <motion.address {...textReveal} className={styles.address}>{t("location")}</motion.address>
             <div className={styles.cubeArea}><FooterCube background={background} /></div>
-            <motion.p {...textReveal} className={styles.copyright}>{t("copyright")}</motion.p>
+            <motion.div {...textReveal} className={styles.copyrightGroup}>
+              <p className={styles.copyright}>{t("copyright")}</p>
+              {showPrivacyLinks && <div className={styles.legalLinks}><Link href={`/${locale}/privacy`}>{t("privacy")}</Link></div>}
+            </motion.div>
           </div>
           <motion.nav className={styles.dock} aria-label={t("navigationLabel")}
             initial={false} inert={!revealed} aria-hidden={!revealed}

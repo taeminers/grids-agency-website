@@ -1,0 +1,19 @@
+.wrapper { display: none; width: 100%; padding-inline: var(--site-gutter); }
+.timeline { width: 100%; max-width: 720px; margin-inline: auto; }
+.sections { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .25rem 1.25rem; margin: 0; padding: 0; list-style: none; }
+.sections li { --segment-color-start: color-mix(in srgb, var(--brand-sky) var(--segment-start), #f45fb8); --segment-color-end: color-mix(in srgb, var(--brand-sky) var(--segment-end), #f45fb8); position: relative; padding-left: 1.75rem; }
+.segment { position: absolute; inset-block: 0; left: 0; width: .625rem; overflow: hidden; border-radius: 2px; background: linear-gradient(to bottom, color-mix(in srgb, var(--segment-color-start) 18%, white), color-mix(in srgb, var(--segment-color-end) 18%, white)); }
+.fill { position: absolute; inset: 0; background: linear-gradient(to bottom, var(--segment-color-start), var(--segment-color-end)); clip-path: inset(0 0 100% 0); }
+.sections a { position: relative; display: flex; align-items: center; min-height: 44px; height: 100%; padding-block: .375rem; color: #687681; font-size: .8125rem; line-height: 1.7; word-break: keep-all; overflow-wrap: anywhere; transition: color 150ms ease; }
+.sections a[aria-current="location"] { color: #2a566f; font-weight: 600; }
+.sections a:focus-visible { outline: 2px solid var(--brand-blue); outline-offset: 3px; border-radius: 2px; }
+@media (hover: hover) { .sections a:hover { color: #344f61; } }
+@media (min-width: 768px) { .wrapper { display: block; } }
+@media (min-width: 1280px) {
+  .wrapper { --article-rail-gap: clamp(3rem, 5vw, 5rem); position: absolute; inset-block: 0; left: calc(50% + 360px + var(--article-rail-gap)); width: min(13rem, calc((100% - 720px) / 2 - var(--site-gutter) - var(--article-rail-gap))); padding: 0; }
+  .timeline { position: sticky; top: 7rem; max-height: calc(100svh - 9rem); overflow-y: auto; scrollbar-width: thin; }
+  .sections { grid-template-columns: minmax(0, 1fr); gap: .25rem; }
+}
+@media (prefers-reduced-motion: reduce) { .sections a { transition: none; } }
+@media (prefers-contrast: more) { .sections a { color: #4d6270; } .segment { background: #c0d9e9; } }
+@media print { .wrapper { display: none; } }

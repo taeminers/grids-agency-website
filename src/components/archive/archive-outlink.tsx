@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight } from "reicon-react/icons/ArrowUpRight";
+import { ChevronRight } from "lucide-react";
 import { MetalButton } from "@/components/spectrumui/metal-button";
 
 export function ArchiveOutlink({
@@ -56,10 +56,10 @@ export function ArchiveOutlink({
           rel={external ? "noopener noreferrer" : undefined}
         >
           {label}
-          <ArrowUpRight
+          <ChevronRight strokeWidth={3.5}
             size={15}
             aria-hidden="true"
-            className="transition-transform duration-300 ease-out group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 motion-reduce:transform-none"
+            className="transition-transform duration-300 ease-out group-hover/link:translate-x-0.5 motion-reduce:transform-none"
           />
         </a>
       </MetalButton>

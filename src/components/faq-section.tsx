@@ -29,7 +29,9 @@ function FaqContactCard() {
   return (
     <aside className={styles.contactCard} aria-labelledby="faq-contact-heading">
       <h3 id="faq-contact-heading" className={styles.contactMessage}>
-        {t.rich("contactMessage", { highlight: (text) => <strong>{text}</strong> })}
+        {t.rich("contactMessage", {
+          highlight: (text) => <strong>{text}</strong>,
+        })}
       </h3>
       <div className={styles.contactAction}>
         <ConsultationLink
@@ -54,7 +56,7 @@ function FaqContactCard() {
 
 export default function FaqSection() {
   const t = useTranslations("FAQ");
-  const [openItem, setOpenItem] = useState<string>(questions[0]);
+  const [openItem, setOpenItem] = useState<string>("");
   const reducedMotion = useReducedMotionPreference();
 
   return (
@@ -64,61 +66,85 @@ export default function FaqSection() {
       className={`${spacing.section} relative scroll-mt-24 bg-background text-foreground`}
     >
       <Container>
-      <header className={styles.heading}>
-        <h2 id="faq-heading">
-          {t("layoutHeading")}
-          <span>{t("layoutHeadingSecondary")}</span>
-        </h2>
-      </header>
-      <div className={styles.layout}>
-        <Accordion.Root
-          type="single"
-          collapsible
-          value={openItem}
-          onValueChange={setOpenItem}
-          className={styles.questionCard}
-        >
-          {questions.map((key) => (
-            <Accordion.Item
-              key={key}
-              value={key}
-              className={styles.questionItem}
-            >
-              <Accordion.Header className={styles.questionHeader}>
-                <Accordion.Trigger className={styles.questionTrigger}>
-                  <span className={styles.questionText}>{t(`items.${key}.question`)}</span>
-                  <span aria-hidden="true" className={styles.indicator} />
-                </Accordion.Trigger>
-              </Accordion.Header>
-              <Accordion.Content forceMount asChild>
-                <motion.div
-                  className={styles.questionContent}
-                  initial={false}
-                  inert={openItem !== key}
-                  aria-hidden={openItem !== key}
-                  animate={{
-                    height: openItem === key ? "auto" : 0,
-                    opacity: openItem === key ? 1 : 0,
-                  }}
-                  transition={
-                    reducedMotion
-                      ? { duration: 0 }
-                      : {
-                          height: { type: "spring", bounce: 0, duration: 0.42 },
-                          opacity: { duration: 0.22, ease: "easeOut" },
+        <header className={styles.heading}>
+          <h2 id="faq-heading">
+            {t("layoutHeading")}
+            <span>{t("layoutHeadingSecondary")}</span>
+          </h2>
+        </header>
+        <div className={styles.layout}>
+          <Accordion.Root
+            type="single"
+            collapsible
+            value={openItem}
+            onValueChange={setOpenItem}
+            className={styles.questionList}
+          >
+            {questions.map((key) => (
+              <Accordion.Item
+                key={key}
+                value={key}
+                className={styles.questionItem}
+              >
+                <Accordion.Header className={styles.questionHeader}>
+                  <Accordion.Trigger className={styles.questionTrigger}>
+                    <span className={styles.questionText}>
+                      {t(`items.${key}.question`)}
+                    </span>
+                    <span aria-hidden="true" className={styles.indicator}>
+                      <motion.svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="3.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        initial={false}
+                        animate={{ rotate: openItem === key ? 180 : 0 }}
+                        transition={
+                          reducedMotion
+                            ? { duration: 0 }
+                            : { type: "spring", bounce: 0, duration: 0.42 }
                         }
-                  }
-                >
-                  <p className={styles.answer}>
-                    {t(`items.${key}.answer`)}
-                  </p>
-                </motion.div>
-              </Accordion.Content>
-            </Accordion.Item>
-          ))}
-        </Accordion.Root>
-        <FaqContactCard />
-      </div>
+                      >
+                        <path d="m6 9 6 6 6-6" />
+                      </motion.svg>
+                    </span>
+                  </Accordion.Trigger>
+                </Accordion.Header>
+                <Accordion.Content forceMount asChild>
+                  <motion.div
+                    className={styles.questionContent}
+                    initial={false}
+                    inert={openItem !== key}
+                    aria-hidden={openItem !== key}
+                    animate={{
+                      height: openItem === key ? "auto" : 0,
+                      opacity: openItem === key ? 1 : 0,
+                    }}
+                    transition={
+                      reducedMotion
+                        ? { duration: 0 }
+                        : {
+                            height: {
+                              type: "spring",
+                              bounce: 0,
+                              duration: 0.42,
+                            },
+                            opacity: { duration: 0.22, ease: "easeOut" },
+                          }
+                    }
+                  >
+                    <p className={styles.answer}>{t(`items.${key}.answer`)}</p>
+                  </motion.div>
+                </Accordion.Content>
+              </Accordion.Item>
+            ))}
+          </Accordion.Root>
+          <FaqContactCard />
+        </div>
       </Container>
     </section>
   );

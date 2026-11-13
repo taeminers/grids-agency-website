@@ -305,6 +305,11 @@
   }
 }
 
+/* Match the footer during native overscroll; reset to the page theme elsewhere. */
+html, body {
+  background-color: var(--site-canvas-background, var(--background));
+}
+
 /* Keep the pricing select's page scrollbar in place. Radix still handles
    focus and wheel/touch locking; no scrollbar compensation is needed here.
    Preserve normal locking if another modal is also open. */

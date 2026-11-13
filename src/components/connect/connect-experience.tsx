@@ -6,7 +6,8 @@ import {
   motion,
   useReducedMotion,
 } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useTheme } from "next-themes";
 import ProjectQuestionnaire from "./project-questionnaire";
@@ -16,6 +17,7 @@ import buttonStyles from "@/components/consultation-button.module.css";
 import Dots08 from "@/components/shadcn-space/dots/dots-08";
 import { SquareGrid } from "@/components/amicro/square-grid";
 import { trackEvent } from "@/lib/analytics";
+import { showPrivacyLinks } from "@/lib/privacy-publication";
 
 const LightRays = dynamic(() => import("@/components/light-rays"), { ssr: false });
 const successRayColors = {
@@ -27,6 +29,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function ConnectExperience() {
   const t = useTranslations("Connect");
+  const locale = useLocale();
   const reduced = useReducedMotion();
   const [projectOpen, setProjectOpen] = useState(false);
   const [questionnaireMounted, setQuestionnaireMounted] = useState(false);
@@ -153,6 +156,7 @@ export default function ConnectExperience() {
                   />
                 </motion.div>
               </div>
+              {showPrivacyLinks && <Link href={`/${locale}/privacy`} className="mt-6 text-xs text-foreground/55 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tertiary">{t("Experience.privacy")}</Link>}
         </div>
         </Container>
       </section>

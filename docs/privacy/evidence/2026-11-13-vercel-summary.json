@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-11-13T03:52:55.028Z",
+  "projectName": "grids-agency-website",
+  "plan": "hobby",
+  "domains": [
+    {
+      "name": "gridsagency.com",
+      "verified": true,
+      "redirect": "www.gridsagency.com"
+    },
+    {
+      "name": "www.gridsagency.com",
+      "verified": true,
+      "redirect": null
+    },
+    {
+      "name": "grids-agency-website.vercel.app",
+      "verified": true,
+      "redirect": null
+    }
+  ],
+  "functionDefaultRegions": [
+    "iad1"
+  ],
+  "deploymentProtection": {
+    "deploymentType": "all_except_custom_domains"
+  },
+  "passwordProtectionConfigured": false,
+  "memberMfa": [
+    {
+      "role": "OWNER",
+      "mfaEnabled": false
+    }
+  ],
+  "logDrains": [],
+  "firewallActiveConfig": null,
+  "firewallDraftPresent": false,
+  "webAnalyticsConfigured": true,
+  "speedInsightsHasData": false,
+  "note": "No account personal details, project/team identifiers, tokens, log contents or drain secrets included."
+}

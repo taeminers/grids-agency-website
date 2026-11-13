@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
-import { ArrowDownRight, ArrowRight, ArrowUpRight, ChevronDown, Sparkles, Wallet } from "lucide-react";
+import { ArrowDownRight, ChevronRight, ArrowUpRight, ChevronDown, Sparkles, Wallet } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import type { ConsoleSection } from "@/components/agent-console";
 import styles from "./pricing-crm-dashboard.module.css";
@@ -70,7 +70,7 @@ export default function PricingCrmDashboard({ period, showInsights, showActivity
           </div>
         </section>
         {showInsights && <div className={styles.lowerGrid}>
-          <section className={styles.insight}><h3><Sparkles size={15} aria-hidden="true" />{t("insights")}</h3><p>{t.rich("insightText", { strong: (chunks) => <strong>{chunks}</strong> })}</p><button type="button" onClick={() => onNavigate("runs")}>{t("viewOperations")}<ArrowRight size={13} aria-hidden="true" /></button></section>
+          <section className={styles.insight}><h3><Sparkles size={15} aria-hidden="true" />{t("insights")}</h3><p>{t.rich("insightText", { strong: (chunks) => <strong>{chunks}</strong> })}</p><button type="button" onClick={() => onNavigate("runs")}>{t("viewOperations")}<ChevronRight strokeWidth={3.5} size={13} aria-hidden="true" /></button></section>
           <section className={styles.pipeline}><h3>{t("pipeline")}</h3><strong>124 <span>{t("tasks")}</span></strong><div className={styles.pipelineBar}>{[50, 25, 25].map((value, index) => <span key={index} style={{ flex: value }}><span>{value}%</span></span>)}</div><ul>{["completed", "inProgress", "waiting"].map((key, index) => <li key={key}><i style={{ background: ["#9b9ca3", "#5d5e66", "#32333a"][index] }} />{t(key)}</li>)}</ul></section>
         </div>}
         {showActivity && <section className={styles.activity}><header><h3>{t("activity")}</h3><span>{t("today")}</span></header><div role="table" aria-label={t("activity")}>

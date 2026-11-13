@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { ArrowRight, Check, CheckCheck, ClipboardCheck, FileCheck2, Link2, LoaderCircle, MessageSquare, Send, Sparkles, UserRound } from "lucide-react";
+import { ChevronRight, Check, CheckCheck, ClipboardCheck, FileCheck2, Link2, LoaderCircle, MessageSquare, Send, Sparkles, UserRound } from "lucide-react";
 import type { useInquirySimulation } from "./use-inquiry-simulation";
 import styles from "./inquiry-automation.module.css";
 import SourceConnections from "./source-connections";
@@ -51,7 +51,7 @@ export default function Workflow({ simulation, reduced, onRetry }: {
               <span>{t(`workflow.stages.${index}`)}</span>
             </li>)}
           </ol>
-          {running && result && <button type="button" className={styles.skipButton} onClick={simulation.finish}>{t("workflow.skip")}<ArrowRight size={12} aria-hidden="true" /></button>}
+          {running && result && <button type="button" className={styles.skipButton} onClick={simulation.finish}>{t("workflow.skip")}<ChevronRight strokeWidth={3.5} size={12} aria-hidden="true" /></button>}
           <div className={styles.transferLine} data-active={completed === 3} aria-hidden="true"><span /></div>
         </section>
 
