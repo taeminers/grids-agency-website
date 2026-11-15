@@ -6,7 +6,8 @@ import {
   motion,
   useReducedMotion,
 } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useTheme } from "next-themes";
 import ProjectQuestionnaire from "./project-questionnaire";
@@ -14,8 +15,8 @@ import styles from "./connect-experience.module.css";
 import ConsultationLink, { ConsultationAction } from "@/components/consultation-link";
 import buttonStyles from "@/components/consultation-button.module.css";
 import Dots08 from "@/components/shadcn-space/dots/dots-08";
-import { SquareGrid } from "@/components/amicro/square-grid";
 import { trackEvent } from "@/lib/analytics";
+import { showPrivacyLinks } from "@/lib/privacy-publication";
 
 const LightRays = dynamic(() => import("@/components/light-rays"), { ssr: false });
 const successRayColors = {
@@ -27,6 +28,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function ConnectExperience() {
   const t = useTranslations("Connect");
+  const locale = useLocale();
   const reduced = useReducedMotion();
   const [projectOpen, setProjectOpen] = useState(false);
   const [questionnaireMounted, setQuestionnaireMounted] = useState(false);
@@ -107,10 +109,6 @@ export default function ConnectExperience() {
             }
           }}
         >
-              <motion.div {...reveal(0.24)} className={styles.locusNotice}>
-                <span className={styles.noticeLoader} aria-hidden="true"><SquareGrid size={18} paused={projectOpen} /></span>
-                <p className={styles.noticeTitle}>{t("Experience.locusNoticeMessage")}</p>
-              </motion.div>
               <motion.div
                 {...reveal(0.4)}
                 aria-hidden="true"
@@ -153,6 +151,9 @@ export default function ConnectExperience() {
                   />
                 </motion.div>
               </div>
+              {showPrivacyLinks && <motion.div {...reveal(1.12)} className="mt-6">
+                <Link href={`/${locale}/privacy`} className="text-xs text-foreground/55 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tertiary">{t("Experience.privacy")}</Link>
+              </motion.div>}
         </div>
         </Container>
       </section>

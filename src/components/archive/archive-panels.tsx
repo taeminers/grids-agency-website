@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { useTranslations } from "next-intl";
-import { ArrowRight } from "reicon-react/icons/ArrowRight";
+import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ArchiveAbout } from "./archive-about";
 import { ArchiveProjectPanel } from "./archive-project-panel";
@@ -203,7 +203,7 @@ export function ArchivePanels() {
                 >
                   {title}
                 </span>
-                <ArrowRight
+                <ChevronRight strokeWidth={3.5}
                   size={22}
                   aria-hidden="true"
                   className="shrink-0 rotate-90 transition-transform duration-300 group-hover/strip:rotate-45 md:mb-16 md:rotate-0 md:group-hover/strip:-rotate-45 motion-reduce:transition-none"

@@ -4,7 +4,7 @@ import { createContext, useCallback, useContext, useRef, useSyncExternalStore, t
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { motion, useInView, useScroll, useSpring, useTransform, type MotionValue } from "framer-motion";
-import { ArrowRight } from "reicon-react/icons/ArrowRight";
+import { ChevronRight } from "lucide-react";
 import { ArrowDown } from "reicon-react/icons/ArrowDown";
 import { MetalButton } from "@/components/spectrumui/metal-button";
 import { trackEvent } from "@/lib/analytics";
@@ -118,7 +118,7 @@ function PricingLink({ onFocus }: { onFocus?: () => void }) {
     <MetalButton asChild className="group min-h-14 gap-10 rounded-none px-6 text-base font-semibold tracking-tight" wrapperClassName="rounded-none">
       <Link href={`/${locale}/pricing`} onFocus={onFocus}
         onClick={() => trackEvent("cta_click", { cta_location: "home_pricing", cta_text: t("cta") })}>
-        {t("cta")}<ArrowRight size={20} aria-hidden="true" className="transition-transform group-hover:translate-x-1 motion-reduce:transform-none" />
+        {t("cta")}<ChevronRight strokeWidth={3.5} size={20} aria-hidden="true" className="transition-transform group-hover:translate-x-1 motion-reduce:transform-none" />
       </Link>
     </MetalButton>
   );

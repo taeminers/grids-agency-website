@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { ArrowUpRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 
@@ -135,7 +135,7 @@ export function FeaturedWork() {
                   className="inline-flex items-center gap-2 text-sm uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors mt-4 group/link"
                 >
                   {t("Featured.viewProject")}
-                  <ArrowUpRight className="w-4 h-4 transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
+                  <ChevronRight strokeWidth={3.5} className="w-4 h-4 transition-transform group-hover/link:translate-x-0.5" />
                 </a>
               </div>
             </div>

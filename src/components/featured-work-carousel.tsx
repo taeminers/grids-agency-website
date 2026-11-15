@@ -61,12 +61,12 @@ export default function FeaturedWorkCarousel() {
       </div>
       <div className={styles.footer}>
         <Link href={`/${locale}/archive/${project.slug}`} className={styles.projectLink} aria-label={`${t(`${project.key}.title`)} — ${t("viewProject")}`}>
-          {t(`${project.key}.title`)}<ChevronRight size={18} strokeWidth={1.8} aria-hidden />
+          {t(`${project.key}.title`)}<ChevronRight size={18} strokeWidth={3.5} aria-hidden />
         </Link>
         <div className={styles.controls} role="group" aria-label={t("carouselLabel")}>
           <button type="button" onClick={() => move(-1)} aria-label={t("previousProject")}><ChevronLeft size={20} strokeWidth={1.8} aria-hidden /></button>
           <span className={styles.count} aria-live="polite" aria-atomic="true">{String(active + 1).padStart(2, "0")}<span>/ {String(projects.length).padStart(2, "0")}</span></span>
-          <button type="button" onClick={() => move(1)} aria-label={t("nextProject")}><ChevronRight size={20} strokeWidth={1.8} aria-hidden /></button>
+          <button type="button" onClick={() => move(1)} aria-label={t("nextProject")}><ChevronRight size={20} strokeWidth={3.5} aria-hidden /></button>
         </div>
       </div>
     </div>

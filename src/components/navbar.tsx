@@ -5,7 +5,7 @@ import BrandLogo from "@/components/brand-logo";
 import Link from "@/components/navigation/page-navigation";
 import { useRouter, usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { ArrowRight, Menu } from "lucide-react";
+import { ChevronRight, Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { trackEvent } from "@/lib/analytics";
 import {
@@ -108,6 +108,7 @@ export default function Navbar({ className, inHero = false }: NavbarProps) {
   const links = [
     { id: "work", label: t("work"), link: `/${locale}/archive` },
     { id: "pricing", label: t("pricing"), link: `/${locale}/pricing` },
+    { id: "blog", label: t("blog"), link: `/${locale}/blog` },
     { id: "contact", label: t("contact"), link: `/${locale}/connect` },
   ];
   const activeIndex = links.findIndex(({ link }) =>
@@ -230,7 +231,7 @@ export default function Navbar({ className, inHero = false }: NavbarProps) {
           })}
         >
           <span aria-hidden="true">{t("consultation")}</span>
-          <ArrowRight size={18} strokeWidth={1.6} aria-hidden="true" className={styles.ctaArrow} />
+          <ChevronRight strokeWidth={3.5} size={18} aria-hidden="true" className={styles.ctaArrow} />
         </Link>
         <div data-hero-reveal="text" className={styles.mobileMenu}>
           <DropdownMenu open={menuOpen} onOpenChange={setMenuOpen}>

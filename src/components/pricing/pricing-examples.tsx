@@ -16,7 +16,7 @@ export default function PricingExamples({ service }: { service: ExampleService }
   const Icon = serviceIcons[service];
   const interactive = service !== "webApp";
   return (
-    <section className={styles.section} aria-labelledby="pricing-examples-heading">
+    <section id="pricing-examples" className={styles.section} aria-labelledby="pricing-examples-heading">
       <header className={styles.heading}><div><h2 id="pricing-examples-heading">{t("heading")}<span>{t("headingSecondary")}</span></h2></div></header>
       <div className={styles.frame}>
         {!interactive && <div className={styles.toolbar}><div className={styles.frameTitle}><Icon size={18} strokeWidth={1.6} aria-hidden="true" /><h3>{t(`services.${service}.title`)}</h3></div></div>}

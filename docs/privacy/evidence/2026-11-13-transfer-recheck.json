@@ -1,0 +1,552 @@
+{
+  "checkedAt": "2026-11-13T04:20:35.312Z",
+  "container": {
+    "version": "4",
+    "macros": [
+      {
+        "function": "__e"
+      },
+      {
+        "function": "__v",
+        "vtp_dataLayerVersion": 2,
+        "vtp_setDefaultValue": false,
+        "vtp_name": "cta_location"
+      },
+      {
+        "function": "__v",
+        "vtp_dataLayerVersion": 2,
+        "vtp_setDefaultValue": false,
+        "vtp_name": "cta_text"
+      },
+      {
+        "function": "__u",
+        "vtp_component": "URL",
+        "vtp_enableMultiQueryKeys": false,
+        "vtp_enableIgnoreEmptyQueryParam": false
+      },
+      {
+        "function": "__u",
+        "vtp_component": "HOST",
+        "vtp_enableMultiQueryKeys": false,
+        "vtp_enableIgnoreEmptyQueryParam": false
+      },
+      {
+        "function": "__u",
+        "vtp_component": "PATH",
+        "vtp_enableMultiQueryKeys": false,
+        "vtp_enableIgnoreEmptyQueryParam": false
+      },
+      {
+        "function": "__f",
+        "vtp_component": "URL"
+      },
+      {
+        "function": "__e"
+      }
+    ],
+    "tags": [
+      {
+        "function": "__googtag",
+        "metadata": [
+          "map"
+        ],
+        "once_per_event": true,
+        "vtp_tagId": "G-4TFWB7JM6W",
+        "tag_id": 3
+      },
+      {
+        "function": "__gaawe",
+        "metadata": [
+          "map"
+        ],
+        "once_per_event": true,
+        "vtp_sendEcommerceData": false,
+        "vtp_eventName": "generate_lead",
+        "vtp_measurementIdOverride": "G-4TFWB7JM6W",
+        "vtp_enableUserProperties": true,
+        "vtp_enableEuid": true,
+        "vtp_migratedToV2": true,
+        "vtp_demoV2": false,
+        "tag_id": 6
+      },
+      {
+        "function": "__gaawe",
+        "metadata": [
+          "map"
+        ],
+        "once_per_event": true,
+        "vtp_sendEcommerceData": false,
+        "vtp_eventSettingsTable": [
+          "list",
+          [
+            "map",
+            "parameter",
+            "cta_location",
+            "parameterValue",
+            [
+              "macro",
+              1
+            ]
+          ],
+          [
+            "map",
+            "parameter",
+            "cta_text",
+            "parameterValue",
+            [
+              "macro",
+              2
+            ]
+          ]
+        ],
+        "vtp_eventName": "cta_click",
+        "vtp_measurementIdOverride": "G-4TFWB7JM6W",
+        "vtp_enableUserProperties": true,
+        "vtp_enableEuid": true,
+        "vtp_migratedToV2": true,
+        "vtp_demoV2": false,
+        "tag_id": 8
+      }
+    ],
+    "predicates": [
+      {
+        "function": "_eq",
+        "arg0": [
+          "macro",
+          0
+        ],
+        "arg1": "gtm.init"
+      },
+      {
+        "function": "_eq",
+        "arg0": [
+          "macro",
+          0
+        ],
+        "arg1": "generate_lead"
+      },
+      {
+        "function": "_eq",
+        "arg0": [
+          "macro",
+          0
+        ],
+        "arg1": "cta_click"
+      }
+    ],
+    "rules": [
+      [
+        [
+          "if",
+          0
+        ],
+        [
+          "add",
+          0
+        ]
+      ],
+      [
+        [
+          "if",
+          1
+        ],
+        [
+          "add",
+          1
+        ]
+      ],
+      [
+        [
+          "if",
+          2
+        ],
+        [
+          "add",
+          2
+        ]
+      ]
+    ]
+  },
+  "destination": {
+    "version": "2",
+    "macros": [
+      {
+        "function": "__c",
+        "vtp_value": true
+      },
+      {
+        "function": "__e"
+      },
+      {
+        "function": "__actids"
+      },
+      {
+        "function": "__v",
+        "vtp_name": "gtm.configContainerId",
+        "vtp_dataLayerVersion": 1
+      },
+      {
+        "function": "__c",
+        "vtp_value": false
+      },
+      {
+        "function": "__c",
+        "vtp_value": "google.co.kr"
+      },
+      {
+        "function": "__c",
+        "vtp_value": 0
+      }
+    ],
+    "tags": [
+      {
+        "function": "__ogt_auto_events",
+        "priority": 24,
+        "vtp_enableOutboundClick": true,
+        "vtp_enableScroll": true,
+        "vtp_enableDownload": true,
+        "vtp_enableHistoryEvents": true,
+        "vtp_enableForm": true,
+        "vtp_enableVideo": true,
+        "vtp_enablePageView": true,
+        "vtp_enableInPageEventsHidden": false,
+        "tag_id": 10
+      },
+      {
+        "function": "__ogt_1p_data_v2",
+        "priority": 14,
+        "vtp_isAutoEnabled": true,
+        "vtp_isManualEnabled": false,
+        "vtp_autoPhoneEnabled": true,
+        "vtp_autoCollectExclusionSelectors": [
+          "list",
+          [
+            "map",
+            "exclusionSelector",
+            ""
+          ]
+        ],
+        "vtp_isEnabled": true,
+        "vtp_autoAddressEnabled": true,
+        "vtp_autoEmailEnabled": true,
+        "vtp_isAutoCollectPiiEnabledFlag": true,
+        "tag_id": 12
+      },
+      {
+        "function": "__ogt_ip_mark",
+        "priority": 14,
+        "vtp_instanceOrder": 0,
+        "vtp_paramValue": "internal",
+        "vtp_ruleResult": [
+          "macro",
+          4
+        ],
+        "tag_id": 13
+      },
+      {
+        "function": "__ccd_ga_first",
+        "priority": 13,
+        "vtp_instanceDestinationId": "G-4TFWB7JM6W",
+        "tag_id": 27
+      },
+      {
+        "function": "__set_product_settings",
+        "priority": 12,
+        "vtp_instanceDestinationId": "G-4TFWB7JM6W",
+        "vtp_foreignTldMacroResult": [
+          "macro",
+          5
+        ],
+        "vtp_isChinaVipRegionMacroResult": [
+          "macro",
+          6
+        ],
+        "tag_id": 26
+      },
+      {
+        "function": "__ccd_ga_regscope",
+        "priority": 11,
+        "vtp_settingsTable": [
+          "list",
+          [
+            "map",
+            "redactFieldGroup",
+            "DEVICE_AND_GEO",
+            "disallowAllRegions",
+            false,
+            "disallowedRegions",
+            ""
+          ],
+          [
+            "map",
+            "redactFieldGroup",
+            "GOOGLE_SIGNALS",
+            "disallowAllRegions",
+            true,
+            "disallowedRegions",
+            ""
+          ]
+        ],
+        "vtp_instanceDestinationId": "G-4TFWB7JM6W",
+        "tag_id": 25
+      },
+      {
+        "function": "__ccd_em_download",
+        "priority": 10,
+        "vtp_includeParams": true,
+        "vtp_instanceDestinationId": "G-4TFWB7JM6W",
+        "tag_id": 24
+      },
+      {
+        "function": "__ccd_em_form",
+        "priority": 9,
+        "vtp_includeParams": true,
+        "vtp_instanceDestinationId": "G-4TFWB7JM6W",
+        "tag_id": 23
+      },
+      {
+        "function": "__ccd_em_outbound_click",
+        "priority": 8,
+        "vtp_includeParams": true,
+        "vtp_instanceDestinationId": "G-4TFWB7JM6W",
+        "tag_id": 22
+      },
+      {
+        "function": "__ccd_em_page_view",
+        "priority": 7,
+        "vtp_historyEvents": true,
+        "vtp_includeParams": true,
+        "vtp_instanceDestinationId": "G-4TFWB7JM6W",
+        "tag_id": 21
+      },
+      {
+        "function": "__ccd_em_scroll",
+        "priority": 6,
+        "vtp_includeParams": true,
+        "vtp_instanceDestinationId": "G-4TFWB7JM6W",
+        "tag_id": 20
+      },
+      {
+        "function": "__ccd_em_site_search",
+        "priority": 5,
+        "vtp_searchQueryParams": "q,s,search,query,keyword",
+        "vtp_includeParams": true,
+        "vtp_instanceDestinationId": "G-4TFWB7JM6W",
+        "tag_id": 19
+      },
+      {
+        "function": "__ccd_em_video",
+        "priority": 4,
+        "vtp_includeParams": true,
+        "vtp_instanceDestinationId": "G-4TFWB7JM6W",
+        "tag_id": 18
+      },
+      {
+        "function": "__ccd_conversion_marking",
+        "priority": 3,
+        "vtp_conversionRules": [
+          "list",
+          [
+            "map",
+            "matchingRules",
+            "{\"type\":5,\"args\":[{\"stringValue\":\"close_convert_lead\"},{\"contextValue\":{\"namespaceType\":1,\"keyParts\":[\"eventName\"]}}]}"
+          ],
+          [
+            "map",
+            "matchingRules",
+            "{\"type\":5,\"args\":[{\"stringValue\":\"qualify_lead\"},{\"contextValue\":{\"namespaceType\":1,\"keyParts\":[\"eventName\"]}}]}"
+          ],
+          [
+            "map",
+            "matchingRules",
+            "{\"type\":5,\"args\":[{\"stringValue\":\"purchase\"},{\"contextValue\":{\"namespaceType\":1,\"keyParts\":[\"eventName\"]}}]}"
+          ],
+          [
+            "map",
+            "matchingRules",
+            "{\"type\":5,\"args\":[{\"stringValue\":\"generate_lead\"},{\"contextValue\":{\"namespaceType\":1,\"keyParts\":[\"eventName\"]}}]}"
+          ],
+          [
+            "map",
+            "matchingRules",
+            "{\"type\":5,\"args\":[{\"stringValue\":\"cta_click\"},{\"contextValue\":{\"namespaceType\":1,\"keyParts\":[\"eventName\"]}}]}"
+          ]
+        ],
+        "vtp_instanceDestinationId": "G-4TFWB7JM6W",
+        "tag_id": 17
+      },
+      {
+        "function": "__ccd_auto_redact",
+        "priority": 2,
+        "vtp_redactEmail": true,
+        "vtp_instanceDestinationId": "G-4TFWB7JM6W",
+        "tag_id": 16
+      },
+      {
+        "function": "__ccd_ga_ads_link",
+        "priority": 1,
+        "vtp_instanceDestinationId": "G-4TFWB7JM6W",
+        "tag_id": 15
+      },
+      {
+        "function": "__dest_ga",
+        "vtp_ignoreDupeGtagConfigCalls": true,
+        "vtp_destinationId": "G-4TFWB7JM6W",
+        "vtp_enableVariablesInDestinationId": false,
+        "tag_id": 4
+      },
+      {
+        "function": "__gct",
+        "vtp_trackingId": "G-4TFWB7JM6W",
+        "vtp_sessionDuration": 0,
+        "tag_id": 8
+      },
+      {
+        "function": "__ccd_ga_last",
+        "priority": 0,
+        "vtp_instanceDestinationId": "G-4TFWB7JM6W",
+        "tag_id": 14
+      }
+    ],
+    "predicates": [
+      {
+        "function": "_eq",
+        "arg0": [
+          "macro",
+          0
+        ],
+        "arg1": false
+      },
+      {
+        "function": "_eq",
+        "arg0": [
+          "macro",
+          1
+        ],
+        "arg1": "gtm.init"
+      },
+      {
+        "function": "_eq",
+        "arg0": [
+          "macro",
+          0
+        ],
+        "arg1": true
+      },
+      {
+        "function": "_lc",
+        "arg0": [
+          "list",
+          [
+            "macro",
+            2
+          ]
+        ],
+        "arg1": [
+          "macro",
+          3
+        ]
+      },
+      {
+        "function": "_eq",
+        "arg0": [
+          "macro",
+          1
+        ],
+        "arg1": "gtag.config"
+      },
+      {
+        "function": "_eq",
+        "arg0": [
+          "macro",
+          1
+        ],
+        "arg1": "gtm.js"
+      }
+    ],
+    "rules": [
+      [
+        [
+          "if",
+          0,
+          1
+        ],
+        [
+          "add",
+          16
+        ]
+      ],
+      [
+        [
+          "if",
+          2,
+          3,
+          4
+        ],
+        [
+          "add",
+          16
+        ]
+      ],
+      [
+        [
+          "if",
+          5
+        ],
+        [
+          "add",
+          17
+        ]
+      ],
+      [
+        [
+          "if",
+          1
+        ],
+        [
+          "add",
+          0,
+          1,
+          2,
+          18,
+          15,
+          14,
+          13,
+          12,
+          11,
+          10,
+          9,
+          8,
+          7,
+          6,
+          5,
+          4,
+          3
+        ]
+      ]
+    ]
+  },
+  "mailRouting": {
+    "domain": "gridsagency.com",
+    "mxHosts": [
+      "aspmx.l.google.com",
+      "alt1.aspmx.l.google.com",
+      "alt2.aspmx.l.google.com",
+      "alt3.aspmx.l.google.com",
+      "alt4.aspmx.l.google.com"
+    ],
+    "inquiryMailboxGoogleIdentityConfirmed": true,
+    "mailContentRead": false,
+    "workspaceAdminSettingsAvailable": false
+  },
+  "note": "MX and mailbox identity do not establish the Workspace contracting entity, data region, Vault or retention settings. No credentials or customer data are included.",
+  "vercelRecheck": {
+    "projectCheckedAt": "2026-11-13T04:20:40.190Z",
+    "settingsCheckedAt": "2026-11-13T04:24:48.780Z",
+    "functionDefaultRegions": [
+      "iad1"
+    ],
+    "plan": "hobby",
+    "logDrains": []
+  }
+}

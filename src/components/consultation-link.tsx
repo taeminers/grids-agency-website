@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
-import { ArrowRight } from "reicon-react/icons/ArrowRight";
+import { ChevronRight } from "lucide-react";
 import styles from "./consultation-link.module.css";
 
 type ConsultationLinkProps = Omit<ComponentProps<typeof Link>, "children"> & {
@@ -23,7 +23,7 @@ function ButtonContent({ label, hoverLabel, icon }: ButtonContentProps) {
     </span>
     {hoverLabel && <span className="sr-only">{label}</span>}
     <span className={styles.consultationTrack} aria-hidden="true">
-      <span className={styles.consultationArrow}>{icon ?? <ArrowRight size={16} />}</span>
+      <span className={styles.consultationArrow}>{icon ?? <ChevronRight strokeWidth={3.5} size={16} />}</span>
     </span>
   </>;
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { ArrowRight } from "reicon-react/icons/ArrowRight";
+import { ChevronRight } from "lucide-react";
 
 export function ArchiveEntry({ onExplore }: { onExplore: () => void }) {
   const t = useTranslations("Archive.Entry");
@@ -28,7 +28,7 @@ export function ArchiveEntry({ onExplore }: { onExplore: () => void }) {
             <span className="absolute right-0 bottom-0 size-3 border-r border-b border-current" />
           </span>
           {t("explore")}
-          <ArrowRight size={16} className="shrink-0 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none" aria-hidden="true" />
+          <ChevronRight strokeWidth={3.5} size={16} className="shrink-0 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none" aria-hidden="true" />
         </button>
       </div>
     </div>

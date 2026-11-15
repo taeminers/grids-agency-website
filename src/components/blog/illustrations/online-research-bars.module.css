@@ -1,0 +1,13 @@
+.figure { margin: var(--article-visual-space, 2rem) 0; }
+.metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; margin: 0; }
+.stat { min-width: 0; padding: clamp(.75rem, 2vw, 1.5rem); border-radius: var(--site-card-radius); background: #f3f6f8; }
+.label { min-height: 2.8em; color: #5b7180; font-size: clamp(.6875rem, 1.3vw, .8125rem); font-weight: 500; line-height: 1.4; word-break: keep-all; overflow-wrap: anywhere; }
+.definition { margin: 0; }
+.value { display: flex; align-items: baseline; margin: .5rem 0 0; color: #304a5a; font-size: clamp(1.5rem, 3.6vw, 2.5rem); font-weight: 550; font-variant-numeric: tabular-nums; line-height: 1.15; letter-spacing: -.055em; white-space: nowrap; }
+.value > span { margin-left: .1em; color: #5b7180; font-size: .5em; font-weight: 450; letter-spacing: 0; }
+.track { height: .1875rem; margin-top: 1.25rem; overflow: hidden; border-radius: 2px; background: #dfe8ee; }
+.track span { display: block; height: 100%; border-radius: inherit; background: var(--brand-sky); }
+.source { display: flex; justify-content: space-between; align-items: baseline; gap: .25rem; margin-top: .75rem; color: #5b7180; font-size: .625rem; line-height: 1.5; }
+.figure .source a { color: inherit; text-decoration: none; }
+.figure .source a:hover { text-decoration: underline; }
+@media (prefers-contrast: more) { .label, .value > span, .source { color: #435d6e; } .track { background: #c9d9e4; } }

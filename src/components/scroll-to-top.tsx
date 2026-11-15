@@ -7,7 +7,7 @@ export default function ScrollToTop() {
     // Prevent browser from restoring scroll position
     if (typeof window !== "undefined") {
       window.history.scrollRestoration = "manual";
-      window.scrollTo(0, 0);
+      if (!window.location.hash) window.scrollTo(0, 0);
     }
   }, []);
 

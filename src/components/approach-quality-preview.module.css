@@ -22,16 +22,17 @@
   width: 100%;
   min-width: 0;
   max-width: 300px;
-  --muted-foreground: #6b7885;
+  --muted-foreground: #465460;
   padding: 18px 14px 6px;
   border-radius: var(--site-card-radius);
-  background: linear-gradient(145deg, #ffffffa3, #ffffff29 65%), #edf3f65c;
+  background: linear-gradient(145deg, #ffffffe6, #ffffffa3 65%), #edf3f670;
   -webkit-backdrop-filter: blur(18px) saturate(125%);
   backdrop-filter: blur(18px) saturate(125%);
   box-shadow: inset 0 1px 1px #fffffff2, inset 1px 0 1px #ffffff70, inset 0 -1px 1px #4b556314, 0 12px 28px -18px #243d5c44;
-  color: #354653;
+  color: #30383e; font-weight: 500;
 }
 .results { max-width: 430px; padding: 12px 8px 8px; }
+.card h3 { color: #25313a; font-weight: 650; }
 .results h3 { font-size: 14px; }
 .results [role="radiogroup"] { display: flex; width: 100%; }
 .results [role="radio"] { flex: 1; min-width: 0; padding-inline: 5px; font-size: 10px; }
@@ -42,8 +43,8 @@
 .results [data-eval-detail] > div > div { padding: 10px; }
 .results [data-eval-detail] p:last-child { font-size: 11px; line-height: 1.6; }
 .results [data-eval-detail] > div > div > div { margin-bottom: 6px; }
-.results dl dt { font-size: 10px; margin-bottom: 2px; }
-.results dl dd { font-size: 11px; }
+.results dl dt { color: #405260; font-size: 11px; font-weight: 600; margin-bottom: 2px; }
+.results dl dd { color: #30383e; font-size: 12px; font-weight: 500; }
 .results button:focus-visible { outline: 2px solid #65aeda; outline-offset: 2px; }
 @container quality-preview (max-width: 670px) {
   .scene { grid-template-columns: minmax(0, 1fr); align-content: center; gap: 12px; padding: 16px; }
@@ -75,7 +76,7 @@
   .results [role="radio"] { padding-inline: 2px; font-size: 9px; white-space: nowrap; }
   .results [role="radio"] > span > span { display: none; }
 }
-.example { padding: 4px 7px; border-radius: 4px; background: #dce8f075; color: #6d8597; font-size: 10px; white-space: nowrap; }
+.example { padding: 4px 7px; border-radius: 4px; background: #dce8f075; color: #405260; font-size: 11px; font-weight: 500; white-space: nowrap; }
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .card { background: #f2f4f6; }
 }

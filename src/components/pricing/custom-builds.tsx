@@ -4,7 +4,7 @@ import { useId, useRef, type CSSProperties, type ReactNode } from "react";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { useInView } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { MetalButton } from "@/components/spectrumui/metal-button";
 import styles from "./custom-builds.module.css";
 
@@ -153,7 +153,7 @@ export default function CustomBuilds() {
         <h3 id="custom-builds-title" className="max-w-[22ch] text-[clamp(28px,3vw,42px)] leading-[1.3] font-medium tracking-[-0.05em] [word-break:keep-all]">{t("title")}</h3>
         <p className="mt-6 max-w-xl text-base leading-8 text-foreground/70 [word-break:keep-all] sm:text-lg sm:leading-9">{t("description")}</p>
         <MetalButton asChild size="lg" wrapperClassName="mt-8 rounded-none" className="min-h-14 gap-6 rounded-none text-sm">
-          <Link href={`/${locale}/connect`}>{t("cta")}<ArrowUpRight size={18} aria-hidden="true" /></Link>
+          <Link href={`/${locale}/connect`}>{t("cta")}<ChevronRight strokeWidth={3.5} size={18} aria-hidden="true" /></Link>
         </MetalButton>
       </div>
       <div className="pointer-events-none min-w-0 select-none px-3 pb-5 sm:px-6 lg:py-8">

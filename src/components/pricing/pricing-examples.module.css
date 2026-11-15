@@ -1,4 +1,4 @@
-.section { margin-top: var(--site-section-space); }
+.section { margin-top: var(--site-section-space); scroll-margin-top: 6rem; }
 .heading { margin-bottom: 32px; }
 .heading h2 { margin: 0; font-size: clamp(28px, 2.8vw, 40px); font-weight: 500; line-height: 1.25; letter-spacing: -.045em; word-break: keep-all; }
 .heading h2 span { display: block; color: #999d97; }

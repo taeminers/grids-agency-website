@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import { useTranslations } from "next-intl";
-import { ArrowRight } from "reicon-react/icons/ArrowRight";
+import { ChevronRight } from "lucide-react";
 import BrandLogo from "@/components/brand-logo";
 import HeroGridBackground from "@/components/hero-grid-background";
 import { WordsStagger } from "@/components/words-stagger";
@@ -76,7 +76,7 @@ export function ArchiveAbout({ active, onExplore }: { active: boolean; onExplore
             <p className="max-w-[26em] text-xs leading-[1.8] text-foreground/50 [word-break:keep-all]">{t("note.closing")}</p>
             <button type="button" data-archive-select onClick={onExplore} className="group/start flex min-h-11 w-fit shrink-0 cursor-pointer items-center gap-5 text-sm font-medium transition-colors hover:text-tertiary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tertiary">
               {t("explore")}
-              <ArrowRight size={18} aria-hidden="true" className="transition-transform group-hover/start:translate-x-1 motion-reduce:transform-none" />
+              <ChevronRight strokeWidth={3.5} size={18} aria-hidden="true" className="transition-transform group-hover/start:translate-x-1 motion-reduce:transform-none" />
             </button>
           </div>
         </div>

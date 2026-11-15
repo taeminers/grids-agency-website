@@ -2,7 +2,7 @@
 
 import Container from "@/components/container";
 import { useLocale, useTranslations } from "next-intl";
-import { ArrowUpRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { archiveProjects } from "./archive-project-data";
 import { ArchiveProjectMedia } from "./archive-project-media";
 import { ArchiveHeader } from "./archive-header";
@@ -31,7 +31,7 @@ export function ArchiveGrid() {
                     <span className={styles.separator} aria-hidden="true" />
                     <p className={styles.category}>{t(`${project.namespace}.title`)}</p>
                   </div>
-                  <span aria-hidden="true" className={styles.openProject}><ArrowUpRight size={19} strokeWidth={1.6} /></span>
+                  <span aria-hidden="true" className={styles.openProject}><ChevronRight strokeWidth={3.5} size={19} /></span>
                 </div>
               </ArchiveLink>
             );

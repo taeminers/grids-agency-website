@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight, Pause, Play, Workflow } from "lucide-react";
+import { ChevronRight, Pause, Play, Workflow } from "lucide-react";
 import { useTranslations } from "next-intl";
 import type { ReactNode } from "react";
 import type { AgentConsoleData, ConsoleSection } from "@/components/agent-console";
@@ -39,10 +39,10 @@ export default function PricingCrmViews({ section, data, selected, evalLabels, s
             <header className={styles.sectionHeading}><h3>{t("ui.backgroundAgents")}</h3><span>{t("views.agentCount", { count: data.agents.length })}</span></header>
             <div className={styles.taskRows}>
               {data.agents.map((agent) => <div key={agent.id} className={styles.taskRow} data-selected={selected === agent.id}>
-                <div className={styles.identity}><span className={styles.agentIcon}><Workflow size={15} aria-hidden="true" /></span><div><button type="button" onClick={() => onSelect(agent)}>{agent.name}<ArrowUpRight size={11} aria-hidden="true" /></button><p>{agent.task}</p><span>{agent.action}</span></div></div>
+                <div className={styles.identity}><span className={styles.agentIcon}><Workflow size={15} aria-hidden="true" /></span><div><button type="button" onClick={() => onSelect(agent)}>{agent.name}<ChevronRight strokeWidth={3.5} size={11} aria-hidden="true" /></button><p>{agent.task}</p><span>{agent.action}</span></div></div>
                 <span className={styles.status} data-status={agent.status}>{t(`ui.status.${agent.status}`)}</span>
                 <div className={styles.progress}><span>{Math.round(agent.progress * 100)}%</span><div role="progressbar" aria-label={agent.name} aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(agent.progress * 100)}><span style={{ transform: `scaleX(${agent.progress})` }} /></div></div>
-                <div className={styles.actions}>{agent.status === "running" && <button type="button" aria-label={t("ui.pauseAgent", { name: agent.name })} title={t("ui.pauseAgent", { name: agent.name })} onClick={() => onPause(agent)}><Pause size={13} aria-hidden="true" /></button>}{agent.status === "paused" && <button type="button" aria-label={t("ui.resumeAgent", { name: agent.name })} title={t("ui.resumeAgent", { name: agent.name })} onClick={() => onResume(agent)}><Play size={13} aria-hidden="true" /></button>}<button type="button" aria-label={t("ui.openAgent", { name: agent.name })} title={t("ui.openAgent", { name: agent.name })} onClick={() => onSelect(agent)}><ArrowUpRight size={13} aria-hidden="true" /></button></div>
+                <div className={styles.actions}>{agent.status === "running" && <button type="button" aria-label={t("ui.pauseAgent", { name: agent.name })} title={t("ui.pauseAgent", { name: agent.name })} onClick={() => onPause(agent)}><Pause size={13} aria-hidden="true" /></button>}{agent.status === "paused" && <button type="button" aria-label={t("ui.resumeAgent", { name: agent.name })} title={t("ui.resumeAgent", { name: agent.name })} onClick={() => onResume(agent)}><Play size={13} aria-hidden="true" /></button>}<button type="button" aria-label={t("ui.openAgent", { name: agent.name })} title={t("ui.openAgent", { name: agent.name })} onClick={() => onSelect(agent)}><ChevronRight strokeWidth={3.5} size={13} aria-hidden="true" /></button></div>
               </div>)}
             </div>
           </section>

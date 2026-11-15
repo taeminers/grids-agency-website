@@ -2,7 +2,8 @@
 
 import { useId, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
+import { LayoutGroup, motion } from "framer-motion";
+import { Accordion } from "radix-ui";
 import {
   Globe2,
   Smartphone,
@@ -10,6 +11,7 @@ import {
   RefreshCw,
   MessageCircle,
   ReceiptText,
+  ChartNoAxesCombined,
   Check,
 } from "lucide-react";
 import PricingRules from "./pricing-rules";
@@ -25,7 +27,7 @@ const services = [
   { id: "crm", icon: Building2 },
   { id: "automation", icon: RefreshCw },
   { id: "chatbot", icon: MessageCircle },
-  { id: "rules", icon: ReceiptText },
+  { id: "growth", icon: ChartNoAxesCombined },
 ] as const;
 const tierNames = ["Basic", "Plus", "Pro"];
 export default function PricingServiceExplorer() {
@@ -39,11 +41,20 @@ export default function PricingServiceExplorer() {
       currency: "KRW",
       maximumFractionDigits: 0,
     }).format(amount);
-  const [selected, setSelected] =
+  const [selectedService, setSelectedService] =
     useState<(typeof services)[number]["id"]>("homepage");
+  const [showRules, setShowRules] = useState(false);
+  const selected = showRules ? "rules" : selectedService;
   const [tierIndex, setTierIndex] = useState(0);
+  const [openTier, setOpenTier] = useState("0");
   const selectorId = useId();
   const selectorRef = useRef<HTMLDivElement>(null);
+  const selectService = (id: (typeof services)[number]["id"]) => {
+    setSelectedService(id);
+    setShowRules(false);
+    setTierIndex(0);
+    setOpenTier("0");
+  };
   const renderService = (
     { id, icon: Icon }: (typeof services)[number],
     index: number,
@@ -56,12 +67,10 @@ export default function PricingServiceExplorer() {
       className={styles.serviceTile}
       data-service={id}
       aria-selected={selected === id}
-      tabIndex={selected === id ? 0 : -1}
+      tabIndex={selectedService === id ? 0 : -1}
       aria-controls="pricing-service-content"
-      onClick={() => {
-        setSelected(id);
-        setTierIndex(0);
-      }}
+      aria-describedby={`${selectorId}-${id === "growth" ? "growth" : "build"}-label`}
+      onClick={() => selectService(id)}
       onKeyDown={(event) => {
         const next =
           event.key === "ArrowRight"
@@ -75,8 +84,7 @@ export default function PricingServiceExplorer() {
                   : -1;
         if (next < 0) return;
         event.preventDefault();
-        setSelected(services[next].id);
-        setTierIndex(0);
+        selectService(services[next].id);
         selectorRef.current
           ?.querySelectorAll<HTMLButtonElement>('[role="tab"]')
           [next]?.focus({ preventScroll: true });
@@ -112,23 +120,33 @@ export default function PricingServiceExplorer() {
     ? tier.title
       ? copy(tier.title)
       : tierNames[tierIndex]
-    : t("explorer.customTitle");
+    : selected === "growth" ? t("explorer.services.growth.packageTitle") : t("explorer.customTitle");
   const packagePrice = service && tier ? money(packageAmount(service, tier)) : null;
 
   return (
     <section aria-label={t("packages.serviceLabel")}>
+      <div className={styles.selectorToolbar}>
+        <button id={`${selectorId}-rules`} type="button" className={styles.guideButton}
+          aria-pressed={showRules} aria-controls="pricing-service-content"
+          onClick={() => setShowRules(value => !value)}>
+          <ReceiptText size={15} strokeWidth={1.6} aria-hidden="true" />
+          {t("explorer.services.rules.title")}
+        </button>
+      </div>
       <LayoutGroup id={selectorId}>
-        <motion.div
-          ref={selectorRef}
-          className={styles.serviceGrid}
-          role="tablist"
-          aria-label={t("packages.serviceLabel")}
-        >
-          <div className={styles.serviceGroup} role="presentation">
-            {services.slice(0, 5).map(renderService)}
+        <motion.div ref={selectorRef} className={styles.serviceGrid} role="tablist"
+          aria-label={t("packages.serviceLabel")}>
+          <div className={styles.serviceRow} role="presentation">
+            <p id={`${selectorId}-build-label`} className={styles.groupLabel} aria-hidden="true">{t("explorer.groups.build")}</p>
+            <div className={styles.serviceGroup} role="presentation">
+              {services.slice(0, -1).map(renderService)}
+            </div>
           </div>
-          <div className={styles.guideOption} role="presentation">
-            {renderService(services[5], 5)}
+          <div className={styles.serviceRow} role="presentation">
+            <p id={`${selectorId}-growth-label`} className={styles.groupLabel} aria-hidden="true">{t("explorer.groups.growth")}</p>
+            <div className={styles.serviceGroup} role="presentation">
+              {renderService(services[services.length - 1], services.length - 1)}
+            </div>
           </div>
         </motion.div>
       </LayoutGroup>
@@ -136,7 +154,7 @@ export default function PricingServiceExplorer() {
       <div
         id="pricing-service-content"
         className={styles.serviceContent}
-        role="tabpanel"
+        role={showRules ? "region" : "tabpanel"}
         aria-labelledby={`${selectorId}-${selected}`}
         tabIndex={0}
       >
@@ -173,6 +191,7 @@ export default function PricingServiceExplorer() {
                           : "packages.proposedPrice",
                       )}
                     </p>
+                    {packagePrice && <span className={styles.priceQualifier} aria-hidden="true">{t("explorer.priceApproximate")}</span>}
                     <p
                       className={styles.price}
                       data-custom={!service || !tier}
@@ -180,32 +199,36 @@ export default function PricingServiceExplorer() {
                       aria-live="polite"
                       aria-atomic="true"
                     >
-                      {packagePrice ? `~ ${packagePrice}+` : t("explorer.customPrice")}
+                      {packagePrice ?? t("explorer.customPrice")}
                     </p>
+                    {packagePrice && <span className={styles.priceQualifier} aria-hidden="true">{t("explorer.priceStartingFrom")}</span>}
                   </div>
                 </motion.div>
               </div>
-              <div className={styles.options}>
-                {service ? (
-                  service.tiers.map((option, index) => {
-                    const open = tierIndex === index;
+              {service ? (
+                <Accordion.Root
+                  type="single"
+                  collapsible
+                  value={openTier}
+                  onValueChange={(value) => {
+                    setOpenTier(value);
+                    if (value) setTierIndex(Number(value));
+                  }}
+                  className={styles.packageOptions}
+                >
+                  {service.tiers.map((option, index) => {
+                    const open = openTier === String(index);
                     return (
-                      <div
+                      <Accordion.Item
                         key={`${selected}-${index}`}
+                        value={String(index)}
                         className={styles.option}
-                        data-state={open ? "open" : "closed"}
                       >
-                        <h3>
-                          <button
-                            type="button"
+                        <Accordion.Header className={styles.optionHeader}>
+                          <Accordion.Trigger
                             className={styles.optionTrigger}
-                            aria-expanded={open}
-                            aria-controls={`pricing-tier-${selected}-${index}`}
-                            onClick={() => {
-                              setTierIndex(index);
-                            }}
                           >
-                            <span>
+                            <span className={styles.optionLabel}>
                               {option.title
                                 ? copy(option.title)
                                 : tierNames[index]}
@@ -213,52 +236,61 @@ export default function PricingServiceExplorer() {
                             <span
                               className={styles.indicator}
                               aria-hidden="true"
-                              data-active={open}
-                            />
-                          </button>
-                        </h3>
-                        <AnimatePresence initial={false}>
-                          {open && (
-                            <motion.div
-                              id={`pricing-tier-${selected}-${index}`}
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: "auto", opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              transition={
-                                reduced
-                                  ? { duration: 0 }
-                                  : { type: "spring", bounce: 0, duration: 0.4 }
-                              }
-                              className={styles.optionReveal}
                             >
-                              <div className={styles.optionBody}>
-                                <p className={styles.optionTitle}>
-                                  {copy(option.summary)}
-                                </p>
-                                <ul>
-                                  {option.scope.map((item) => (
-                                    <li key={item.en}>
-                                      <Check size={14} aria-hidden="true" />
-                                      <span>{copy(item)}</span>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
+                              <motion.svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"
+                                initial={false} animate={{ rotate: open ? 180 : 0 }}
+                                transition={reduced ? { duration: 0 } : { type: "spring", bounce: 0, duration: 0.42 }}>
+                                <path d="m6 9 6 6 6-6" />
+                              </motion.svg>
+                            </span>
+                          </Accordion.Trigger>
+                        </Accordion.Header>
+                        <Accordion.Content forceMount asChild>
+                          <motion.div
+                            initial={false}
+                            inert={!open}
+                            aria-hidden={!open}
+                            animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }}
+                            transition={
+                              reduced
+                                ? { duration: 0 }
+                                : {
+                                    height: { type: "spring", bounce: 0, duration: 0.42 },
+                                    opacity: { duration: 0.22, ease: "easeOut" },
+                                  }
+                            }
+                            className={styles.optionReveal}
+                          >
+                            <div className={styles.optionBody}>
+                              <p className={styles.optionTitle}>
+                                {copy(option.summary)}
+                              </p>
+                              <ul>
+                                {option.scope.map((item) => (
+                                  <li key={item.en}>
+                                    <Check size={14} aria-hidden="true" />
+                                    <span>{copy(item)}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </motion.div>
+                        </Accordion.Content>
+                      </Accordion.Item>
                     );
-                  })
-                ) : (
-                  <div className={styles.customOptions}>
+                  })}
+                </Accordion.Root>
+              ) : (
+                <div className={styles.options}>
+                  <div className={styles.customOptions} data-state="open">
                     <span className={styles.eyebrow}>
-                      {t("explorer.customLabel")}
+                      {selected === "growth" ? t("explorer.services.growth.label") : t("explorer.customLabel")}
                     </span>
                     <h3>{t(`explorer.services.${selected}.heading`)}</h3>
                     <p>{t(`explorer.services.${selected}.description`)}</p>
                     <ul>
-                      {["first", "second", "third"].map((key) => (
+                      {(selected === "growth" ? ["first", "second", "third", "fourth", "fifth"] : ["first", "second", "third"]).map((key) => (
                         <li key={key}>
                           <Check size={14} aria-hidden="true" />
                           {t(`explorer.services.${selected}.scope.${key}`)}
@@ -266,11 +298,11 @@ export default function PricingServiceExplorer() {
                       ))}
                     </ul>
                   </div>
-                )}
-              </div>
+                </div>
+              )}
             </div>
             <PricingNotes />
-            <PricingExamples service={selected} />
+            {selected !== "growth" && <PricingExamples service={selected} />}
           </>
         )}
       </div>

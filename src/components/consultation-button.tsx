@@ -18,7 +18,7 @@ export default function ConsultationButton() {
     <div inert={inFooter} aria-hidden={inFooter} data-hidden={inFooter}
       className={`${styles.floating} fixed right-[max(1.25rem,env(safe-area-inset-right))] bottom-[max(1.25rem,env(safe-area-inset-bottom))] z-40 md:right-8 md:bottom-8`}>
       <ConsultationLink
-        href="http://pf.kakao.com/_FGQrX"
+        href="https://pf.kakao.com/_FGQrX"
         target="_blank"
         rel="noopener noreferrer"
         aria-label={t("accessibleLabel")}

@@ -40,6 +40,14 @@
   --grain-bottom: #b88c73;
 }
 
+/* Glacier turquoise fading into pale ice, shared by the LOCUS contact card. */
+.glacier {
+  background:
+    radial-gradient(ellipse at 100% 100%, #e2fafb 0%, transparent 65%),
+    radial-gradient(ellipse at 74% 56%, rgb(210 215 232 / .85), transparent 55%),
+    linear-gradient(135deg, #32c5d8 0%, #65d6e3 53%, #c7f2f6 100%);
+}
+
 /* Pearl and ice-blue material for the offering showcases. */
 .pearl {
   background:

@@ -38,7 +38,7 @@ export default function HomeOfferings() {
       <Container>
         <header ref={partnershipRef} className={styles.header}>
           <h2 id="offerings-heading" className={styles.heading}>
-            {t.rich("heading", {
+            <span className={styles.headingPrimary}>{t.rich("heading", {
               grids: chunks => <span className={styles.headlineName}>
                 <HeadlineMark progress={scrollYProgress} index={0}><BrandLogo className={styles.partnerLogo} /></HeadlineMark>
                 {chunks}
@@ -47,7 +47,8 @@ export default function HomeOfferings() {
                 <HeadlineMark progress={scrollYProgress} index={1}><FallbackAvatar name="GRIDS Growth" size={40} animated={true} className={styles.partnerAvatar} /></HeadlineMark>
                 {chunks}
               </span>,
-            })}{" "}<span className={styles.headingSecondary}>{t("headingSecondary")}</span>
+            })}</span>
+            <span className={styles.headingSecondary}>{t("headingSecondary")}</span>
           </h2>
           <p className={styles.introduction}>{t("introduction")}</p>
         </header>
@@ -61,7 +62,7 @@ export default function HomeOfferings() {
               <div className={styles.copy}>
                 <h3 id={`offering-${offering}`}>{t(`${offering}.title`)}</h3>
                 <p>{t(`${offering}.description`)}</p>
-                <ConsultationLink href={`/${locale}/connect`} label={t(`${offering}.cta`)} />
+                <ConsultationLink href={offering === "build" ? `/${locale}/pricing#pricing-examples` : `/${locale}/connect`} label={t(`${offering}.cta`)} />
               </div>
             </article>
           ))}

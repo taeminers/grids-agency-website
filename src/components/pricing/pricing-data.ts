@@ -29,8 +29,8 @@ export const rateSections: RateSection[] = [
     note: text("홈페이지는 템플릿형 · 맞춤형 · 프리미엄의 세 가지 구성입니다. 각 구성에 포함된 기능은 중복 청구하지 않으며, 추가 범위는 별도 협의합니다.", "Websites have three tiers: Template, Custom and Premium. Included features are not charged again; additional scope is agreed separately."),
     rows: [
       from("landing", "홈페이지 · 템플릿형 (랜딩페이지)", "Website · Template (landing page)", text("템플릿 선택형 · 제공 자료 적용 · 반응형 · 문의 폼 · SEO · 배포 · QA. Analytics / CMS 미포함", "Template-based website, supplied content, responsive layout, inquiry form, SEO, deployment and QA. Analytics / CMS excluded")),
-      from("brand", "홈페이지 · 맞춤형 (기업 / 브랜드)", "Website · Custom (company / brand)", text("맞춤 디자인 · Analytics · AI 브랜드 영상 1개 · 문의 폼 · SEO · 배포 · QA · 수정 2회", "Custom design, analytics, one AI brand video, inquiry form, SEO, deployment, QA and 2 revision rounds")),
-      from("premium", "홈페이지 · 프리미엄 (고급 브랜드)", "Website · Premium (advanced brand)", text("맞춤형 구성 전체 · CMS 1개 · 프리미엄 모션 / 스크롤 연출 · 고급 브랜드 디자인 · CMS 사용 안내", "Everything in Custom, one CMS, premium motion / scroll effects, advanced brand design and CMS handover")),
+      from("brand", "홈페이지 · 맞춤형 (기업 / 브랜드)", "Website · Custom (company / brand)", text("맞춤 디자인 · AI 브랜드 영상 1개 · 문의 폼 · SEO · 배포 · QA · 기본 UI 추가 / 수정 연간 3회", "Custom design, one AI brand video, inquiry form, SEO, deployment, QA and 3 basic UI additions / revisions per year")),
+      from("premium", "홈페이지 · 프리미엄 (고급 브랜드)", "Website · Premium (advanced brand)", text("맞춤형 구성 전체 · Analytics / 방문자 분석 · CMS 무제한 · 맞춤 일러스트 / 이미지 / 영상 · 프리미엄 모션 · CMS 사용 안내", "Everything in Custom, analytics and visitor insights, unlimited CMS, custom illustrations / images / videos, premium motion and CMS handover")),
       from("commerce", "쇼핑몰", "E-commerce", text("상품 · 주문 · 결제 등 커머스 기능. 세부 기능에 따라 별도 산정", "Products, orders and payments; detailed features are scoped separately")),
       from("mvp", "웹서비스 / MVP", "Web service / MVP", text("회원 · 데이터베이스 · 비즈니스 로직을 포함하는 맞춤 웹서비스", "Custom web services with accounts, a database and business logic")),
       from("platform", "복잡한 웹서비스 / 플랫폼", "Complex web service / platform", text("복잡한 권한 · 사용자 유형 · 결제 · 관리자 · 외부 연동. 개별 산정 원칙", "Complex roles, user types, payments, administration and integrations. Individually quoted")),
@@ -102,6 +102,11 @@ export const rateSections: RateSection[] = [
     ],
   },
   {
+    id: "growth", title: text("Growth · 성과 분석", "Growth · Performance analysis"),
+    note: text("데이터 연결 범위, 분석의 복잡도, 보고 주기와 전달 방식을 확인한 뒤 산정합니다. 확인 가능한 지표는 연결된 데이터와 측정 설정에 따릅니다.", "Quoted after reviewing data connections, analysis complexity, reporting frequency and delivery method. Available metrics depend on connected data and measurement setup."),
+    rows: [custom("growth", "Growth 패키지", "Growth package", text("고급 GA4 / GTM · 주간 또는 월간 이메일 / 대시보드 리포트 · 광고 성과 분석 · 문제 진단 · 개선 제안 및 후속 점검", "Advanced GA4 / GTM, weekly or monthly email / dashboard reporting, ad performance analysis, issue diagnosis, recommendations and follow-up"))],
+  },
+  {
     id: "minimum", title: text("최소 수주 금액", "Minimum engagements"),
     note: text("계산 금액이 최소 수주 금액보다 낮으면 최소 금액을 적용합니다. 템플릿형은 랜딩페이지 최소 금액, 맞춤형과 프리미엄은 신규 홈페이지 최소 금액을 적용합니다.", "The minimum applies if the calculation falls below it. Template uses the landing-page minimum; Custom and Premium use the new-website minimum."),
     rows: [fixed("min-landing", "랜딩페이지", "Landing page"), fixed("min-website", "신규 홈페이지", "New website"), fixed("min-mvp", "웹서비스 / MVP", "Web service / MVP"), fixed("min-existing", "기존 서비스 수정", "Existing service changes")],
@@ -141,10 +146,10 @@ export const packageServices: ServicePackages[] = [
       ...tier(text("브랜드에 맞춰 설계하는 기업 홈페이지", "A company website designed around your brand"), [
         text("맞춤 브랜드 디자인", "Custom brand design"),
         text("기획 · UI/UX · 반응형 개발", "Planning, UI/UX and responsive development"),
-        text("Analytics 설정 · 방문자 분석", "Analytics setup and visitor insights"),
         text("AI 브랜드 영상 1개 · 웹사이트 적용", "One AI brand video, integrated into the website"),
         text("기본 인터랙션 · 문의 폼 · SEO", "Basic interactions, inquiry form and SEO"),
-        text("기본 수정 2회 · 배포 · QA", "Two revision rounds, deployment and QA"),
+        text("기본 UI 추가 · 수정 연간 3회", "3 basic UI additions / revisions per year"),
+        text("배포 · QA", "Deployment and QA"),
       ]),
       title: text("맞춤형", "Custom"), baseRateId: "brand",
     },
@@ -152,9 +157,10 @@ export const packageServices: ServicePackages[] = [
       ...tier(text("콘텐츠 운영과 모션까지 완성한 브랜드 경험", "A premium brand experience with content management and motion"), [
         text("맞춤형 구성 전체", "Everything in Custom"),
         text("고급 브랜드 디자인", "Advanced brand design"),
-        text("CMS 1개 · 콘텐츠 직접 관리", "One CMS to manage your own content"),
+        text("CMS 무제한 · 콘텐츠 직접 관리", "Unlimited CMS to manage your own content"),
         text("프리미엄 모션 · 스크롤 연출 · 전환 인터랙션", "Premium motion, scroll effects and transitions"),
-        text("Analytics 설정 · AI 브랜드 영상 1개", "Analytics setup and one AI brand video"),
+        text("Analytics 설정 · 방문자 분석", "Analytics setup and visitor insights"),
+        text("맞춤 일러스트 · 이미지 · 영상 제작", "Custom illustrations, images and videos"),
         text("CMS 사용 안내 · 배포 · QA", "CMS handover, deployment and QA"),
       ]),
       title: text("프리미엄", "Premium"), baseRateId: "premium",

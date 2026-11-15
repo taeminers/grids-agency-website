@@ -1,0 +1,30 @@
+/* Shared homepage section type, anchored to the Offerings heading. */
+.sectionTitle {
+  margin: 0;
+  color: #20211f;
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  font-weight: 600;
+  line-height: 1.34;
+  letter-spacing: -.04em;
+  text-wrap: balance;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.secondary {
+  display: block;
+  margin-top: .2em;
+  color: #707c85;
+  font-weight: 550;
+}
+.supportingCopy {
+  color: #53616c;
+  font-size: clamp(1rem, 1.25vw, 1.125rem);
+  font-weight: 500;
+  line-height: 1.75;
+  letter-spacing: -.015em;
+  word-break: keep-all;
+  text-wrap: balance;
+}
+@media (prefers-contrast: more) {
+  .secondary, .supportingCopy { color: #454648; }
+}

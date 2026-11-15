@@ -1,0 +1,6 @@
+.questionGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--site-card-gap); }
+.question { padding: var(--site-card-padding); border-radius: var(--site-card-radius); background: #f3f6f8; }
+.label { color: var(--brand-blue); font-size: .75rem; font-weight: 500; }
+.question h2 { margin: 1.5rem 0 1rem; color: #2d3e49; font-size: 1.125rem; font-weight: 550; line-height: 1.6; letter-spacing: -.025em; word-break: keep-all; }
+.question p { margin: 0; color: #667580; font-size: .875rem; line-height: 1.9; word-break: keep-all; }
+@media (max-width: 767px) { .questionGrid { grid-template-columns: minmax(0, 1fr); } }
