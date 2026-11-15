@@ -72,14 +72,18 @@
 .choiceCard:focus-visible, .choiceCard:has(input:focus-visible) { outline: 2px solid var(--brand-blue); outline-offset: 3px; }
 @media (hover: hover) { .choiceCard:not([aria-pressed="true"]):not(:has(input:checked)):hover { border-color: #b8c9d5; background: #f6fafc; } }
 .choiceCard:active { border-color: #62b0ed; transition-duration: 100ms; }
-.noteField { text-align: left; }
-.noteInput { display: block; width: 100%; min-height: 220px; max-height: 420px; resize: vertical; padding: 22px 24px; border: 1px solid #e0e5e9; border-radius: var(--site-card-radius); outline: none; background: rgb(255 255 255 / .72); color: #252a2e; font: inherit; font-size: 16px; line-height: 1.9; caret-color: #337da9; transition: border-color 220ms ease, background-color 220ms ease, box-shadow 220ms ease; }
-.noteInput::placeholder { color: #969da2; }
-.noteInput:focus { border-color: #90bddb; background: #fff; box-shadow: 0 0 0 2px rgb(98 176 237 / .08); }
-.noteMeta { display: flex; justify-content: space-between; gap: 12px; min-height: 18px; margin-top: 10px; color: #8a9298; font-size: 11px; line-height: 1.6; font-variant-numeric: tabular-nums; }
+.contactFields { display: grid; gap: 24px; width: 100%; max-width: 384px; margin-inline: auto; text-align: left; }
+.contactFields label { display: flex; align-items: baseline; gap: 7px; color: #394751; font-size: 12px; font-weight: 600; line-height: 1.6; }
+.contactFields label > span { color: #8a9298; font-size: 11px; font-weight: 400; }
 @media (max-width: 540px) {
   .choiceGrid { grid-template-columns: minmax(0, 1fr); gap: 10px; }
   .choiceCard { min-height: 56px; padding: 14px 16px; }
-  .noteInput { min-height: 200px; padding: 18px; }
 }
-@media (prefers-reduced-motion: reduce) { .choiceCard, .selectionMark svg, .noteInput { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .choiceCard, .selectionMark svg { transition: none; } }
+
+.customBudgetOption { grid-column: 1 / -1; }
+.customBudgetField { margin: 22px 0 4px; text-align: left; }
+.customBudgetField > label { color: #394751; font-size: 12px; font-weight: 600; line-height: 1.6; }
+.customBudgetInput { position: relative; }
+.customBudgetInput > input { padding-right: 3rem; font-variant-numeric: tabular-nums; }
+.customBudgetInput > span { position: absolute; right: 0; top: 50%; transform: translateY(-50%); color: #71818c; font-size: 13px; pointer-events: none; }

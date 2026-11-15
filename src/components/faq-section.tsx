@@ -56,6 +56,7 @@ function FaqContactCard() {
 
 export default function FaqSection() {
   const t = useTranslations("FAQ");
+  const locale = useLocale();
   const [openItem, setOpenItem] = useState<string>("");
   const reducedMotion = useReducedMotionPreference();
 
@@ -138,6 +139,10 @@ export default function FaqSection() {
                     }
                   >
                     <p className={styles.answer}>{t(`items.${key}.answer`)}</p>
+                    {key === "pricing" && <div className={styles.answerAction}>
+                      <ConsultationLink label={t("pricingLink")} href={`/${locale}/pricing`}
+                        onClick={() => trackEvent("cta_click", { cta_location: "faq_pricing", cta_text: t("pricingLink") })} />
+                    </div>}
                   </motion.div>
                 </Accordion.Content>
               </Accordion.Item>

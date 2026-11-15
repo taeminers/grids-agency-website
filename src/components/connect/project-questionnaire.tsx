@@ -10,9 +10,9 @@ import styles from "./project-questionnaire.module.css";
 import { trackEvent } from "@/lib/analytics";
 import { showPrivacyLinks } from "@/lib/privacy-publication";
 
-const steps = ["name", "company", "build", "budget", "email", "notes"] as const;
+const steps = ["build", "budget", "contact"] as const;
 const services = ["website", "app", "admin", "automation", "ai", "unsure", "other"] as const;
-const budgets = ["small", "medium", "large", "enterprise", "scale", "discuss", "flexible", "business"] as const;
+const budgets = ["small", "medium", "large", "enterprise", "scale", "discuss", "flexible", "business", "custom"] as const;
 const inputClass = "w-full rounded-none border-0 border-b border-foreground/25 bg-transparent px-0 py-3 text-base text-foreground outline-none transition-colors placeholder:text-foreground/30 focus:border-tertiary md:text-lg";
 
 export default function ProjectQuestionnaire({ onClose, onSuccess }: { onClose: () => void; onSuccess: () => void }) {
@@ -22,7 +22,7 @@ export default function ProjectQuestionnaire({ onClose, onSuccess }: { onClose: 
   const reduced = useReducedMotion();
   const [closing, setClosing] = useState(false);
   const [step, setStep] = useState(0);
-  const [draft, setDraft] = useState({ name: "", company: "", email: "", notes: "", budget: "", other: "", build: [] as string[] });
+  const [draft, setDraft] = useState({ email: "", phone: "", budget: "", customBudget: "", other: "", build: [] as string[] });
   const [error, setError] = useState("");
   const [touched, setTouched] = useState(false);
   const [status, setStatus] = useState<"idle" | "sending" | "success">("idle");
@@ -31,25 +31,23 @@ export default function ProjectQuestionnaire({ onClose, onSuccess }: { onClose: 
   const heading = useRef<HTMLHeadingElement>(null);
   const current = steps[step];
   const final = step === steps.length - 1;
+  const emailError = !draft.email.trim() ? t("emailRequired")
+    : !/^[^\s@]+@[^\s@.]+(?:\.[^\s@.]+)+$/.test(draft.email.trim()) ? t("emailInvalid") : "";
+  const phoneError = draft.phone.trim() && (!/^[+\d][\d\s().-]*$/.test(draft.phone.trim()) || !/^\d{7,15}$/.test(draft.phone.replace(/\D/g, ""))) ? t("phoneInvalid") : "";
   const validation = (() => {
-    if (current === "name" && !draft.name.trim()) return t("nameRequired");
     if (current === "build" && !draft.build.length) return t("required");
     if (current === "build" && draft.build.includes("other") && !draft.other.trim()) return t("otherRequired");
     if (current === "budget" && !draft.budget) return t("required");
-    if (current === "email") {
-      if (!draft.email.trim()) return t("emailRequired");
-      if (!/^[^\s@]+@[^\s@.]+(?:\.[^\s@.]+)+$/.test(draft.email.trim())) return t("emailInvalid");
-    }
+    if (current === "budget" && draft.budget === "custom" && Number(draft.customBudget) <= 0) return t("customBudget.required");
+    if (current === "contact") return emailError || phoneError;
     return "";
   })();
   const feedback = touched && validation ? validation : error;
   const summary = () => [
-    `${t("name.title")}: ${draft.name}`,
-    `${t("company.title")}: ${draft.company || "—"}`,
     `${t("build.title")}: ${draft.build.map(value => value === "other" ? `${t("services.other")}: ${draft.other.trim()}` : t(`services.${value}`)).join(", ")}`,
-    `${t("budget.title")}: ${t(`budgets.${draft.budget}`)}`,
-    `${t("email.title")}: ${draft.email}`,
-    `${t("notes.title")}: ${draft.notes || "—"}`,
+    `${t("budget.title")}: ${draft.budget === "custom" ? t("customBudget.summary", { amount: Number(draft.customBudget).toLocaleString("ko-KR") }) : t(`budgets.${draft.budget}`)}`,
+    `${t("contact.emailLabel")}: ${draft.email.trim()}`,
+    ...(draft.phone.trim() ? [`${t("contact.phoneLabel")}: ${draft.phone.trim()}`] : []),
   ].join("\n\n");
 
   const trackContactStart = () => {
@@ -92,10 +90,10 @@ export default function ProjectQuestionnaire({ onClose, onSuccess }: { onClose: 
         to_email: "kyle@gridsagency.com",
         to_name: "Kyle",
         reply_to: draft.email.trim(),
-        from_name: draft.name.trim(),
-        subject: `${t("emailSubject")} — ${draft.name.trim()}`,
-        firstName: draft.name.trim(), lastName: "", email: draft.email.trim(), phone: "",
-        company: draft.company.trim(), message: summary(),
+        from_name: t("senderName"),
+        subject: t("emailSubject"),
+        firstName: "", lastName: "", email: draft.email.trim(), phone: draft.phone.trim(),
+        company: "", message: summary(),
       }, { publicKey });
       trackEvent("generate_lead", { form_name: "project_inquiry" });
       setStatus("success");
@@ -117,7 +115,7 @@ export default function ProjectQuestionnaire({ onClose, onSuccess }: { onClose: 
       onInputCapture={(event) => trackContactStartFromControl(event.target)}
       onClickCapture={(event) => trackContactStartFromControl(event.target)}
       onKeyDown={event => {
-      if (event.key === "Enter" && event.target instanceof HTMLInputElement && ["text", "email"].includes(event.target.type)) {
+      if (event.key === "Enter" && event.target instanceof HTMLInputElement && ["text", "email", "tel"].includes(event.target.type)) {
         event.preventDefault();
         event.currentTarget.requestSubmit();
       }
@@ -161,16 +159,25 @@ export default function ProjectQuestionnaire({ onClose, onSuccess }: { onClose: 
                 if (!event.currentTarget.contains(event.relatedTarget)) setTouched(true);
               }} className="mx-auto mt-10 w-full max-w-lg border-0 p-0">
                 <legend className="sr-only">{t(`${current}.title`)}</legend>
-                {(current === "name" || current === "company" || current === "email") && (
-                  <input
-                    key={current} aria-labelledby="question-title" aria-describedby="question-error" aria-invalid={touched && Boolean(validation)}
-                    name={current} type={current === "email" ? "email" : "text"}
-                    autoComplete={current === "company" ? "organization" : current}
-                    required={current !== "company"} maxLength={current === "email" ? 254 : 120}
-                    placeholder={t(`${current}.placeholder`)} value={draft[current]}
-                    onChange={event => { setDraft({ ...draft, [current]: event.target.value }); setError(""); }}
-                    className={`${inputClass} max-w-sm`}
-                  />
+                {current === "contact" && (
+                  <div className={styles.contactFields}>
+                    <div>
+                      <label htmlFor="project-email">{t("contact.emailLabel")}</label>
+                      <input id="project-email" name="email" type="email" autoComplete="email" required maxLength={254}
+                        aria-describedby="question-error" aria-invalid={touched && Boolean(emailError)}
+                        placeholder={t("contact.emailPlaceholder")} value={draft.email}
+                        onChange={event => { setDraft({ ...draft, email: event.target.value }); setError(""); }}
+                        className={inputClass} />
+                    </div>
+                    <div>
+                      <label htmlFor="project-phone">{t("contact.phoneLabel")} <span>{t("contact.optional")}</span></label>
+                      <input id="project-phone" name="phone" type="tel" autoComplete="tel" maxLength={30}
+                        aria-describedby="question-error" aria-invalid={touched && Boolean(phoneError)}
+                        placeholder={t("contact.phonePlaceholder")} value={draft.phone}
+                        onChange={event => { setDraft({ ...draft, phone: event.target.value }); setError(""); }}
+                        className={inputClass} />
+                    </div>
+                  </div>
                 )}
                 {current === "build" && (
                   <>
@@ -189,27 +196,29 @@ export default function ProjectQuestionnaire({ onClose, onSuccess }: { onClose: 
                   </>
                 )}
                 {current === "budget" && (
-                  <div className={styles.choiceGrid}>
-                    {budgets.map((value, index) => <motion.label initial={{ opacity: reduced ? 1 : 0, scale: reduced ? 1 : 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0.26 + index * 0.06, ease: [0.4, 0, 0.2, 1] }} key={value} className={styles.choiceCard}><input type="radio" name="budget" value={value} required checked={draft.budget === value} onChange={() => { setDraft({ ...draft, budget: value }); setError(""); }} className={styles.radio} /><span>{t(`budgets.${value}`)}</span></motion.label>)}
-                  </div>
-                )}
-                {current === "notes" && (
                   <>
-                    <div className={styles.noteField}>
-                      <label htmlFor="project-notes" className="sr-only">{t("notes.label")}</label>
-                      <textarea
-                        id="project-notes"
-                        aria-describedby="project-notes-meta"
-                        name="notes" rows={6} maxLength={5000} value={draft.notes}
-                        onChange={event => setDraft({ ...draft, notes: event.target.value })}
-                        placeholder={t("notes.placeholder")}
-                        className={styles.noteInput}
-                      />
-                      <div id="project-notes-meta" className={styles.noteMeta}>
-                        <span>{t("notes.optional")}</span>
-                        {draft.notes.length > 0 && <span aria-label={t("notes.count", { count: draft.notes.length })}>{draft.notes.length.toLocaleString()} / 5,000</span>}
+                  <div className={styles.choiceGrid}>
+                    {budgets.map((value, index) => <motion.label initial={{ opacity: reduced ? 1 : 0, scale: reduced ? 1 : 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0.26 + index * 0.06, ease: [0.4, 0, 0.2, 1] }} key={value} className={`${styles.choiceCard} ${value === "custom" ? styles.customBudgetOption : ""}`}><input type="radio" name="budget" value={value} required checked={draft.budget === value} onChange={() => { setDraft({ ...draft, budget: value }); setError(""); }} className={styles.radio} /><span>{t(`budgets.${value}`)}</span></motion.label>)}
+                  </div>
+                  <AnimatePresence initial={false}>
+                    {draft.budget === "custom" && <motion.div key="custom-budget" initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: reduced ? 0 : 0.4, ease: [0.4, 0, 0.2, 1] }} className="overflow-hidden">
+                      <div className={styles.customBudgetField}>
+                        <label htmlFor="project-custom-budget">{t("customBudget.label")}</label>
+                        <div className={styles.customBudgetInput}>
+                          <input id="project-custom-budget" name="customBudget" type="text" inputMode="numeric" autoComplete="off" required maxLength={15}
+                            aria-describedby="question-error" aria-invalid={touched && Number(draft.customBudget) <= 0}
+                            placeholder={t("customBudget.placeholder")}
+                            value={draft.customBudget ? Number(draft.customBudget).toLocaleString("ko-KR") : ""}
+                            onChange={event => {
+                              if (!/^[\d,\s]*$/.test(event.target.value)) return;
+                              setDraft({ ...draft, customBudget: event.target.value.replace(/\D/g, "").slice(0, 12) });
+                              setError("");
+                            }} className={inputClass} />
+                          <span>{t("customBudget.currency")}</span>
+                        </div>
                       </div>
-                    </div>
+                    </motion.div>}
+                  </AnimatePresence>
                   </>
                 )}
               </fieldset>
@@ -218,7 +227,12 @@ export default function ProjectQuestionnaire({ onClose, onSuccess }: { onClose: 
         </motion.div>
       </div>
       <div className="w-full max-w-lg text-center">
-        {showPrivacyLinks && status !== "success" && <p className={styles.privacyNotice}>{t("privacyNotice")} <Link href={`/${locale}/privacy`}>{t("privacyLink")}</Link></p>}
+        {final && showPrivacyLinks && status !== "success" && <motion.p id="project-privacy-notice" className={styles.privacyNotice}
+          initial={{ opacity: reduced ? 1 : 0, y: reduced ? 0 : 8, filter: reduced ? "blur(0px)" : "blur(4px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: reduced ? 0 : 0.7, delay: reduced ? 0 : 0.18, ease: [0.4, 0, 0.2, 1] }}>
+          {t("privacyNotice")} <Link href={`/${locale}/privacy`}>{t("privacyLink")}</Link>
+        </motion.p>}
         <div id="question-error" role="alert" className="mb-5 min-h-5 text-xs text-foreground/70">
           <AnimatePresence mode="wait" initial={false}>
             {feedback && (
@@ -247,7 +261,7 @@ export default function ProjectQuestionnaire({ onClose, onSuccess }: { onClose: 
             <button
               className={styles.button}
               type="submit"
-              aria-describedby="question-error"
+              aria-describedby={final && showPrivacyLinks ? "project-privacy-notice question-error" : "question-error"}
               aria-busy={status === "sending"}
               disabled={status === "sending" || Boolean(validation)}
             >{t(status === "sending" ? "sending" : final ? "send" : "next")}</button>

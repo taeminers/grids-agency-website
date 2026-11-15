@@ -6,6 +6,7 @@ import type { ComponentType } from "react";
 // build error. Add one entry here when registering a new custom article.
 const articleLoaders: Record<string, () => Promise<{ default: ComponentType }>> = {
   "local-business-online-checklist": () => import("./articles/local-business-online-checklist"),
+  "website-trust-and-conversion": () => import("./articles/website-trust-and-conversion"),
   "before-your-website-project": () => import("./articles/before-your-website-project"),
 };
 

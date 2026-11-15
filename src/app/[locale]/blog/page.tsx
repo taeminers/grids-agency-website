@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { ChevronRight, PenLine } from "lucide-react";
 import Container from "@/components/container";
 import Link from "@/components/navigation/page-navigation";
 import { BlogPostGrid } from "@/components/blog/post-grid";
@@ -46,8 +47,14 @@ export default async function BlogIndexPage({ params, searchParams }: Props) {
       <section className={styles.gallery} aria-labelledby="blog-gallery-heading">
         <h2 id="blog-gallery-heading" className="sr-only">{currentTopic}</h2>
         {visiblePosts.length ? <BlogPostGrid posts={visiblePosts} locale={locale} previewSlots={!topic && posts.some(post => post.status === "draft") ? 2 : 0} /> : <div className={styles.empty}>
+          <div className={styles.emptyIllustration} aria-hidden="true">
+            <span className={styles.emptySheet}><PenLine size={22} strokeWidth={1.75} /><i /><i /></span>
+          </div>
           <h3>{t(topic ? "index.emptyTopicTitle" : "index.emptyTitle")}</h3>
           <p>{t(topic ? "index.emptyTopicDescription" : "index.emptyDescription")}</p>
+          {topic && posts.length > 0 && <Link href={`/${locale}/blog`} scroll={false} className={styles.emptyAction}>
+            {t("index.browseArticles")}<ChevronRight size={14} strokeWidth={3.5} aria-hidden="true" />
+          </Link>}
         </div>}
       </section>
     </Container>

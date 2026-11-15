@@ -33,7 +33,7 @@ for (const service of packageServices) {
 const rows = rateSections.flatMap(section => section.rows);
 assert.equal(new Set(rows.map(row => row.id)).size, rows.length);
 assert.deepEqual(Object.fromEntries(rows.filter(row => row.amount !== undefined).map(row => [row.id, row.amount])), documented);
-for (const id of ['ai', 'realtime', 'custom', 'webgl']) {
+for (const id of ['ai', 'realtime', 'custom', 'webgl', 'growth']) {
   assert.equal(getRate(id).mode, 'custom');
   assert.equal(getRate(id).amount, undefined);
 }
@@ -52,8 +52,10 @@ assert.deepEqual(homepage.tiers.map(tier => getPackageBaseRate(homepage, tier).i
 assert.deepEqual(homepage.tiers.map(tier => tier.extras), [[], [], []], 'included CMS and motion are not charged as extras');
 const scopes = homepage.tiers.map(tier => tier.scope.map(copy => copy.en).join(' '));
 assert(!scopes[0].includes('Analytics') && !scopes[0].includes('CMS'));
-assert(scopes[1].includes('Analytics') && scopes[1].includes('AI brand video') && !scopes[1].includes('CMS'));
-assert(scopes[2].includes('Analytics') && scopes[2].includes('AI brand video') && scopes[2].includes('CMS') && scopes[2].includes('Premium motion'));
+assert(!scopes[1].includes('Analytics') && scopes[1].includes('AI brand video') && !scopes[1].includes('CMS'));
+assert(scopes[1].includes('3 basic UI additions / revisions per year') && !scopes[1].includes('Two revision rounds'));
+assert(scopes[2].includes('Everything in Custom') && scopes[2].includes('Analytics') && scopes[2].includes('Unlimited CMS') && scopes[2].includes('Premium motion'));
+assert(scopes[2].includes('Custom illustrations, images and videos'));
 
 // Controlled inputs verify that grouped tiers continue to follow independent
 // document rates and minimums without locking tests to changing business prices.

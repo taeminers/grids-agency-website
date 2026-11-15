@@ -1,0 +1,4 @@
+.contactAction { margin-top: 1.5rem; }
+.contactAction .contactLink { color: var(--button-ink); text-decoration: none; }
+.references { padding-top: 1.25rem; border-top: 1px solid #e5eaed; font-size: .8125rem; }
+.references h2 { margin: 0 0 .75rem; font-size: 1rem; }

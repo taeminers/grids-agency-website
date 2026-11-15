@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "@/components/navigation/page-navigation";
-import { Eclipse, Mail } from "lucide-react";
+import { Eclipse, Newspaper } from "lucide-react";
 import Container from "@/components/container";
 import FooterCube from "@/components/footer-cube";
 import Dots08 from "@/components/shadcn-space/dots/dots-08";
@@ -92,11 +92,10 @@ export default function FooterSection({ className }: FooterSectionProps) {
               </Link>
             ))}
             <span className={styles.separator} aria-hidden="true" />
-            <a className={styles.app} href={`mailto:${t("email")}`} aria-label={`${t("mailApp")} — ${t("email")}`}
-              onClick={() => trackContact(t("email"))}>
-              <span className={`${styles.icon} ${styles.mail}`} aria-hidden="true"><Mail strokeWidth={1.5} /></span>
-              <span className={styles.appLabel} aria-hidden="true">{t("mailApp")}</span>
-            </a>
+            <Link className={styles.app} href={`/${locale}/blog`} aria-label={nav("blog")}>
+              <span className={`${styles.icon} ${styles.blog}`} aria-hidden="true"><Newspaper strokeWidth={1.5} /></span>
+              <span className={styles.appLabel} aria-hidden="true">{nav("blog")}</span>
+            </Link>
             <a className={styles.app} href="https://pf.kakao.com/_FGQrX" target="_blank" rel="noopener noreferrer"
               aria-label={t("kakaoApp")} onClick={() => trackContact("KakaoTalk ↗")}>
               <span className={`${styles.icon} ${styles.kakao}`} aria-hidden="true">

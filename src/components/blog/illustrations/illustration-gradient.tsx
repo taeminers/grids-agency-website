@@ -2,9 +2,10 @@
 
 import { useEffect, useRef } from "react";
 import type { ShaderMount } from "@paper-design/shaders";
+import { softGrainGradientFragmentShader } from "./soft-grain-gradient-shader";
 
 /** A small client enhancement; the illustration and its base gradient render on the server. */
-export default function IllustrationGradient({ className }: { className: string }) {
+export default function IllustrationGradient({ className, treatment = "pastel" }: { className: string; treatment?: "pastel" | "soft-grain" }) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -18,7 +19,7 @@ export default function IllustrationGradient({ className }: { className: string 
     let revealFrame = 0;
     const motion = matchMedia("(prefers-reduced-motion: reduce)");
 
-    const updateSpeed = () => shader?.setSpeed(visible && !motion.matches && !failed ? .12 : 0);
+    const updateSpeed = () => shader?.setSpeed(visible && !motion.matches && !failed ? (treatment === "soft-grain" ? .1 : .12) : 0);
     const onContextLost = () => {
       failed = true;
       delete element.dataset.ready;
@@ -30,14 +31,19 @@ export default function IllustrationGradient({ className }: { className: string 
       try {
         const { ShaderMount, meshGradientFragmentShader, getShaderColorFromString } = await import("@paper-design/shaders");
         if (cancelled || !visible) return;
-        const colors = ["#eaf6ff", "#8bcff0", "#d8efff", "#e4dff2", "#f3d7e8"];
-        shader = new ShaderMount(element, meshGradientFragmentShader, {
+        const softGrain = treatment === "soft-grain";
+        const colors = softGrain
+          ? ["#9b514c", "#c58e80", "#f3dfcb"]
+          : ["#eaf6ff", "#8bcff0", "#d8efff", "#e4dff2", "#f3d7e8"];
+        shader = new ShaderMount(element, softGrain ? softGrainGradientFragmentShader : meshGradientFragmentShader, {
           u_colors: colors.map(getShaderColorFromString),
-          u_colorsCount: colors.length,
-          u_distortion: .45,
-          u_swirl: .12,
-          u_grainMixer: 0,
-          u_grainOverlay: .035,
+          ...(!softGrain ? {
+            u_colorsCount: colors.length,
+            u_distortion: .45,
+            u_swirl: .12,
+            u_grainMixer: 0,
+            u_grainOverlay: .035,
+          } : {}),
           u_fit: 2,
           u_rotation: 0,
           u_scale: 1,
@@ -47,7 +53,7 @@ export default function IllustrationGradient({ className }: { className: string 
           u_originY: .5,
           u_worldWidth: 0,
           u_worldHeight: 0,
-        }, { alpha: false, antialias: false }, 0, 9000, 1, 900_000);
+        }, { alpha: false, antialias: false }, 0, softGrain ? 0 : 9000, 1, 900_000);
         shader.canvasElement.addEventListener("webglcontextlost", onContextLost);
         updateSpeed();
         // Reveal after the first paint, keeping the matching CSS gradient beneath it.
@@ -80,7 +86,7 @@ export default function IllustrationGradient({ className }: { className: string 
       shader?.dispose();
       delete element.dataset.ready;
     };
-  }, []);
+  }, [treatment]);
 
-  return <div ref={ref} className={className} aria-hidden="true" data-illustration-shader />;
+  return <div ref={ref} className={className} aria-hidden="true" data-illustration-shader data-treatment={treatment} />;
 }

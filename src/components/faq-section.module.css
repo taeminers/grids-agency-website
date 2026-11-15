@@ -57,6 +57,8 @@
 .questionContent { overflow: hidden; }
 .answer { margin: 0; padding: 0 var(--site-card-padding) 1.75rem; max-width: 70ch; color: #607487; font-size: .875rem; line-height: 1.95; letter-spacing: -.01em; word-break: keep-all; }
 
+.answerAction { padding: 0 var(--site-card-padding) 1.75rem; }
+
 /* Glacier ice, with LOCUS as the focal point. */
 .contactCard {
   composes: glacier from "./grainy-surface.module.css";

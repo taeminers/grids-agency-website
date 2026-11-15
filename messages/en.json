@@ -250,6 +250,7 @@
     }
   },
   "FAQ": {
+    "pricingLink": "View pricing",
     "contactPrompt": "Contact the GRIDS team",
     "contactLink": "Let’s talk",
     "heading": "Before we begin,\na few answers.",
@@ -662,34 +663,13 @@
       "otherLabel": "Tell us what you have in mind.",
       "otherPlaceholder": "Describe the service or features you’d like to build.",
       "otherRequired": "Please describe your other project type.",
-      "nameRequired": "Please enter your name.",
       "emailRequired": "Please enter your email address.",
       "emailInvalid": "Please enter a valid email address (e.g. hello@company.com).",
-      "name": {
-        "title": "Who is the mind behind it?",
-        "placeholder": "Your name"
-      },
-      "company": {
-        "title": "Tell us about your team.",
-        "placeholder": "Company or team name (optional)"
-      },
       "build": {
         "title": "What would you like to build?"
       },
       "budget": {
         "title": "Do you have a budget in mind?"
-      },
-      "email": {
-        "title": "Where can we reach you?",
-        "placeholder": "Your email address"
-      },
-      "notes": {
-        "label": "PROJECT NOTE",
-        "optional": "Optional",
-        "hint": "Timeline · References · Features",
-        "count": "{count} of 5,000 characters",
-        "title": "Anything else you’d like us to know?",
-        "placeholder": "Share your ideas, timeline, or links you have in mind."
       },
       "services": {
         "website": "Website · E-commerce",
@@ -708,7 +688,8 @@
         "scale": "Under ₩100 million",
         "discuss": "Let’s discuss it together",
         "flexible": "No fixed budget",
-        "business": "Business project · Custom quote"
+        "business": "Business project · Custom quote",
+        "custom": "Enter an amount"
       },
       "multiple": "Select everything you have in mind.",
       "required": "Please enter an answer or select an option.",
@@ -725,7 +706,24 @@
       "privacyNotice": "Your information is delivered through EmailJS for inquiry and quote handling, and retained for one year after the inquiry closes.",
       "privacyLink": "Privacy policy",
       "successTitle": "The start of something new. Thank you.",
-      "successDescription": "Your inquiry has been delivered. We’ll read through your ideas and get back to you by email."
+      "successDescription": "Your inquiry has been delivered. We’ll review your request and get in touch.",
+      "contact": {
+        "title": "Where can we reach you?",
+        "emailLabel": "Email",
+        "emailPlaceholder": "Your email address",
+        "phoneLabel": "Phone number",
+        "phonePlaceholder": "Your phone number",
+        "optional": "Optional"
+      },
+      "phoneInvalid": "Please enter a valid phone number.",
+      "senderName": "Project inquiry",
+      "customBudget": {
+        "label": "Budget amount",
+        "placeholder": "e.g. 5,000,000",
+        "currency": "KRW",
+        "required": "Please enter a budget greater than zero.",
+        "summary": "₩{amount}"
+      }
     },
     "Experience": {
       "privacy": "Privacy policy",
@@ -737,8 +735,7 @@
       "copied": "Email copied",
       "projectTitle": "Tell us what you have in mind.",
       "projectDescription": "Share a little about your project. We’ll review the details and get in touch personally.",
-      "copyFallback": "Contact us by email:",
-      "locusNoticeMessage": "Still learning. See you soon!"
+      "copyFallback": "Contact us by email:"
     },
     "titlePrefix": "We Would Love to Hear",
     "titleHighlight": "from You",
@@ -1323,7 +1320,7 @@
       "serviceLabel": "Service type",
       "draftLabel": "Proposed packages",
       "draftNote": "These proposals combine documented starting rates and add-ons. A fixed fee is confirmed after detailed scoping; these are not yet finalized selling prices.",
-      "homepageNote": "Choose Template, Custom or Premium for your website. Analytics starts with Custom; CMS and premium motion are included in Premium. AI video length and production scope are agreed before work begins.",
+      "homepageNote": "Choose Template, Custom or Premium for your website. Analytics, unlimited CMS, custom illustrations, images and videos, and premium motion are included in Premium. AI video length and production scope are agreed before work begins.",
       "packagePrice": "Package price",
       "proposedPrice": "Proposed price",
       "priceUnit": "Per project · VAT excluded",
@@ -2404,6 +2401,7 @@
       }
     },
     "explorer": {
+      "groups": { "build": "Build", "growth": "Growth support" },
       "heading": "The scope that fits.",
       "customTitle": "Custom build",
       "customLabel": "Beyond the packages",
@@ -2456,6 +2454,21 @@
             "third": "Support handoff, permissions and answer quality"
           }
         },
+        "growth": {
+          "title": "Growth",
+          "caption": "Analytics · Ads · Reporting",
+          "packageTitle": "Growth package",
+          "label": "Ongoing growth support",
+          "heading": "Turn your data into a clear next step.",
+          "description": "Review ad performance and the journey from a visit to an inquiry or purchase using connected data. Choose weekly or monthly reports, delivered by email or through a dedicated dashboard.",
+          "scope": {
+            "first": "Advanced GA4 and GTM setup — custom events, key conversions, funnels and acquisition paths",
+            "second": "Weekly / monthly reporting — by email or through a dedicated dashboard",
+            "third": "Ad performance analysis — campaign and channel spend, conversions, CPA and ROAS",
+            "fourth": "Issue diagnosis — drop-off points, tracking gaps and inefficient ad spend",
+            "fifth": "Prioritized recommendations and follow-up — actionable improvements and progress tracking"
+          }
+        },
         "rules": {
           "title": "Quotation guide",
           "caption": "Rates · Pricing principles"
@@ -2483,8 +2496,9 @@
       "heading": "Ideas for business.",
       "headingSecondary": "Shared with you.",
       "postCount": "{count, plural, one {# article} other {# articles}}",
-      "emptyTopicTitle": "More on this topic soon.",
-      "emptyTopicDescription": "We’re putting together useful ideas for your business."
+      "emptyTopicTitle": "A new story is taking shape.",
+      "emptyTopicDescription": "We’re gathering practical ideas and experience on this topic.",
+      "browseArticles": "Browse all articles"
     },
     "draft": {
       "label": "Draft · local preview",

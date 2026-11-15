@@ -33,7 +33,7 @@
 .avatar { display: block; }
 .rotatingCross { display: grid; place-items: center; width: 40px; height: 48px; color: #607d93; }
 .rotatingCross > div { scale: .625; }
-.card { composes: surface from "./offering-glass.module.css"; --card-inset: 22px; position: relative; padding: 22px 0 18px; overflow: hidden; border-radius: var(--site-card-radius); }
+.card { --card-inset: 22px; position: relative; padding: 22px 0 18px; overflow: hidden; border: 1px solid #e4e9ed; border-radius: var(--site-card-radius); background: #fff; box-shadow: 0 14px 30px -18px rgb(48 79 105 / .28); }
 .cardHeading { display: flex; gap: 10px; align-items: flex-start; padding: 0 var(--card-inset) 12px; }
 .cardHeading > svg { flex-shrink: 0; margin-top: 3px; color: #617e94; }
 .title { margin: 0; font-size: 14px; line-height: 1.5; font-weight: 600; letter-spacing: -0.02em; }

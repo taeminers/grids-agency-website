@@ -1,0 +1,19 @@
+.illustration {
+  position: relative;
+  isolation: isolate;
+  aspect-ratio: 2.4 / 1;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--site-card-radius);
+  background:
+    radial-gradient(ellipse at 100% 80%, #f3dfcbaa, transparent 60%),
+    linear-gradient(38deg, #9b514c 0%, #b0776b 30%, #d4ad99 52%, #f3dfcb 75%);
+}
+.illustration::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: url("/textures/fine-grain.svg") repeat; background-size: 180px; opacity: .16; mix-blend-mode: soft-light; }
+.shader { position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity 400ms ease; }
+.shader[data-ready="true"] { opacity: 1; }
+.logo { position: absolute; z-index: 1; top: 50%; left: 50%; width: clamp(3rem, 7vw, 5.5rem); aspect-ratio: 1; background: #fff; transform: translate(-50%, -50%); }
+.illustration[data-variant="thumbnail"] { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; border-radius: inherit; }
+.illustration[data-variant="thumbnail"] .logo { width: 18%; min-width: 1.25rem; max-width: 3.5rem; }
+@media (max-width: 639px) { .illustration { aspect-ratio: 4 / 3; } }
+@media (prefers-reduced-motion: reduce) { .shader { transition: none; } }

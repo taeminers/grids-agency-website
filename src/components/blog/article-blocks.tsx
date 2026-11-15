@@ -15,7 +15,7 @@ export function BlogReading({ children, className }: ContentProps) {
 }
 
 /** A wider area for custom diagrams, screenshots, interactive demos or grids. */
-export function BlogVisual({ children, className, size = "standard" }: ContentProps & { size?: "standard" | "headline" | "showcase" }) {
+export function BlogVisual({ children, className, size = "standard" }: ContentProps & { size?: "standard" | "reading" | "headline" | "showcase" }) {
   return <Container size={size} innerClassName={className}>{children}</Container>;
 }
 

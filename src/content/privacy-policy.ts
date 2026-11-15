@@ -22,7 +22,7 @@ const ko = {
     { id: "purposes", title: "제1조. 개인정보의 처리 목적 및 항목", blocks: [
       p("그리즈는 다음의 목적을 위해 필요한 범위에서 개인정보를 처리합니다."),
       h("1. 프로젝트 문의 및 상담"),
-      list("처리 목적: 프로젝트 문의 응대, 서비스 상담, 견적 안내 및 계약 체결을 위한 사전 협의", "필수 항목: 이름, 이메일 주소, 요청 서비스, 예산 범위", "선택 항목: 회사·팀 이름, 프로젝트 상세 내용", "조건부 필수 항목: '기타' 서비스 선택 시 상세 내용", "처리 근거: 「개인정보 보호법」 제15조 제1항 제4호(계약 체결 과정에서 정보주체의 요청에 따른 조치에 필요한 경우)"),
+      list("처리 목적: 프로젝트 문의 응대, 서비스 상담, 견적 안내 및 계약 체결을 위한 사전 협의", "필수 항목: 이메일 주소, 요청 서비스, 예산 범위", "선택 항목: 전화번호", "조건부 필수 항목: '기타' 서비스 선택 시 상세 내용", "처리 근거: 「개인정보 보호법」 제15조 제1항 제4호(계약 체결 과정에서 정보주체의 요청에 따른 조치에 필요한 경우)"),
       p("문의 양식으로 제출된 정보는 EmailJS를 통해 그리즈의 업무용 이메일로 전달되며, 웹사이트 자체 데이터베이스에는 저장되지 않습니다."),
       h("2. 웹사이트 이용 통계 및 서비스 개선"),
       list("처리 목적: 웹사이트 방문 현황 분석, 이용 환경 개선 및 광고 성과 측정", "처리 항목: 방문 페이지, 접속 일시, 브라우저 및 기기 정보, 쿠키·이용자 식별자, 웹사이트 내 상호작용 정보 등", "이용 서비스: Google Analytics 4, Google Tag Manager 및 Google Ads 관련 측정 기능"),
@@ -48,7 +48,7 @@ const ko = {
     { id: "transfers", title: "제5조. 개인정보의 국외 이전", blocks: [
       p("그리즈는 웹사이트 운영 및 문의 처리를 위해 해외 사업자의 서비스를 이용하고 있으며, 서비스 제공 과정에서 개인정보가 국외로 이전되거나 처리될 수 있습니다."),
       h("1. EmailJS"),
-      list("이전받는 자: EmailJS Pte. Ltd.", "연락처: gdpr@emailjs.zendesk.com", "이전 국가: 미국", "이전 항목: 이름, 이메일 주소, 회사·팀 이름, 요청 서비스, 예산 범위, 프로젝트 내용 및 요청 관련 기술정보", "이전 목적: 프로젝트 문의 이메일 전송 및 발송 이력 관리", "이전 시기 및 방법: 문의 제출 시 HTTPS 통신을 통한 전송", "보유 기간: 발송 이력 7일. 기타 기술·보안 기록은 별도 정책 적용", "이전 거부: 문의 양식을 제출하지 않음으로써 해당 전송을 거부할 수 있으며, 이 경우 온라인 프로젝트 문의 접수가 제한됩니다."),
+      list("이전받는 자: EmailJS Pte. Ltd.", "연락처: gdpr@emailjs.zendesk.com", "이전 국가: 미국", "이전 항목: 이메일 주소, 전화번호(입력한 경우), 요청 서비스, 예산 범위, 기타 서비스 선택 시 상세 내용 및 요청 관련 기술정보", "이전 목적: 프로젝트 문의 이메일 전송 및 발송 이력 관리", "이전 시기 및 방법: 문의 제출 시 HTTPS 통신을 통한 전송", "보유 기간: 발송 이력 7일. 기타 기술·보안 기록은 별도 정책 적용", "이전 거부: 문의 양식을 제출하지 않음으로써 해당 전송을 거부할 수 있으며, 이 경우 온라인 프로젝트 문의 접수가 제한됩니다."),
       h("2. Google Workspace"),
       list("서비스 제공업체: Google 및 관련 서비스 제공 법인", "처리 항목: 문의 이메일의 발신자·수신자 정보, 제목, 본문 및 관련 기술정보", "처리 목적: 이메일 수신, 저장 및 회신", "처리 시기 및 방법: 문의 이메일 송수신 및 보관 과정에서 네트워크를 통한 처리", "보유 기간: 그리즈의 문의 보관 정책에 따르며, 별도 시스템 기록에는 서비스 제공업체의 정책이 적용될 수 있습니다."),
       h("3. Vercel"),
@@ -104,7 +104,7 @@ const en: typeof ko = {
     { id: "purposes", title: "Article 1. Purposes and categories", blocks: [
       p("GRIDS processes personal information to the extent necessary for the following purposes."),
       h("1. Project inquiries and consultations"),
-      list("Purpose: responding to project inquiries, service consultations, quotations and pre-contract discussions", "Required: name, email address, requested services and budget range", "Optional: company/team name and project details", "Conditionally required: details when selecting Other services", "Basis: PIPA Article 15(1)(4), where necessary to take steps at the data subject’s request during the process of entering into a contract"),
+      list("Purpose: responding to project inquiries, service consultations, quotations and pre-contract discussions", "Required: email address, requested services and budget range", "Optional: phone number", "Conditionally required: details when selecting Other services", "Basis: PIPA Article 15(1)(4), where necessary to take steps at the data subject’s request during the process of entering into a contract"),
       p("Information submitted through the inquiry form is delivered through EmailJS to GRIDS’ business email account and is not stored in the website’s own database."),
       h("2. Website statistics and service improvement"),
       list("Purpose: analysing visits, improving the user experience and measuring advertising performance", "Categories: pages visited, access times, browser/device information, cookies/user identifiers and website interactions", "Services: Google Analytics 4, Google Tag Manager and Google Ads-related measurement features"),
@@ -130,7 +130,7 @@ const en: typeof ko = {
     { id: "transfers", title: "Article 5. International transfers", blocks: [
       p("GRIDS uses overseas providers to operate the website and handle inquiries. Personal information may be transferred or processed overseas when these services are provided."),
       h("1. EmailJS"),
-      list("Recipient: EmailJS Pte. Ltd.", "Contact: gdpr@emailjs.zendesk.com", "Country: United States", "Categories: name, email address, company/team name, requested services, budget range, project details and request-related technical information", "Purpose: delivering project inquiry emails and managing sending history", "Timing/method: HTTPS transmission when an inquiry is submitted", "Retention: sending history for 7 days; separate policies apply to other technical/security records", "Refusal: you may refuse this transmission by not submitting the form; online project inquiry submission will then be unavailable."),
+      list("Recipient: EmailJS Pte. Ltd.", "Contact: gdpr@emailjs.zendesk.com", "Country: United States", "Categories: email address, phone number (if provided), requested services, budget range, details when selecting Other services, and request-related technical information", "Purpose: delivering project inquiry emails and managing sending history", "Timing/method: HTTPS transmission when an inquiry is submitted", "Retention: sending history for 7 days; separate policies apply to other technical/security records", "Refusal: you may refuse this transmission by not submitting the form; online project inquiry submission will then be unavailable."),
       h("2. Google Workspace"),
       list("Provider: Google and relevant service entities", "Categories: email sender/recipient information, subject, body and related technical information", "Purpose: receiving, storing and replying to emails", "Timing/method: network processing when emails are sent, received and stored", "Retention: GRIDS’ inquiry retention policy; provider policies may apply to separate system records."),
       h("3. Vercel"),

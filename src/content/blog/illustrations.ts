@@ -7,6 +7,7 @@ export type BlogIllustrationProps = { variant?: "article" | "thumbnail" };
 // Keep visuals independent of article bodies so listings never import a post.
 const illustrationLoaders: Record<string, () => Promise<{ default: ComponentType<BlogIllustrationProps> }>> = {
   "local-business-online-checklist": () => import("@/components/blog/illustrations/local-business"),
+  "website-trust-and-conversion": () => import("@/components/blog/illustrations/website-trust"),
 };
 
 export async function getBlogIllustration(slug: string) {

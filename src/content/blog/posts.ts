@@ -60,6 +60,18 @@ export const blogPosts: readonly BlogPost[] = [
     status: "draft",
   },
   {
+    slug: "website-trust-and-conversion",
+    locale: "ko",
+    title: "우리 회사 홈페이지, 오히려 고객을 떠나게 만들고 있진 않나요?",
+    summary:
+      "방문자는 꾸준한데 문의가 늘지 않는다면, 홈페이지에서 고객을 놓치고 있을 수 있습니다. 고객이 떠나는 이유와 실제 이용 데이터를 바탕으로 개선할 부분을 찾는 방법을 살펴봅니다.",
+    category: "웹사이트 가이드",
+    topic: "web-app",
+    readingMinutes: 6,
+    author: defaultBlogAuthor,
+    status: "draft",
+  },
+  {
     slug: "before-your-website-project",
     locale: "ko",
     title: "웹사이트 제작, 견적 전에 정리할 세 가지",

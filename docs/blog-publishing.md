@@ -9,6 +9,26 @@ Article changes become public only after a reviewed deployment.
 - Local index: `http://localhost:3000/ko/blog`
 - Local example: `http://localhost:3000/ko/blog/before-your-website-project`
 - First real article draft: `http://localhost:3000/ko/blog/local-business-online-checklist`
+- Second real article draft: `http://localhost:3000/ko/blog/website-trust-and-conversion`
+  It belongs to Websites & apps. Its illustration uses a
+  softly blurred terracotta/dusty-rose/ivory shader background with fine grain and a broad
+  diagonal shadow; the shared thumbnail uses the same palette and texture without
+  creating WebGL contexts. A white GRIDS mark is centered in both variants.
+  Its Clutch figures were checked against the linked report and its June 24, 2025
+  survey methodology (263 US consumers). It remains unpublished, like the first draft.
+- The second article also includes a two-tab fictional interior-company website
+  comparison, directly before its survey section. It uses the 720px reading width
+  without inheriting prose typography. The tabs support arrow keys, Home/End and
+  reduced motion; both versions share a stable preview height. The first example
+  uses a generic centered hero over the same office photo, with dense navigation
+  and broad promotional copy rather than a project listing.
+  The second uses a white hero with a restrained headline on the left, concise
+  copy and a compact project-gallery action on the right, then a wide office photograph below. The preview
+  websites are fictional examples, not live services or actual client case studies.
+  The improved example includes a keyboard-accessible contact disclosure; its channel
+  choices demonstrate selection locally and do not open real business accounts.
+  Photography is local; credits and licenses are in
+  `public/images/blog/interior/SOURCES.md`.
 - English index: `/en/blog`, reached through the existing language switch.
   Existing site routing resets direct English document visits to Korean. The
   English index labels its articles as Korean and links to Korean article URLs.
@@ -37,8 +57,10 @@ an article before that work is reviewed.
   The visible UI omits counts, introductory copy and a duplicate gallery heading.
   Mobile places topics above the gallery.
   The gallery has two desktop columns, one at 768–1023px, two at 560–767px and
-  one below 560px. Entries have a cover above category/date, title and summary,
-  with no enclosing card border or shadow. Covers retain the standard 8px corners.
+  one below 560px. Entries have a cover above the title, with no visible summary.
+  Published dates remain above the title; the category chip and localized reading
+  time sit at the bottom left and right. There is no enclosing card border or
+  shadow. Covers retain the standard 8px corners.
 - The homepage section sits between Featured Work and FAQ, using the existing
   section spacing and container system. A tall title/navigation card sits on the
   left, with the newest two published posts stacked on the right. Each post has
