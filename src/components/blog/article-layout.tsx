@@ -8,12 +8,6 @@ import type { BlogPost } from "@/content/blog/posts";
 import { BlogImage } from "./article-blocks";
 import styles from "./blog.module.css";
 
-function displayDate(value: string) {
-  return new Intl.DateTimeFormat("ko-KR", {
-    year: "numeric", month: "long", day: "numeric", timeZone: "Asia/Seoul",
-  }).format(new Date(value));
-}
-
 export async function BlogArticleLayout({ post, children, illustration }: { post: BlogPost; children: ReactNode; illustration?: ReactNode }) {
   const t = await getTranslations({ locale: post.locale, namespace: "Blog" });
   return <main className={styles.page}>
@@ -36,10 +30,6 @@ export async function BlogArticleLayout({ post, children, illustration }: { post
           </div>
           <p className={styles.readingTime}>{t("readingTime", { minutes: post.readingMinutes })}</p>
         </div>
-        {(post.publishedAt || post.updatedAt) && <dl className={styles.dates}>
-          {post.publishedAt && <div><dt>{t("published")}</dt><dd><time dateTime={post.publishedAt}>{displayDate(post.publishedAt)}</time></dd></div>}
-          {post.updatedAt && <div><dt>{t("updated")}</dt><dd><time dateTime={post.updatedAt}>{displayDate(post.updatedAt)}</time></dd></div>}
-        </dl>}
       </Container>
       <div className={styles.articleBody} data-article-body>{children}</div>
     </article>

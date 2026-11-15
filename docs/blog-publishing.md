@@ -5,17 +5,19 @@
 The blog uses a shared server-rendered header and individually authored React
 article bodies. There is no CMS, database, live upload endpoint or browser editor.
 Article changes become public only after a reviewed deployment.
+Publication timestamps remain in the registry for ordering; publication and update
+dates are not displayed in article headers or listing cards, per the owner’s preference.
 
 - Local index: `http://localhost:3000/ko/blog`
 - Local example: `http://localhost:3000/ko/blog/before-your-website-project`
-- First real article draft: `http://localhost:3000/ko/blog/local-business-online-checklist`
-- Second real article draft: `http://localhost:3000/ko/blog/website-trust-and-conversion`
+- First published article: `http://localhost:3000/ko/blog/local-business-online-checklist`
+- Second published article: `http://localhost:3000/ko/blog/website-trust-and-conversion`
   It belongs to Websites & apps. Its illustration uses a
   softly blurred terracotta/dusty-rose/ivory shader background with fine grain and a broad
   diagonal shadow; the shared thumbnail uses the same palette and texture without
   creating WebGL contexts. A white GRIDS mark is centered in both variants.
   Its Clutch figures were checked against the linked report and its June 24, 2025
-  survey methodology (263 US consumers). It remains unpublished, like the first draft.
+  survey methodology (263 US consumers). Both completed articles were approved for publication on November 15, 2026.
 - The second article also includes a two-tab fictional interior-company website
   comparison, directly before its survey section. It uses the 720px reading width
   without inheriting prose typography. The tabs support arrow keys, Home/End and
@@ -40,8 +42,8 @@ Article changes become public only after a reviewed deployment.
   Remove that property to preview its original custom article body. This option
   is available only to drafts; remove it before changing a post to published.
 - The original example also has `previewOnly: true`: it remains available at its
-  direct development URL but is omitted from listings. The real article draft
-  now supplies the homepage and index preview. Remove `previewOnly` to list a
+  direct development URL but is omitted from listings. The two published articles
+  supply the homepage and public index. Remove `previewOnly` to list a
   reference draft; this flag is not permitted on published posts.
 
 Checkpoint 2 adds the index grid, homepage section and navbar link. Canonical/

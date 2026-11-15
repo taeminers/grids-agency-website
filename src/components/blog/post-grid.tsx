@@ -21,10 +21,6 @@ export async function BlogPostGrid({ posts, locale, previewSlots = 0 }: {
           <BlogPostCover post={post} sizes="(max-width: 767px) calc(100vw - 48px), (max-width: 1023px) calc(100vw - 320px), (max-width: 1599px) 34vw, 560px" />
         </div>
         <div className={styles.copy}>
-          {post.status === "published" &&
-            <time className={styles.published} dateTime={post.publishedAt}>{new Intl.DateTimeFormat(locale === "ko" ? "ko-KR" : "en-US", {
-                year: "numeric", month: "short", day: "numeric", timeZone: "Asia/Seoul",
-              }).format(new Date(post.publishedAt))}</time>}
           <h3 lang={post.locale}>{post.title}</h3>
           <div className={styles.details}>
             <span className={styles.category} lang={post.locale}>{post.category}</span>

@@ -15,10 +15,6 @@
 .authorBadge { display: grid; place-items: center; flex-shrink: 0; width: 1.5rem; height: 1.5rem; border-radius: var(--site-card-radius); background: #101112; }
 .authorMark { width: .625rem; height: .625rem; background: #fff; }
 .readingTime { margin: 0 0 0 auto; color: #7a8993; white-space: nowrap; }
-.dates { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin: .75rem 0 0; font-size: .6875rem; line-height: 1.8; }
-.dates > div { display: flex; gap: .5rem; }
-.dates dt { color: #84909a; }
-.dates dd { margin: 0; color: #596a75; }
 .articleBody { --article-section-space: clamp(2.5rem, 4vw, 3rem); --article-heading-space: 1.25rem; --article-visual-space: 2rem; position: relative; display: grid; gap: var(--article-section-space); margin-top: var(--site-heading-space); }
 .prose { color: #30383e; font-size: 1rem; font-weight: 500; line-height: 1.75; word-break: keep-all; overflow-wrap: anywhere; }
 .prose > :first-child { margin-top: 0; }
@@ -41,6 +37,6 @@
 .image figcaption { max-width: 45rem; margin: .875rem auto 0; color: #71808b; font-size: .75rem; line-height: 1.8; text-align: center; }
 @media (prefers-contrast: more) {
   .prose { color: #1f2930; }
-  .readingTime, .dates dt, .dates dd { color: #344853; }
+  .readingTime { color: #344853; }
 }
 @media (max-width: 639px) { .heroPlaceholder { aspect-ratio: 4 / 3; } }

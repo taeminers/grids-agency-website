@@ -57,7 +57,8 @@ export const blogPosts: readonly BlogPost[] = [
     topic: "business",
     readingMinutes: 4,
     author: defaultBlogAuthor,
-    status: "draft",
+    status: "published",
+    publishedAt: "2026-11-15T16:19:19+09:00",
   },
   {
     slug: "website-trust-and-conversion",
@@ -69,7 +70,8 @@ export const blogPosts: readonly BlogPost[] = [
     topic: "web-app",
     readingMinutes: 6,
     author: defaultBlogAuthor,
-    status: "draft",
+    status: "published",
+    publishedAt: "2026-11-15T16:19:19+09:00",
   },
   {
     slug: "before-your-website-project",
